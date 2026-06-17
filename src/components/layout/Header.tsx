@@ -29,6 +29,8 @@ export default function Header() {
     if (!search.trim()) return;
 
     console.log("Buscar:", search);
+    setSearch("");
+    setIsSearchOpen(false);
   }
 
   return (
