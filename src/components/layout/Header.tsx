@@ -28,6 +28,7 @@ export default function Header() {
   function handleSearch() {
     if (!search.trim()) return;
 
+    //TODO: Implementar lógica de busca após consumir a API de filmes
     console.log("Buscar:", search);
     setSearch("");
     setIsSearchOpen(false);
