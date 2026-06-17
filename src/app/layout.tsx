@@ -5,21 +5,27 @@ import "./globals.css";
 const roboto = Roboto({
   subsets: ["latin"],
   weight: ["400", "500", "700"],
+  variable: "--font-sans",
 });
 
 export const metadata: Metadata = {
-  title: "Cinema App",
-  description: "App de cinema",
+  title: "LumiCine",
+  description: "Aplicação de cinema LumiCine",
 };
 
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   return (
-    <html lang="pt-br" className={roboto.className}>
-      <body className="min-h-full flex flex-col">{children}</body>
+    <html
+      lang="pt-BR"
+      className={`${roboto.variable} ${roboto.className}`}
+    >
+      <body className="min-h-screen flex flex-col">
+        {children}
+      </body>
     </html>
   );
 }
