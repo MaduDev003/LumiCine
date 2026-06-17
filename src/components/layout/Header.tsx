@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { Search } from "lucide-react";
+import { Search, Send } from "lucide-react";
 import logo from "../../assets/images/logo.png";
 import Link from "next/link";
 
@@ -23,6 +23,12 @@ export default function Header() {
     if (!search) {
       setIsSearchOpen(false);
     }
+  }
+
+  function handleSearch() {
+    if (!search.trim()) return;
+
+    console.log("Buscar:", search);
   }
 
   return (
@@ -70,7 +76,7 @@ export default function Header() {
             ease-in-out
             ${
               isSearchOpen
-                ? "w-72 px-3 border border-secondary-dark"
+                ? "w-80 px-3 border border-secondary-dark"
                 : "w-10 px-2 border border-transparent"
             }
           `}
@@ -92,9 +98,15 @@ export default function Header() {
             onChange={(e) =>
               setSearch(e.target.value)
             }
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                handleSearch();
+              }
+            }}
             placeholder="Buscar filmes..."
             className={`
               ml-3
+              flex-1
               bg-transparent
               text-font-color-dark
               placeholder:text-zinc-400
@@ -108,6 +120,23 @@ export default function Header() {
               }
             `}
           />
+
+          {isSearchOpen && (
+            <button
+              type="button"
+              onClick={handleSearch}
+              className="
+                ml-2
+                shrink-0
+                text-zinc-400
+                hover:text-font-color-dark
+                transition-colors
+                cursor-pointer
+              "
+            >
+              <Send className="h-5 w-5" />
+            </button>
+          )}
         </div>
       </div>
     </div>
