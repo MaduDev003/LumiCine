@@ -1,7 +1,7 @@
 export default function HomePage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <h1 className="text-4xl font-bold text-gray-900 dark:text-white">
+    <div className="w-full min-h-screen flex flex-col items-center justify-center bg-background-dark text-font-color-dark">
+      <h1 className="text-4xl font-bold">
         LumiCine Start
       </h1>
     </div>

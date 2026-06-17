@@ -4,15 +4,20 @@
   --accent-color: #FF5900;
   --background-dark: #181717;
   --font-color-dark: #FFFFFF;
-  --secundary-color-dark: #2C2C2C;
+  --secondary-color-dark: #2C2C2C;
+
+  --background: #FFFFFF;
   --foreground: #171717;
 }
+
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-accent: var(--accent-color);
+
+  --color-background-dark: var(--background-dark);
+  --color-secondary-dark: var(--secondary-color-dark);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -22,8 +27,9 @@
   }
 }
 
+/* Base styles */
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
 }
