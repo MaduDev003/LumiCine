@@ -39,3 +39,13 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# arquivos do VS Code 
+.vscode/
+
+# arquivos do sistema Windows 
+Thumbs.db
+
+# instruções de IA 
+AGENTS.md
+CLAUDE.md
