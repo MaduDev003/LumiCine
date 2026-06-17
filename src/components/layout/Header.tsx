@@ -64,8 +64,7 @@ export default function Header() {
 
       <div
         className="flex-1 flex justify-end"
-        onMouseEnter={openSearch}
-        onMouseLeave={closeSearch}
+        
       >
         <div
           className={`
@@ -83,6 +82,8 @@ export default function Header() {
                 : "w-10 px-2 border border-transparent"
             }
           `}
+          onMouseEnter={openSearch}
+          onMouseLeave={closeSearch}
         >
           <button
             type="button"
