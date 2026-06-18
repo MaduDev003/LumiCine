@@ -8,7 +8,7 @@ export default function HomePage() {
 
       <main className="w-full py-10">
         <div className="px-7.5 flex justify-center">
-          <div className="w-full max-w-5xl">
+          <div className="w-4/5 max-w-5xl">
             <div className="aspect-21/9 rounded-2xl relative overflow-hidden shadow-sm">
               <img
                 src={AvatarMovie.src}
@@ -16,7 +16,7 @@ export default function HomePage() {
                 className="w-full h-full object-cover"
               />
 
-              <div className="absolute inset-0 bg-linear-to-r from-black/60 via-black/20 to-transparent" />
+              <div className="absolute inset-0 bg-linear-to-r from-black/60 via-black/40 to-transparent" />
             </div>
           </div>
         </div>
