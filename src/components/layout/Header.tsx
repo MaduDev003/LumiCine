@@ -37,49 +37,58 @@ export default function Header() {
   const isActive = (path: string) => pathname === path;
 
   return (
-    <header className="sticky top-0 z-50 w-full h-16 flex items-center px-[30px] bg-background-dark/90 backdrop-blur-md text-font-color-dark border-b border-white/10">
-      {/* LOGO */}
+    <header className="sticky top-0 z-50 w-full h-16 flex items-center px-7.5 bg-background-dark/90 backdrop-blur-md text-font-color-dark border-b border-white/10">
       <div className="flex-1 flex items-center">
         <img
           src={logo.src}
           alt="LumiCine Logo"
-          className="h-14 object-contain"
+          className="h-36 object-contain"
         />
       </div>
-
-      {/* MENU */}
       <nav className="flex gap-10 text-sm font-medium">
         <Link
           href="/"
-          className={`transition ${
+          className={`relative flex flex-row-reverse items-center gap-2 transition ${
             isActive("/")
               ? "text-white"
               : "text-white/60 hover:text-white"
           }`}
         >
           Programação
+
+          {isActive("/") && (
+            <span className="w-1.5 h-1.5 rounded-full bg-accent" />
+          )}
         </Link>
 
         <Link
           href="/lumibar"
-          className={`transition ${
+          className={`relative flex items-center gap-2 transition ${
             isActive("/lumibar")
               ? "text-white"
               : "text-white/60 hover:text-white"
           }`}
         >
           LumiBar
+
+          {isActive("/lumibar") && (
+            <span className="w-1.5 h-1.5 rounded-full bg-accent" />
+          )}
         </Link>
 
         <Link
           href="/meus-ingressos"
-          className={`transition ${
+          className={`relative flex items-center gap-2 transition ${
             isActive("/meus-ingressos")
               ? "text-white"
               : "text-white/60 hover:text-white"
           }`}
         >
           Meus Ingressos
+
+          {isActive("/meus-ingressos") && (
+            <span className="w-1.5 h-1.5 rounded-full bg-accent" />
+          )}
         </Link>
       </nav>
 
