@@ -1,9 +1,11 @@
+"use client";
+
 import Header from "../../components/layout/Header";
 import DateMovieFilter from "./components/DateMovieFilter";
+import Button from "../../components/ui/Button";
 import AvatarMovie from "../../assets/images/avatar_h_.jpg";
 import { ChevronRight, ChevronLeft } from "lucide-react";
 
-/* TODO: isso será futuramente repensado - no momento é válido para construção do layout e leitura como um todo */
 const dates = [
   { day: "Seg", date: 29, selectedDate: true },
   { day: "Ter", date: 30, selectedDate: false },
@@ -20,32 +22,50 @@ export default function HomePage() {
       <main className="w-full py-8">
         <div className="px-6 flex justify-center">
           <div className="w-8/12 max-w-4xl">
-            <div className="aspect-21/9 rounded-xl relative overflow-hidden shadow-sm">
-              <img
-                src={AvatarMovie.src}
-                alt="Avatar Movie Poster"
-                className="w-full h-full object-cover"
-              />
 
-              <div className="absolute inset-0 bg-linear-to-r from-black/60 via-black/40 to-transparent" />
+            {/* Banner */}
+            <div
+              className="aspect-21/9 rounded-xl relative overflow-hidden shadow-sm bg-cover bg-center"
+              style={{
+                backgroundImage: `url(${AvatarMovie.src})`,
+              }}
+            >
+              {/* FILTRO PRETO */}
+              <div className="absolute inset-0 bg-black/85 " />
+
+              {/* CONTEÚDO */}
+              <div className="absolute inset-0 z-10">
+                <h1 className="absolute top-7 left-10 text-font-dark text-3xl font-semibold drop-shadow-md">
+                  Avatar
+                </h1>
+
+                <p className="absolute top-20 left-10 w-2/5 text-[16px] text-white/60 leading-relaxed drop-shadow-md">
+                  Em Pandora, um ex-fuzileiro paraplégico recebe a chance de caminhar novamente por meio de um corpo Avatar. Durante sua missão, ele se aproxima do povo Na'vi e descobre a profunda conexão deles com a natureza. Dividido entre dever e consciência, precisa escolher de que lado ficará.
+                </p>
+
+                <Button
+                  className="absolute bottom-8 left-10"
+                  onClick={() => console.log("Ingresso clicado")}
+                  buttonText="Comprar Ingresso"
+                />
+              </div>
             </div>
 
+            {/* INDICADORES */}
             <div className="flex mt-3 justify-center h-12 gap-2">
-              <span className="bg-font-dark h-2 w-8 rounded-full hover:bg-font-dark transition-colors duration-200"></span>
-              <span className="bg-tertiary-dark h-2 w-8 rounded-full hover:bg-font-dark transition-colors duration-200"></span>
-              <span className="bg-tertiary-dark h-2 w-8 rounded-full hover:bg-font-dark transition-colors duration-200"></span>
-              <span className="bg-tertiary-dark h-2 w-8 rounded-full hover:bg-font-dark transition-colors duration-200"></span>
+              <span className="bg-font-dark h-2 w-8 rounded-full" />
+              <span className="bg-tertiary-dark h-2 w-8 rounded-full hover:bg-font-dark transition-colors duration-200" />
+              <span className="bg-tertiary-dark h-2 w-8 rounded-full hover:bg-font-dark transition-colors duration-200" />
+              <span className="bg-tertiary-dark h-2 w-8 rounded-full hover:bg-font-dark transition-colors duration-200" />
             </div>
 
+            {/* FILTRO DE DATAS */}
             <section className="bg-secondary-dark mt-3 rounded-xl h-24 flex items-center justify-between px-6">
-              <button
-                disabled
-                className="text-font-dark/30 cursor-default"
-              >
-                <ChevronLeft className="w-8 h-8 stroke-1" />
+              <button disabled className="text-font-dark/30 cursor-default">
+                <ChevronLeft className="w-12 h-12 stroke-1" />
               </button>
 
-              <div className="flex overflow-x-clip scrollbar-hide gap-5">
+              <div className="flex overflow-x-clip scrollbar-hide gap-6">
                 {dates.map((item) => (
                   <DateMovieFilter
                     key={`${item.day}-${item.date}`}
@@ -55,12 +75,12 @@ export default function HomePage() {
                   />
                 ))}
               </div>
-              
 
               <button className="text-font-dark hover:text-white transition-colors duration-200 hover:scale-105 cursor-pointer">
-                <ChevronRight className="w-8 h-8 stroke-1" />
+                <ChevronRight className="w-12 h-12 stroke-1" />
               </button>
             </section>
+
           </div>
         </div>
       </main>

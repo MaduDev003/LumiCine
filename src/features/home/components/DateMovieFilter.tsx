@@ -12,12 +12,12 @@ export default function DateMovieFilter({
   return (
     <button
       className={`
+        w-24 h-20 rounded-xl relative cursor-pointer border-2
         ${
           selectedDate
-            ? "bg-accent"
-            : "border border-tertiary-dark hover:bg-accent hover:border-accent transition-colors duration-200"
+            ? "border-accent"
+            : "border-tertiary-dark hover:border-accent transition-colors duration-200"
         }
-        w-24 h-20 rounded-xl relative cursor-pointer
       `}
     >
       <span className="absolute text-sm top-1.5 left-1/2 -translate-x-1/2">
