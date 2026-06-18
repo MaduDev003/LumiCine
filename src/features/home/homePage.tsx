@@ -2,6 +2,7 @@
 
 import Header from "../../components/layout/Header";
 import DateMovieFilter from "./components/DateMovieFilter";
+import MovieCard from "./components/MovieCard";
 import Button from "../../components/ui/Button";
 import AvatarMovie from "../../assets/images/avatar_h_.jpg";
 import { ChevronRight, ChevronLeft } from "lucide-react";
@@ -30,21 +31,20 @@ export default function HomePage() {
                 backgroundImage: `url(${AvatarMovie.src})`,
               }}
             >
-              {/* FILTRO PRETO */}
               <div className="absolute inset-0 bg-black/85 " />
 
               {/* CONTEÚDO */}
               <div className="absolute inset-0 z-10">
-                <h1 className="absolute top-7 left-10 text-font-dark text-3xl font-semibold drop-shadow-md">
+                <h1 className="absolute top-7 left-10 text-font-dark text-3xl font-medium drop-shadow-md">
                   Avatar
                 </h1>
 
-                <p className="absolute top-20 left-10 w-2/5 text-[16px] text-white/60 leading-relaxed drop-shadow-md">
+                <p className="absolute top-20 left-10 w-2/5 text-[14px] text-white/60 leading-relaxed drop-shadow-md">
                   Em Pandora, um ex-fuzileiro paraplégico recebe a chance de caminhar novamente por meio de um corpo Avatar. Durante sua missão, ele se aproxima do povo Na'vi e descobre a profunda conexão deles com a natureza. Dividido entre dever e consciência, precisa escolher de que lado ficará.
                 </p>
 
                 <Button
-                  className="absolute bottom-8 left-10"
+                  className="absolute bottom-10 left-10"
                   onClick={() => console.log("Ingresso clicado")}
                   buttonText="Comprar Ingresso"
                 />
@@ -80,7 +80,25 @@ export default function HomePage() {
                 <ChevronRight className="w-12 h-12 stroke-1" />
               </button>
             </section>
-
+            
+            {/* EM BREVE */}
+            <section className="mt-10">
+                <h1 className="text-4xl text-font-light">Em Breve</h1>
+                <div className="w-full h-72 flex items-center justify-center gap-6 mt-6 rounded-xl overflow-x-auto scrollbar-hide">
+                  <MovieCard />
+                   <MovieCard />
+                   <MovieCard />
+                   <MovieCard />
+                   <MovieCard />
+                </div>
+                <div className="w-full h-72 flex items-center justify-center gap-6 mt-6 rounded-xl overflow-x-auto scrollbar-hide">
+                  <MovieCard />
+                   <MovieCard />
+                   <MovieCard />
+                   <MovieCard />
+                   <MovieCard />
+                </div>
+            </section>
           </div>
         </div>
       </main>
