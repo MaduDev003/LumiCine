@@ -28,6 +28,7 @@ export default function Header() {
   function handleSearch() {
     if (!search.trim()) return;
 
+    //TODO: Implementar lógica de busca ao cosumir a API do IMDB
     console.log("Buscar:", search);
 
     setSearch("");

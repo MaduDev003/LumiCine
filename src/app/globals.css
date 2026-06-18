@@ -5,6 +5,7 @@
   --background-dark: #181717;
   --font-color-dark: #DBDBDB;
   --secondary-color-dark: #2c2c2c;
+  --tertiary-color-dark: #7a7a7a;
 
   --background: #ffffff;
   --foreground: #171717;
@@ -17,6 +18,7 @@
   --color-accent: var(--accent-color);
   --color-background-dark: var(--background-dark);
   --color-secondary-dark: var(--secondary-color-dark);
+  --color-tertiary-dark: var(--tertiary-color-dark);
   --color-font-dark: var(--font-color-dark);
 
   --font-sans: var(--font-sans);
