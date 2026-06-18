@@ -33,9 +33,9 @@ export default function HomePage() {
               >
                 <ChevronLeft className="w-10 h-10 stroke-1" />
               </button>
-
+                {/* TODO: Cada botão clicavel será um componente criado nesta pasta de componenets Pois só será usado na HomePage */}
               <div className="flex overflow-x-clip scrollbar-hide gap-7">
-                <button className="bg-accent w-28 h-24 rounded-2xl relative">
+                <button className="bg-accent w-28 h-24 rounded-2xl relative cursor-pointer">
                   <span className="absolute text-base top-2 left-1/2 -translate-x-1/2">
                     Seg
                   </span>
@@ -45,7 +45,7 @@ export default function HomePage() {
                   </h3>
                 </button>
 
-                <button className="border border-tertiary-dark w-28 h-24 rounded-2xl relative">
+                <button className="border border-tertiary-dark w-28 h-24 rounded-2xl relative cursor-pointer hover:bg-accent hover:border-accent transition-colors duration-200">
                   <span className="absolute text-base top-2 left-1/2 -translate-x-1/2">
                     Ter
                   </span>
@@ -55,7 +55,7 @@ export default function HomePage() {
                   </h3>
                 </button>
 
-                <button className="border border-tertiary-dark w-28 h-24 rounded-2xl relative">
+                <button className="border border-tertiary-dark w-28 h-24 rounded-2xl relative cursor-pointer hover:bg-accent hover:border-accent transition-colors duration-200">
                   <span className="absolute text-base top-2 left-1/2 -translate-x-1/2">
                     Qua
                   </span>
@@ -65,7 +65,7 @@ export default function HomePage() {
                   </h3>
                 </button>
 
-                <button className="border border-tertiary-dark w-28 h-24 rounded-2xl relative">
+                <button className="border border-tertiary-dark w-28 h-24 rounded-2xl relative cursor-pointer hover:bg-accent hover:border-accent transition-colors duration-200">
                   <span className="absolute text-base top-2 left-1/2 -translate-x-1/2">
                     Qui
                   </span>
@@ -75,7 +75,7 @@ export default function HomePage() {
                   </h3>
                 </button>
 
-                <button className="border border-tertiary-dark w-28 h-24 rounded-2xl relative">
+                <button className="border border-tertiary-dark w-28 h-24 rounded-2xl relative cursor-pointer hover:bg-accent hover:border-accent transition-colors duration-200">
                   <span className="absolute text-base top-2 left-1/2 -translate-x-1/2">
                     Sex
                   </span>
@@ -86,7 +86,7 @@ export default function HomePage() {
                 </button>
               </div>
 
-              <button className="text-font-dark hover:text-white transition-colors duration-200">
+              <button className="text-font-dark hover:text-white transition-colors duration-200 hover:scale-105 cursor-pointer">
                 <ChevronRight className="w-10 h-10 stroke-1" />
               </button>
             </section>
