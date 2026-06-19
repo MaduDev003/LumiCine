@@ -5,6 +5,9 @@ import DateMovieFilter from "./components/DateMovieFilter";
 import MovieCard from "./components/MovieCard";
 import Button from "../../components/ui/Button";
 import AvatarMovie from "../../assets/images/avatar_h_.jpg";
+import Avatar from "../../assets/images/avatar.jpg";
+import enigma from "../../assets/images/enigma.jpg";
+import you from "../../assets/images/you.jpg";
 import { ChevronRight, ChevronLeft } from "lucide-react";
 
 const dates = [
@@ -13,6 +16,14 @@ const dates = [
   { day: "Qua", date: 1, selectedDate: false },
   { day: "Qui", date: 2, selectedDate: false },
   { day: "Sex", date: 3, selectedDate: false },
+];
+
+const movies = [
+  { posterImg: you.src, genders: ["Romance"], movieName: "You", ageRating: "16", duration: "1h 45m" },
+  { posterImg: Avatar.src, genders: ["Drama"], movieName: "Avatar", ageRating: "16", duration: "2h 12m" },
+  { posterImg: enigma.src, genders: ["Suspense"], movieName: "Enigma", ageRating: "14", duration: "1h 58m" },
+  { posterImg: you.src, genders: ["Romance"], movieName: "You", ageRating: "16", duration: "1h 45m" },
+  { posterImg: Avatar.src, genders: ["Drama"], movieName: "Avatar", ageRating: "16", duration: "2h 12m" },
 ];
 
 export default function HomePage() {
@@ -85,18 +96,29 @@ export default function HomePage() {
             <section className="mt-10">
                 <h1 className="text-4xl text-font-light">Em Breve</h1>
                 <div className="w-full h-72 flex items-center justify-center gap-6 mt-6 rounded-xl overflow-x-auto scrollbar-hide">
-                  <MovieCard />
-                   <MovieCard />
-                   <MovieCard />
-                   <MovieCard />
-                   <MovieCard />
+                  {movies.map((movie, index) => (
+                    <MovieCard
+                      key={index}
+                      posterImg={movie.posterImg}
+                      genders={movie.genders}
+                      movieName={movie.movieName}
+                      ageRating={movie.ageRating}
+                      duration={movie.duration}
+                    />
+                  ))}
                 </div>
                 <div className="w-full h-72 flex items-center justify-center gap-6 mt-6 rounded-xl overflow-x-auto scrollbar-hide">
-                  <MovieCard />
-                   <MovieCard />
-                   <MovieCard />
-                   <MovieCard />
-                   <MovieCard />
+                  {movies.map((movie, index) => (
+                    <MovieCard
+                      key={index}
+                      posterImg={movie.posterImg}
+                      genders={movie.genders}
+                      movieName={movie.movieName}
+                      ageRating={movie.ageRating}
+                      duration={movie.duration}
+                    />
+                  ))}
+                
                 </div>
             </section>
           </div>
