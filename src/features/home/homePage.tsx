@@ -61,12 +61,11 @@ export default function HomePage() {
                 />
               </div>
 
-              {/* SETAS (canto inferior direito) */}
-              <div className="absolute bottom-4 right-4 flex gap-2 z-20">
+              <div className="absolute bottom-8 right-4 flex gap-2 z-20">
                   <button className="bg-white/10 hover:bg-white/20 transition-colors p-2 rounded-full backdrop-blur-xl border border-white/20">
                   <ChevronLeft className="disabled w-8 h-8 text-font-dark/30 cursor-default" />
                 </button>
-                <button className="bg-white/10 hover:bg-white/20 transition-colors p-2 rounded-full backdrop-blur-xl border border-white/20">
+                <button className="bg-white/10 hover:bg-white/20 transition-colors p-2 rounded-full backdrop-blur-xl border cursor-pointer border-white/20">
                   <ChevronRight className="w-8 h-8 text-white" />
                 </button>
               </div>
@@ -142,13 +141,12 @@ export default function HomePage() {
               }}
             >
               <div className="absolute inset-0 bg-black/80 " />
-              
-              {/* SETAS (canto inferior direito) */}
-              <div className="absolute bottom-4 right-4 flex gap-2 z-20">
+
+              <div className="absolute bottom-8 right-4 flex gap-2 z-20">
                   <button className="bg-white/10 hover:bg-white/20 transition-colors p-2 rounded-full backdrop-blur-xl border border-white/20">
                   <ChevronLeft className="disabled w-8 h-8 text-font-dark/30 cursor-default" />
                 </button>
-                <button className="bg-white/10 hover:bg-white/20 transition-colors p-2 rounded-full backdrop-blur-xl border border-white/20">
+                <button className="bg-white/10 hover:bg-white/20 transition-colors cursor-pointer p-2 rounded-full backdrop-blur-xl border border-white/20">
                   <ChevronRight className="w-8 h-8 text-white" />
                 </button>
               </div>
