@@ -19,10 +19,10 @@ const dates = [
 ];
 
 const movies = [
-  { posterImg: you.src, genders: ["Suspense", "Drama"], movieName: "You", ageRating: "16", duration: "1h 45m", preSale: false},
-  { posterImg: Avatar.src, genders: ["Drama", "sci-fi"], movieName: "Avatar", ageRating: "16", duration: "2h 12m", preSale: true },
-  { posterImg: enigma.src, genders: ["Suspense"], movieName: "O Morro Dos Ventos Uivantes", ageRating: "14", duration: "1h 58m", preSale: true },
-  { posterImg: you.src, genders: ["Suspense", "Drama"], movieName: "You", ageRating: "16", duration: "1h 45m", preSale: false },
+  { posterImg: you.src, genders: ["Suspense", "Comédia"], movieName: "You", ageRating: "16", duration: "1h 45m", preSale: false},
+  { posterImg: Avatar.src, genders: ["Drama", "Sci-fi"], movieName: "Avatar", ageRating: "L", duration: "2h 12m", preSale: true },
+  { posterImg: enigma.src, genders: ["Suspense", "Ação"], movieName: "O Morro Dos Ventos Uivantes", ageRating: "14", duration: "1h 58m", preSale: true },
+  { posterImg: you.src, genders: ["Suspense", "Drama"], movieName: "You", ageRating: "18", duration: "1h 45m", preSale: false },
 ];
 
 export default function HomePage() {
@@ -94,7 +94,7 @@ export default function HomePage() {
             {/* EM BREVE */}
             <section className="mt-12">
                 <h1 className="text-4xl text-font-light mb-4">Em Breve</h1>
-                <div className="w-full h-90 flex items-center  gap-3 mt-6 rounded-xl overflow-x-auto scrollbar-hide">
+                <div className="w-full h-90 flex items-center  gap-4 mt-6 rounded-xl overflow-x-auto scrollbar-hide">
                   {movies.map((movie, index) => (
                     <MovieCard
                       key={index}
@@ -107,7 +107,7 @@ export default function HomePage() {
                     />
                   ))}
                 </div>
-                <div className="w-full h-90 flex items-center gap-3 mt-6 rounded-xl overflow-x-auto scrollbar-hide">
+                <div className="w-full h-90 flex items-center gap-4 mt-6 rounded-xl overflow-x-auto scrollbar-hide">
                   {movies.map((movie, index) => (
                     <MovieCard
                       key={index}
