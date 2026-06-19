@@ -36,12 +36,13 @@ export default function HomePage() {
 
             {/* Banner */}
             <div
-              className="aspect-21/9 rounded-xl relative overflow-hidden shadow-sm bg-cover bg-center"
+              className="aspect-21/9 rounded-xl relative overflow-hidden shadow-sm bg-cover bg-center group"
               style={{
                 backgroundImage: `url(${AvatarMovie.src})`,
               }}
             >
-              <div className="absolute inset-0 bg-black/80 " />
+              {/* OVERLAY */}
+              <div className="absolute inset-0 bg-black/80 z-0" />
 
               {/* CONTEÚDO */}
               <div className="absolute inset-0 z-10">
@@ -58,6 +59,16 @@ export default function HomePage() {
                   onClick={() => console.log("Ingresso clicado")}
                   buttonText="Comprar Ingresso"
                 />
+              </div>
+
+              {/* SETAS (canto inferior direito) */}
+              <div className="absolute bottom-4 right-4 flex gap-2 z-20">
+                  <button className="bg-white/10 hover:bg-white/20 transition-colors p-2 rounded-full backdrop-blur-xl border border-white/20">
+                  <ChevronLeft className="disabled w-8 h-8 text-font-dark/30 cursor-default" />
+                </button>
+                <button className="bg-white/10 hover:bg-white/20 transition-colors p-2 rounded-full backdrop-blur-xl border border-white/20">
+                  <ChevronRight className="w-8 h-8 text-white" />
+                </button>
               </div>
             </div>
 
@@ -92,7 +103,7 @@ export default function HomePage() {
             </section>
             
             {/* EM BREVE */}
-            <section className="mt-12">
+            <section className="mt-14">
                 <h1 className="text-4xl text-font-light mb-4">Em Breve</h1>
                 <div className="w-full h-90 flex items-center  gap-4 mt-6 rounded-xl overflow-x-auto scrollbar-hide">
                   {movies.map((movie, index) => (
@@ -122,6 +133,66 @@ export default function HomePage() {
                 
                 </div>
             </section>
+
+                {/* Banner LumiBar */}
+            <div
+              className="aspect-21/9 mt-14 rounded-xl relative overflow-hidden shadow-sm bg-cover bg-center"
+              style={{
+                backgroundImage: `url(${AvatarMovie.src})`,
+              }}
+            >
+              <div className="absolute inset-0 bg-black/80 " />
+              
+              {/* SETAS (canto inferior direito) */}
+              <div className="absolute bottom-4 right-4 flex gap-2 z-20">
+                  <button className="bg-white/10 hover:bg-white/20 transition-colors p-2 rounded-full backdrop-blur-xl border border-white/20">
+                  <ChevronLeft className="disabled w-8 h-8 text-font-dark/30 cursor-default" />
+                </button>
+                <button className="bg-white/10 hover:bg-white/20 transition-colors p-2 rounded-full backdrop-blur-xl border border-white/20">
+                  <ChevronRight className="w-8 h-8 text-white" />
+                </button>
+              </div>
+            </div>
+
+             {/* INDICADORES */}
+            <div className="flex mt-3 justify-center h-12 gap-2">
+              <span className="bg-font-dark h-2 w-8 rounded-full" />
+              <span className="bg-tertiary-dark h-2 w-8 rounded-full hover:bg-font-dark transition-colors duration-200" />
+              <span className="bg-tertiary-dark h-2 w-8 rounded-full hover:bg-font-dark transition-colors duration-200" />
+              <span className="bg-tertiary-dark h-2 w-8 rounded-full hover:bg-font-dark transition-colors duration-200" />
+            </div>
+
+               <section className="mt-6">
+                <h1 className="text-4xl text-font-light mb-4">Em Exibição</h1>
+                <div className="w-full h-90 flex items-center  gap-4 mt-6 rounded-xl overflow-x-auto scrollbar-hide">
+                  {movies.map((movie, index) => (
+                    <MovieCard
+                      key={index}
+                      posterImg={movie.posterImg}
+                      genders={movie.genders}
+                      movieName={movie.movieName}
+                      ageRating={movie.ageRating}
+                      duration={movie.duration}
+                      preSale={movie.preSale}
+                    />
+                  ))}
+                </div>
+                <div className="w-full h-90 flex items-center gap-4 mt-6 rounded-xl overflow-x-auto scrollbar-hide">
+                  {movies.map((movie, index) => (
+                    <MovieCard
+                      key={index}
+                      posterImg={movie.posterImg}
+                      genders={movie.genders}
+                      movieName={movie.movieName}
+                      ageRating={movie.ageRating}
+                      duration={movie.duration}
+                      preSale={movie.preSale}
+                    />
+                  ))}
+                
+                </div>
+            </section>
+
           </div>
         </div>
       </main>
