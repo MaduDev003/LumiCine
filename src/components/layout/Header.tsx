@@ -38,7 +38,7 @@ export default function Header() {
   const isActive = (path: string) => pathname === path;
 
   return (
-    <header className="sticky top-0 z-50 w-full h-16 flex items-center px-7.5 bg-background-dark/90 backdrop-blur-md text-font-color-dark border-b border-white/10">
+    <header className="sticky top-0 z-50 w-full h-16 flex items-center px-7.5 bg-background-dark/90 backdrop-blur-2xl text-font-color-dark border-b border-white/10">
       <div className="flex-1 flex items-center">
         <img
           src={logo.src}

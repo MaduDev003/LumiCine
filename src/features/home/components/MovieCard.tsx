@@ -13,25 +13,25 @@ const isSmallTitle = props.movieName.length <= 18;
 function renderAgeClassificationColor(ageRating: string) {
   switch (ageRating) {
     case "L":
-      return "bg-green-400"; 
+      return "bg-green-400 group-hover:bg-green-400/70";
 
     case "10":
-      return "bg-blue-400";
+      return "bg-blue-400 group-hover:bg-blue-400/70";
 
     case "12":
-      return "bg-yellow-400";
+      return "bg-yellow-400 group-hover:bg-yellow-400/70";
 
     case "14":
-      return "bg-orange-400";
+      return "bg-orange-400 group-hover:bg-orange-400/70";
 
     case "16":
-      return "bg-red-400";
+      return "bg-red-400 group-hover:bg-red-400/70";
 
     case "18":
-      return "bg-black text-white";
+      return "bg-black text-white group-hover:bg-black/70";
 
     default:
-      return "bg-gray-400";
+      return "bg-gray-400 group-hover:bg-gray-400/70";
   }
 }
 
@@ -72,12 +72,12 @@ function renderAgeClassificationColor(ageRating: string) {
             Duração: {props.duration}
           </p>
             
-         <div className="flex justify-between mt-2">
+         <div className="flex justify-between  mt-2">
             <div className="flex gap-2 h-6 items-center">
               {props.genders.map((gender) => (
                 <div
                   key={gender}
-                  className="bg-background-dark h-5 flex justify-center px-2 py-0.5 rounded-2xl"
+                  className="bg-background-dark group-hover:bg-background-dark/60 h-5 flex justify-center px-2 py-0.5 rounded-2xl"
                 >
                   <span>{gender}</span>
                 </div>
@@ -85,7 +85,7 @@ function renderAgeClassificationColor(ageRating: string) {
             </div>
 
             <div
-              className={`${renderAgeClassificationColor(props.ageRating)} h-6 w-6 flex justify-center items-center mb-10 rounded mr-2`}
+              className={`${renderAgeClassificationColor(props.ageRating)} h-6 w-6 flex justify-center items-center mb-10 rounded mr-2 transition-colors`}
             >
               <span>{props.ageRating}</span>
             </div>

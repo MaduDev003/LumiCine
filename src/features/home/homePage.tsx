@@ -41,7 +41,7 @@ export default function HomePage() {
                 backgroundImage: `url(${AvatarMovie.src})`,
               }}
             >
-              <div className="absolute inset-0 bg-black/85 " />
+              <div className="absolute inset-0 bg-black/80 " />
 
               {/* CONTEÚDO */}
               <div className="absolute inset-0 z-10">
@@ -49,7 +49,7 @@ export default function HomePage() {
                   Avatar
                 </h1>
 
-                <p className="absolute top-20 left-10 w-2/5 text-[14px] text-white/60 leading-relaxed drop-shadow-md">
+                <p className="absolute top-20 left-10 w-2/5 text-[15px] text-white/60 leading-relaxed drop-shadow-md">
                   Em Pandora, um ex-fuzileiro paraplégico recebe a chance de caminhar novamente por meio de um corpo Avatar. Durante sua missão, ele se aproxima do povo Na'vi e descobre a profunda conexão deles com a natureza. Dividido entre dever e consciência, precisa escolher de que lado ficará.
                 </p>
 
