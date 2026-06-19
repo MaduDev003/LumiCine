@@ -19,11 +19,11 @@ const dates = [
 ];
 
 const movies = [
-  { posterImg: you.src, genders: ["Romance"], movieName: "You", ageRating: "16", duration: "1h 45m" },
-  { posterImg: Avatar.src, genders: ["Drama"], movieName: "Avatar", ageRating: "16", duration: "2h 12m" },
-  { posterImg: enigma.src, genders: ["Suspense"], movieName: "Enigma", ageRating: "14", duration: "1h 58m" },
-  { posterImg: you.src, genders: ["Romance"], movieName: "You", ageRating: "16", duration: "1h 45m" },
-  { posterImg: Avatar.src, genders: ["Drama"], movieName: "Avatar", ageRating: "16", duration: "2h 12m" },
+  { posterImg: you.src, genders: ["Romance"], movieName: "You", ageRating: "16", duration: "1h 45m", preSale: false},
+  { posterImg: Avatar.src, genders: ["Drama"], movieName: "Avatar", ageRating: "16", duration: "2h 12m", preSale: true },
+  { posterImg: enigma.src, genders: ["Suspense"], movieName: "Enigma", ageRating: "14", duration: "1h 58m", preSale: true },
+  { posterImg: you.src, genders: ["Romance"], movieName: "You", ageRating: "16", duration: "1h 45m", preSale: true },
+  { posterImg: Avatar.src, genders: ["Drama"], movieName: "Avatar", ageRating: "16", duration: "2h 12m", preSale: false },
 ];
 
 export default function HomePage() {
@@ -93,8 +93,8 @@ export default function HomePage() {
             </section>
             
             {/* EM BREVE */}
-            <section className="mt-10">
-                <h1 className="text-4xl text-font-light">Em Breve</h1>
+            <section className="mt-12">
+                <h1 className="text-4xl text-font-light mb-4">Em Breve</h1>
                 <div className="w-full h-72 flex items-center justify-center gap-6 mt-6 rounded-xl overflow-x-auto scrollbar-hide">
                   {movies.map((movie, index) => (
                     <MovieCard
@@ -104,6 +104,7 @@ export default function HomePage() {
                       movieName={movie.movieName}
                       ageRating={movie.ageRating}
                       duration={movie.duration}
+                      preSale={movie.preSale}
                     />
                   ))}
                 </div>
@@ -116,6 +117,7 @@ export default function HomePage() {
                       movieName={movie.movieName}
                       ageRating={movie.ageRating}
                       duration={movie.duration}
+                      preSale={movie.preSale}
                     />
                   ))}
                 
