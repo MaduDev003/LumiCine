@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { Search, Send } from "lucide-react";
+import { Search, Send, TextAlignJustify } from "lucide-react";
 import logo from "../../assets/images/logo.png";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -28,7 +28,6 @@ export default function Header() {
   function handleSearch() {
     if (!search.trim()) return;
 
-    //TODO: Implementar lógica de busca ao cosumir a API do IMDB
     console.log("Buscar:", search);
 
     setSearch("");
@@ -38,15 +37,17 @@ export default function Header() {
   const isActive = (path: string) => pathname === path;
 
   return (
-    <header className="sticky top-0 z-50 w-full h-16 flex items-center px-7.5 bg-background-dark/90 backdrop-blur-2xl text-font-color-dark border-b border-white/10">
-      <div className="flex-1 flex items-center">
+    <header className="sticky top-0 z-50 w-full h-16 flex items-center px-5 md:px-7.5 bg-background-dark/90 backdrop-blur-2xl text-font-color-dark border-b border-white/10">
+      <div className="flex items-center gap-3 flex-1 justify-between md:px-0 px-3">
+        <TextAlignJustify className="flex md:hidden" />
         <img
           src={logo.src}
           alt="LumiCine Logo"
-          className="h-36 object-contain"
+          className="h-25 md:h-36 object-contain"
         />
       </div>
-      <nav className="flex gap-10 text-sm font-medium">
+      <nav className="hidden md:flex md:gap-5 lg:gap-10 text-sm font-medium">
+
         <Link
           href="/"
           className={`relative flex flex-row-reverse items-center gap-2 transition ${
@@ -56,7 +57,6 @@ export default function Header() {
           }`}
         >
           Programação
-
           {isActive("/") && (
             <span className="w-1.5 h-1.5 rounded-full bg-accent" />
           )}
@@ -71,7 +71,6 @@ export default function Header() {
           }`}
         >
           LumiBar
-
           {isActive("/lumibar") && (
             <span className="w-1.5 h-1.5 rounded-full bg-accent" />
           )}
@@ -86,19 +85,19 @@ export default function Header() {
           }`}
         >
           Meus Ingressos
-
           {isActive("/meus-ingressos") && (
             <span className="w-1.5 h-1.5 rounded-full bg-accent" />
           )}
         </Link>
+
       </nav>
 
-      {/* SEARCH */}
-      <div className="flex-1 flex justify-end">
+      {/* SEARCH (iPad + desktop) */}
+      <div className="hidden md:flex flex-1 justify-end min-w-0">
         <div
-          className={`flex items-center h-10 rounded-xl bg-white/5 border border-white/10 overflow-hidden transition-all duration-300 ${
-            isSearchOpen ? "w-80 px-3" : "w-10 px-2"
-          }`}
+          className={`flex items-center h-10 rounded-xl bg-white/5 border border-white/10 overflow-hidden transition-all duration-300
+            ${isSearchOpen ? "w-44 md:w-56 lg:w-80 px-3" : "w-10 px-2"}
+          `}
           onMouseEnter={openSearch}
           onMouseLeave={closeSearch}
         >
@@ -139,6 +138,7 @@ export default function Header() {
           )}
         </div>
       </div>
+
     </header>
   );
 }
