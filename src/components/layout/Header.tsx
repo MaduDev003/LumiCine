@@ -3,15 +3,19 @@
 import { useRef, useState } from "react";
 import { Search, Send, TextAlignJustify } from "lucide-react";
 import logo from "../../assets/images/logo.png";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import MenuListElements from "@/src/features/home/components/MenuListElements";
 
-export default function Header() {
+interface HeaderProps {
+  menu: boolean;
+  setMenu: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export default function Header({ menu, setMenu }: HeaderProps) {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [search, setSearch] = useState("");
 
   const inputRef = useRef<HTMLInputElement>(null);
-  const pathname = usePathname();
+
 
   function openSearch() {
     setIsSearchOpen(true);
@@ -34,64 +38,25 @@ export default function Header() {
     setIsSearchOpen(false);
   }
 
-  const isActive = (path: string) => pathname === path;
+
 
   return (
+    <>
     <header className="sticky top-0 z-50 w-full h-16 flex items-center px-5 md:px-7.5 bg-background-dark/90 backdrop-blur-2xl text-font-color-dark border-b border-white/10">
       <div className="flex items-center gap-3 flex-1 justify-between md:px-0 px-3">
-        <TextAlignJustify className="flex md:hidden" />
+        <TextAlignJustify
+          className="flex md:hidden cursor-pointer"
+          onClick={() => setMenu((prev) => !prev)}
+        />
         <img
           src={logo.src}
           alt="LumiCine Logo"
           className="h-25 md:h-36 object-contain"
         />
       </div>
-      <nav className="hidden md:flex md:gap-5 lg:gap-10 text-sm font-medium">
-
-        <Link
-          href="/"
-          className={`relative flex flex-row-reverse items-center gap-2 transition ${
-            isActive("/")
-              ? "text-white"
-              : "text-white/60 hover:text-white"
-          }`}
-        >
-          Programação
-          {isActive("/") && (
-            <span className="w-1.5 h-1.5 rounded-full bg-accent" />
-          )}
-        </Link>
-
-        <Link
-          href="/lumibar"
-          className={`relative flex items-center gap-2 transition ${
-            isActive("/lumibar")
-              ? "text-white"
-              : "text-white/60 hover:text-white"
-          }`}
-        >
-          LumiBar
-          {isActive("/lumibar") && (
-            <span className="w-1.5 h-1.5 rounded-full bg-accent" />
-          )}
-        </Link>
-
-        <Link
-          href="/meus-ingressos"
-          className={`relative flex items-center gap-2 transition ${
-            isActive("/meus-ingressos")
-              ? "text-white"
-              : "text-white/60 hover:text-white"
-          }`}
-        >
-          Meus Ingressos
-          {isActive("/meus-ingressos") && (
-            <span className="w-1.5 h-1.5 rounded-full bg-accent" />
-          )}
-        </Link>
-
-      </nav>
-
+      <div className="hidden md:flex">
+        <MenuListElements className="flex-row" />
+      </div>
       {/* SEARCH (iPad + desktop) */}
       <div className="hidden md:flex flex-1 justify-end min-w-0">
         <div
@@ -138,7 +103,7 @@ export default function Header() {
           )}
         </div>
       </div>
-
     </header>
+    </>
   );
 }
