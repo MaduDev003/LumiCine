@@ -54,41 +54,55 @@ export default function HomePage() {
               <div className="w-8/12 max-w-4xl">
 
                 {/* Banner */}
-                <div
-                  className="aspect-21/9 rounded-xl relative overflow-hidden shadow-sm bg-cover bg-center group"
-                  style={{
-                    backgroundImage: `url(${AvatarMovie.src})`,
-                  }}
-                >
-                  {/* OVERLAY */}
-                  <div className="absolute inset-0 bg-black/80 z-0" />
+                {/* Banner */}
+           {/* Banner */}
+<div
+  className="aspect-video md:aspect-21/9 rounded-xl relative overflow-hidden shadow-sm bg-cover bg-center group"
+  style={{
+    backgroundImage: `url(${AvatarMovie.src})`,
+  }}
+>
+  {/* OVERLAY */}
+  <div className="absolute inset-0 bg-black/80 z-0" />
 
-                  {/* CONTEÚDO */}
-                  <div className="absolute inset-0 z-10">
-                    <h1 className="absolute top-7 left-10 text-font-dark text-3xl font-medium drop-shadow-md">
-                      Avatar
-                    </h1>
+  {/* CONTEÚDO */}
+  <div className="absolute inset-0 z-10">
+    <h1 className="absolute top-4 left-4 md:top-6 md:left-8 lg:top-7 lg:left-10 text-font-dark text-lg md:text-2xl lg:text-3xl font-medium drop-shadow-md">
+      Avatar
+    </h1>
 
-                    <p className="absolute top-20 left-10 w-2/5 text-[15px] text-white/60 leading-relaxed drop-shadow-md">
-                      Em Pandora, um ex-fuzileiro paraplégico recebe a chance de caminhar novamente por meio de um corpo Avatar. Durante sua missão, ele se aproxima do povo Na'vi e descobre a profunda conexão deles com a natureza. Dividido entre dever e consciência, precisa escolher de que lado ficará.
-                    </p>
+    <p className="absolute top-12 left-4 md:top-16 md:left-8 lg:top-20 lg:left-10 w-3/4 md:w-1/2 lg:w-2/5 text-xs md:text-sm lg:text-[15px] text-white/60 leading-relaxed drop-shadow-md line-clamp-3 md:line-clamp-4 lg:line-clamp-none">
+      Em Pandora, um ex-fuzileiro paraplégico recebe a chance de caminhar
+      novamente por meio de um corpo Avatar. Durante sua missão, ele se
+      aproxima do povo Na'vi e descobre a profunda conexão deles com a
+      natureza. Dividido entre dever e consciência, precisa escolher de que
+      lado ficará.
+    </p>
+    <Button
+      className="
+        absolute
+        bottom-4 left-4
+        md:bottom-4 md:left-8
+        lg:bottom-10 lg:left-10
+        scale-75 md:scale-90 lg:scale-100
+        origin-left
+        h-10 md:h-10 lg:h-12
+      "
+      onClick={() => console.log('Ingresso clicado')}
+      buttonText="Comprar Ingresso"
+    />
+  </div>
+  {/* SETAS */}
+  <div className="absolute bottom-4 right-4 md:bottom-4 md:right-6 lg:bottom-8 lg:right-4 flex gap-2 z-20">
+    <button className="bg-white/10 hover:bg-white/20 transition-colors p-1.5 md:p-2 rounded-full backdrop-blur-xl border border-white/20">
+      <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 lg:w-8 lg:h-8 text-font-dark/30 cursor-default" />
+    </button>
 
-                    <Button
-                      className="absolute bottom-10 left-10"
-                      onClick={() => console.log("Ingresso clicado")}
-                      buttonText="Comprar Ingresso"
-                    />
-                  </div>
-
-                  <div className="absolute bottom-8 right-4 flex gap-2 z-20">
-                      <button className="bg-white/10 hover:bg-white/20 transition-colors p-2 rounded-full backdrop-blur-xl border border-white/20">
-                      <ChevronLeft className="disabled w-8 h-8 text-font-dark/30 cursor-default" />
-                    </button>
-                    <button className="bg-white/10 hover:bg-white/20 transition-colors p-2 rounded-full backdrop-blur-xl border cursor-pointer border-white/20">
-                      <ChevronRight className="w-8 h-8 text-white" />
-                    </button>
-                  </div>
-                </div>
+    <button className="bg-white/10 hover:bg-white/20 transition-colors p-1.5 md:p-2 rounded-full backdrop-blur-xl border border-white/20">
+      <ChevronRight className="w-5 h-5 md:w-6 md:h-6 lg:w-8 lg:h-8 text-white" />
+    </button>
+  </div>
+</div>
 
                 {/* INDICADORES */}
                 <div className="flex mt-3 justify-center h-12 gap-2">
@@ -161,12 +175,13 @@ export default function HomePage() {
                 >
                   <div className="absolute inset-0 bg-black/80 " />
 
-                  <div className="absolute bottom-8 right-4 flex gap-2 z-20">
-                      <button className="bg-white/10 hover:bg-white/20 transition-colors p-2 rounded-full backdrop-blur-xl border border-white/20">
-                      <ChevronLeft className="disabled w-8 h-8 text-font-dark/30 cursor-default" />
+                  <div className="absolute bottom-4 right-4 md:bottom-4 md:right-6 lg:bottom-8 lg:right-4 flex gap-2 z-20">
+                    <button className="bg-white/10 hover:bg-white/20 transition-colors p-1.5 md:p-2 rounded-full backdrop-blur-xl border border-white/20">
+                      <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 lg:w-8 lg:h-8 text-font-dark/30 cursor-default" />
                     </button>
-                    <button className="bg-white/10 hover:bg-white/20 transition-colors cursor-pointer p-2 rounded-full backdrop-blur-xl border border-white/20">
-                      <ChevronRight className="w-8 h-8 text-white" />
+
+                    <button className="bg-white/10 hover:bg-white/20 transition-colors p-1.5 md:p-2 rounded-full backdrop-blur-xl border border-white/20">
+                      <ChevronRight className="w-5 h-5 md:w-6 md:h-6 lg:w-8 lg:h-8 text-white" />
                     </button>
                   </div>
                 </div>
@@ -301,12 +316,6 @@ export default function HomePage() {
           </footer>
         </>      
       )}
-
-        
-     
-    
-
-   
     </>
   );
 }
