@@ -51,13 +51,13 @@ export default function Header({ menu, setMenu }: HeaderProps) {
         <img
           src={logo.src}
           alt="LumiCine Logo"
-          className="h-25 md:h-36 object-contain"
+          className="h-30 md:h-36 object-contain"
         />
       </div>
       <div className="hidden md:flex">
         <MenuListElements className="flex-row" />
       </div>
-      {/* SEARCH (iPad + desktop) */}
+
       <div className="hidden md:flex flex-1 justify-end min-w-0">
         <div
           className={`flex items-center h-10 rounded-xl bg-white/5 border border-white/10 overflow-hidden transition-all duration-300
