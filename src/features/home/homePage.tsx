@@ -46,7 +46,7 @@ const movies = [
 export default function HomePage() {
   const [menu, setMenu] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [dateFilterPerPage, setDateFilterPerPage] = useState(5);
+  const [dateFilterPerPage, setDateFilterPerPage] = useState(6);
   const visibleDates = dates.slice(
     currentIndex,
     currentIndex + dateFilterPerPage
@@ -59,16 +59,16 @@ export default function HomePage() {
   function getItemsPerPage(screenWidth: number) {
     switch (true) {
       case screenWidth < 580:
-        return 1;
+        return 2
 
       case screenWidth < 768 && screenWidth > 580:
-        return 2;
-
-      case screenWidth < 1024:
         return 3;
 
+      case screenWidth < 1024:
+        return 4;
+
       default:
-        return 5;
+        return 6;
     }
   }
 
@@ -122,8 +122,8 @@ export default function HomePage() {
         <>
           <Header menu={menu} setMenu={setMenu}/>
           <main className="w-full py-8">
-            <div className="px-6 flex justify-center">
-              <div className="w-8/12 max-w-4xl">
+            <div className="px-6 flex justify-center pt-8 pb-20">
+             <div className="w-full max-w-275 mx-auto px-6">
             {/* Banner */}
                 <div
                   className="aspect-video md:aspect-21/9 rounded-xl relative overflow-hidden shadow-sm bg-cover bg-center group"
@@ -220,11 +220,11 @@ export default function HomePage() {
                 
                 {/* EM BREVE */}
                 <section className="mt-14">
-                  <h1 className="text-4xl text-font-light mb-4">
+                  <h1 className="text-4xl text-font-light mb-12">
                     Em Breve
                   </h1>
 
-                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-6 justify-items-center">
+                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-6 justify-items-center">
                     {movies.map((movie, index) => (
                       <MovieCard
                         key={index}
@@ -241,7 +241,7 @@ export default function HomePage() {
 
                     {/* Banner LumiBar */}
                 <div
-                  className="aspect-21/9 mt-14 rounded-xl relative overflow-hidden shadow-sm bg-cover bg-center"
+                  className="aspect-21/9 mt-16 rounded-xl relative overflow-hidden shadow-sm bg-cover bg-center"
                   style={{
                     backgroundImage: `url(${AvatarMovie.src})`,
                   }}
@@ -267,8 +267,8 @@ export default function HomePage() {
                   <span className="bg-tertiary-dark h-2 w-8 rounded-full hover:bg-font-dark transition-colors duration-200" />
                 </div>
 
-                <section className="mt-14 mb-20">
-                  <h1 className="text-4xl text-font-light mb-4">
+                <section className="mt-6">
+                  <h1 className="text-4xl text-font-light mb-12">
                     Em Exibição
                   </h1>
 
