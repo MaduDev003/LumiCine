@@ -135,11 +135,11 @@ export default function HomePage() {
                 <div className="absolute inset-0 bg-black/80 z-0" />
             {/* CONTEÚDO */}
                   <div className="absolute inset-0 z-10">
-                    <h1 className="absolute top-4 left-4 md:top-6 md:left-8 lg:top-7 lg:left-10 text-font-dark text-lg md:text-2xl lg:text-3xl font-medium drop-shadow-md">
+                    <h1 className="absolute top-6 left-8 lg:top-7 lg:left-10 text-font-dark text-lg md:text-2xl lg:text-3xl font-medium drop-shadow-md">
                       Avatar
                     </h1>
 
-                    <p className="absolute top-12 left-4 md:top-16 md:left-8 lg:top-20 lg:left-10 w-3/4 md:w-1/2 lg:w-2/5 text-xs md:text-sm lg:text-[15px] text-white/60 leading-relaxed drop-shadow-md line-clamp-3 md:line-clamp-4 lg:line-clamp-none">
+                    <p className="absolute top-16 left-8 lg:top-20 lg:left-10 w-3/4 md:w-1/2 lg:w-2/5 text-xs md:text-md lg:text-[18px] text-white/60 leading-relaxed drop-shadow-md">
                       Em Pandora, um ex-fuzileiro paraplégico recebe a chance de caminhar
                       novamente por meio de um corpo Avatar. Durante sua missão, ele se
                       aproxima do povo Na'vi e descobre a profunda conexão deles com a
@@ -149,8 +149,7 @@ export default function HomePage() {
                     <Button
                       className="
                         absolute
-                        bottom-4 left-4
-                        md:bottom-4 md:left-8
+                        bottom-4 left-8
                         lg:bottom-10 lg:left-10
                         scale-75 md:scale-90 lg:scale-100
                         origin-left
