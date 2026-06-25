@@ -1,5 +1,5 @@
 "use client";
-import {useState} from "react";
+import {useState, useEffect} from "react";
 
 import MenuListElements from "./components/MenuListElements";
 import Header from "../../components/layout/Header";
@@ -38,22 +38,60 @@ const movies = [
 export default function HomePage() {
   const [menu, setMenu] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const visibleDates = dates.slice(currentIndex, currentIndex + 5);
-  const previousIndex = currentIndex - 5;
-  const nextIndex = currentIndex + 5;
-   /*  TODO: usar o slice*/
+  const [dateFilterPerPage, setDateFilterPerPage] = useState(5);
+  const visibleDates = dates.slice(
+    currentIndex,
+    currentIndex + dateFilterPerPage
+  );
+
+  const nextIndex = currentIndex + dateFilterPerPage;
+  const previousIndex = currentIndex - dateFilterPerPage;
+
    
-   const handleNextDateFilter = () => {
+  function getItemsPerPage(screenWidth: number) {
+    switch (true) {
+      case screenWidth < 580:
+        return 1;
+
+      case screenWidth < 768 && screenWidth > 580:
+        return 2;
+
+      case screenWidth < 1024:
+        return 3;
+
+      default:
+        return 5;
+    }
+  }
+
+  const handleNextDateFilter = () => {
     if(dates[nextIndex]) {
       setCurrentIndex(nextIndex);
     }
-   }
+  }
 
-   const handlePreviousDateFilter = () => {
-      if(dates[previousIndex]){
-         setCurrentIndex(previousIndex);
-      }
-   }
+  const handlePreviousDateFilter = () => {
+    if(dates[previousIndex]){
+        setCurrentIndex(previousIndex);
+    }
+  }
+
+  useEffect(() => {
+    const updateItemsPerPage = () => {
+      setDateFilterPerPage(
+        getItemsPerPage(window.innerWidth)
+      );
+    };
+
+    updateItemsPerPage();
+
+    window.addEventListener("resize", updateItemsPerPage);
+
+    return () => {
+      window.removeEventListener("resize", updateItemsPerPage);
+    };
+  }, []);
+      
 
   return (
     <>
@@ -150,7 +188,7 @@ export default function HomePage() {
                   {/* TODO: adicionar paginação aqui para usar as setas e renderizar uma parte para cada index */}
                   <div className="flex overflow-x-clip scrollbar-hide gap-6">
                     <div className="flex gap-6">
-                        {visibleDates.map((date, index) => (
+                        {visibleDates.map((date) => (
                           <DateMovieFilter
                             key={`${date.day} - ${date.date}`}
                             {...date}
