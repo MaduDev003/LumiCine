@@ -23,7 +23,7 @@ export default function MenuListElements({
 
   return (
     <nav
-      className={`flex text-2xl md:text-sm font-medium gap-15 md:gap-5 lg:gap-10 ${className}`}
+      className={`flex text-2xl md:text-[15px] font-medium gap-15 md:gap-5 lg:gap-10 ${className}`}
     >
       <Link href="/" className={linkClasses("/")}>
       {isActive("/") && (

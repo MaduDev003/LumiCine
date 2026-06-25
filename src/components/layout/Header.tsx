@@ -57,11 +57,10 @@ export default function Header({ menu, setMenu }: HeaderProps) {
       <div className="hidden md:flex">
         <MenuListElements className="flex-row" />
       </div>
-
       <div className="hidden md:flex flex-1 justify-end min-w-0">
         <div
           className={`flex items-center h-10 rounded-xl bg-white/5 border border-white/10 overflow-hidden transition-all duration-300
-            ${isSearchOpen ? "w-44 md:w-56 lg:w-80 px-3" : "w-10 px-2"}
+            ${isSearchOpen ? "w-44 md:w-85 md:ml-10 px-3" : "w-10 px-2"}
           `}
           onMouseEnter={openSearch}
           onMouseLeave={closeSearch}
@@ -83,7 +82,7 @@ export default function Header({ menu, setMenu }: HeaderProps) {
             onChange={(e) => setSearch(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && handleSearch()}
             placeholder="Buscar filmes..."
-            className={`ml-3 flex-1 bg-transparent outline-none text-sm text-white placeholder:text-white/40 transition-all duration-300 ${
+            className={`ml-3 min-w-0 flex-1 bg-transparent outline-none text-sm text-white placeholder:text-white/40 transition-all duration-300 ${
               isSearchOpen ? "opacity-100" : "opacity-0 w-0"
             }`}
           />
@@ -95,9 +94,12 @@ export default function Header({ menu, setMenu }: HeaderProps) {
               className="ml-2 shrink-0 hover:scale-110 transition"
             >
               <Send
-                className={`h-5 w-5 transition-colors ${
-                  search.trim() ? "text-white" : "text-white/40"
-                }`}
+                size={18}
+                className={
+                  search.trim()
+                    ? "text-white"
+                    : "text-white/40"
+                }
               />
             </button>
           )}
