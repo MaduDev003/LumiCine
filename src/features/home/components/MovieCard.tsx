@@ -38,7 +38,7 @@ function renderAgeClassificationColor(ageRating: string) {
   return (
     <div
       className="
-        relative w-56 h-84 rounded-2xl overflow-hidden group cursor-pointer
+        relative w-52 h-86 rounded-2xl overflow-hidden group cursor-pointer
         transition-transform duration-300 ease-out
         hover:-translate-y-1
         hover:shadow-lg

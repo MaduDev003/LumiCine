@@ -32,6 +32,15 @@ const movies = [
   { posterImg: Avatar.src, genders: ["Drama", "Sci-fi"], movieName: "Avatar", ageRating: "L", duration: "2h 12m", preSale: true },
   { posterImg: enigma.src, genders: ["Suspense", "Ação"], movieName: "O Morro Dos Ventos Uivantes", ageRating: "14", duration: "1h 58m", preSale: true },
   { posterImg: you.src, genders: ["Suspense", "Drama"], movieName: "You", ageRating: "18", duration: "1h 45m", preSale: false },
+    { posterImg: you.src, genders: ["Suspense", "Comédia"], movieName: "You", ageRating: "16", duration: "1h 45m", preSale: false},
+  { posterImg: Avatar.src, genders: ["Drama", "Sci-fi"], movieName: "Avatar", ageRating: "L", duration: "2h 12m", preSale: true },
+  { posterImg: enigma.src, genders: ["Suspense", "Ação"], movieName: "O Morro Dos Ventos Uivantes", ageRating: "14", duration: "1h 58m", preSale: true },
+  { posterImg: you.src, genders: ["Suspense", "Drama"], movieName: "You", ageRating: "18", duration: "1h 45m", preSale: false },
+    { posterImg: you.src, genders: ["Suspense", "Comédia"], movieName: "You", ageRating: "16", duration: "1h 45m", preSale: false},
+  { posterImg: Avatar.src, genders: ["Drama", "Sci-fi"], movieName: "Avatar", ageRating: "L", duration: "2h 12m", preSale: true },
+  { posterImg: enigma.src, genders: ["Suspense", "Ação"], movieName: "O Morro Dos Ventos Uivantes", ageRating: "14", duration: "1h 58m", preSale: true },
+  { posterImg: you.src, genders: ["Suspense", "Drama"], movieName: "You", ageRating: "18", duration: "1h 45m", preSale: false },
+
 ];
 
 export default function HomePage() {
@@ -211,34 +220,23 @@ export default function HomePage() {
                 
                 {/* EM BREVE */}
                 <section className="mt-14">
-                    <h1 className="text-4xl text-font-light mb-4">Em Breve</h1>
-                    <div className="w-full h-90 flex items-center  gap-4 mt-6 rounded-xl overflow-x-auto scrollbar-hide">
-                      {movies.map((movie, index) => (
-                        <MovieCard
-                          key={index}
-                          posterImg={movie.posterImg}
-                          genders={movie.genders}
-                          movieName={movie.movieName}
-                          ageRating={movie.ageRating}
-                          duration={movie.duration}
-                          preSale={movie.preSale}
-                        />
-                      ))}
-                    </div>
-                    <div className="w-full h-90 flex items-center gap-4 mt-6 rounded-xl overflow-x-auto scrollbar-hide">
-                      {movies.map((movie, index) => (
-                        <MovieCard
-                          key={index}
-                          posterImg={movie.posterImg}
-                          genders={movie.genders}
-                          movieName={movie.movieName}
-                          ageRating={movie.ageRating}
-                          duration={movie.duration}
-                          preSale={movie.preSale}
-                        />
-                      ))}
-                    
-                    </div>
+                  <h1 className="text-4xl text-font-light mb-4">
+                    Em Breve
+                  </h1>
+
+                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-6 justify-items-center">
+                    {movies.map((movie, index) => (
+                      <MovieCard
+                        key={index}
+                        posterImg={movie.posterImg}
+                        genders={movie.genders}
+                        movieName={movie.movieName}
+                        ageRating={movie.ageRating}
+                        duration={movie.duration}
+                        preSale={movie.preSale}
+                      />
+                    ))}
+                  </div>
                 </section>
 
                     {/* Banner LumiBar */}
@@ -269,35 +267,24 @@ export default function HomePage() {
                   <span className="bg-tertiary-dark h-2 w-8 rounded-full hover:bg-font-dark transition-colors duration-200" />
                 </div>
 
-                  <section className="mt-6">
-                    <h1 className="text-4xl text-font-light mb-4">Em Exibição</h1>
-                    <div className="w-full h-90 flex items-center  gap-4 mt-6 rounded-xl overflow-x-auto scrollbar-hide">
-                      {movies.map((movie, index) => (
-                        <MovieCard
-                          key={index}
-                          posterImg={movie.posterImg}
-                          genders={movie.genders}
-                          movieName={movie.movieName}
-                          ageRating={movie.ageRating}
-                          duration={movie.duration}
-                          preSale={movie.preSale}
-                        />
-                      ))}
-                    </div>
-                    <div className="w-full h-90 flex items-center gap-4 mt-6 rounded-xl overflow-x-auto scrollbar-hide">
-                      {movies.map((movie, index) => (
-                        <MovieCard
-                          key={index}
-                          posterImg={movie.posterImg}
-                          genders={movie.genders}
-                          movieName={movie.movieName}
-                          ageRating={movie.ageRating}
-                          duration={movie.duration}
-                          preSale={movie.preSale}
-                        />
-                      ))}
-                    
-                    </div>
+                <section className="mt-14 mb-20">
+                  <h1 className="text-4xl text-font-light mb-4">
+                    Em Exibição
+                  </h1>
+
+                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-6 justify-items-center">
+                    {movies.map((movie, index) => (
+                      <MovieCard
+                        key={index}
+                        posterImg={movie.posterImg}
+                        genders={movie.genders}
+                        movieName={movie.movieName}
+                        ageRating={movie.ageRating}
+                        duration={movie.duration}
+                        preSale={movie.preSale}
+                      />
+                    ))}
+                  </div>
                 </section>
               </div>
             </div>  
