@@ -173,42 +173,41 @@ export default function HomePage() {
                 </div>
 
                 {/* FILTRO DE DATAS */}
-                <section className="bg-secondary-dark mt-3 rounded-xl h-24 flex items-center justify-between px-6">
-                 {/* TODO: tirar o disabled quando o currentIndex for > 0 */}
-                  <button onClick={handlePreviousDateFilter} disabled={currentIndex === 0} 
-                  className={currentIndex === 0 ?
-                    "text-font-dark/30 cursor-default"
-                    :
-                    "text-font-dark hover:text-white transition-colors duration-200 hover:scale-105 cursor-pointer"
-                  }
-                  >
-                    <ChevronLeft className="w-12 h-12 stroke-1" />
-                  </button>
+                <section className="bg-secondary-dark p-5 rounded-2xl">
+                  <div className="flex items-center justify-between">
+                    <button onClick={handlePreviousDateFilter} disabled={currentIndex === 0} 
+                      className={currentIndex === 0 ?
+                        "text-font-dark/30 cursor-default"
+                        :
+                        "text-font-dark hover:text-white transition-colors duration-200 hover:scale-105 cursor-pointer"
+                      }
+                    >
+                      <ChevronLeft className="w-12 h-12 stroke-1" />
+                    </button>
 
-                  {/* TODO: adicionar paginação aqui para usar as setas e renderizar uma parte para cada index */}
-                  <div className="flex overflow-x-clip scrollbar-hide gap-6">
-                    <div className="flex gap-6">
-                        {visibleDates.map((date) => (
-                          <DateMovieFilter
-                            key={`${date.day} - ${date.date}`}
-                            {...date}
-                          />
-                        ))}
-                      </div>
+                    <div className="flex overflow-x-clip scrollbar-hide gap-6">
+                      <div className="flex gap-6">
+                          {visibleDates.map((date) => (
+                            <DateMovieFilter
+                              key={`${date.day} - ${date.date}`}
+                              {...date}
+                            />
+                          ))}
+                        </div>
+                    </div>
+
+                    <button 
+                      onClick={handleNextDateFilter} 
+                      disabled={!dates[currentIndex + 5]}
+                      className={dates[currentIndex + 5] ?
+                        "text-font-dark hover:text-white transition-colors duration-200 hover:scale-105 cursor-pointer"
+                        :
+                        "text-font-dark/30 cursor-default"
+                      }
+                    >
+                      <ChevronRight className="w-12 h-12 stroke-1" />
+                    </button>
                   </div>
-
-                  <button 
-                    onClick={handleNextDateFilter} 
-                    disabled={!dates[currentIndex + 5]}
-                    className={dates[currentIndex + 5] ?
-                      "text-font-dark hover:text-white transition-colors duration-200 hover:scale-105 cursor-pointer"
-                      :
-                      "text-font-dark/30 cursor-default"
-                    }
-                  >
-                    
-                    <ChevronRight className="w-12 h-12 stroke-1" />
-                  </button>
                 </section>
                 
                 {/* EM BREVE */}
