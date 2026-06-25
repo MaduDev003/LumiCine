@@ -24,8 +24,7 @@ const dates = [
   { day: "Ter", date: 7, selectedDate: false },
   { day: "Qua", date: 9, selectedDate: false },
   { day: "Qua", date: 10, selectedDate: false },
-  { day: "Qua", date: 11, selectedDate: false },
-  { day: "Qua", date: 12, selectedDate: false },
+  { day: "Qua", date: 11, selectedDate: false }
 ];
 
 const movies = [
@@ -175,8 +174,8 @@ export default function HomePage() {
                 {/* FILTRO DE DATAS */}
                 <section className="bg-secondary-dark p-5 rounded-2xl">
                   <div className="flex items-center justify-between">
-                    <button onClick={handlePreviousDateFilter} disabled={currentIndex === 0} 
-                      className={currentIndex === 0 ?
+                    <button onClick={handlePreviousDateFilter} disabled={!dates[previousIndex]} 
+                      className={!dates[previousIndex] ?
                         "text-font-dark/30 cursor-default"
                         :
                         "text-font-dark hover:text-white transition-colors duration-200 hover:scale-105 cursor-pointer"
@@ -185,7 +184,7 @@ export default function HomePage() {
                       <ChevronLeft className="w-12 h-12 stroke-1" />
                     </button>
 
-                    <div className="flex overflow-x-clip scrollbar-hide gap-6">
+                    <div className="overflow-x-clip scrollbar-hide">
                       <div className="flex gap-6">
                           {visibleDates.map((date) => (
                             <DateMovieFilter
@@ -198,8 +197,8 @@ export default function HomePage() {
 
                     <button 
                       onClick={handleNextDateFilter} 
-                      disabled={!dates[currentIndex + 5]}
-                      className={dates[currentIndex + 5] ?
+                      disabled={!dates[nextIndex]}
+                      className={dates[nextIndex] ?
                         "text-font-dark hover:text-white transition-colors duration-200 hover:scale-105 cursor-pointer"
                         :
                         "text-font-dark/30 cursor-default"
