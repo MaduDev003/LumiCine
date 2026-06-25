@@ -18,6 +18,14 @@ const dates = [
   { day: "Qua", date: 1, selectedDate: false },
   { day: "Qui", date: 2, selectedDate: false },
   { day: "Sex", date: 3, selectedDate: false },
+  { day: "Sab", date: 4, selectedDate: false },
+  { day: "Dom", date: 5, selectedDate: false },
+  { day: "Seg", date: 6, selectedDate: false },
+  { day: "Ter", date: 7, selectedDate: false },
+  { day: "Qua", date: 9, selectedDate: false },
+  { day: "Qua", date: 10, selectedDate: false },
+  { day: "Qua", date: 11, selectedDate: false },
+  { day: "Qua", date: 12, selectedDate: false },
 ];
 
 const movies = [
@@ -28,7 +36,25 @@ const movies = [
 ];
 
 export default function HomePage() {
-   const [menu, setMenu] = useState(false);
+  const [menu, setMenu] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const visibleDates = dates.slice(currentIndex, currentIndex + 5);
+  const previousIndex = currentIndex - 5;
+  const nextIndex = currentIndex + 5;
+   /*  TODO: usar o slice*/
+   
+   const handleNextDateFilter = () => {
+    if(dates[nextIndex]) {
+      setCurrentIndex(nextIndex);
+    }
+   }
+
+   const handlePreviousDateFilter = () => {
+      if(dates[previousIndex]){
+         setCurrentIndex(previousIndex);
+      }
+   }
+
   return (
     <>
       {menu && (
@@ -110,22 +136,39 @@ export default function HomePage() {
 
                 {/* FILTRO DE DATAS */}
                 <section className="bg-secondary-dark mt-3 rounded-xl h-24 flex items-center justify-between px-6">
-                  <button disabled className="text-font-dark/30 cursor-default">
+                 {/* TODO: tirar o disabled quando o currentIndex for > 0 */}
+                  <button onClick={handlePreviousDateFilter} disabled={currentIndex === 0} 
+                  className={currentIndex === 0 ?
+                    "text-font-dark/30 cursor-default"
+                    :
+                    "text-font-dark hover:text-white transition-colors duration-200 hover:scale-105 cursor-pointer"
+                  }
+                  >
                     <ChevronLeft className="w-12 h-12 stroke-1" />
                   </button>
 
+                  {/* TODO: adicionar paginação aqui para usar as setas e renderizar uma parte para cada index */}
                   <div className="flex overflow-x-clip scrollbar-hide gap-6">
-                    {dates.map((item) => (
-                      <DateMovieFilter
-                        key={`${item.day}-${item.date}`}
-                        selectedDate={item.selectedDate}
-                        day={item.day}
-                        date={item.date}
-                      />
-                    ))}
+                    <div className="flex gap-6">
+                        {visibleDates.map((date, index) => (
+                          <DateMovieFilter
+                            key={`${date.day} - ${date.date}`}
+                            {...date}
+                          />
+                        ))}
+                      </div>
                   </div>
 
-                  <button className="text-font-dark hover:text-white transition-colors duration-200 hover:scale-105 cursor-pointer">
+                  <button 
+                    onClick={handleNextDateFilter} 
+                    disabled={!dates[currentIndex + 5]}
+                    className={dates[currentIndex + 5] ?
+                      "text-font-dark hover:text-white transition-colors duration-200 hover:scale-105 cursor-pointer"
+                      :
+                      "text-font-dark/30 cursor-default"
+                    }
+                  >
+                    
                     <ChevronRight className="w-12 h-12 stroke-1" />
                   </button>
                 </section>
