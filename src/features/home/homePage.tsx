@@ -10,6 +10,7 @@ import AvatarMovie from "../../assets/images/avatar_h_.jpg";
 import Avatar from "../../assets/images/avatar.jpg";
 import enigma from "../../assets/images/enigma.jpg";
 import you from "../../assets/images/you.jpg";
+import { getMoviesData } from "@/src/services/movieService";
 import { ChevronRight, ChevronLeft, Mail, X } from "lucide-react";
 
 const dates = [
@@ -47,6 +48,9 @@ export default function HomePage() {
   const [menu, setMenu] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [dateFilterPerPage, setDateFilterPerPage] = useState(6);
+  const [moviesData, setMoviesData] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+  
   const visibleDates = dates.slice(
     currentIndex,
     currentIndex + dateFilterPerPage
@@ -99,7 +103,8 @@ export default function HomePage() {
       window.removeEventListener("resize", updateItemsPerPage);
     };
   }, []);
-      
+    
+  
 
   return (
     <>
