@@ -11,13 +11,9 @@ export class MovieMapper {
       `https://image.tmdb.org/t/p/original${movie.backdrop_path}`,
       movie.overview,
       movie.genre_ids.map(id => movieGenres[id]),
-      "",
+      movie.age_rating,
       "",
       false
     );
-  }
-
-  public static toDomainList(movies: TmdbMovie[]): Movie[] {
-    return movies.map(MovieMapper.toDomain);
   }
 }

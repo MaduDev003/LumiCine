@@ -50,7 +50,7 @@ export default function HomePage() {
   const [dateFilterPerPage, setDateFilterPerPage] = useState(6);
   const [moviesData, setMoviesData] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
-  
+  getMoviesData()
   const visibleDates = dates.slice(
     currentIndex,
     currentIndex + dateFilterPerPage

@@ -16,15 +16,16 @@ export async function getMoviesData() {
   const moviesWithData = await Promise.all(
     movies.map(async (movie: any) => {
       const releaseData = await getMovieReleaseDates(movie.id);
-
+  
       return {
         ...movie,
-        ageRating: extractAgeRating(releaseData ?? []),
+        age_rating: extractAgeRating(releaseData ?? []),
       };
     })
   );
 
-  const moviess = moviesWithData
-    .slice(0, 12);
-    console.log(moviess, 'hehe')
+  const moviesMapped = moviesWithData
+    .slice(0, 12)
+    .map(MovieMapper.toDomain);
+    console.log(moviesMapped, 'hehe')
 }
