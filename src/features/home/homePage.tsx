@@ -50,7 +50,7 @@ export default function HomePage() {
   const [dateFilterPerPage, setDateFilterPerPage] = useState(6);
   const [moviesData, setMoviesData] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
-  getMoviesData()
+ 
   const visibleDates = dates.slice(
     currentIndex,
     currentIndex + dateFilterPerPage
@@ -103,8 +103,26 @@ export default function HomePage() {
       window.removeEventListener("resize", updateItemsPerPage);
     };
   }, []);
-    
   
+  useEffect(() => {
+    async function loadMovies() {
+      try {
+        setLoading(true);
+
+        const data = await getMoviesData();
+
+        setMoviesData(data);
+      } catch (error) {
+        console.error("Erro ao carregar filmes:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    loadMovies();
+  }, []);
+    
+    console.log(moviesData,' MOVIES ')
 
   return (
     <>
@@ -229,17 +247,17 @@ export default function HomePage() {
                   </h1>
 
                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-6 justify-items-center">
-                    {movies.map((movie, index) => (
-                      <MovieCard
-                        key={index}
-                        posterImg={movie.posterImg}
-                        genders={movie.genders}
-                        movieName={movie.movieName}
-                        ageRating={movie.ageRating}
-                        duration={movie.duration}
-                        preSale={movie.preSale}
-                      />
-                    ))}
+                {moviesData.map((movie) => (
+                  <MovieCard
+                    key={movie.id}
+                    posterImg={movie.posterUrl}
+                    genders={movie.genres}
+                    movieName={movie.title}
+                    ageRating={movie.ageRating}
+                    duration={movie.duration}
+                    preSale={movie.preSale}
+                  />
+                ))}
                   </div>
                 </section>
 

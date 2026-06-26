@@ -7,4 +7,5 @@ export type MovieType = {
   genre_ids: number[];
   age_rating: string;
   duration: string;
+  pre_sale: boolean;
 }

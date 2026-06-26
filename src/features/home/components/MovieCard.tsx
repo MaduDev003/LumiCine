@@ -31,7 +31,7 @@ function renderAgeClassificationColor(ageRating: string) {
       return "bg-black text-white group-hover:bg-black/70";
 
     default:
-      return "bg-gray-400 group-hover:bg-gray-400/70";
+      return "bg-gray-400 group-hover:bg-gray-400/70 text-black text-md";
   }
 }
 
@@ -60,7 +60,7 @@ function renderAgeClassificationColor(ageRating: string) {
                 <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
 
                 {props.preSale && (
-                <span className="absolute top-0 left-15 bg-accent text-white text-xs px-2 py-1 rounded z-10">
+                <span className="absolute top-0 left-15 bg-accent text-white text-xs px-2 py-1 rounded z-10 shadow-[0_4px_12px_rgba(0,0,0,0.35)]">
                     Pré-venda
                 </span>
                 )}
