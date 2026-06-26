@@ -1,9 +1,10 @@
 import { Movie } from "../domain/classes/movie";
 import { movieGenres } from "../lib/movieGenres";
-import { TmdbMovie } from "../types/movieTypes";
+import { MovieType } from "../types/movieType";
 
 export class MovieMapper {
-  public static toDomain(movie: TmdbMovie): Movie {
+  public static toDomain(movie: MovieType): Movie {
+    console.log(movie,' MOVIE')
     return new Movie(
       movie.id,
       movie.title,

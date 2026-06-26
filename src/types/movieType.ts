@@ -1,4 +1,4 @@
-export interface TmdbMovie {
+export type MovieType = {
   id: number;
   title: string;
   poster_path: string;
