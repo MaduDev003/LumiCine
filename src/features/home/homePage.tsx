@@ -303,7 +303,7 @@ export default function HomePage() {
                         movieName={movie.movieName}
                         ageRating={movie.ageRating}
                         duration={movie.duration}
-                        preSale={movie.preSale}
+                        preSale={false}
                       />
                     ))}
                   </div>

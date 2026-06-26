@@ -60,7 +60,7 @@ function renderAgeClassificationColor(ageRating: string) {
                 <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
 
                 {props.preSale && (
-                <span className="absolute top-0 left-15 bg-accent text-white text-xs px-2 py-1 rounded z-10 shadow-[0_4px_12px_rgba(0,0,0,0.35)]">
+                <span className="absolute top-0 left-19 bg-accent text-white text-xs px-2 py-1 rounded z-10 shadow-[0_4px_12px_rgba(0,0,0,0.35)]">
                     Pré-venda
                 </span>
                 )}
