@@ -12,6 +12,8 @@ import enigma from "../../assets/images/enigma.jpg";
 import you from "../../assets/images/you.jpg";
 import { getMoviesData } from "@/src/services/movieService";
 import { ChevronRight, ChevronLeft, Mail, X } from "lucide-react";
+import MovieGrid from "./components/MovieGrid";
+import { ErrorState } from "@/src/components/ui/ErrorState";
 
 const dates = [
   { day: "Seg", date: 29, selectedDate: true },
@@ -49,7 +51,8 @@ export default function HomePage() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [dateFilterPerPage, setDateFilterPerPage] = useState(6);
   const [moviesData, setMoviesData] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState("");
  
   const visibleDates = dates.slice(
     currentIndex,
@@ -104,25 +107,22 @@ export default function HomePage() {
     };
   }, []);
   
-  useEffect(() => {
     async function loadMovies() {
-      try {
-        setLoading(true);
+    try {
+      setIsLoading(true);
 
-        const data = await getMoviesData();
-
-        setMoviesData(data);
-      } catch (error) {
-        console.error("Erro ao carregar filmes:", error);
-      } finally {
-        setLoading(false);
-      }
+      const data = await getMoviesData();
+      setMoviesData(data);
+    } catch {
+      setError("Não foi possível carregar os filmes...");
+    } finally {
+      setIsLoading(false);
     }
+  }
 
+  useEffect(() => {
     loadMovies();
   }, []);
-    
-    console.log(moviesData,' MOVIES ')
 
   return (
     <>
@@ -241,25 +241,24 @@ export default function HomePage() {
                 </section>
                 
                 {/* EM BREVE */}
-                <section className="mt-14">
-                  <h1 className="text-4xl text-font-light mb-12">
-                    Em Breve
-                  </h1>
+               <section className="mt-14">
+                <h1 className="text-4xl text-font-light mb-12">
+                  Em Breve
+                </h1>
 
-                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-6 justify-items-center">
-                {moviesData.map((movie) => (
-                  <MovieCard
-                    key={movie.id}
-                    posterImg={movie.posterUrl}
-                    genders={movie.genres}
-                    movieName={movie.title}
-                    ageRating={movie.ageRating}
-                    duration={movie.duration}
-                    preSale={movie.preSale}
+                {error ? (
+                  <ErrorState
+                    title="Ops... algo deu errado"
+                    message={error}
+                    
                   />
-                ))}
-                  </div>
-                </section>
+                ) : (
+                  <MovieGrid
+                    isLoading={isLoading}
+                    moviesData={moviesData}
+                  />
+                )}
+              </section>
 
                     {/* Banner LumiBar */}
                 <div

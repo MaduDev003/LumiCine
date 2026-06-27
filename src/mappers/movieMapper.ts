@@ -8,7 +8,7 @@ export class MovieMapper {
       .map(id => movieGenres[id])
       .slice(0, 2);
     
-    const isPreSale = Math.random() < 0.4;
+    const isPreSale = Math.random() < 0.45;
 
     return new Movie(
       movie.id,
