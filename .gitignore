@@ -49,3 +49,6 @@ Thumbs.db
 # instruções de IA 
 AGENTS.md
 CLAUDE.md
+
+# arquivo de configuração 
+.env.local

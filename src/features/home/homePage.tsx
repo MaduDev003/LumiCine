@@ -10,7 +10,10 @@ import AvatarMovie from "../../assets/images/avatar_h_.jpg";
 import Avatar from "../../assets/images/avatar.jpg";
 import enigma from "../../assets/images/enigma.jpg";
 import you from "../../assets/images/you.jpg";
+import { getMoviesData } from "@/src/services/movieService";
 import { ChevronRight, ChevronLeft, Mail, X } from "lucide-react";
+import MovieGrid from "./components/MovieGrid";
+import { ErrorState } from "@/src/components/ui/ErrorState";
 
 const dates = [
   { day: "Seg", date: 29, selectedDate: true },
@@ -47,6 +50,11 @@ export default function HomePage() {
   const [menu, setMenu] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [dateFilterPerPage, setDateFilterPerPage] = useState(6);
+  const [comingSoonMoviesData, setComingSoonMoviesData] = useState<any[]>([]);
+  const [nowPlayingMoviesData, setNowPlayingMoviesData] = useState<any[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState("");
+ 
   const visibleDates = dates.slice(
     currentIndex,
     currentIndex + dateFilterPerPage
@@ -99,7 +107,28 @@ export default function HomePage() {
       window.removeEventListener("resize", updateItemsPerPage);
     };
   }, []);
-      
+  
+  async function loadMovies() {
+  try {
+    setIsLoading(true);
+
+    const [comingSoonMovies, nowPlayingMovies] = await Promise.all([
+      getMoviesData(1),
+      getMoviesData(2),
+    ]);
+
+    setComingSoonMoviesData(comingSoonMovies);
+    setNowPlayingMoviesData(nowPlayingMovies);
+  } catch {
+    setError("Não foi possível carregar os filmes...");
+  } finally {
+    setIsLoading(false);
+  }
+  }
+
+  useEffect(() => {
+    loadMovies();
+  }, []);
 
   return (
     <>
@@ -218,25 +247,25 @@ export default function HomePage() {
                 </section>
                 
                 {/* EM BREVE */}
-                <section className="mt-14">
-                  <h1 className="text-4xl text-font-light mb-12">
-                    Em Breve
-                  </h1>
+               <section className="mt-14">
+                <h1 className="text-4xl text-font-light mb-12">
+                  Em Breve
+                </h1>
 
-                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-6 justify-items-center">
-                    {movies.map((movie, index) => (
-                      <MovieCard
-                        key={index}
-                        posterImg={movie.posterImg}
-                        genders={movie.genders}
-                        movieName={movie.movieName}
-                        ageRating={movie.ageRating}
-                        duration={movie.duration}
-                        preSale={movie.preSale}
-                      />
-                    ))}
-                  </div>
-                </section>
+                {error ? (
+                  <ErrorState
+                    title="Ops... algo deu errado"
+                    message={error}
+                    
+                  />
+                ) : (
+                  <MovieGrid
+                    isLoading={isLoading}
+                    moviesData={comingSoonMoviesData}
+                    isComingSoon={true}
+                  />
+                )}
+              </section>
 
                     {/* Banner LumiBar */}
                 <div
@@ -271,19 +300,19 @@ export default function HomePage() {
                     Em Exibição
                   </h1>
 
-                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-6 justify-items-center">
-                    {movies.map((movie, index) => (
-                      <MovieCard
-                        key={index}
-                        posterImg={movie.posterImg}
-                        genders={movie.genders}
-                        movieName={movie.movieName}
-                        ageRating={movie.ageRating}
-                        duration={movie.duration}
-                        preSale={movie.preSale}
-                      />
-                    ))}
-                  </div>
+                  {error ? (
+                    <ErrorState
+                      title="Ops... algo deu errado"
+                      message={error}
+                      
+                    />
+                  ) : (
+                    <MovieGrid
+                      isLoading={isLoading}
+                      moviesData={nowPlayingMoviesData}
+                      isComingSoon={false}
+                    />
+                  )}
                 </section>
               </div>
             </div>  

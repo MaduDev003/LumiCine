@@ -32,8 +32,6 @@ export default function Header({ menu, setMenu }: HeaderProps) {
   function handleSearch() {
     if (!search.trim()) return;
 
-    console.log("Buscar:", search);
-
     setSearch("");
     setIsSearchOpen(false);
   }
