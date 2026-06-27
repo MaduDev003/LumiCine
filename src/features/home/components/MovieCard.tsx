@@ -38,7 +38,7 @@ function renderAgeClassificationColor(ageRating: string) {
   return (
     <div
       className="
-        relative w-56 h-86 rounded-2xl overflow-hidden group cursor-pointer
+        relative w-56 h-90 rounded-2xl overflow-hidden group cursor-pointer
         transition-transform duration-300 ease-out
         hover:-translate-y-1
         hover:shadow-lg
@@ -66,10 +66,10 @@ function renderAgeClassificationColor(ageRating: string) {
                 )}
             </div>
         </div>
-        <div className="h-1/3 bg-secondary-dark flex flex-col gap-2 text-xs shadow-inner transition-colors group-hover:bg-tertiary-dark/50 px-2 pt-3">
+        <div className="h-1/3 bg-secondary-dark flex flex-col gap-3 text-xs shadow-inner transition-colors group-hover:bg-tertiary-dark/50 px-2 pt-3">
           <h2
-            className={`font-medium text-font-dark text-[14px] leading-tight  ${
-              isSmallTitle ? "text-center self-center" : "text-left self-start pl-1"
+            className={`min-h-6 font-medium text-font-dark text-[14px] leading-tight ${
+              isSmallTitle ? "text-center" : "text-left pl-1"
             }`}
           >
             {props.movieName}
@@ -79,11 +79,11 @@ function renderAgeClassificationColor(ageRating: string) {
             Duração: {props.duration}
           </p>
             
-         <div className="flex justify-between  mt-2">
+         <div className="flex justify-between mt-auto">
             <div className="flex gap-2 h-6 items-center">
-              {props.genders.map((gender) => (
+              {props.genders.map((gender, index) => (
                 <div
-                  key={gender}
+                  key={index}
                   className="bg-background-dark group-hover:bg-background-dark/60 h-5 flex justify-center px-2 py-0.5 rounded-2xl"
                 >
                   <span>{gender}</span>

@@ -30,22 +30,6 @@ const dates = [
   { day: "Qua", date: 11, selectedDate: false }
 ];
 
-const movies = [
-  { posterImg: you.src, genders: ["Suspense", "Comédia"], movieName: "You", ageRating: "16", duration: "1h 45m", preSale: false},
-  { posterImg: Avatar.src, genders: ["Drama", "Sci-fi"], movieName: "Avatar", ageRating: "L", duration: "2h 12m", preSale: true },
-  { posterImg: enigma.src, genders: ["Suspense", "Ação"], movieName: "O Morro Dos Ventos Uivantes", ageRating: "14", duration: "1h 58m", preSale: true },
-  { posterImg: you.src, genders: ["Suspense", "Drama"], movieName: "You", ageRating: "18", duration: "1h 45m", preSale: false },
-    { posterImg: you.src, genders: ["Suspense", "Comédia"], movieName: "You", ageRating: "16", duration: "1h 45m", preSale: false},
-  { posterImg: Avatar.src, genders: ["Drama", "Sci-fi"], movieName: "Avatar", ageRating: "L", duration: "2h 12m", preSale: true },
-  { posterImg: enigma.src, genders: ["Suspense", "Ação"], movieName: "O Morro Dos Ventos Uivantes", ageRating: "14", duration: "1h 58m", preSale: true },
-  { posterImg: you.src, genders: ["Suspense", "Drama"], movieName: "You", ageRating: "18", duration: "1h 45m", preSale: false },
-    { posterImg: you.src, genders: ["Suspense", "Comédia"], movieName: "You", ageRating: "16", duration: "1h 45m", preSale: false},
-  { posterImg: Avatar.src, genders: ["Drama", "Sci-fi"], movieName: "Avatar", ageRating: "L", duration: "2h 12m", preSale: true },
-  { posterImg: enigma.src, genders: ["Suspense", "Ação"], movieName: "O Morro Dos Ventos Uivantes", ageRating: "14", duration: "1h 58m", preSale: true },
-  { posterImg: you.src, genders: ["Suspense", "Drama"], movieName: "You", ageRating: "18", duration: "1h 45m", preSale: false },
-
-];
-
 export default function HomePage() {
   const [menu, setMenu] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -112,12 +96,10 @@ export default function HomePage() {
   try {
     setIsLoading(true);
 
-    const [comingSoonMovies, nowPlayingMovies] = await Promise.all([
-      getMoviesData(1),
-      getMoviesData(2),
-    ]);
-
+    const comingSoonMovies = await getMoviesData(1);
     setComingSoonMoviesData(comingSoonMovies);
+
+    const nowPlayingMovies = await getMoviesData(2);
     setNowPlayingMoviesData(nowPlayingMovies);
   } catch {
     setError("Não foi possível carregar os filmes...");
