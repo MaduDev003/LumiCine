@@ -3,8 +3,8 @@ import { getMovieReleaseDates } from "../api/movie/getMovieReleaseDates";
 import { MovieMapper } from "../mappers/movieMapper";
 
 
-export async function getMoviesData() {
-  const movies = await getMovies();
+export async function getMoviesData(page: number) {
+  const movies = await getMovies(page);
 
   const moviesWithData = await Promise.all(
     movies.map(async (movie: any) => {
