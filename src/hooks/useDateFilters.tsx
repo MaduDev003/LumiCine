@@ -4,7 +4,7 @@ import { generateDatesForFilter } from "../services/dateFiltersService";
 function getItemsPerPage(screenWidth: number) {
   switch (true) {
     case screenWidth < 580:
-      return 2;
+      return 1;
 
     case screenWidth < 768:
       return 3;

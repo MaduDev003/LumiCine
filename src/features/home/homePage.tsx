@@ -11,7 +11,6 @@ import { ChevronRight, ChevronLeft, Mail, X } from "lucide-react";
 import MovieGrid from "./components/MovieGrid";
 import { ErrorState } from "@/src/components/ui/ErrorState";
 import { useDateFilter } from "@/src/hooks/useDateFilters";
-import { MovieType } from "@/src/types/movieType";
 
 export default function HomePage() {
   const [menu, setMenu] = useState(false);
@@ -55,18 +54,6 @@ export default function HomePage() {
   } finally {
     setIsLoading(false);
   }
-  }
-
-  function hasNextBanner() {
-    if (bannerMovies[currentIndex + 1]) {
-      setCurrentIndex((prev) => prev + 1);
-    }
-  }
-
-    function hasPreviousBanner() {
-    if (currentIndex === 0) return;
-
-    setCurrentIndex((prev) => prev - 1);
   }
   
   useEffect(() => {
@@ -116,7 +103,7 @@ export default function HomePage() {
                           {currentMovie.title}
                         </h1>
 
-                        <p className="absolute top-16 left-8 lg:top-20 lg:left-10 w-3/4 md:w-1/2 lg:w-2/5 text-xs md:text-md lg:text-[18px] text-white/60 leading-relaxed drop-shadow-md">
+                        <p className="absolute top-16 left-8 lg:top-20 lg:left-10 w-3/4 md:w-1/2 lg:w-3/5 text-xs md:text-sm lg:text-[18px] text-white/60 leading-relaxed drop-shadow-md truncate md:whitespace-normal md:overflow-visible">
                           {currentMovie.overview}
                         </p>
 
@@ -145,7 +132,7 @@ export default function HomePage() {
                                 : "bg-white/10 border-white/20 text-white/70 hover:bg-white/20 hover:text-white cursor-pointer"
                             }
                           `}
-                          onClick={() => hasPreviousBanner()}
+                          onClick={() => setCurrentIndex((prev) => prev - 1)}
                           disabled={currentIndex === 0}
                         >
                           <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 lg:w-8 lg:h-8" />
@@ -160,7 +147,7 @@ export default function HomePage() {
                                 : "bg-white/10 border-white/20 text-white/70 hover:bg-white/20 hover:text-white cursor-pointer"
                             }
                           `}
-                          onClick={() => hasNextBanner()}
+                          onClick={() =>  setCurrentIndex((prev) => prev + 1)}
                           disabled={!bannerMovies[currentIndex + 1]}
                         >
                           <ChevronRight className="w-5 h-5 md:w-6 md:h-6 lg:w-8 lg:h-8" />
