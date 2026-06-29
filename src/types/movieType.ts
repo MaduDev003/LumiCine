@@ -8,6 +8,7 @@ export type MovieType = {
   overview: string;
   genre_ids: number[];
   age_rating: string;
+  duration: string;
   showPeriod: MoviePeriodType;
   pre_sale: boolean;
 }

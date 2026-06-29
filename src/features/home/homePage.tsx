@@ -48,7 +48,7 @@ export default function HomePage() {
     setIsLoading(false);
   }
   }
-
+  
   useEffect(() => {
     loadMovies();
   }, [selectedDate]);

@@ -7,6 +7,7 @@ type Movie = {
   title: string;
   ageRating: string;
   preSale: boolean;
+  duration: string;
 };
 
 type MovieGridProps = {
@@ -41,7 +42,7 @@ export default function MovieGrid({
                     genders={movie.genres}
                     movieName={movie.title}
                     ageRating={movie.ageRating}
-                    duration={"1h 30m"}
+                    duration={movie.duration}
                     preSale={isComingSoon && movie.preSale}
                 />
             ))
