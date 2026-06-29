@@ -48,9 +48,8 @@ export default function HomePage() {
     const nowPlayingMovies = await getMoviesData(2);
     setNowPlayingMoviesData(nowPlayingMovies);
     
-    const bannerMovies = nowPlayingMovies.slice(1,5);
+    const bannerMovies = nowPlayingMovies.slice(0,4);
     setbannerMovies(bannerMovies);
-    console.log(nowPlayingMovies)
   } catch {
     setError("Não foi possível carregar os filmes...");
   } finally {
@@ -109,7 +108,7 @@ export default function HomePage() {
                       }}
                     >
                       {/* OVERLAY */}
-                      <div className="absolute inset-0 bg-black/80 z-0" />
+                      <div className="absolute inset-0 bg-black/85 z-0" />
 
                       {/* CONTEÚDO */}
                       <div className="absolute inset-0 z-10">
@@ -130,7 +129,7 @@ export default function HomePage() {
                             origin-left
                             h-10 md:h-10 lg:h-12
                           "
-                          onClick={() => console.log("Ingresso clicado")}
+                          onClick={() => console.log("Ingresso clicado", currentMovie.id)}
                           buttonText="Comprar Ingresso"
                         />
                       </div>
@@ -172,12 +171,16 @@ export default function HomePage() {
 
                 {/* INDICADORES */}
                 <div className="flex mt-3 justify-center h-12 gap-2">
-                  <span className="bg-font-dark h-2 w-8 rounded-full" />
-                  <span className="bg-tertiary-dark h-2 w-8 rounded-full hover:bg-font-dark transition-colors duration-200" />
-                  <span className="bg-tertiary-dark h-2 w-8 rounded-full hover:bg-font-dark transition-colors duration-200" />
-                  <span className="bg-tertiary-dark h-2 w-8 rounded-full hover:bg-font-dark transition-colors duration-200" />
-                  <span className="bg-tertiary-dark h-2 w-8 rounded-full hover:bg-font-dark transition-colors duration-200" />
-                  <span className="bg-tertiary-dark h-2 w-8 rounded-full hover:bg-font-dark transition-colors duration-200" />
+                  {Array.from({ length: 4 }).map((_, i) => (
+                    <span
+                      key={i}
+                      className={`h-2 w-8 rounded-full transition-colors duration-200 ${
+                        i === currentIndex
+                          ? "bg-font-dark"
+                          : "bg-tertiary-dark hover:bg-font-dark"
+                      }`}
+                    />
+                  ))}
                 </div>
 
                 {/* FILTRO DE DATAS */}
