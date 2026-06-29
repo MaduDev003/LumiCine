@@ -10,7 +10,7 @@ export function generateDatesForFilter(): DateFilter[] {
 
   const firstDay = new Date();
   const lastDay = new Date(firstDay);
-  lastDay.setMonth(lastDay.getMonth() + 3);
+  lastDay.setMonth(lastDay.getMonth() + 2);
 
   const filterDates: DateFilter[] = [];
   const currentDay = new Date(firstDay);
