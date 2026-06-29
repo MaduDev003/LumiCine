@@ -11,6 +11,6 @@ export class Movie {
     public readonly ageRating: string,
     public readonly duration: string,
     public readonly showPeriod: ShowMoviePeriod,
-    public readonly preSale: boolean
+    public readonly preSale?: boolean
   ) {}
 }

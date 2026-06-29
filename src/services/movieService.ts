@@ -10,7 +10,7 @@ export async function getMoviesData(page: number) {
     movies.map(async (movie: any) => {
       const releaseData = await getMovieReleaseDates(movie.id);
       const showPeriod = generateMoviePeriod(movie.release_date);
-      const preSale = isMoviePreSale(movie.id, page);
+      const preSale = page === 1 ? randomNumber(movie.id) < 0.6 : undefined;
 
       return MovieMapper.toDomain(
         {
@@ -24,13 +24,6 @@ export async function getMoviesData(page: number) {
   );
 
   return moviesWithData;
-}
-
-function isMoviePreSale(movieId: number, page: number) {
-  if (page === 2) return false;
-  return randomNumber(movieId) < 0.6;
-
-  
 }
 
 export function generateMoviePeriod(releaseDate: string) {
