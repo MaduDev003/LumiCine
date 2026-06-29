@@ -22,6 +22,8 @@ export default function HomePage() {
     visibleDates,
     hasNext,
     hasPrevious,
+    selectedDate,
+    setSelectedDate,
     handleNextDateFilter,
     handlePreviousDateFilter,
   } = useDateFilter();
@@ -32,7 +34,6 @@ export default function HomePage() {
     setIsLoading(true);
 
     const comingSoonMovies = await getMoviesData(1);
-    console.log(comingSoonMovies,' coming soon ')
     setComingSoonMoviesData(comingSoonMovies);
 
     const nowPlayingMovies = await getMoviesData(2);
@@ -147,6 +148,8 @@ export default function HomePage() {
                             <DateMovieFilter
                               key={`${date.day} - ${date.date}`}
                               {...date}
+                              onClick={() => setSelectedDate(date.fullDate)}
+                              selectedDate={selectedDate === date.fullDate}
                             />
                           ))}
                         </div>

@@ -20,8 +20,9 @@ function getItemsPerPage(screenWidth: number) {
 export function useDateFilter() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [dateFilterPerPage, setDateFilterPerPage] = useState(6);
+  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
 
-  const dates = generateDatesForFilter();
+  const dates = useMemo(() => generateDatesForFilter(), []);;
 
   const visibleDates = dates.slice(
     currentIndex,
@@ -64,6 +65,8 @@ export function useDateFilter() {
     visibleDates,
     hasNext,
     hasPrevious,
+    selectedDate,
+    setSelectedDate,
     handleNextDateFilter,
     handlePreviousDateFilter,
   };

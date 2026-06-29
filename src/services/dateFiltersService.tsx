@@ -1,7 +1,8 @@
 interface DateFilter {
   day: string;
   date: number;
-  selectedDate: boolean;
+  selectedDate?: boolean;
+  fullDate: Date;
 }
 
 export function generateDatesForFilter(): DateFilter[] {
@@ -18,7 +19,8 @@ export function generateDatesForFilter(): DateFilter[] {
     filterDates.push({
       day: weekDays[currentDay.getDay()],
       date: currentDay.getDate(),
-      selectedDate: filterDates.length === 0,
+      selectedDate: true,
+      fullDate: new Date(currentDay)
     });
 
     currentDay.setDate(currentDay.getDate() + 1);

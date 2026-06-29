@@ -1,16 +1,21 @@
 type Props = {
   selectedDate: boolean;
   day: string;
+  fullDate: Date;
   date: number;
+  onClick: () => void;
 };
 
 export default function DateMovieFilter({
-  selectedDate,
   day,
   date,
+  onClick,
+  selectedDate
 }: Props) {
+
   return (
     <button
+      onClick={onClick}
       className={`
         w-24 h-20 rounded-xl relative cursor-pointer border-2
         ${
