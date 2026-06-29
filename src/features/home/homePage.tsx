@@ -11,13 +11,17 @@ import { ChevronRight, ChevronLeft, Mail, X } from "lucide-react";
 import MovieGrid from "./components/MovieGrid";
 import { ErrorState } from "@/src/components/ui/ErrorState";
 import { useDateFilter } from "@/src/hooks/useDateFilters";
+import { MovieType } from "@/src/types/movieType";
 
 export default function HomePage() {
   const [menu, setMenu] = useState(false);
   const [comingSoonMoviesData, setComingSoonMoviesData] = useState<any[]>([]);
   const [nowPlayingMoviesData, setNowPlayingMoviesData] = useState<any[]>([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [bannerMovies, setbannerMovies] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
+  const currentMovie = bannerMovies[currentIndex];
   const {
     visibleDates,
     hasNext,
@@ -40,13 +44,30 @@ export default function HomePage() {
         const filtered = filterMovieByDate(comingSoonMovies, selectedDate);
         setComingSoonMoviesData(filtered);
     };
+    
     const nowPlayingMovies = await getMoviesData(2);
     setNowPlayingMoviesData(nowPlayingMovies);
+    
+    const bannerMovies = nowPlayingMovies.slice(1,5);
+    setbannerMovies(bannerMovies);
+    console.log(nowPlayingMovies)
   } catch {
     setError("Não foi possível carregar os filmes...");
   } finally {
     setIsLoading(false);
   }
+  }
+
+  function hasNextBanner() {
+    if (bannerMovies[currentIndex + 1]) {
+      setCurrentIndex((prev) => prev + 1);
+    }
+  }
+
+    function hasPreviousBanner() {
+    if (currentIndex === 0) return;
+
+    setCurrentIndex((prev) => prev - 1);
   }
   
   useEffect(() => {
@@ -73,59 +94,87 @@ export default function HomePage() {
       {menu === false && (
         <>
           <Header menu={menu} setMenu={setMenu}/>
+         
           <main className="w-full py-8">
             <div className="px-6 flex justify-center pt-8 pb-20">
-             <div className="w-full max-w-275 mx-auto px-6">
-            {/* Banner */}
-                <div
-                  className="aspect-video md:aspect-21/9 rounded-xl relative overflow-hidden shadow-sm bg-cover bg-center group"
-                  style={{
-                    backgroundImage: `url(${AvatarMovie.src})`,
-                  }}
-                >
-          {/* OVERLAY */}
-                <div className="absolute inset-0 bg-black/80 z-0" />
-            {/* CONTEÚDO */}
-                  <div className="absolute inset-0 z-10">
-                    <h1 className="absolute top-6 left-8 lg:top-7 lg:left-10 text-font-dark text-lg md:text-2xl lg:text-3xl font-medium drop-shadow-md">
-                      Avatar
-                    </h1>
+              <div className="w-full max-w-275 mx-auto px-6">
+                  {/* Banner */}
+                {isLoading || !currentMovie ? (
+                    <div className="aspect-video md:aspect-21/9 rounded-xl bg-gray-300 animate-pulse" />
+                  ) : (
+                    <div
+                      className="aspect-video md:aspect-21/9 rounded-xl relative overflow-hidden shadow-sm bg-cover bg-center group"
+                      style={{
+                        backgroundImage: `url(${currentMovie.backdropPath})`,
+                      }}
+                    >
+                      {/* OVERLAY */}
+                      <div className="absolute inset-0 bg-black/80 z-0" />
 
-                    <p className="absolute top-16 left-8 lg:top-20 lg:left-10 w-3/4 md:w-1/2 lg:w-2/5 text-xs md:text-md lg:text-[18px] text-white/60 leading-relaxed drop-shadow-md">
-                      Em Pandora, um ex-fuzileiro paraplégico recebe a chance de caminhar
-                      novamente por meio de um corpo Avatar. Durante sua missão, ele se
-                      aproxima do povo Na'vi e descobre a profunda conexão deles com a
-                      natureza. Dividido entre dever e consciência, precisa escolher de que
-                      lado ficará.
-                    </p>
-                    <Button
-                      className="
-                        absolute
-                        bottom-4 left-8
-                        lg:bottom-10 lg:left-10
-                        scale-75 md:scale-90 lg:scale-100
-                        origin-left
-                        h-10 md:h-10 lg:h-12
-                      "
-                      onClick={() => console.log('Ingresso clicado')}
-                      buttonText="Comprar Ingresso"
-                    />
-                  </div>
-                  {/* SETAS */}
-                  <div className="absolute bottom-4 right-4 md:bottom-4 md:right-6 lg:bottom-8 lg:right-4 flex gap-2 z-20">
-                    <button className="bg-white/10 hover:bg-white/20 transition-colors p-1.5 md:p-2 rounded-full backdrop-blur-xl border border-white/20">
-                      <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 lg:w-8 lg:h-8 text-font-dark/30 cursor-default" />
-                    </button>
+                      {/* CONTEÚDO */}
+                      <div className="absolute inset-0 z-10">
+                        <h1 className="absolute top-6 left-8 lg:top-7 lg:left-10 text-font-dark text-lg md:text-2xl lg:text-3xl font-medium drop-shadow-md">
+                          {currentMovie.title}
+                        </h1>
 
-                    <button className="bg-white/10 hover:bg-white/20 transition-colors p-1.5 md:p-2 rounded-full backdrop-blur-xl border border-white/20">
-                      <ChevronRight className="w-5 h-5 md:w-6 md:h-6 lg:w-8 lg:h-8 text-white" />
-                    </button>
-                  </div>
-                </div>
+                        <p className="absolute top-16 left-8 lg:top-20 lg:left-10 w-3/4 md:w-1/2 lg:w-2/5 text-xs md:text-md lg:text-[18px] text-white/60 leading-relaxed drop-shadow-md">
+                          {currentMovie.overview}
+                        </p>
+
+                        <Button
+                          className="
+                            absolute
+                            bottom-4 left-8
+                            lg:bottom-10 lg:left-10
+                            scale-75 md:scale-90 lg:scale-100
+                            origin-left
+                            h-10 md:h-10 lg:h-12
+                          "
+                          onClick={() => console.log("Ingresso clicado")}
+                          buttonText="Comprar Ingresso"
+                        />
+                      </div>
+
+                      {/* SETAS */}
+                      <div className="absolute bottom-4 right-4 md:bottom-4 md:right-6 lg:bottom-8 lg:right-4 flex gap-2 z-20">
+                        <button
+                          className={`
+                            p-1.5 md:p-2 rounded-full backdrop-blur-xl border transition-colors
+                            ${
+                              currentIndex === 0
+                                ? "bg-white/5 border-white/10 text-white/20 cursor-not-allowed"
+                                : "bg-white/10 border-white/20 text-white/70 hover:bg-white/20 hover:text-white cursor-pointer"
+                            }
+                          `}
+                          onClick={() => hasPreviousBanner()}
+                          disabled={currentIndex === 0}
+                        >
+                          <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 lg:w-8 lg:h-8" />
+                        </button>
+
+                        <button
+                          className={`
+                            p-1.5 md:p-2 rounded-full backdrop-blur-xl border transition-colors
+                            ${
+                              !bannerMovies[currentIndex + 1]
+                                ? "bg-white/5 border-white/10 text-white/20 cursor-not-allowed"
+                                : "bg-white/10 border-white/20 text-white/70 hover:bg-white/20 hover:text-white cursor-pointer"
+                            }
+                          `}
+                          onClick={() => hasNextBanner()}
+                          disabled={!bannerMovies[currentIndex + 1]}
+                        >
+                          <ChevronRight className="w-5 h-5 md:w-6 md:h-6 lg:w-8 lg:h-8" />
+                        </button>
+                      </div>
+                    </div>
+                  )}
 
                 {/* INDICADORES */}
                 <div className="flex mt-3 justify-center h-12 gap-2">
                   <span className="bg-font-dark h-2 w-8 rounded-full" />
+                  <span className="bg-tertiary-dark h-2 w-8 rounded-full hover:bg-font-dark transition-colors duration-200" />
+                  <span className="bg-tertiary-dark h-2 w-8 rounded-full hover:bg-font-dark transition-colors duration-200" />
                   <span className="bg-tertiary-dark h-2 w-8 rounded-full hover:bg-font-dark transition-colors duration-200" />
                   <span className="bg-tertiary-dark h-2 w-8 rounded-full hover:bg-font-dark transition-colors duration-200" />
                   <span className="bg-tertiary-dark h-2 w-8 rounded-full hover:bg-font-dark transition-colors duration-200" />

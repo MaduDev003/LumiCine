@@ -24,7 +24,15 @@ export async function getMoviesData(page: number) {
     })
   );
 
-  return moviesWithData;
+  const validMovies = moviesWithData.filter((movie) => {
+    return (
+      movie.overview?.trim() &&
+      movie.backdropPath &&
+      movie.title
+    );
+  });
+
+  return validMovies;
 }
 
 export function generateMoviePeriod(releaseDate: string) {
