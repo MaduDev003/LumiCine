@@ -1,97 +1,32 @@
 "use client";
-import {useState, useEffect} from "react";
 
+import {useState, useEffect} from "react";
 import MenuListElements from "./components/MenuListElements";
 import Header from "../../components/layout/Header";
 import DateMovieFilter from "./components/DateMovieFilter";
-import MovieCard from "./components/MovieCard";
 import Button from "../../components/ui/Button";
 import AvatarMovie from "../../assets/images/avatar_h_.jpg";
-import Avatar from "../../assets/images/avatar.jpg";
-import enigma from "../../assets/images/enigma.jpg";
-import you from "../../assets/images/you.jpg";
 import { getMoviesData } from "@/src/services/movieService";
 import { ChevronRight, ChevronLeft, Mail, X } from "lucide-react";
 import MovieGrid from "./components/MovieGrid";
 import { ErrorState } from "@/src/components/ui/ErrorState";
-
-const dates = [
-  { day: "Seg", date: 29, selectedDate: true },
-  { day: "Ter", date: 30, selectedDate: false },
-  { day: "Qua", date: 1, selectedDate: false },
-  { day: "Qui", date: 2, selectedDate: false },
-  { day: "Sex", date: 3, selectedDate: false },
-  { day: "Sab", date: 4, selectedDate: false },
-  { day: "Dom", date: 5, selectedDate: false },
-  { day: "Seg", date: 6, selectedDate: false },
-  { day: "Ter", date: 7, selectedDate: false },
-  { day: "Qua", date: 9, selectedDate: false },
-  { day: "Qua", date: 10, selectedDate: false },
-  { day: "Qua", date: 11, selectedDate: false }
-];
+import { useDateFilter } from "@/src/hooks/useDateFilters";
 
 export default function HomePage() {
   const [menu, setMenu] = useState(false);
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [dateFilterPerPage, setDateFilterPerPage] = useState(6);
   const [comingSoonMoviesData, setComingSoonMoviesData] = useState<any[]>([]);
   const [nowPlayingMoviesData, setNowPlayingMoviesData] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
- 
-  const visibleDates = dates.slice(
-    currentIndex,
-    currentIndex + dateFilterPerPage
-  );
-
-  const nextIndex = currentIndex + dateFilterPerPage;
-  const previousIndex = currentIndex - dateFilterPerPage;
-
-   
-  function getItemsPerPage(screenWidth: number) {
-    switch (true) {
-      case screenWidth < 580:
-        return 2
-
-      case screenWidth < 768 && screenWidth > 580:
-        return 3;
-
-      case screenWidth < 1024:
-        return 4;
-
-      default:
-        return 6;
-    }
-  }
-
-  const handleNextDateFilter = () => {
-    if(dates[nextIndex]) {
-      setCurrentIndex(nextIndex);
-    }
-  }
-
-  const handlePreviousDateFilter = () => {
-    if(dates[previousIndex]){
-        setCurrentIndex(previousIndex);
-    }
-  }
-
-  useEffect(() => {
-    const updateItemsPerPage = () => {
-      setDateFilterPerPage(
-        getItemsPerPage(window.innerWidth)
-      );
-    };
-
-    updateItemsPerPage();
-
-    window.addEventListener("resize", updateItemsPerPage);
-
-    return () => {
-      window.removeEventListener("resize", updateItemsPerPage);
-    };
-  }, []);
+  const {
+    visibleDates,
+    hasNext,
+    hasPrevious,
+    handleNextDateFilter,
+    handlePreviousDateFilter,
+  } = useDateFilter();
   
+
   async function loadMovies() {
   try {
     setIsLoading(true);
@@ -193,11 +128,13 @@ export default function HomePage() {
                 {/* FILTRO DE DATAS */}
                 <section className="bg-secondary-dark p-5 rounded-2xl">
                   <div className="flex items-center justify-between">
-                    <button onClick={handlePreviousDateFilter} disabled={!dates[previousIndex]} 
-                      className={!dates[previousIndex] ?
-                        "text-font-dark/30 cursor-default"
-                        :
-                        "text-font-dark hover:text-white transition-colors duration-200 hover:scale-105 cursor-pointer"
+                    <button
+                      onClick={handlePreviousDateFilter}
+                      disabled={!hasPrevious}
+                      className={
+                        !hasPrevious
+                          ? "text-font-dark/30 cursor-default"
+                          : "text-font-dark hover:text-white transition-colors duration-200 hover:scale-105 cursor-pointer"
                       }
                     >
                       <ChevronLeft className="w-12 h-12 stroke-1" />
@@ -214,13 +151,13 @@ export default function HomePage() {
                         </div>
                     </div>
 
-                    <button 
-                      onClick={handleNextDateFilter} 
-                      disabled={!dates[nextIndex]}
-                      className={dates[nextIndex] ?
-                        "text-font-dark hover:text-white transition-colors duration-200 hover:scale-105 cursor-pointer"
-                        :
-                        "text-font-dark/30 cursor-default"
+                    <button
+                      onClick={handleNextDateFilter}
+                      disabled={!hasNext}
+                      className={
+                        hasNext
+                          ? "text-font-dark hover:text-white transition-colors duration-200 hover:scale-105 cursor-pointer"
+                          : "text-font-dark/30 cursor-default"
                       }
                     >
                       <ChevronRight className="w-12 h-12 stroke-1" />
