@@ -6,7 +6,7 @@ import Header from "../../components/layout/Header";
 import DateMovieFilter from "./components/DateMovieFilter";
 import Button from "../../components/ui/Button";
 import AvatarMovie from "../../assets/images/avatar_h_.jpg";
-import { getMoviesData } from "@/src/services/movieService";
+import { getMoviesData, filterMovieByDate } from "@/src/services/movieService";
 import { ChevronRight, ChevronLeft, Mail, X } from "lucide-react";
 import MovieGrid from "./components/MovieGrid";
 import { ErrorState } from "@/src/components/ui/ErrorState";
@@ -32,10 +32,14 @@ export default function HomePage() {
   async function loadMovies() {
   try {
     setIsLoading(true);
-
     const comingSoonMovies = await getMoviesData(1);
-    setComingSoonMoviesData(comingSoonMovies);
 
+    if (!selectedDate) {
+      setComingSoonMoviesData(comingSoonMovies);
+    } else {
+        const filtered = filterMovieByDate(comingSoonMovies, selectedDate);
+        setComingSoonMoviesData(filtered);
+    };
     const nowPlayingMovies = await getMoviesData(2);
     setNowPlayingMoviesData(nowPlayingMovies);
   } catch {
@@ -47,7 +51,7 @@ export default function HomePage() {
 
   useEffect(() => {
     loadMovies();
-  }, []);
+  }, [selectedDate]);
 
   return (
     <>
@@ -148,7 +152,13 @@ export default function HomePage() {
                             <DateMovieFilter
                               key={`${date.day} - ${date.date}`}
                               {...date}
-                              onClick={() => setSelectedDate(date.fullDate)}
+                              onClick={() =>
+                                setSelectedDate(prev =>
+                                  prev?.getTime() === date.fullDate.getTime()
+                                    ? null
+                                    : date.fullDate
+                                  )
+                              }
                               selectedDate={selectedDate === date.fullDate}
                             />
                           ))}

@@ -1,3 +1,5 @@
+import { MoviePeriodType } from "./moviePeriodType";
+
 export type MovieType = {
   id: number;
   title: string;
@@ -6,6 +8,6 @@ export type MovieType = {
   overview: string;
   genre_ids: number[];
   age_rating: string;
-  duration: string;
+  showPeriod: MoviePeriodType;
   pre_sale: boolean;
 }

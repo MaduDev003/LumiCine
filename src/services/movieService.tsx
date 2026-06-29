@@ -2,6 +2,7 @@ import { getMovies } from "../api/movie/getMovies";
 import { getMovieReleaseDates } from "../api/movie/getMovieReleaseDates";
 import { MovieMapper } from "../mappers/movieMapper";
 import { randomNumber } from "../utils/generateRandomNumbers";
+import { MovieType } from "../types/movieType";
 
 export async function getMoviesData(page: number) {
   const movies = await getMovies(page);
@@ -46,10 +47,16 @@ function extractAgeRating(movieDetails: any): string {
   return br?.release_dates?.[0]?.certification?.trim() ?? "";
 }
 
-function filterMovieByDate(date: Date){
-  //usar o showPeriod para verificar se está dentro do filtro de data selecionado pelo usuário
-  //se estiver, o filme entrará na tela 
-  //se não estiver no tempo selecionado, então não entrará na tela 
-  //mostrar visualmente a data selecionada - mudando a borda laranja de lugar
-  console.log(date);
+export function filterMovieByDate(
+  movies: MovieType[],
+  selectedDate: Date
+) {
+  const selectedTime = selectedDate.getTime();
+
+  return movies.filter((movie) => {
+    const startTime = new Date(movie.showPeriod.startDate).getTime();
+    const endTime = new Date(movie.showPeriod.endDate).getTime();
+
+    return selectedTime >= startTime && selectedTime <= endTime;
+  });
 }
