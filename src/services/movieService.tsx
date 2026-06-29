@@ -10,7 +10,7 @@ export async function getMoviesData(page: number) {
     movies.map(async (movie: any) => {
       const releaseData = await getMovieReleaseDates(movie.id);
       const showPeriod = generateMoviePeriod(movie.release_date);
-      const preSale = page === 1 ? randomNumber(movie.id) < 0.6 : undefined;
+      const preSale = page === 1 ? randomNumber(movie.id) < 0.7 : undefined;
 
       return MovieMapper.toDomain(
         {
@@ -44,4 +44,12 @@ function extractAgeRating(movieDetails: any): string {
   );
 
   return br?.release_dates?.[0]?.certification?.trim() ?? "";
+}
+
+function filterMovieByDate(date: Date){
+  //usar o showPeriod para verificar se está dentro do filtro de data selecionado pelo usuário
+  //se estiver, o filme entrará na tela 
+  //se não estiver no tempo selecionado, então não entrará na tela 
+  //mostrar visualmente a data selecionada - mudando a borda laranja de lugar
+  console.log(date);
 }

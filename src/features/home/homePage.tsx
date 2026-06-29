@@ -32,6 +32,7 @@ export default function HomePage() {
     setIsLoading(true);
 
     const comingSoonMovies = await getMoviesData(1);
+    console.log(comingSoonMovies,' coming soon ')
     setComingSoonMoviesData(comingSoonMovies);
 
     const nowPlayingMovies = await getMoviesData(2);
