@@ -2,6 +2,7 @@ import { getMovies } from "../api/movie/getMovies";
 import { getMovieReleaseDates } from "../api/movie/getMovieReleaseDates";
 import { MovieMapper } from "../mappers/movieMapper";
 import { randomNumber } from "../utils/generateRandomNumbers";
+import { MovieType } from "../types/movieType";
 
 export async function getMoviesData(page: number) {
   const movies = await getMovies(page);
@@ -10,7 +11,7 @@ export async function getMoviesData(page: number) {
     movies.map(async (movie: any) => {
       const releaseData = await getMovieReleaseDates(movie.id);
       const showPeriod = generateMoviePeriod(movie.release_date);
-      const preSale = isMoviePreSale(movie.id, page);
+      const preSale = page === 1 ? randomNumber(movie.id) < 0.7 : undefined;
 
       return MovieMapper.toDomain(
         {
@@ -24,13 +25,6 @@ export async function getMoviesData(page: number) {
   );
 
   return moviesWithData;
-}
-
-function isMoviePreSale(movieId: number, page: number) {
-  if (page === 2) return false;
-  return randomNumber(movieId) < 0.6;
-
-  
 }
 
 export function generateMoviePeriod(releaseDate: string) {
@@ -51,4 +45,18 @@ function extractAgeRating(movieDetails: any): string {
   );
 
   return br?.release_dates?.[0]?.certification?.trim() ?? "";
+}
+
+export function filterMovieByDate(
+  movies: MovieType[],
+  selectedDate: Date
+) {
+  const selectedTime = selectedDate.getTime();
+
+  return movies.filter((movie) => {
+    const startTime = new Date(movie.showPeriod.startDate).getTime();
+    const endTime = new Date(movie.showPeriod.endDate).getTime();
+
+    return selectedTime >= startTime && selectedTime <= endTime;
+  });
 }

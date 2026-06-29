@@ -16,7 +16,7 @@ export class MovieMapper {
       movie.overview,
       genres,
       movie.age_rating || "?",
-      "",
+      "1h 50m",
       showPeriod,
       movie.pre_sale
     );
