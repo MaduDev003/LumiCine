@@ -1,6 +1,5 @@
 import MovieCard from "./MovieCard";
 
-
 type Movie = {
   id: string | number;
   posterUrl: string;

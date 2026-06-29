@@ -3,12 +3,10 @@ import { movieGenres } from "../lib/movieGenres";
 import { MovieType } from "../types/movieType";
 
 export class MovieMapper {
-  public static toDomain(movie: MovieType): Movie {
+  public static toDomain(movie: MovieType, showPeriod: any): Movie {
     const genres = movie.genre_ids
       .map(id => movieGenres[id])
       .slice(0, 2);
-    
-    const isPreSale = Math.random() < 0.45;
 
     return new Movie(
       movie.id,
@@ -19,7 +17,8 @@ export class MovieMapper {
       genres,
       movie.age_rating || "?",
       "",
-      isPreSale,
+      showPeriod,
+      movie.pre_sale
     );
   }
 }
