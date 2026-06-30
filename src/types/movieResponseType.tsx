@@ -11,7 +11,7 @@ export type MovieResponseType = {
   age_rating: string;
   duration: string;
   type: "comingSoon" | "nowPlaying";
-  showPeriod: MoviePeriodType;
+  show_period: MoviePeriodType;
   release_date: string;
   cast: CastMemberType[];
   pre_sale?: boolean;

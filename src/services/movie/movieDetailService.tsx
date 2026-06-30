@@ -3,7 +3,7 @@ import { getMovieReleaseDates } from "@/src/api/movie/getMovieReleaseDates";
 import { getMovieCast } from "@/src/api/movie/getMovieCast";
 import { MovieMapper } from "@/src/mappers/movieMapper";
 import { extractAgeRating } from "@/src/utils/extractAgeRating";
-import { generateMoviePeriod } from "../movie/movieService";
+import { generateMoviePeriod } from "../dateFiltersService";
 import { randomNumber } from "@/src/utils/generateRandomNumbers";
 
 export async function getMovieById(id: number, type: "comingSoon" | "nowPlaying") {
@@ -29,7 +29,7 @@ export async function getMovieById(id: number, type: "comingSoon" | "nowPlaying"
     age_rating: extractAgeRating(releaseData ?? []),
     duration: `${data.runtime ?? 0}min`,
     type,
-    showPeriod: generateMoviePeriod(data.release_date),
+    show_period: generateMoviePeriod(data.release_date),
     pre_sale: type === "comingSoon" ? randomNumber(id) < 0.6 : undefined,
     release_date: data.release_date,
     cast: [],

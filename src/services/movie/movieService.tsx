@@ -4,6 +4,7 @@ import { MovieMapper } from "../../mappers/movieMapper";
 import { extractAgeRating } from "../../utils/extractAgeRating";
 import { randomNumber } from "../../utils/generateRandomNumbers";
 import { MovieResponseType } from "../../types/movieResponseType";
+import { generateMoviePeriod } from "../dateFiltersService";
 
 export async function getMoviesData(page: number) {
   const movies = await getMovies(page);
@@ -21,8 +22,8 @@ export async function getMoviesData(page: number) {
         age_rating: extractAgeRating(releaseData ?? []),
         duration: movie.duration,
         type: page === 1 ? "comingSoon" : "nowPlaying",
-        showPeriod: generateMoviePeriod(movie.release_date),
-        release_date: movie.release_date,
+        show_period: generateMoviePeriod(movie.release_date),
+        release_date: movie.release_date ?? "2020-01-01",
         backdrop_path: movie.backdrop_path,
         pre_sale: page === 1 ? randomNumber(movie.id) < 0.6 : undefined,
         cast: []
@@ -36,18 +37,6 @@ export async function getMoviesData(page: number) {
   );
 }
 
-export function generateMoviePeriod(releaseDate: string) {
-  const startDate = new Date(releaseDate);
-
-  const endDate = new Date(startDate);
-  endDate.setMonth(endDate.getMonth() + 4);
-
-  return {
-    startDate,
-    endDate,
-  };
-}
-
 export function filterMovieByDate(
   movies: MovieResponseType[],
   selectedDate: Date
@@ -55,8 +44,8 @@ export function filterMovieByDate(
   const selectedTime = selectedDate.getTime();
 
   return movies.filter((movie) => {
-    const startTime = new Date(movie.showPeriod.startDate).getTime();
-    const endTime = new Date(movie.showPeriod.endDate).getTime();
+    const startTime = new Date(movie.show_period.startDate).getTime();
+    const endTime = new Date(movie.show_period.endDate).getTime();
 
     return (
       selectedTime >= startTime &&

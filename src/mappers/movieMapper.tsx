@@ -17,7 +17,7 @@ export class MovieMapper {
       movie.age_rating || "?",
       "1h 50m",
       movie.type,
-      movie.showPeriod,
+      movie.show_period,
       movie.release_date,
       `https://image.tmdb.org/t/p/original${movie.backdrop_path}`,
       movie.pre_sale,
