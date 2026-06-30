@@ -4,13 +4,11 @@ import { MovieType } from "@/src/types/movieType";
 type MovieGridProps = {
   isLoading: boolean;
   moviesData: MovieType[];
-  isComingSoon: boolean;
 };
 
 export default function MovieGrid({
   isLoading,
-  moviesData,
-  isComingSoon
+  moviesData
 }: MovieGridProps) {
     
   return (

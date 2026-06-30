@@ -235,7 +235,6 @@ export default function HomePage() {
                   <MovieGrid
                     isLoading={isLoading}
                     moviesData={comingSoonMoviesData}
-                    isComingSoon={true}
                   />
                 )}
               </section>
@@ -283,7 +282,6 @@ export default function HomePage() {
                     <MovieGrid
                       isLoading={isLoading}
                       moviesData={nowPlayingMoviesData}
-                      isComingSoon={false}
                     />
                   )}
                 </section>
