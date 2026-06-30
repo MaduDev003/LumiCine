@@ -44,10 +44,9 @@ export default function HomePage() {
         const filtered = filterMovieByDate(comingSoonMovies, selectedDate);
         setComingSoonMoviesData(filtered);
     };
-    console.log(comingSoonMovies)
     const nowPlayingMovies = await getMoviesData(2);
     setNowPlayingMoviesData(nowPlayingMovies);
-        console.log(nowPlayingMovies)
+
     const bannerMovies = nowPlayingMovies.slice(0,4);
     setbannerMovies(bannerMovies);
   } catch {
@@ -235,6 +234,7 @@ export default function HomePage() {
                   <MovieGrid
                     isLoading={isLoading}
                     moviesData={comingSoonMoviesData}
+        
                   />
                 )}
               </section>
@@ -282,6 +282,7 @@ export default function HomePage() {
                     <MovieGrid
                       isLoading={isLoading}
                       moviesData={nowPlayingMoviesData}
+                      
                     />
                   )}
                 </section>

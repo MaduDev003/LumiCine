@@ -20,7 +20,8 @@ export class MovieMapper {
       movie.showPeriod,
       movie.release_date,
       `https://image.tmdb.org/t/p/original${movie.backdrop_path}`,
-      movie.pre_sale
+      movie.pre_sale,
+      movie.cast
     );
   }
 }

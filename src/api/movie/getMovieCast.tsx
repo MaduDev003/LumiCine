@@ -6,5 +6,5 @@ export async function getMovieCast(id: number) {
     endpoints.movie.getCast(id)
   );
 
-  return data.results;
+  return data.cast;
 }

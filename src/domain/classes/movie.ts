@@ -1,5 +1,5 @@
 import { MoviePeriodType } from "@/src/types/moviePeriodType";
-
+import { CastMemberType } from "@/src/types/castMemberType";
 export class Movie {
   constructor(
     public readonly id: number,
@@ -13,7 +13,8 @@ export class Movie {
     public readonly showPeriod: MoviePeriodType,
     public readonly releaseDate: string,
     public readonly backdropPath?: string,
-    public readonly preSale?: boolean
+    public readonly preSale?: boolean,
+    public readonly cast?: CastMemberType[]
 
   ) {}
 }

@@ -7,7 +7,6 @@ import { MovieResponseType } from "../../types/movieResponseType";
 
 export async function getMoviesData(page: number) {
   const movies = await getMovies(page);
-  console.log(movies, 'movies')
 
   const listMovies = await Promise.all(
     movies.map(async (movie: any) => {
@@ -25,7 +24,8 @@ export async function getMoviesData(page: number) {
         showPeriod: generateMoviePeriod(movie.release_date),
         release_date: movie.release_date,
         backdrop_path: movie.backdrop_path,
-        pre_sale: page === 1 ? randomNumber(movie.id) < 0.7 : undefined,
+        pre_sale: page === 1 ? randomNumber(movie.id) < 0.6 : undefined,
+        cast: []
       });
     })
   );

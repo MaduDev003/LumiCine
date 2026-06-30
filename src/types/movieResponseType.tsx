@@ -1,3 +1,4 @@
+import { CastMemberType } from "./castMemberType";
 import { MoviePeriodType } from "./moviePeriodType";
 
 export type MovieResponseType = {
@@ -12,5 +13,6 @@ export type MovieResponseType = {
   type: "comingSoon" | "nowPlaying";
   showPeriod: MoviePeriodType;
   release_date: string;
+  cast: CastMemberType[];
   pre_sale?: boolean;
 };

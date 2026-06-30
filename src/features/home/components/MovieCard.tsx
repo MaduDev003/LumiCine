@@ -44,7 +44,7 @@ export default function MovieCard({movie}: Props) {
         hover:-translate-y-1
         hover:shadow-lg
       "
-      onClick={() => router.push(`/movie/${movie.id}`)}
+      onClick={() => router.push(`/movie/${movie.id}?type=${movie.type}`)}
     >
     <div className="absolute left-0 top-56 -translate-y-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-background-dark z-20" />
 
