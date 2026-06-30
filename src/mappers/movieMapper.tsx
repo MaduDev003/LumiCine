@@ -1,11 +1,15 @@
 import { Movie } from "../domain/classes/movie";
 import { movieGenres } from "../lib/movieGenres";
-import { MovieType } from "../types/movieType";
+import { MovieResponseType } from "../types/movieResponseType";
+import { MoviePeriodType } from "../types/moviePeriodType";
 
 export class MovieMapper {
-  public static toDomain(movie: MovieType, showPeriod: any): Movie {
+  public static toDomain(
+    movie: MovieResponseType,
+    showPeriod: MoviePeriodType
+  ): Movie {
     const genres = movie.genre_ids
-      .map(id => movieGenres[id])
+      .map((id) => movieGenres[id])
       .slice(0, 2);
 
     return new Movie(
@@ -17,6 +21,7 @@ export class MovieMapper {
       genres,
       movie.age_rating || "?",
       "1h 50m",
+      movie.type,
       showPeriod,
       movie.pre_sale
     );

@@ -12,14 +12,16 @@ export async function getMoviesData(page: number) {
       const releaseData = await getMovieReleaseDates(movie.id);
       const showPeriod = generateMoviePeriod(movie.release_date);
       const preSale = page === 1 ? randomNumber(movie.id) < 0.7 : undefined;
+      const movieType = page === 1 ? "comingSoon" : "nowPlaying"
 
       return MovieMapper.toDomain(
         {
           ...movie,
           age_rating: extractAgeRating(releaseData ?? []),
+          type: movieType,
           pre_sale: preSale,
         },
-        showPeriod
+        showPeriod,
       );
     })
   );

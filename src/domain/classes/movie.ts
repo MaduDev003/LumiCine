@@ -1,4 +1,4 @@
-import { ShowMoviePeriod } from "@/src/types/showMoviePeriod";
+import { MoviePeriodType } from "@/src/types/moviePeriodType";
 
 export class Movie {
   constructor(
@@ -10,7 +10,9 @@ export class Movie {
     public readonly genres: string[],
     public readonly ageRating: string,
     public readonly duration: string,
-    public readonly showPeriod: ShowMoviePeriod,
+    public readonly type: string,
+    public readonly showPeriod: MoviePeriodType,
     public readonly preSale?: boolean
+
   ) {}
 }

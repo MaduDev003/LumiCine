@@ -1,15 +1,15 @@
 import { MoviePeriodType } from "./moviePeriodType";
 
-export type MovieType = {
+export type MovieResponseType = {
   id: number;
   title: string;
-  posterUrl: string;
-  backdropUrl: string;
+  poster_path: string;
+  backdrop_path: string;
   overview: string;
-  genres: string[];
-  ageRating: string;
+  genre_ids: number[];
+  age_rating: string;
   duration: string;
   type: "comingSoon" | "nowPlaying";
   showPeriod: MoviePeriodType;
-  preSale: boolean;
+  pre_sale?: boolean;
 };

@@ -1,17 +1,9 @@
 import { useRouter } from "next/navigation";
+import { MovieType } from "@/src/types/movieType";
 
-type Props = {
-  id:string | number;
-  posterImg: string;
-  genders: string[];
-  movieName: string;
-  ageRating: string;
-  duration: string;
-  preSale: boolean;
-};
 
-export default function MovieCard(props: Props) {
-  const isSmallTitle = props.movieName.length <= 23;
+export default function MovieCard(props: MovieType) {
+  const isSmallTitle = props.title.length <= 23;
   const router = useRouter();
 
   function renderAgeClassificationColor(ageRating: string) {
@@ -59,7 +51,7 @@ export default function MovieCard(props: Props) {
             <div
                 className="h-full w-full relative"
                 style={{
-                backgroundImage: `url(${props.posterImg})`,
+                backgroundImage: `url(${props.posterUrl})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 }}
@@ -79,7 +71,7 @@ export default function MovieCard(props: Props) {
               isSmallTitle ? "text-center" : "text-left pl-1"
             }`}
           >
-            {props.movieName}
+            {props.title}
           </h2>
 
           <p className="text-[14px] opacity-80 text-left self-start pl-1 mt-2">
@@ -88,12 +80,12 @@ export default function MovieCard(props: Props) {
             
          <div className="flex justify-between mt-auto">
             <div className="flex gap-2 h-6 items-center">
-              {props.genders.map((gender, index) => (
+              {props.genres.map((genre, index) => (
                 <div
                   key={index}
                   className="bg-background-dark group-hover:bg-background-dark/60 h-5 flex justify-center px-2 py-0.5 rounded-2xl"
                 >
-                  <span>{gender}</span>
+                  <span>{genre}</span>
                 </div>
               ))}
             </div>

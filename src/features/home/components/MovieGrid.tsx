@@ -1,18 +1,10 @@
 import MovieCard from "./MovieCard";
+import { MovieType } from "@/src/types/movieType";
 
-type Movie = {
-  id: string | number;
-  posterUrl: string;
-  genres: string[];
-  title: string;
-  ageRating: string;
-  preSale: boolean;
-  duration: string;
-};
 
 type MovieGridProps = {
   isLoading: boolean;
-  moviesData: Movie[];
+  moviesData: MovieType[];
   isComingSoon: boolean;
 };
 
@@ -39,12 +31,16 @@ export default function MovieGrid({
                 <MovieCard
                     key={movie.id}
                     id={movie.id}
-                    posterImg={movie.posterUrl}
-                    genders={movie.genres}
-                    movieName={movie.title}
+                    posterUrl={movie.posterUrl}
+                    backdropUrl={movie.backdropUrl}
+                    overview={movie.overview}
+                    showPeriod={movie.showPeriod}
+                    genres={movie.genres}
+                    title={movie.title}
                     ageRating={movie.ageRating}
                     duration={movie.duration}
                     preSale={isComingSoon && movie.preSale}
+                    type={movie.type}
                 />
             ))
         }
