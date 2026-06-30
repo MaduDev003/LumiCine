@@ -7,7 +7,7 @@ import Footer from "@/src/components/layout/Footer";
 import DateMovieFilter from "./components/DateMovieFilter";
 import Button from "../../components/ui/Button";
 import AvatarMovie from "../../assets/images/avatar_h_.jpg";
-import { getMoviesData, filterMovieByDate } from "@/src/services/movieService";
+import { getMoviesData, filterMovieByDate } from "@/src/services/movie/movieService";
 import { ChevronRight, ChevronLeft, X } from "lucide-react";
 import MovieGrid from "./components/MovieGrid";
 import { ErrorState } from "@/src/components/ui/ErrorState";
@@ -44,10 +44,10 @@ export default function HomePage() {
         const filtered = filterMovieByDate(comingSoonMovies, selectedDate);
         setComingSoonMoviesData(filtered);
     };
-    
+    console.log(comingSoonMovies)
     const nowPlayingMovies = await getMoviesData(2);
     setNowPlayingMoviesData(nowPlayingMovies);
-    
+        console.log(nowPlayingMovies)
     const bannerMovies = nowPlayingMovies.slice(0,4);
     setbannerMovies(bannerMovies);
   } catch {

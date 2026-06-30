@@ -11,5 +11,6 @@ export type MovieType = {
   duration: string;
   type: "comingSoon" | "nowPlaying";
   showPeriod: MoviePeriodType;
+  releaseDate: string;
   preSale: boolean;
 };
