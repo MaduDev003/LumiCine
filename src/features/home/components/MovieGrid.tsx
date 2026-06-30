@@ -38,6 +38,7 @@ export default function MovieGrid({
             moviesData.map((movie) => (
                 <MovieCard
                     key={movie.id}
+                    id={movie.id}
                     posterImg={movie.posterUrl}
                     genders={movie.genres}
                     movieName={movie.title}

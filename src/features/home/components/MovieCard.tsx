@@ -1,4 +1,7 @@
+import { useRouter } from "next/navigation";
+
 type Props = {
+  id:string | number;
   posterImg: string;
   genders: string[];
   movieName: string;
@@ -8,32 +11,35 @@ type Props = {
 };
 
 export default function MovieCard(props: Props) {
-const isSmallTitle = props.movieName.length <= 23;
+  const isSmallTitle = props.movieName.length <= 23;
+  const router = useRouter();
 
-function renderAgeClassificationColor(ageRating: string) {
-  switch (ageRating) {
-    case "L":
-      return "bg-green-400 group-hover:bg-green-400/70";
+  function renderAgeClassificationColor(ageRating: string) {
+    switch (ageRating) {
+      case "L":
+        return "bg-green-400 group-hover:bg-green-400/70";
 
-    case "10":
-      return "bg-blue-400/70 group-hover:bg-blue-400";
+      case "10":
+        return "bg-blue-400/70 group-hover:bg-blue-400";
 
-    case "12":
-      return "bg-yellow-400/70 group-hover:bg-yellow-400";
+      case "12":
+        return "bg-yellow-400/70 group-hover:bg-yellow-400";
 
-    case "14":
-      return "bg-orange-400/70 group-hover:bg-orange-400";
+      case "14":
+        return "bg-orange-400/70 group-hover:bg-orange-400";
 
-    case "16":
-      return "bg-red-400/70 group-hover:bg-red-400";
+      case "16":
+        return "bg-red-400/70 group-hover:bg-red-400";
 
-    case "18":
-      return "bg-black text-white group-hover:bg-black/70";
+      case "18":
+        return "bg-black text-white group-hover:bg-black/70";
 
-    default:
-      return "bg-gray-500 group-hover:bg-gray-500/70 text-font-dark text-[15px] pt-1";
+      default:
+        return "bg-gray-500 group-hover:bg-gray-500/70 text-font-dark text-[15px] pt-1";
+    }
   }
-}
+
+    
 
   return (
     <div
@@ -43,6 +49,7 @@ function renderAgeClassificationColor(ageRating: string) {
         hover:-translate-y-1
         hover:shadow-lg
       "
+      onClick={() => router.push(`/movie/${props.id}`)}
     >
     <div className="absolute left-0 top-56 -translate-y-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-background-dark z-20" />
 

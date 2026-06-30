@@ -39,7 +39,7 @@ export function generateMoviePeriod(releaseDate: string) {
   const startDate = new Date(releaseDate);
 
   const endDate = new Date(startDate);
-  endDate.setMonth(endDate.getMonth() + 3);
+  endDate.setMonth(endDate.getMonth() + 4);
 
   return {
     startDate,
