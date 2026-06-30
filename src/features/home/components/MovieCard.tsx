@@ -1,9 +1,12 @@
 import { useRouter } from "next/navigation";
 import { MovieType } from "@/src/types/movieType";
 
+type Props = {
+  movie: MovieType;
+};
 
-export default function MovieCard(props: MovieType) {
-  const isSmallTitle = props.title.length <= 23;
+export default function MovieCard({movie}: Props) {
+  const isSmallTitle = movie.title.length <= 23;
   const router = useRouter();
 
   function renderAgeClassificationColor(ageRating: string) {
@@ -41,7 +44,7 @@ export default function MovieCard(props: MovieType) {
         hover:-translate-y-1
         hover:shadow-lg
       "
-      onClick={() => router.push(`/movie/${props.id}`)}
+      onClick={() => router.push(`/movie/${movie.id}`)}
     >
     <div className="absolute left-0 top-56 -translate-y-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-background-dark z-20" />
 
@@ -51,14 +54,14 @@ export default function MovieCard(props: MovieType) {
             <div
                 className="h-full w-full relative"
                 style={{
-                backgroundImage: `url(${props.posterUrl})`,
+                backgroundImage: `url(${movie.posterUrl})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 }}
             >
                 <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
 
-                {props.preSale && (
+                {movie.preSale && (
                 <span className="absolute top-0 left-20 bg-accent text-white text-xs px-2 py-1 rounded z-10 shadow-[0_4px_12px_rgba(0,0,0,0.35)]">
                     Pré-venda
                 </span>
@@ -71,16 +74,16 @@ export default function MovieCard(props: MovieType) {
               isSmallTitle ? "text-center" : "text-left pl-1"
             }`}
           >
-            {props.title}
+            {movie.title}
           </h2>
 
           <p className="text-[14px] opacity-80 text-left self-start pl-1 mt-2">
-            Duração: {props.duration}
+            Duração: {movie.duration}
           </p>
             
          <div className="flex justify-between mt-auto">
             <div className="flex gap-2 h-6 items-center">
-              {props.genres.map((genre, index) => (
+              {movie.genres.map((genre, index) => (
                 <div
                   key={index}
                   className="bg-background-dark group-hover:bg-background-dark/60 h-5 flex justify-center px-2 py-0.5 rounded-2xl"
@@ -91,9 +94,9 @@ export default function MovieCard(props: MovieType) {
             </div>
 
             <div
-              className={`${renderAgeClassificationColor(props.ageRating)} h-6 w-6 flex justify-center items-center mb-10 rounded mr-2 transition-colors`}
+              className={`${renderAgeClassificationColor(movie.ageRating)} h-6 w-6 flex justify-center items-center mb-10 rounded mr-2 transition-colors`}
             >
-              <span>{props.ageRating}</span>
+              <span>{movie.ageRating}</span>
             </div>
           </div>
         </div>

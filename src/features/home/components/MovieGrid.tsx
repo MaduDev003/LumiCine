@@ -27,20 +27,7 @@ export default function MovieGrid({
 
       {!isLoading &&
             moviesData.map((movie) => (
-                <MovieCard
-                    key={movie.id}
-                    id={movie.id}
-                    posterUrl={movie.posterUrl}
-                    backdropUrl={movie.backdropUrl}
-                    overview={movie.overview}
-                    showPeriod={movie.showPeriod}
-                    genres={movie.genres}
-                    title={movie.title}
-                    ageRating={movie.ageRating}
-                    duration={movie.duration}
-                    preSale={isComingSoon && movie.preSale}
-                    type={movie.type}
-                />
+                <MovieCard key={movie.id} movie={movie}/>
             ))
         }
 
