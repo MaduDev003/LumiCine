@@ -13,10 +13,16 @@ export async function getMovieById(id: number, type: "comingSoon" | "nowPlaying"
     getMovieCast(id),
   ]);
   const castMembers = [];
+  let index = 0;
 
    for(const castMember of castResponse){
-        if(castMembers.length === 6) break;
-        castMembers.push(castMember);
+        if(castMembers.length === 4) break;
+        castMembers.push({
+          id: index,
+          name: castMember.name,
+          character: castMember.character
+        });
+        index++;
   }
 
   return MovieMapper.toDomain({
@@ -32,6 +38,6 @@ export async function getMovieById(id: number, type: "comingSoon" | "nowPlaying"
     show_period: generateMoviePeriod(data.release_date),
     pre_sale: type === "comingSoon" ? randomNumber(id) < 0.6 : undefined,
     release_date: data.release_date,
-    cast: [],
+    cast: castMembers,
   });
 }
