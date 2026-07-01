@@ -1,7 +1,7 @@
 "use client";
 
 import {useState, useEffect} from "react";
-import MenuListElements from "./components/MenuListElements";
+import MenuListElements from "../../components/ui/MenuListElements";
 import Header from "../../components/layout/Header";
 import Footer from "@/src/components/layout/Footer";
 import DateMovieFilter from "./components/DateMovieFilter";
@@ -34,15 +34,14 @@ export default function HomePage() {
   
   async function loadComingSoon() {
     const comingSoonMovies = await getMoviesData(1);
-    console.log(comingSoonMovies, 'coming soon')
     if (!selectedDate) {
       setComingSoonMoviesData(comingSoonMovies);
     } else {
       const filtered = filterMovieByDate(comingSoonMovies, selectedDate);
-      console.log(filtered, 'filtered')
       setComingSoonMoviesData(filtered);
     }
   }
+
   async function loadNowPlaying() {
     const nowPlayingMovies = await getMoviesData(2);
 
@@ -106,7 +105,7 @@ export default function HomePage() {
                       }}
                     >
                       {/* OVERLAY */}
-                      <div className="absolute inset-0 bg-black/85 z-0" />
+                      <div className="absolute inset-0 bg-black/83 z-0" />
 
                       {/* CONTEÚDO */}
                       <div className="absolute inset-0 z-10">

@@ -3,7 +3,7 @@
 import { useRef, useState } from "react";
 import { Search, Send, TextAlignJustify } from "lucide-react";
 import logo from "../../assets/images/logo.png";
-import MenuListElements from "@/src/features/home/components/MenuListElements";
+import MenuListElements from "@/src/components/ui/MenuListElements";
 
 interface HeaderProps {
   menu: boolean;
