@@ -126,6 +126,9 @@ export default function HomePage() {
                             scale-75 md:scale-90 lg:scale-100
                             origin-left
                             h-10 md:h-10 lg:h-12
+                            transition-all duration-300 
+                            hover:brightness-110
+                            hover:shadow-[0_25px_60px_rgba(0,0,0,0.2)]
                           "
                           onClick={() => console.log("Ingresso clicado", currentMovie.id)}
                           text="Comprar Ingresso"
