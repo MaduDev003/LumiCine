@@ -1,4 +1,5 @@
 import { MoviePeriodType } from "./moviePeriodType";
+import { CastMemberType } from "./castMemberType";
 
 export type MovieType = {
   id: number;
@@ -12,5 +13,6 @@ export type MovieType = {
   type: "comingSoon" | "nowPlaying";
   show_period: MoviePeriodType;
   release_date: string;
-  pre_sale: boolean;
+  pre_sale: boolean | undefined;
+  cast: Array<CastMemberType>
 };

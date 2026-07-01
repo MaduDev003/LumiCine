@@ -5,6 +5,9 @@ import Header from "@/src/components/layout/Header";
 import Footer from "@/src/components/layout/Footer";
 import { X } from "lucide-react";
 import MenuListElements from "../../components/ui/MenuListElements";
+import Button from "@/src/components/ui/Button";
+import AvatarMovie from "../../assets/images/avatar_h_.jpg";
+
 export default function MovieDetail({ movie }: any) {
   const [menu, setMenu] = useState(false);
 
@@ -30,12 +33,28 @@ export default function MovieDetail({ movie }: any) {
                 <Header menu={menu} setMenu={setMenu} />
 
                 <main className="w-full py-8">
-                    <div className="px-6 flex justify-center pt-8 pb-20">
-                    <div className="w-full max-w-275 mx-auto px-6 flex h-screen">
-                        <div className="flex-1 bg-pink-400">1</div>
-                        <div className="flex-1 bg-blue-400">2</div>
-                    </div>
-                    </div>
+                    <div className="w-full max-w-275 mx-auto px-6 flex gap-2 mb-10">
+                            <div className="w-100 flex flex-col gap-4">
+                                <div
+                                className="h-130 rounded-lg shadow-[0_20px_50px_rgba(0,0,0,0.55)]"
+                                style={{
+                                    backgroundImage: `url(${AvatarMovie.src})`,
+                                    backgroundPosition: "center",
+                                    backgroundSize: "cover",
+                                }}
+                                />
+
+                                <Button
+                                text="Comprar Ingressos"
+                                className="bg-accent text-font-dark h-16"
+                                onClick={() => console.log("Comprar Ingressos clicado")}
+                                />
+                            </div>
+
+                            <div className="flex-1 rounded-lg p-6">
+                                2
+                            </div>
+                            </div>
                 </main>
 
                 <Footer />

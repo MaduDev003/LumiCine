@@ -101,7 +101,7 @@ export default function HomePage() {
                     <div
                       className="aspect-video md:aspect-21/9 rounded-xl relative overflow-hidden shadow-sm bg-cover bg-center group"
                       style={{
-                        backgroundImage: `url(${currentMovie.backdrop_path})`,
+                        backgroundImage: `url(${currentMovie.backdrop_url})`,
                       }}
                     >
                       {/* OVERLAY */}
@@ -119,6 +119,7 @@ export default function HomePage() {
 
                         <Button
                           className="
+                            bg-accent text-font-dark
                             absolute
                             bottom-4 left-8
                             lg:bottom-10 lg:left-10
@@ -127,7 +128,7 @@ export default function HomePage() {
                             h-10 md:h-10 lg:h-12
                           "
                           onClick={() => console.log("Ingresso clicado", currentMovie.id)}
-                          buttonText="Comprar Ingresso"
+                          text="Comprar Ingresso"
                         />
                       </div>
 

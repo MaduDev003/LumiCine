@@ -1,4 +1,5 @@
 import MovieDetail from "@/src/features/movieDetail/movieDetail";
+import {getMovieById} from "../../../services/movie/movieDetailService";
 
 type Props = {
   params: Promise<{ id: string }>;
@@ -9,10 +10,10 @@ export default async function MovieDetailPage({ params, searchParams}: Props) {
   const { id } = await params;
   const { type } = await searchParams;
 
- /*  const movie = await getMovieById(
+  const movie = await getMovieById(
     Number(id),
     type
-  ); */
+  ); 
   
-    return (<MovieDetail  />);
+    return (<MovieDetail  movie={movie}/>);
 }

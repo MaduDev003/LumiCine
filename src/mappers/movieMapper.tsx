@@ -1,27 +1,27 @@
-import { Movie } from "../domain/classes/movie";
 import { movieGenres } from "../lib/movieGenres";
+import { MovieType } from "../types/movieType";
 import { MovieResponseType } from "../types/movieResponseType";
 
 export class MovieMapper {
-  public static toDomain(movie: MovieResponseType): Movie {
+  public static toDomain(movie: MovieResponseType): MovieType {
     const genres = movie.genre_ids
       .map((id) => movieGenres[id])
       .slice(0, 2);
 
-    return new Movie(
-      movie.id,
-      movie.title,
-      `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
-      movie.overview,
+      return {
+      id: movie.id,
+      title: movie.title,
+      poster_url: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
+      overview: movie.overview,
       genres,
-      movie.age_rating || "?",
-      "1h 50m",
-      movie.type,
-      movie.show_period,
-      movie.release_date,
-      `https://image.tmdb.org/t/p/original${movie.backdrop_path}`,
-      movie.pre_sale,
-      movie.cast
-    );
+      age_rating: movie.age_rating || "?",
+      duration: "1h 50m",
+      type: movie.type,
+      show_period: movie.show_period,
+      release_date: movie.release_date,
+      backdrop_url: `https://image.tmdb.org/t/p/original${movie.backdrop_path}`,
+      pre_sale: movie.pre_sale,
+      cast: movie.cast,
+    };
   }
 }
