@@ -4,14 +4,14 @@ export class Movie {
   constructor(
     public readonly id: number,
     public readonly title: string,
-    public readonly posterUrl: string,
+    public readonly poster_url: string,
     public readonly overview: string,
     public readonly genres: string[],
-    public readonly ageRating: string,
+    public readonly age_rating: string,
     public readonly duration: string,
     public readonly type: string,
-    public readonly showPeriod: MoviePeriodType,
-    public readonly releaseDate: string,
+    public readonly show_period: MoviePeriodType,
+    public readonly release_date: string,
     public readonly backdropPath?: string,
     public readonly preSale?: boolean,
     public readonly cast?: CastMemberType[]

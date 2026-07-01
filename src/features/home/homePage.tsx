@@ -32,33 +32,44 @@ export default function HomePage() {
     handlePreviousDateFilter,
   } = useDateFilter();
   
-
-  async function loadMovies() {
-  try {
-    setIsLoading(true);
+  async function loadComingSoon() {
     const comingSoonMovies = await getMoviesData(1);
-
+    console.log(comingSoonMovies, 'coming soon')
     if (!selectedDate) {
       setComingSoonMoviesData(comingSoonMovies);
     } else {
-        const filtered = filterMovieByDate(comingSoonMovies, selectedDate);
-        setComingSoonMoviesData(filtered);
-    };
+      const filtered = filterMovieByDate(comingSoonMovies, selectedDate);
+      console.log(filtered, 'filtered')
+      setComingSoonMoviesData(filtered);
+    }
+  }
+  async function loadNowPlaying() {
     const nowPlayingMovies = await getMoviesData(2);
+
     setNowPlayingMoviesData(nowPlayingMovies);
 
-    const bannerMovies = nowPlayingMovies.slice(0,4);
+    const bannerMovies = nowPlayingMovies.slice(0, 4);
     setbannerMovies(bannerMovies);
-  } catch {
-    setError("Não foi possível carregar os filmes...");
-  } finally {
-    setIsLoading(false);
   }
-  }
-  
+
   useEffect(() => {
-    loadMovies();
-  }, [selectedDate]);
+  async function loadMovies() {
+    try {
+      setIsLoading(true);
+
+      await loadComingSoon();
+      await loadNowPlaying();
+
+    } catch(error: any) {
+      console.log(error,' eroo')
+      setError("Não foi possível carregar os filmes...");
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
+  loadMovies();
+}, [selectedDate]);
 
   return (
     <>

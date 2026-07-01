@@ -9,8 +9,8 @@ export default function MovieCard({movie}: Props) {
   const isSmallTitle = movie.title.length <= 23;
   const router = useRouter();
 
-  function renderAgeClassificationColor(ageRating: string) {
-    switch (ageRating) {
+  function renderAgeClassificationColor(age_rating: string) {
+    switch (age_rating) {
       case "L":
         return "bg-green-400 group-hover:bg-green-400/70";
 
@@ -54,14 +54,14 @@ export default function MovieCard({movie}: Props) {
             <div
                 className="h-full w-full relative"
                 style={{
-                backgroundImage: `url(${movie.posterUrl})`,
+                backgroundImage: `url(${movie.poster_url})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 }}
             >
                 <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
 
-                {movie.preSale && movie.type === "comingSoon" && (
+                {movie.pre_sale && movie.type === "comingSoon" && (
                 <span className="absolute top-0 left-20 bg-accent text-white text-xs px-2 py-1 rounded z-10 shadow-[0_4px_12px_rgba(0,0,0,0.35)]">
                     Pré-venda
                 </span>
@@ -94,9 +94,9 @@ export default function MovieCard({movie}: Props) {
             </div>
 
             <div
-              className={`${renderAgeClassificationColor(movie.ageRating)} h-6 w-6 flex justify-center items-center mb-10 rounded mr-2 transition-colors`}
+              className={`${renderAgeClassificationColor(movie.age_rating)} h-6 w-6 flex justify-center items-center mb-10 rounded mr-2 transition-colors`}
             >
-              <span>{movie.ageRating}</span>
+              <span>{movie.age_rating}</span>
             </div>
           </div>
         </div>

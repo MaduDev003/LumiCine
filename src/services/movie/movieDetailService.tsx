@@ -1,8 +1,8 @@
 import { getMovieDetails } from "@/src/api/movie/getMovieDetails";
-import { getMovieReleaseDates } from "@/src/api/movie/getMovieReleaseDates";
+import { getMovieReleaseDates } from "../../api/movie/getMovieReleaseDates";
 import { getMovieCast } from "@/src/api/movie/getMovieCast";
 import { MovieMapper } from "@/src/mappers/movieMapper";
-import { extractAgeRating } from "@/src/utils/extractAgeRating";
+import { extractAgeRating } from "../../utils/extractAgeRating";
 import { generateMoviePeriod } from "../dateFiltersService";
 import { randomNumber } from "@/src/utils/generateRandomNumbers";
 
@@ -18,7 +18,7 @@ export async function getMovieById(id: number, type: "comingSoon" | "nowPlaying"
         if(castMembers.length === 6) break;
         castMembers.push(castMember);
   }
- 
+
   return MovieMapper.toDomain({
     id: id,
     title: data.title,

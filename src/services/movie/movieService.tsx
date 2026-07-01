@@ -44,8 +44,8 @@ export function filterMovieByDate(
   const selectedTime = selectedDate.getTime();
 
   return movies.filter((movie) => {
-    const startTime = new Date(movie.show_period.startDate).getTime();
-    const endTime = new Date(movie.show_period.endDate).getTime();
+    const startTime = new Date(movie.show_period.start_date).getTime();
+    const endTime = new Date(movie.show_period.end_date).getTime();
 
     return (
       selectedTime >= startTime &&

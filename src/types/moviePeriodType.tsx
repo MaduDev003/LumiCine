@@ -1,4 +1,4 @@
 export type MoviePeriodType = {
-    startDate: string | Date;
-    endDate: string | Date;
+    start_date: string | Date;
+    end_date: string | Date;
 };
