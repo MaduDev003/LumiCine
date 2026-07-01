@@ -102,7 +102,7 @@ export default function HomePage() {
                     <div
                       className="aspect-video md:aspect-21/9 rounded-xl relative overflow-hidden shadow-sm bg-cover bg-center group"
                       style={{
-                        backgroundImage: `url(${currentMovie.backdropPath})`,
+                        backgroundImage: `url(${currentMovie.backdrop_path})`,
                       }}
                     >
                       {/* OVERLAY */}

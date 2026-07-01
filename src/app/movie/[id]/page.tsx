@@ -1,3 +1,4 @@
+import Footer from "@/src/components/layout/Footer";
 import { getMovieById } from "@/src/services/movie/movieDetailService";
 
 type Props = {
@@ -15,6 +16,7 @@ export default async function MovieDetailPage({ params, searchParams}: Props) {
   );
   console.log(movie, 'complete movie')
   return (
+    <>
     <main className="w-full py-8">
       <div className="px-6 flex justify-center pt-8 pb-20">
         <div className="w-full max-w-275 mx-auto px-6">
@@ -22,5 +24,7 @@ export default async function MovieDetailPage({ params, searchParams}: Props) {
         </div>
       </div>
     </main>
+    <Footer />
+    </>
   );
 }

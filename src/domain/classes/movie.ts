@@ -12,8 +12,8 @@ export class Movie {
     public readonly type: string,
     public readonly show_period: MoviePeriodType,
     public readonly release_date: string,
-    public readonly backdropPath?: string,
-    public readonly preSale?: boolean,
+    public readonly backdrop_path?: string,
+    public readonly pre_sale?: boolean,
     public readonly cast?: CastMemberType[]
 
   ) {}
