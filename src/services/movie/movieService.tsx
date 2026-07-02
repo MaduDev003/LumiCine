@@ -2,7 +2,6 @@ import { getMovies } from "../../api/movie/getMovies";
 import { getMovieReleaseDates } from "../../api/movie/getMovieReleaseDates";
 import { MovieMapper } from "../../mappers/movieMapper";
 import { extractAgeRating } from "../../utils/extractAgeRating";
-import { randomNumber } from "../../utils/generateRandomNumbers";
 import { MovieResponseType } from "../../types/movieResponseType";
 import { generateMoviePeriod } from "../dateFiltersService";
 
@@ -25,7 +24,7 @@ export async function getMoviesData(page: number) {
         show_period: generateMoviePeriod(movie.release_date),
         release_date: movie.release_date ?? "2020-01-01",
         backdrop_path: movie.backdrop_path,
-        pre_sale: page === 1 ? randomNumber(movie.id) < 0.6 : undefined,
+        pre_sale: page === 1 ? isPreSale(movie.release_date) : undefined,
         cast: []
       });
     })
@@ -53,6 +52,18 @@ export function filterMovieByDate(
     );
   });
 }
+  function isPreSale(releaseDate: string): boolean {
+    const release = new Date(releaseDate);
+    const today = new Date();
+
+    const lastMonthDay10 = new Date(
+      today.getFullYear(),
+      today.getMonth() - 2,
+      10
+    );
+
+    return release < lastMonthDay10;
+  }
 
  export async function loadComingSoonMovies(selectedDate: Date | null) {
     const comingSoonMovies = await getMoviesData(1);

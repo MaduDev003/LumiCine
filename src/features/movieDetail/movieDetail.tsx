@@ -9,6 +9,7 @@ import ButtonCine from "@/src/components/ui/ButtonCine";
 import {renderAgeClassificationColor} from "../../utils/renderAgeClassificationColor";
 import { MovieType } from "@/src/types/movieType";
 import { useMovieContext } from "@/src/context/MovieContext";
+import { formatDateToBrazilianFormat } from "@/src/utils/formatDate";
 
 export default function MovieDetail({ movie }: { movie: MovieType }) {
   const [menu, setMenu] = useState(false);
@@ -88,7 +89,7 @@ export default function MovieDetail({ movie }: { movie: MovieType }) {
                                         Data de Lançamento
                                     </h1>
                                     <p className="text-font-dark/80 leading-relaxed">
-                                        {movie.release_date}
+                                        {formatDateToBrazilianFormat(movie.release_date)}
                                     </p>
                                 </section>
                                 <div className="w-full bg-tertiary-dark/50 h-0.5 rounded-full"></div>

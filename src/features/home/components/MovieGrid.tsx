@@ -15,7 +15,7 @@ export default function MovieGrid({
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-6 justify-items-center">
 
       {isLoading &&
-            Array.from({ length: 20 }).map((_, i) => (
+            Array.from({ length: 17 }).map((_, i) => (
                 <div
                     key={i}
                     className="h-80 w-full bg-gray-300 rounded-xl animate-pulse"
