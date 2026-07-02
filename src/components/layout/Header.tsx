@@ -142,6 +142,13 @@ export default function Header({ setMenu, allMoviesForSearch }: HeaderProps) {
             </div>
           )}
 
+          {isSearchOpen && foundMovies.length === 0 && (
+            <div className="absolute top-full mt-1 right-0 w-44 md:w-85 rounded-xl bg-background-dark border border-white/10 shadow-xl overflow-hidden z-50">
+              <p className="px-4 py-3 text-left text-font-dark">
+                Nenhum filme encontrado.
+              </p>
+            </div>
+          )}
         </div>
       </div>
     </header>

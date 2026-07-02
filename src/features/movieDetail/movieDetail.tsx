@@ -8,9 +8,13 @@ import MenuListElements from "../../components/ui/MenuListElements";
 import Button from "@/src/components/ui/Button";
 import {renderAgeClassificationColor} from "../../utils/renderAgeClassificationColor";
 import { MovieType } from "@/src/types/movieType";
+import { useMovieContext } from "@/src/context/MovieContext";
 
 export default function MovieDetail({ movie }: { movie: MovieType }) {
   const [menu, setMenu] = useState(false);
+  const { nowPlayingMoviesData, comingSoonMoviesData } = useMovieContext();
+
+  
   return (
     <>
     {menu && (
@@ -30,7 +34,7 @@ export default function MovieDetail({ movie }: { movie: MovieType }) {
 
         {!menu && (
             <>
-                <Header setMenu={setMenu} />
+                <Header setMenu={setMenu} allMoviesForSearch={[...nowPlayingMoviesData, ...comingSoonMoviesData]}/>
                 <main className="mt-8">
                     <div className="w-full max-w-275 mx-auto px-6 flex gap-2 mb-10">
                            <div className="w-105 flex flex-col rounded-2xl gap-6 p-5">

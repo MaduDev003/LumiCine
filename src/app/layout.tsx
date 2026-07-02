@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import "./globals.css";
+import { MovieProvider } from "@/src/context/MovieContext";
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -19,12 +20,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="pt-BR"
-      className={`${roboto.variable} ${roboto.className}`}
-    >
+    <html lang="pt-BR" className={`${roboto.variable} ${roboto.className}`}>
       <body className="min-h-screen flex flex-col">
-        {children}
+        <MovieProvider>
+          {children}
+        </MovieProvider>
       </body>
     </html>
   );

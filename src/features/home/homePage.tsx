@@ -7,16 +7,15 @@ import Footer from "@/src/components/layout/Footer";
 import DateMovieFilter from "./components/DateMovieFilter";
 import Button from "../../components/ui/Button";
 import AvatarMovie from "../../assets/images/avatar_h_.jpg";
-import { getMoviesData, filterMovieByDate } from "@/src/services/movie/movieService";
+import {loadNowPlayingMovies, loadComingSoonMovies} from "../../services/movie/movieService";
 import { ChevronRight, ChevronLeft, X } from "lucide-react";
 import MovieGrid from "./components/MovieGrid";
 import { ErrorState } from "@/src/components/ui/ErrorState";
 import { useDateFilter } from "@/src/hooks/useDateFilters";
+import { useMovieContext } from "@/src/context/MovieContext";
 
 export default function HomePage() {
   const [menu, setMenu] = useState(false);
-  const [comingSoonMoviesData, setComingSoonMoviesData] = useState<any[]>([]);
-  const [nowPlayingMoviesData, setNowPlayingMoviesData] = useState<any[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [bannerMovies, setbannerMovies] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -31,44 +30,35 @@ export default function HomePage() {
     handleNextDateFilter,
     handlePreviousDateFilter,
   } = useDateFilter();
+  const {
+    nowPlayingMoviesData,
+    setNowPlayingMoviesData,
+    comingSoonMoviesData,
+    setComingSoonMoviesData,
+  } = useMovieContext();
   
-  async function loadComingSoon() {
-    const comingSoonMovies = await getMoviesData(1);
-    if (!selectedDate) {
-      setComingSoonMoviesData(comingSoonMovies);
-    } else {
-      const filtered = filterMovieByDate(comingSoonMovies, selectedDate);
-      setComingSoonMoviesData(filtered);
-    }
-  }
 
-  async function loadNowPlaying() {
-    const nowPlayingMovies = await getMoviesData(2);
-
-    setNowPlayingMoviesData(nowPlayingMovies);
-
-    const bannerMovies = nowPlayingMovies.slice(0, 4);
-    setbannerMovies(bannerMovies);
-  }
 
   useEffect(() => {
-  async function loadMovies() {
-    try {
-      setIsLoading(true);
+    async function loadMovies() {
+      try {
+        setIsLoading(true);
 
-      await loadComingSoon();
-      await loadNowPlaying();
+        const { movies: comingSoonMovies } = await loadComingSoonMovies(selectedDate);
+        const { movies: nowPlayingMovies, bannerMovies: banner } = await loadNowPlayingMovies();
 
-    } catch(error: any) {
-      console.log(error,' eroo')
-      setError("Não foi possível carregar os filmes...");
-    } finally {
-      setIsLoading(false);
+        setbannerMovies(banner);
+        setComingSoonMoviesData(comingSoonMovies);
+        setNowPlayingMoviesData(nowPlayingMovies);
+      } catch(error: any) {
+        setError("Não foi possível carregar os filmes...");
+      } finally {
+        setIsLoading(false);
+      }
     }
-  }
 
-  loadMovies();
-}, [selectedDate]);
+    loadMovies();
+  }, [selectedDate]);
 
   return (
     <>

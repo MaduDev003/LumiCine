@@ -53,3 +53,26 @@ export function filterMovieByDate(
     );
   });
 }
+
+ export async function loadComingSoonMovies(selectedDate: Date | null) {
+    const comingSoonMovies = await getMoviesData(1);
+    let movies = [];
+    if (!selectedDate) {
+      movies = comingSoonMovies;
+    } else {
+      const filtered = filterMovieByDate(comingSoonMovies, selectedDate);
+     movies = filtered;
+    }
+
+    return { movies }
+  }
+
+
+  export async function loadNowPlayingMovies() {
+    const nowPlayingMovies = await getMoviesData(2);
+    const bannerMovies = nowPlayingMovies.slice(0, 4);
+    return{
+      movies: nowPlayingMovies,
+      bannerMovies: bannerMovies
+    }
+  }  
