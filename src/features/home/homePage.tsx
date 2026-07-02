@@ -117,6 +117,7 @@ export default function HomePage() {
                             origin-left
                             h-10 md:h-10 lg:h-12
                             transition-all duration-300 
+                            hover:scale-105 cursor-pointer
                             hover:brightness-110
                             hover:shadow-[0_25px_60px_rgba(0,0,0,0.2)]
                           "
