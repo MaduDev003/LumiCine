@@ -14,7 +14,7 @@ export default function MovieDetail({ movie }: { movie: MovieType }) {
   const [menu, setMenu] = useState(false);
   const { nowPlayingMoviesData, comingSoonMoviesData } = useMovieContext();
 
-  
+  console.log(movie, 'movie detail')
   return (
     <>
     {menu && (
@@ -47,12 +47,21 @@ export default function MovieDetail({ movie }: { movie: MovieType }) {
                                         backgroundRepeat: "no-repeat",
                                         }}
                                     />
+                                    {((movie.type === "comingSoon" && movie.pre_sale) ||
+                                        movie.type === "nowPlaying") && (
+                                        <Button
+                                            text="Comprar Ingressos"
+                                            className="h-14 w-full bg-accent text-font-dark font-semibold rounded-xl transition-all duration-300 hover:brightness-110 hover:shadow-[0_25px_60px_rgba(0,0,0,0.2)] hover:scale-105 cursor-pointer"
+                                            onClick={() => console.log("Comprar Ingressos clicado", movie.id)}
+                                        />
+                                    )}
 
-                                    <Button
-                                        text="Comprar Ingressos"
-                                        className="h-14 w-full bg-accent text-font-dark font-semibold rounded-xl transition-all duration-300 hover:brightness-110 hover:shadow-[0_25px_60px_rgba(0,0,0,0.2)]"
-                                        onClick={() => console.log("Comprar Ingressos clicado", movie.id)}
-                                    />
+                                    {movie.type === "comingSoon" && !movie.pre_sale && (
+                                        <Button
+                                        text="Em Breve"
+                                        className="h-14 w-full bg-tertiary-dark text-font-dark font-semibold rounded-xl disabled:cursor-not-allowed disabled:opacity-50"
+                                        />
+                                    )}
                             </div>
 
                             <div className="w-105 flex-1 rounded-lg p-6 flex flex-col gap-4">

@@ -12,7 +12,7 @@ export default function Button({
   return (
     <button
       onClick={onClick}
-      className={`px-6 rounded-lg flex items-center justify-center hover:scale-105 transition-transform duration-200 cursor-pointer ${className}`}
+      className={`px-6 rounded-lg flex items-center justify-center  ${className}`}
     >
       <span className="text-base font-medium text-white/90 tracking-wider">
         {text}
