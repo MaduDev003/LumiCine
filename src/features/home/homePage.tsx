@@ -89,7 +89,7 @@ export default function HomePage() {
 
       {menu === false && (
         <>
-          <Header menu={menu} setMenu={setMenu}/>
+          <Header setMenu={setMenu} allMoviesForSearch={[...comingSoonMoviesData, ...nowPlayingMoviesData]}/>
          
           <main className="w-full py-8">
             <div className="px-6 flex justify-center pt-8 pb-20">

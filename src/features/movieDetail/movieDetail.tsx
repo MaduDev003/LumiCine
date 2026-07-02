@@ -30,11 +30,10 @@ export default function MovieDetail({ movie }: { movie: MovieType }) {
 
         {!menu && (
             <>
-                <Header menu={menu} setMenu={setMenu} />
-
-                <main className="mt-10">
+                <Header setMenu={setMenu} />
+                <main className="mt-8">
                     <div className="w-full max-w-275 mx-auto px-6 flex gap-2 mb-10">
-                           <div className="w-100 flex flex-col rounded-2xl gap-6 p-5">
+                           <div className="w-105 flex flex-col rounded-2xl gap-6 p-5">
                                     <div
                                         className="h-[82%] rounded-xl  shadow-[0_25px_60px_rgba(0,0,0,0.45)]"
                                         style={{
@@ -50,9 +49,9 @@ export default function MovieDetail({ movie }: { movie: MovieType }) {
                                         className="h-14 w-full bg-accent text-font-dark font-semibold rounded-xl transition-all duration-300 hover:brightness-110 hover:shadow-[0_25px_60px_rgba(0,0,0,0.2)]"
                                         onClick={() => console.log("Comprar Ingressos clicado", movie.id)}
                                     />
-                                </div>
+                            </div>
 
-                            <div className="w-100 flex-1 rounded-lg p-6 flex flex-col gap-4">
+                            <div className="w-105 flex-1 rounded-lg p-6 flex flex-col gap-4">
                                 <section>
                                     <h1 className="text-[18px] text-font-dark mb-4">
                                         Título
@@ -86,9 +85,9 @@ export default function MovieDetail({ movie }: { movie: MovieType }) {
                                     </h1>
                                     <div className="leading-relaxed">
                                         {movie.cast.map((actor, index) => (
-                                            <div key={index} className="text-font-dark/80 flex gap-1">
+                                            <div key={index} className="text-font-dark/85 flex gap-1">
                                                 <span>{actor.name}</span>
-                                                <span className="text-font-dark/60">como</span>
+                                                <span className="text-font-dark/70">como</span>
                                                 <span>{actor.character}</span>
                                             </div>
                                         ))}
@@ -119,9 +118,8 @@ export default function MovieDetail({ movie }: { movie: MovieType }) {
                                     </div>
                                 </section>
                             </div>
-                            </div>
+                        </div>
                 </main>
-
                 <Footer />
             </>
         )}

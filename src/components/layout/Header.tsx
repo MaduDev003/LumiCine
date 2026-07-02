@@ -1,21 +1,29 @@
 "use client";
 
 import { useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 import { Search, Send, TextAlignJustify } from "lucide-react";
 import logo from "../../assets/images/logo.png";
 import MenuListElements from "@/src/components/ui/MenuListElements";
+import { MovieType } from "../../types/movieType";
 
 interface HeaderProps {
-  menu: boolean;
+  allMoviesForSearch?: Array<MovieType>;
   setMenu: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function Header({ menu, setMenu }: HeaderProps) {
+export default function Header({ setMenu, allMoviesForSearch }: HeaderProps) {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [search, setSearch] = useState("");
-
   const inputRef = useRef<HTMLInputElement>(null);
+  const router = useRouter();
 
+  const foundMovies =
+    search.trim() === ""
+      ? []
+      : allMoviesForSearch?.filter((movie) =>
+          movie.title.toLowerCase().includes(search.toLowerCase())
+        ) ?? [];
 
   function openSearch() {
     setIsSearchOpen(true);
@@ -32,78 +40,110 @@ export default function Header({ menu, setMenu }: HeaderProps) {
   function handleSearch() {
     if (!search.trim()) return;
 
+    if (foundMovies.length > 0) {
+      router.push(`/movie/${foundMovies[0].id}?type=${foundMovies[0].type}`);
+    }
+
     setSearch("");
     setIsSearchOpen(false);
   }
 
-
-
   return (
-    <>
-    <header className="sticky top-0 z-50 w-full h-16 flex items-center px-5 md:px-7.5 bg-background-dark/90 backdrop-blur-2xl text-font-color-dark border-b border-white/10">
-      <div className="flex items-center gap-3 flex-1 justify-between md:px-0 px-3">
-        <TextAlignJustify
-          className="flex md:hidden cursor-pointer"
-          onClick={() => setMenu((prev) => !prev)}
-        />
+    <header className="sticky top-0 z-50 w-full h-16 bg-background-dark/90 backdrop-blur-2xl text-font-color-dark border-b border-white/10 ">
+        <div className="absolute left-5 md:left-7.5 top-1/2 -translate-y-1/2 lg:hidden">
+          <TextAlignJustify
+            className="cursor-pointer"
+            onClick={() => setMenu((prev) => !prev)}
+          />
+      </div>
+
+      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 lg:hidden">
         <img
           src={logo.src}
           alt="LumiCine Logo"
           className="h-30 md:h-36 object-contain"
         />
       </div>
-      <div className="hidden md:flex">
+
+      <div className="hidden lg:absolute lg:left-0 lg:top-0 lg:h-full lg:flex lg:items-center lg:pl-7.5">
+        <img
+          src={logo.src}
+          alt="LumiCine Logo"
+          className="h-36 object-contain"
+        />
+      </div>
+
+      <div className="hidden lg:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
         <MenuListElements className="flex-row" />
       </div>
-      <div className="hidden md:flex flex-1 justify-end min-w-0">
-        <div
-          className={`flex items-center h-10 rounded-xl bg-white/5 border border-white/10 overflow-hidden transition-all duration-300
-            ${isSearchOpen ? "w-44 md:w-85 md:ml-10 px-3" : "w-10 px-2"}
-          `}
-          onMouseEnter={openSearch}
-          onMouseLeave={closeSearch}
-        >
-          <button
-            type="button"
-            onClick={() => setIsSearchOpen((prev) => !prev)}
-            className={`shrink-0 transition-all duration-300 ${
-              isSearchOpen ? "pr-2 border-r border-white/20" : ""
-            }`}
+
+      <div className="absolute right-0 top-0 h-full flex items-center pr-5 md:pr-7.5">
+        <div className="relative">
+
+          <div
+            className={`flex items-center h-10 rounded-xl bg-white/5 border border-white/10 overflow-hidden transition-all duration-300
+              ${isSearchOpen ? "w-44 md:w-85 px-3" : "w-10 px-2"}
+            `}
+            onMouseEnter={openSearch}
+            onMouseLeave={closeSearch}
           >
-            <Search className="h-5 w-5 text-white/60 hover:text-white transition" />
-          </button>
-
-          <input
-            ref={inputRef}
-            type="text"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            onKeyDown={(e) => e.key === "Enter" && handleSearch()}
-            placeholder="Buscar filmes..."
-            className={`ml-3 min-w-0 flex-1 bg-transparent outline-none text-sm text-white placeholder:text-white/40 transition-all duration-300 ${
-              isSearchOpen ? "opacity-100" : "opacity-0 w-0"
-            }`}
-          />
-
-          {isSearchOpen && (
             <button
               type="button"
-              onClick={handleSearch}
-              className="ml-2 shrink-0 hover:scale-110 transition"
+              onClick={() => setIsSearchOpen((prev) => !prev)}
+              className={`shrink-0 transition-all duration-300 ${
+                isSearchOpen ? "pr-2 border-r border-white/20" : ""
+              }`}
             >
-              <Send
-                size={18}
-                className={
-                  search.trim()
-                    ? "text-white"
-                    : "text-white/40"
-                }
-              />
+              <Search className="h-5 w-5 text-white/60 hover:text-white transition" />
             </button>
+
+            <input
+              ref={inputRef}
+              type="text"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              onKeyDown={(e) => e.key === "Enter" && handleSearch()}
+              placeholder="Buscar filmes..."
+              className={`flex-1 ml-3 min-w-0 bg-transparent outline-none text-sm text-white placeholder:text-white/40 transition-all duration-300 ${
+                isSearchOpen ? "opacity-100" : "opacity-0 w-0"
+              }`}
+            />
+
+            {isSearchOpen && (
+              <button
+                type="button"
+                onClick={handleSearch}
+                className="shrink-0 hover:scale-110 transition"
+              >
+                <Send
+                  size={18}
+                  className={
+                    search.trim() ? "text-white" : "text-white/40"
+                  }
+                />
+              </button>
+            )}
+          </div>
+
+          {isSearchOpen && foundMovies.length > 0 && (
+            <div className="absolute top-full mt-1 right-0 w-44 md:w-85 rounded-xl bg-background-dark border border-white/10 shadow-xl overflow-hidden z-50">
+              {foundMovies.map((movie) => (
+                <button
+                  key={movie.id}
+                  type="button"
+                  onClick={() =>
+                    router.push(`/movie/${movie.id}?type=${movie.type}`)
+                  }
+                  className="w-full px-4 py-3 text-left text-font-dark hover:bg-white/10 transition"
+                >
+                  {movie.title}
+                </button>
+              ))}
+            </div>
           )}
+
         </div>
       </div>
     </header>
-    </>
   );
 }

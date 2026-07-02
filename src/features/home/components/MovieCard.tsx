@@ -1,6 +1,7 @@
 import { useRouter } from "next/navigation";
 import { MovieType } from "@/src/types/movieType";
 import {renderAgeClassificationColor} from "../../../utils/renderAgeClassificationColor";
+
 type Props = {
   movie: MovieType;
 };
@@ -8,8 +9,6 @@ type Props = {
 export default function MovieCard({movie}: Props) {
   const isSmallTitle = movie.title.length <= 23;
   const router = useRouter();
-
-    
 
   return (
     <div
