@@ -4,7 +4,7 @@ type ButtonProps = {
   className?: string;
 };
 
-export default function Button({
+export default function ButtonCine({
   text,
   onClick,
   className = "",

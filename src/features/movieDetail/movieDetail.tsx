@@ -5,7 +5,7 @@ import Header from "@/src/components/layout/Header";
 import Footer from "@/src/components/layout/Footer";
 import { X } from "lucide-react";
 import MenuListElements from "../../components/ui/MenuListElements";
-import Button from "@/src/components/ui/Button";
+import ButtonCine from "@/src/components/ui/ButtonCine";
 import {renderAgeClassificationColor} from "../../utils/renderAgeClassificationColor";
 import { MovieType } from "@/src/types/movieType";
 import { useMovieContext } from "@/src/context/MovieContext";
@@ -49,7 +49,7 @@ export default function MovieDetail({ movie }: { movie: MovieType }) {
                                     />
                                     {((movie.type === "comingSoon" && movie.pre_sale) ||
                                         movie.type === "nowPlaying") && (
-                                        <Button
+                                        <ButtonCine
                                             text="Comprar Ingressos"
                                             className="h-14 w-full bg-accent text-font-dark font-semibold rounded-xl transition-all duration-300 hover:brightness-110 hover:shadow-[0_25px_60px_rgba(0,0,0,0.2)] hover:scale-105 cursor-pointer"
                                             onClick={() => console.log("Comprar Ingressos clicado", movie.id)}
@@ -57,7 +57,7 @@ export default function MovieDetail({ movie }: { movie: MovieType }) {
                                     )}
 
                                     {movie.type === "comingSoon" && !movie.pre_sale && (
-                                        <Button
+                                        <ButtonCine
                                         text="Em Breve"
                                         className="h-14 w-full bg-tertiary-dark text-font-dark font-semibold rounded-xl disabled:cursor-not-allowed disabled:opacity-50"
                                         />

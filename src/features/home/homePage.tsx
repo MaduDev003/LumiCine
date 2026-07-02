@@ -5,7 +5,7 @@ import MenuListElements from "../../components/ui/MenuListElements";
 import Header from "../../components/layout/Header";
 import Footer from "@/src/components/layout/Footer";
 import DateMovieFilter from "./components/DateMovieFilter";
-import Button from "../../components/ui/Button";
+import ButtonCine from "../../components/ui/ButtonCine";
 import AvatarMovie from "../../assets/images/avatar_h_.jpg";
 import {loadNowPlayingMovies, loadComingSoonMovies} from "../../services/movie/movieService";
 import { ChevronRight, ChevronLeft, X } from "lucide-react";
@@ -107,7 +107,7 @@ export default function HomePage() {
                           {currentMovie.overview}
                         </p>
 
-                        <Button
+                        <ButtonCine
                           className="
                             bg-accent text-font-dark
                             absolute
