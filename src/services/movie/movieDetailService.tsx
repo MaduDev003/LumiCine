@@ -4,6 +4,7 @@ import { getMovieCast } from "@/src/api/movie/getMovieCast";
 import { MovieMapper } from "@/src/mappers/movieMapper";
 import { extractAgeRating } from "../../utils/extractAgeRating";
 import { generateMoviePeriod } from "../dateFiltersService";
+import { isPreSale } from "./movieService";
 
 export async function getMovieById(id: number, type: "comingSoon" | "nowPlaying") {
   const [data, releaseData, castResponse] = await Promise.all([
@@ -35,7 +36,7 @@ export async function getMovieById(id: number, type: "comingSoon" | "nowPlaying"
     duration: `${data.runtime ?? 0}min`,
     type,
     show_period: generateMoviePeriod(data.release_date),
-    pre_sale: data.pre_sale,
+    pre_sale: type === "comingSoon" ? isPreSale(data.release_date) : undefined,
     release_date: data.release_date,
     cast: castMembers,
   });

@@ -52,7 +52,8 @@ export function filterMovieByDate(
     );
   });
 }
-  function isPreSale(releaseDate: string): boolean {
+ 
+export function isPreSale(releaseDate: string): boolean {
     const release = new Date(releaseDate);
     const today = new Date();
 
