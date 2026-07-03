@@ -127,9 +127,9 @@ export default function Header({ setMenu, allMoviesForSearch }: HeaderProps) {
 
           {isSearchOpen && foundMovies.length > 0 && (
             <div className="absolute top-full mt-1 right-0 w-44 md:w-85 rounded-xl bg-background-dark border border-white/10 shadow-xl overflow-hidden z-50">
-              {foundMovies.map((movie) => (
+              {foundMovies.map((movie, index) => (
                 <button
-                  key={movie.id}
+                  key={index}
                   type="button"
                   onClick={() =>
                     router.push(`/movie/${movie.id}?type=${movie.type}`)
