@@ -13,6 +13,7 @@ import MovieGrid from "./components/MovieGrid";
 import { ErrorState } from "@/src/components/ui/ErrorState";
 import { useDateFilter } from "@/src/hooks/useDateFilters";
 import { useMovieContext } from "@/src/context/MovieContext";
+import {useRouter} from "next/navigation";
 
 export default function HomePage() {
   const [menu, setMenu] = useState(false);
@@ -36,7 +37,7 @@ export default function HomePage() {
     comingSoonMoviesData,
     setComingSoonMoviesData,
   } = useMovieContext();
-  
+  const router = useRouter();
 
 
   useEffect(() => {
@@ -121,8 +122,8 @@ export default function HomePage() {
                             hover:brightness-110
                             hover:shadow-[0_25px_60px_rgba(0,0,0,0.2)]
                           "
-                          onClick={() => console.log("Ingresso clicado", currentMovie.id)}
-                          text="Comprar Ingresso"
+                          onClick={() => router.push(`/movie/${currentMovie.id}?type=${currentMovie.type}`)}
+                          text="Comprar Ingressos"
                         />
                       </div>
 
