@@ -1,22 +1,28 @@
 "use client";
-
 import { useState } from "react";
-import Header from "@/src/components/layout/Header";
-import Footer from "@/src/components/layout/Footer";
+import { useRouter } from "next/navigation";
 import { X } from "lucide-react";
-import MenuListElements from "../../components/ui/MenuListElements";
-import ButtonCine from "@/src/components/ui/ButtonCine";
 import {renderAgeClassificationColor} from "../../utils/renderAgeClassificationColor";
 import { MovieType } from "@/src/types/movieType";
 import { useMovieContext } from "@/src/context/MovieContext";
 import { formatDateToBrazilianFormat } from "@/src/utils/formatDate";
-
+import { useCheckoutStore } from "@/src/store/checkoutStore";
+import MenuListElements from "../../components/ui/MenuListElements";
+import ButtonCine from "@/src/components/ui/ButtonCine";
+import Header from "@/src/components/layout/Header";
+import Footer from "@/src/components/layout/Footer";
 
 export default function MovieDetail({ movie }: { movie: MovieType }) {
-  const [menu, setMenu] = useState(false);
-  const { nowPlayingMoviesData, comingSoonMoviesData } = useMovieContext();
+    const [menu, setMenu] = useState(false);
+    const { nowPlayingMoviesData, comingSoonMoviesData } = useMovieContext();
+    const setMovie = useCheckoutStore((state) => state.setMovie);
+    const router = useRouter(); 
 
-  console.log(movie, 'movie detail')
+    function handlePurchaseTicket(selectedMovie: any) {
+        setMovie(selectedMovie);
+        router.push("/checkout/session");
+      }
+
   return (
     <>
     {menu && (
@@ -54,7 +60,7 @@ export default function MovieDetail({ movie }: { movie: MovieType }) {
                                         <ButtonCine
                                             text="Comprar Ingressos"
                                             className="h-14 w-full bg-accent text-font-dark font-semibold rounded-xl transition-all duration-300 hover:brightness-110 hover:shadow-[0_25px_60px_rgba(0,0,0,0.2)] hover:scale-105 cursor-pointer"
-                                            onClick={() => console.log("Comprar Ingressos clicado", movie.id)}
+                                            onClick={() => handlePurchaseTicket(movie)}
                                         />
                                     )}
 

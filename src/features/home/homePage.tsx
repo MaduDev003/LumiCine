@@ -14,6 +14,7 @@ import { ErrorState } from "@/src/components/ui/ErrorState";
 import { useDateFilter } from "@/src/hooks/useDateFilters";
 import { useMovieContext } from "@/src/context/MovieContext";
 import {useRouter} from "next/navigation";
+import { useCheckoutStore } from "@/src/store/checkoutStore";
 
 export default function HomePage() {
   const [menu, setMenu] = useState(false);
@@ -39,6 +40,12 @@ export default function HomePage() {
   } = useMovieContext();
   const router = useRouter();
 
+ const setMovie = useCheckoutStore((state) => state.setMovie);
+
+  function handlePurchaseTicket(selectedMovie: any) {
+    setMovie(selectedMovie);
+    router.push("/checkout/session");
+  }
 
   useEffect(() => {
     async function loadMovies() {
@@ -122,7 +129,7 @@ export default function HomePage() {
                             hover:brightness-110
                             hover:shadow-[0_25px_60px_rgba(0,0,0,0.2)]
                           "
-                          onClick={() => router.push(`/movie/${currentMovie.id}?type=${currentMovie.type}`)}
+                          onClick={() => handlePurchaseTicket(currentMovie)}
                           text="Comprar Ingressos"
                         />
                       </div>
