@@ -82,7 +82,7 @@ export default function Header({ setMenu, allMoviesForSearch }: HeaderProps) {
 
           <div
             className={`flex items-center h-10 rounded-xl bg-white/5 border border-white/10 overflow-hidden transition-all duration-300
-              ${isSearchOpen ? "w-44 md:w-85 px-3" : "w-10 px-2"}
+              ${isSearchOpen ? "w-44 md:w-70 px-3" : "w-10 px-2"}
             `}
             onMouseEnter={openSearch}
             onMouseLeave={closeSearch}

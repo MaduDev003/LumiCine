@@ -11,6 +11,7 @@ import { MovieType } from "@/src/types/movieType";
 import { useMovieContext } from "@/src/context/MovieContext";
 import { formatDateToBrazilianFormat } from "@/src/utils/formatDate";
 
+
 export default function MovieDetail({ movie }: { movie: MovieType }) {
   const [menu, setMenu] = useState(false);
   const { nowPlayingMoviesData, comingSoonMoviesData } = useMovieContext();
@@ -36,11 +37,11 @@ export default function MovieDetail({ movie }: { movie: MovieType }) {
         {!menu && (
             <>
                 <Header setMenu={setMenu} allMoviesForSearch={[...nowPlayingMoviesData, ...comingSoonMoviesData]}/>
-                <main className="mt-8">
-                    <div className="w-full max-w-275 mx-auto px-6 flex gap-2 mb-10">
-                           <div className="w-105 flex flex-col rounded-2xl gap-6 p-5">
+                <main className="mt-8 mb-10">
+                    <div className="w-full max-w-7xl mx-auto px-4 md:px-6 lg:px-8 flex flex-col lg:flex-row gap-8 mb-10">
+                           <div className="w-105 flex flex-col rounded-2xl gap-6 p-5 mx-auto ">
                                     <div
-                                        className="h-[82%] rounded-xl  shadow-[0_25px_60px_rgba(0,0,0,0.45)]"
+                                        className="h-100 lg:h-[82%] rounded-xl  shadow-[0_25px_60px_rgba(0,0,0,0.45)]"
                                         style={{
                                         backgroundImage: `url(${movie.poster_url})`,
                                         backgroundPosition: "center",
@@ -65,7 +66,7 @@ export default function MovieDetail({ movie }: { movie: MovieType }) {
                                     )}
                             </div>
 
-                            <div className="w-105 flex-1 rounded-lg p-6 flex flex-col gap-4">
+                            <div className="w-full md:min-w-150 lg:flex-1 rounded-lg p-6 flex flex-col gap-4">
                                 <section>
                                     <h1 className="text-[18px] text-font-dark mb-4">
                                         Título
@@ -74,16 +75,16 @@ export default function MovieDetail({ movie }: { movie: MovieType }) {
                                         {movie.title}
                                     </p>
                                 </section>
-                                <div className="w-full bg-tertiary-dark/50 h-0.5 rounded-full"></div>
-                                <section>
+                                <div className="sm:w-xl md:w-2xl lg:w-full bg-tertiary-dark/50 h-0.5 rounded-full"></div>
+                                <section className="md:w-150 lg:w-full">
                                     <h1 className="text-[18px] text-font-dark mb-4">
                                         Sinopse
                                     </h1>
                                     <p className="text-font-dark/80 leading-relaxed">
                                         {movie.overview}
                                     </p>
-                                </section>
-                                <div className="w-full bg-tertiary-dark/50 h-0.5 rounded-full"></div>
+                                    </section>
+                                <div className="sm:w-xl md:w-2xl lg:w-full bg-tertiary-dark/50 h-0.5 rounded-full"></div>
                                  <section>
                                     <h1 className="text-[18px] text-font-dark mb-4">
                                         Data de Lançamento
@@ -92,7 +93,7 @@ export default function MovieDetail({ movie }: { movie: MovieType }) {
                                         {formatDateToBrazilianFormat(movie.release_date)}
                                     </p>
                                 </section>
-                                <div className="w-full bg-tertiary-dark/50 h-0.5 rounded-full"></div>
+                                <div className="sm:w-xl md:w-2xl lg:w-full bg-tertiary-dark/50 h-0.5 rounded-full"></div>
                                  <section>
                                     <h1 className="text-[18px] text-font-dark mb-4">
                                        Atores
@@ -107,13 +108,13 @@ export default function MovieDetail({ movie }: { movie: MovieType }) {
                                         ))}
                                     </div>
                                 </section>
-                                <div className="w-full bg-tertiary-dark/50 h-0.5 rounded-full"></div>
+                                <div className="sm:w-xl md:w-2xl lg:w-full bg-tertiary-dark/50 h-0.5 rounded-full"></div>
                                  <section>
                                     <h1 className="text-[18px] text-font-dark mb-4">
                                        Gêneros
                                     </h1>
-                                     <div className="flex justify-between mt-auto">
-                                        <div className="flex gap-2 h-6 items-center">
+                                     <div className="flex md:pr-15 lg:pr-0 md:flex-row justify-between gap-4 mt-auto">
+                                        <div className="flex flex-wrap gap-2 items-center">
                                             {movie.genres.map((genre, index) => (
                                                 <div
                                                     key={index}
@@ -125,7 +126,7 @@ export default function MovieDetail({ movie }: { movie: MovieType }) {
                                             </div>
 
                                             <div
-                                                className={`${renderAgeClassificationColor(movie.age_rating)} h-6 w-6 flex justify-center items-center mb-10 rounded mr-2 transition-colors`}
+                                                className={`${renderAgeClassificationColor(movie.age_rating)} h-6 w-6 flex justify-center items-center mb-2 rounded mr-2 transition-colors`}
                                             >
                                             <span>{movie.age_rating}</span>
                                         </div>
