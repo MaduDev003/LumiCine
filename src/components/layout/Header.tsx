@@ -57,7 +57,7 @@ export default function Header({ setMenu, allMoviesForSearch }: HeaderProps) {
           />
       </div>
 
-      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 lg:hidden">
+      <div className="absolute right-5 top-1/2 -translate-y-1/2 md:left-1/2 md:right-auto md:-translate-x-1/2 lg:hidden">
         <img
           src={logo.src}
           alt="LumiCine Logo"
@@ -77,7 +77,7 @@ export default function Header({ setMenu, allMoviesForSearch }: HeaderProps) {
         <MenuListElements className="flex-row" />
       </div>
 
-      <div className="absolute right-0 top-0 h-full flex items-center pr-5 md:pr-7.5">
+     <div className="hidden md:flex absolute right-0 top-0 h-full items-center pr-5 md:pr-7.5">
         <div className="relative">
 
           <div
