@@ -10,7 +10,7 @@ type ticket = {
 interface Session {
   date: Date | null;
   ticket: Array<ticket>;
-  language: "Dublado" | "Legendado" | "";
+  language: "Dublado" | "Legendado";
   time: string
 }
 
@@ -28,7 +28,7 @@ interface CheckoutStore {
 const initialSession: Session = {
   date: null,
   ticket: [],
-  language: "",
+  language: "Legendado",
   time: ""
 };
 

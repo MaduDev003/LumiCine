@@ -6,6 +6,7 @@
   --font-color-dark: #e6e3e3;
   --secondary-color-dark: #3a3a3a;
   --tertiary-color-dark: #7e7c7c;
+  --font-secondary-dark:#949393;
 
   --background: #ffffff;
   --foreground: #171717;
@@ -20,6 +21,7 @@
   --color-secondary-dark: var(--secondary-color-dark);
   --color-tertiary-dark: var(--tertiary-color-dark);
   --color-font-dark: var(--font-color-dark);
+  --color-font-secondary-dark: var(--font-secondary-dark);
 
   --font-sans: var(--font-sans);
 }

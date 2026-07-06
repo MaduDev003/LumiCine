@@ -18,6 +18,8 @@ const steps = [
   { id: "confirmation", Icon: CircleCheckBig },
 ];
 
+//TODO: futuramente add o switch case para cor das linhas e dos elementos daqui pq serão 3 estados, ativo, inativo e concluído
+
 export default function CheckoutProgress({ step }: ButtonProps) {
   const activeIndex = steps.findIndex((item) => item.id === step);
 
@@ -38,7 +40,6 @@ export default function CheckoutProgress({ step }: ButtonProps) {
               <Icon
                 size={16}
                 color={isActive ? "#FF5900" : "#7e7c7c"}
-                fill={id === "session" && isActive ? "#FF5900" : "none"}
               />
             </div>
 
