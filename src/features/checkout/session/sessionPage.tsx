@@ -98,7 +98,7 @@ export default function SessionPage() {
                                             time: item.sessions[index],
                                           })
                                         }
-                                        className={`w-40 h-25 rounded flex flex-col items-center justify-center transition-colors ${
+                                        className={`w-40 h-25 rounded flex flex-col items-center justify-center transition-colors gap-3 ${
                                           session.date === item.formattedDate
                                             ? "bg-accent"
                                             : "bg-secondary-dark hover:bg-accent"
@@ -106,22 +106,21 @@ export default function SessionPage() {
                                       >
                                         <h2 className="text-xl">{item.formattedDate}</h2>
 
-                                        <p className="text-[18px]">
+                                        <p className="text-[18px] text-font-secondary-dark">
                                           {item.sessions[index]}
                                         </p>
                                       </button>
                                     ))}
                                   </div>
-
-  <ChevronRight
-    onClick={handleNextDateFilter}
-    className={`w-10 h-10 p-1 stroke-1 rounded-full transition ${
-      hasNext
-        ? "hover:bg-white/10 cursor-pointer"
-        : "opacity-40 cursor-not-allowed"
-    }`}
-  />
-</div>
+                                  <ChevronRight
+                                    onClick={handleNextDateFilter}
+                                    className={`w-10 h-10 p-1 stroke-1 rounded-full transition ${
+                                      hasNext
+                                        ? "hover:bg-white/10 cursor-pointer"
+                                        : "opacity-40 cursor-not-allowed"
+                                    }`}
+                                  />
+                                </div>
                             </section>
                             <section className="flex flex-col gap-6">
                               <h1 className="text-xl pt-3">Ingressos</h1>
