@@ -11,6 +11,7 @@ import MenuListElements from "../../components/ui/MenuListElements";
 import ButtonCine from "@/src/components/ui/ButtonCine";
 import Header from "@/src/components/layout/Header";
 import Footer from "@/src/components/layout/Footer";
+import DivisionBar from "@/src/components/ui/DivisorBar";
 
 export default function MovieDetail({ movie }: { movie: MovieType }) {
     const [menu, setMenu] = useState(false);
@@ -81,7 +82,7 @@ export default function MovieDetail({ movie }: { movie: MovieType }) {
                                         {movie.title}
                                     </p>
                                 </section>
-                                <div className="sm:w-xl md:w-2xl lg:w-full bg-tertiary-dark/50 h-0.5 rounded-full"></div>
+                                <DivisionBar />
                                 <section className="md:w-150 lg:w-full">
                                     <h1 className="text-[18px] text-font-dark mb-4">
                                         Sinopse
@@ -90,7 +91,7 @@ export default function MovieDetail({ movie }: { movie: MovieType }) {
                                         {movie.overview}
                                     </p>
                                     </section>
-                                <div className="sm:w-xl md:w-2xl lg:w-full bg-tertiary-dark/50 h-0.5 rounded-full"></div>
+                                <DivisionBar />
                                  <section>
                                     <h1 className="text-[18px] text-font-dark mb-4">
                                         Data de Lançamento
@@ -99,7 +100,7 @@ export default function MovieDetail({ movie }: { movie: MovieType }) {
                                         {formatDateToBrazilianFormat(movie.release_date)}
                                     </p>
                                 </section>
-                                <div className="sm:w-xl md:w-2xl lg:w-full bg-tertiary-dark/50 h-0.5 rounded-full"></div>
+                                <DivisionBar />
                                  <section>
                                     <h1 className="text-[18px] text-font-dark mb-4">
                                        Atores
@@ -114,7 +115,7 @@ export default function MovieDetail({ movie }: { movie: MovieType }) {
                                         ))}
                                     </div>
                                 </section>
-                                <div className="sm:w-xl md:w-2xl lg:w-full bg-tertiary-dark/50 h-0.5 rounded-full"></div>
+                                <DivisionBar />
                                  <section>
                                     <h1 className="text-[18px] text-font-dark mb-4">
                                        Gêneros

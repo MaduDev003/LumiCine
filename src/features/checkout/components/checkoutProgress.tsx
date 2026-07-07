@@ -5,12 +5,9 @@ import {
   CreditCard,
   CircleCheckBig,
 } from "lucide-react";
+import { CheckoutType } from "@/src/types/checkoutType";
 
-type ButtonProps = {
-  step: "session" | "seat" | "snack" | "payment" | "confirmation";
-};
-
-const steps = [
+const types = [
   { id: "session", Icon: Ticket },
   { id: "seat", Icon: Armchair },
   { id: "snack", Icon: Popcorn },
@@ -20,12 +17,12 @@ const steps = [
 
 //TODO: futuramente add o switch case para cor das linhas e dos elementos daqui pq serão 3 estados, ativo, inativo e concluído
 
-export default function CheckoutProgress({ step }: ButtonProps) {
-  const activeIndex = steps.findIndex((item) => item.id === step);
+export default function CheckoutProgress({ type }: CheckoutType) {
+  const activeIndex = types.findIndex((item) => item.id === type);
 
   return (
-    <div className="flex items-center justify-center">
-      {steps.map(({ id, Icon }, index) => {
+    <div className="flex items-center justify-center mb-8">
+      {types.map(({ id, Icon }, index) => {
         const isActive = index <= activeIndex;
 
         return (
@@ -43,7 +40,7 @@ export default function CheckoutProgress({ step }: ButtonProps) {
               />
             </div>
 
-            {index < steps.length - 1 && (
+            {index < types.length - 1 && (
               <span
                 className={`w-12 h-0.5 ${
                   index === activeIndex
@@ -55,6 +52,7 @@ export default function CheckoutProgress({ step }: ButtonProps) {
           </div>
         );
       })}
+     
     </div>
   );
 }

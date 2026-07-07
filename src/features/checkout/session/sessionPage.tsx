@@ -1,18 +1,23 @@
 "use client";
-import { useCheckoutStore } from "@/src/store/checkoutStore";
-import CheckoutProgress from "../components/checkoutProgress";
 import { ChevronRight, ChevronLeft, Ticket, Minus, Plus } from "lucide-react";
+import { useCheckoutStore } from "@/src/store/checkoutStore";
+import CheckoutProgress from "../components/CheckoutProgress";
 import Footer from "@/src/components/layout/Footer";
 import ButtonCine from "@/src/components/ui/ButtonCine";
+import CheckoutProduct  from "../components/CheckoutProduct";
+import CheckoutHeader from "../components/CheckoutHeader";
+
 export default function SessionPage() {
   
     const movie = useCheckoutStore((state) => state.movie);
+    console.log(movie, 'movie')
   return (
     <>
-    <main className="mt-15 mb-6">
+    <CheckoutHeader/>
+    <main className="mt-10 mb-6">
        <div className="px-3 flex justify-center pt-8 pb-20">
             <div className="w-full max-w-275 h-200 mx-auto pb-5  flex flex-col gap-4">
-                <CheckoutProgress step="session"/>
+                <CheckoutProgress type="session"/>
                 <div className="h-full flex">
                   <div className=" flex-2 px-10 gap-13 flex flex-col">
                       <section className="flex gap-6 flex-col">
@@ -113,7 +118,7 @@ export default function SessionPage() {
                             hover:shadow-[0_25px_60px_rgba(0,0,0,0.2)]" />
                       </div>
                   </div>
-                  <div className="bg-yellow-400 flex-1">2</div>
+                    <CheckoutProduct type="session"/>
                 </div>
             </div>
         </div>
