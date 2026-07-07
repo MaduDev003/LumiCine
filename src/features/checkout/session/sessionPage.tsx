@@ -79,7 +79,7 @@ export default function SessionPage() {
     { !menu &&(
         <>
           <Header setMenu={setMenu} allMoviesForSearch={[...nowPlayingMoviesData, ...comingSoonMoviesData]} />
-          <main className="mt-5 mb-10">
+          <main className="mt-3 mb-10">
             <div className="px-3 flex justify-center pt-8 pb-13">
                   <div className="w-full max-w-275 h-200 mx-auto pb-5  flex flex-col gap-4">
                       <CheckoutProgress type="session"/>

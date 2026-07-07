@@ -20,6 +20,10 @@ export default function CheckoutProgress({ type }: CheckoutType) {
     return (fullTicketsPrice + halfTicketsPrice).toFixed(2);
   }
 
+  function calcItemsQuantity(){
+    return tickets.full.quantity + tickets.half.quantity
+  }
+
   return (
     <div className="flex-1 bg-secondary-dark p-4 rounded-xl flex flex-col">
       <section className="flex flex-col gap-5 mb-3">
@@ -30,7 +34,7 @@ export default function CheckoutProgress({ type }: CheckoutType) {
 
         <div className="flex flex-col justify-center items-center gap-3">
           <img
-            className="w-30 rounded"
+            className="w-27 rounded"
             src={movie?.poster_url}
             alt={movie?.title}
           />
@@ -74,7 +78,7 @@ export default function CheckoutProgress({ type }: CheckoutType) {
             <div className="flex justify-between">
             <p>Itens</p>
             <div className="w-10">
-                <p>3</p>
+                <p>{calcItemsQuantity()}</p>
             </div>
             </div>
 
