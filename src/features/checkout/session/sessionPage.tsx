@@ -18,29 +18,29 @@ export default function SessionPage() {
                       <section className="flex gap-6 flex-col">
                           <h1 className="text-xl pt-3">Idioma</h1>
                           <div className="items-center pl-22 flex gap-5">
-                            <button className="bg-secondary-dark h-10 px-2 w-25 rounded">Legendado</button>
-                            <button  className="bg-secondary-dark h-10 w-25 px-2 rounded">Dublado</button>
+                            <button className="bg-secondary-dark h-10 px-2 w-25 rounded hover:bg-accent">Legendado</button>
+                            <button  className="bg-secondary-dark h-10 w-25 px-2 rounded  hover:bg-accent">Dublado</button>
                           </div>
                       </section>
                       <section className="flex flex-col gap-6">
                            <h1 className="text-xl pt-3">Horários</h1>
-                           <div className="pl-5 flex gap-5 items-center">
-                                <ChevronLeft className="w-12 h-12 stroke-1" />
+                           <div className="pl-7 flex gap-5 items-center">
+                                <ChevronLeft className="w-10 h-10 p-1 stroke-1 rounded-full hover:bg-white/10" />
                                 <div className="flex gap-4">
-                                  <button className="bg-secondary-dark w-40 h-25 rounded flex flex-col gap-3 items-center justify-center">
+                                  <button className="bg-secondary-dark w-40 h-25 rounded flex flex-col gap-3 items-center justify-center hover:bg-accent">
                                     <h2 className="text-font-dark text-xl">19 Fev</h2>
                                     <p className="text-font-secondary-dark text-[18px]">13:30 - 15:00</p>
                                   </button>
-                                  <button className="bg-secondary-dark w-40 h-25 rounded flex flex-col gap-3 items-center justify-center">
+                                  <button className="bg-secondary-dark w-40 h-25 rounded flex flex-col gap-3 items-center justify-center hover:bg-accent">
                                     <h2 className="text-font-dark text-xl">19 Fev</h2>
                                     <p className="text-font-secondary-dark text-[18px]">13:30 - 15:00</p>
                                   </button>
-                                  <button className="bg-secondary-dark w-40 h-25 rounded flex flex-col gap-3 items-center justify-center">
+                                  <button className="bg-secondary-dark w-40 h-25 rounded flex flex-col gap-3 items-center justify-center hover:bg-accent">
                                     <h2 className="text-font-dark text-xl">19 Fev</h2>
                                     <p className="text-font-secondary-dark text-[18px]">13:30 - 15:00</p>
                                   </button>
                                 </div>
-                                <ChevronRight className="w-12 h-12 stroke-1" />
+                               <ChevronRight className="w-10 h-10 p-1 stroke-1 rounded-full hover:bg-white/10" />
                            </div>
                       </section>
                       <section className="flex flex-col gap-6">
@@ -58,17 +58,17 @@ export default function SessionPage() {
                               </div>
                               <div className="flex items-center gap-3">
                                 <button
-                                  className="w-8 h-8 rounded-full bg-tertiary-dark/60 text-font-dark flex items-center justify-center hover:bg-tertiary-dark/75 transition cursor-pointer"
+                                  className="w-8 h-8 rounded-full bg-background-dark/60 text-font-dark flex items-center justify-center hover:bg-background-dark/30 transition cursor-pointer"
                                 >
                                   <Plus size={18}/>
                                 </button>
 
                                 <span className="w-6 text-center text-font-dark font-medium">
-                                  1
+                                  0
                                 </span>
 
                                 <button
-                                  className="w-8 h-8 rounded-full bg-tertiary-dark/60 text-font-dark flex items-center justify-center  hover:bg-tertiary-dark/75 transition cursor-pointer"
+                                  className="w-8 h-8 rounded-full bg-background-dark/60 text-font-dark flex items-center justify-center  hover:bg-background-dark/30 transition cursor-pointer"
                                 >
                                   <Minus size={18}/>
                                 </button>
@@ -86,17 +86,17 @@ export default function SessionPage() {
                               </div>
                               <div className="flex items-center gap-3">
                                 <button
-                                  className="w-8 h-8 rounded-full bg-tertiary-dark/60 text-font-dark flex items-center justify-center  hover:bg-tertiary-dark/75 transition cursor-pointer"
+                                  className="w-8 h-8 rounded-full bg-background-dark/60 text-font-dark flex items-center justify-center  hover:bg-background-dark/30 transition cursor-pointer"
                                 >
                                   <Plus size={18}/>
                                 </button>
 
                                 <span className="w-6 text-center text-font-dark font-medium">
-                                  1
+                                  0
                                 </span>
 
                                 <button
-                                  className="w-8 h-8 rounded-full bg-tertiary-dark/60 text-font-dark flex items-center justify-center  hover:bg-tertiary-dark/75 transition cursor-pointer"
+                                  className="w-8 h-8 rounded-full bg-background-dark/60 text-font-dark flex items-center justify-center  hover:bg-background-dark/30 transition cursor-pointer"
                                 >
                                   <Minus size={18}/>
                                 </button>
@@ -105,7 +105,7 @@ export default function SessionPage() {
                         </div>
                       </section>
                       <div className="flex justify-center">
-                        <ButtonCine text="Continuar" className="bg-accent w-50 text-font-dark 
+                        <ButtonCine text="Continuar" className="bg-accent w-60 text-font-dark 
                             h-12
                             transition-all duration-300 
                             hover:scale-105 cursor-pointer
