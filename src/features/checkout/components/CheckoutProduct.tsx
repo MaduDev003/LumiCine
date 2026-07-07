@@ -6,11 +6,19 @@ import DivisionBar from "@/src/components/ui/DivisorBar";
 export default function CheckoutProgress({ type }: CheckoutType) {
   const movie = useCheckoutStore((state) => state.movie);
   const session = useCheckoutStore((state) => state.session);
+  const tickets = useCheckoutStore((state) => state.tickets);
+  
   const hasSessionInfo =
     session.language !== "" ||
     session.date !== null ||
-    session.time !== "" ||
-    session.ticket.length > 0;
+    session.time !== "" 
+
+  function calcTotal() {
+    const fullTicketsPrice = tickets.full.price * tickets.full.quantity;
+    const halfTicketsPrice = tickets.half.price * tickets.half.quantity;
+
+    return (fullTicketsPrice + halfTicketsPrice).toFixed(2);
+  }
 
   return (
     <div className="flex-1 bg-secondary-dark p-4 rounded-xl flex flex-col">
@@ -72,7 +80,7 @@ export default function CheckoutProgress({ type }: CheckoutType) {
 
             <div className="flex justify-between mt-3">
             <p>Total</p>
-            <p>R$ 60,00</p>
+            <p>R$ {calcTotal()}</p>
             </div>
         </div>
       </div>

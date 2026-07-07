@@ -14,9 +14,15 @@ import Header from "@/src/components/layout/Header";
 export default function SessionPage() {
     const [menu, setMenu] = useState(false);
     const { nowPlayingMoviesData, comingSoonMoviesData } = useMovieContext();
-    const movie = useCheckoutStore((state) => state.movie);
     const session = useCheckoutStore((state) => state.session);
     const setSession = useCheckoutStore((state) => state.setSession);
+    const tickets = useCheckoutStore((state) => state.tickets);
+    const setTickets = useCheckoutStore((state) => state.setTickets);
+    const canContinue =
+      session.language !== "" &&
+      session.time !== "" &&
+      (tickets.full.quantity > 0 || tickets.half.quantity > 0);
+    
     const {
       visibleDates,
       hasNext,
@@ -24,7 +30,36 @@ export default function SessionPage() {
       handleNextDateFilter,
       handlePreviousDateFilter,
     } = useDateFilter(15, "session");
-      
+    
+    function updateTicketQuantity(
+    type: "half" | "full",
+    operationType: "plus" | "minus"
+    ) {
+      const value = operationType === "plus" ? 1 : -1;
+  
+      if (type === "full") {
+        setTickets({
+          ...tickets,
+          full: {
+            ...tickets.full,
+            quantity: Math.max(0, tickets.full.quantity + value)
+          },
+        });
+      }
+
+      if(type === "half"){
+        setTickets({
+          ...tickets,
+          half: {
+            ...tickets.half,
+            quantity: Math.max(0, tickets.half.quantity + value)
+          },
+        });
+      }
+    
+    }
+    
+
   return (
     <>
     {menu && (
@@ -138,16 +173,18 @@ export default function SessionPage() {
                                     <div className="flex items-center gap-3">
                                       <button
                                         className="w-8 h-8 rounded-full bg-background-dark/60 text-font-dark flex items-center justify-center hover:bg-background-dark/30 transition cursor-pointer"
+                                        onClick={() => updateTicketQuantity("full", "plus")}
                                       >
                                         <Plus size={18}/>
                                       </button>
 
                                       <span className="w-6 text-center text-font-dark font-medium">
-                                        0
+                                        {tickets.full.quantity}
                                       </span>
 
                                       <button
                                         className="w-8 h-8 rounded-full bg-background-dark/60 text-font-dark flex items-center justify-center  hover:bg-background-dark/30 transition cursor-pointer"
+                                        onClick={() => updateTicketQuantity("full", "minus")}
                                       >
                                         <Minus size={18}/>
                                       </button>
@@ -166,16 +203,18 @@ export default function SessionPage() {
                                     <div className="flex items-center gap-3">
                                       <button
                                         className="w-8 h-8 rounded-full bg-background-dark/60 text-font-dark flex items-center justify-center  hover:bg-background-dark/30 transition cursor-pointer"
+                                        onClick={() => updateTicketQuantity("half", "plus")}
                                       >
                                         <Plus size={18}/>
                                       </button>
 
                                       <span className="w-6 text-center text-font-dark font-medium">
-                                        0
+                                         {tickets.half.quantity}
                                       </span>
 
                                       <button
                                         className="w-8 h-8 rounded-full bg-background-dark/60 text-font-dark flex items-center justify-center  hover:bg-background-dark/30 transition cursor-pointer"
+                                        onClick={() => updateTicketQuantity("half", "minus")}
                                       >
                                         <Minus size={18}/>
                                       </button>
@@ -184,12 +223,27 @@ export default function SessionPage() {
                               </div>
                             </section>
                             <div className="flex justify-center">
-                              <ButtonCine text="Continuar" className="bg-accent w-60 text-font-dark 
-                                  h-12
-                                  transition-all duration-300 
-                                  hover:scale-105 cursor-pointer
-                                  hover:brightness-110
-                                  hover:shadow-[0_25px_60px_rgba(0,0,0,0.2)]" />
+                              <ButtonCine
+                                  text="Continuar"
+                                  className={`
+                                    w-60 h-12 text-font-dark
+                                    ${canContinue 
+                                      ? `
+                                        bg-accent
+                                        transition-all duration-300
+                                        hover:scale-105
+                                        cursor-pointer
+                                        hover:brightness-110
+                                        hover:shadow-[0_25px_60px_rgba(0,0,0,0.2)]
+                                      `
+                                      : `
+                                        bg-tertiary-dark
+                                        cursor-not-allowed
+                                        opacity-50
+                                      `
+                                    }
+                                  `}
+                                />
                             </div>
                         </div>
                           <CheckoutProduct type="session"/>
