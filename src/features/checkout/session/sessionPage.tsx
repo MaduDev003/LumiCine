@@ -3,6 +3,7 @@ import { useState } from "react";
 import { ChevronRight, ChevronLeft, Ticket, Minus, Plus, X } from "lucide-react";
 import { useCheckoutStore } from "@/src/store/checkoutStore";
 import { useMovieContext } from "@/src/context/MovieContext";
+import { useDateFilter } from "@/src/hooks/useDateFilters";
 import MenuListElements from "@/src/components/ui/MenuListElements";
 import CheckoutProgress from "../components/CheckoutProgress";
 import Footer from "@/src/components/layout/Footer";
@@ -14,7 +15,16 @@ export default function SessionPage() {
     const [menu, setMenu] = useState(false);
     const { nowPlayingMoviesData, comingSoonMoviesData } = useMovieContext();
     const movie = useCheckoutStore((state) => state.movie);
-    console.log(movie, 'movie')
+    const session = useCheckoutStore((state) => state.session);
+    const setSession = useCheckoutStore((state) => state.setSession);
+    const {
+      visibleDates,
+      hasNext,
+      hasPrevious,
+      handleNextDateFilter,
+      handlePreviousDateFilter,
+    } = useDateFilter(15, "session");
+      
   return (
     <>
     {menu && (
@@ -43,30 +53,75 @@ export default function SessionPage() {
                             <section className="flex gap-6 flex-col">
                                 <h1 className="text-xl pt-3">Idioma</h1>
                                 <div className="items-center pl-22 flex gap-5">
-                                  <button className="bg-secondary-dark h-10 px-2 w-25 rounded hover:bg-accent">Legendado</button>
-                                  <button  className="bg-secondary-dark h-10 w-25 px-2 rounded  hover:bg-accent">Dublado</button>
-                                </div>
+                                  <button
+                                    onClick={() => setSession({ language: "Legendado" })}
+                                    className={`h-10 w-25 px-2 rounded transition-colors ${
+                                      session.language === "Legendado"
+                                        ? "bg-accent"
+                                        : "bg-secondary-dark hover:bg-accent"
+                                    }`}
+                                  >
+                                    Legendado
+                                  </button>
+
+                                  <button
+                                    onClick={() => setSession({ language: "Dublado" })}
+                                    className={`h-10 w-25 px-2 rounded transition-colors ${
+                                      session.language === "Dublado"
+                                        ? "bg-accent"
+                                        : "bg-secondary-dark hover:bg-accent"
+                                    }`}
+                                  >
+                                    Dublado
+                                  </button>
+                              </div>
                             </section>
                             <section className="flex flex-col gap-6">
                                 <h1 className="text-xl pt-3">Horários</h1>
-                                <div className="pl-7 flex gap-5 items-center">
-                                      <ChevronLeft className="w-10 h-10 p-1 stroke-1 rounded-full hover:bg-white/10" />
-                                      <div className="flex gap-4">
-                                        <button className="bg-secondary-dark w-40 h-25 rounded flex flex-col gap-3 items-center justify-center hover:bg-accent">
-                                          <h2 className="text-font-dark text-xl">19 Fev</h2>
-                                          <p className="text-font-secondary-dark text-[18px]">13:30 - 15:00</p>
-                                        </button>
-                                        <button className="bg-secondary-dark w-40 h-25 rounded flex flex-col gap-3 items-center justify-center hover:bg-accent">
-                                          <h2 className="text-font-dark text-xl">19 Fev</h2>
-                                          <p className="text-font-secondary-dark text-[18px]">13:30 - 15:00</p>
-                                        </button>
-                                        <button className="bg-secondary-dark w-40 h-25 rounded flex flex-col gap-3 items-center justify-center hover:bg-accent">
-                                          <h2 className="text-font-dark text-xl">19 Fev</h2>
-                                          <p className="text-font-secondary-dark text-[18px]">13:30 - 15:00</p>
-                                        </button>
-                                      </div>
-                                    <ChevronRight className="w-10 h-10 p-1 stroke-1 rounded-full hover:bg-white/10" />
-                                </div>
+                                <div className="pl-7 flex items-center gap-5">
+                                  <ChevronLeft
+                                    onClick={handlePreviousDateFilter}
+                                    className={`w-10 h-10 p-1 stroke-1 rounded-full transition ${
+                                      hasPrevious
+                                        ? "hover:bg-white/10 cursor-pointer"
+                                        : "opacity-40 cursor-not-allowed"
+                                    }`}
+                                  />
+
+                                  <div className="flex gap-4">
+                                    {visibleDates.map((item, index) => (
+                                      <button
+                                        key={item.fullDate.toISOString()}
+                                        onClick={() =>
+                                          setSession({
+                                            date: item.formattedDate,
+                                            time: item.sessions[index],
+                                          })
+                                        }
+                                        className={`w-40 h-25 rounded flex flex-col items-center justify-center transition-colors ${
+                                          session.date === item.formattedDate
+                                            ? "bg-accent"
+                                            : "bg-secondary-dark hover:bg-accent"
+                                        }`}
+                                      >
+                                        <h2 className="text-xl">{item.formattedDate}</h2>
+
+                                        <p className="text-[18px]">
+                                          {item.sessions[index]}
+                                        </p>
+                                      </button>
+                                    ))}
+                                  </div>
+
+  <ChevronRight
+    onClick={handleNextDateFilter}
+    className={`w-10 h-10 p-1 stroke-1 rounded-full transition ${
+      hasNext
+        ? "hover:bg-white/10 cursor-pointer"
+        : "opacity-40 cursor-not-allowed"
+    }`}
+  />
+</div>
                             </section>
                             <section className="flex flex-col gap-6">
                               <h1 className="text-xl pt-3">Ingressos</h1>

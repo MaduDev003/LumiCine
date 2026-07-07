@@ -2,31 +2,45 @@ interface DateFilter {
   day: string;
   date: number;
   selectedDate?: boolean;
+  formattedDate: string;
+  sessions: string[];
   fullDate: Date;
 }
+function generateSessions(index: number) {
+  const startHour = 10 + (index % 4);
 
-export function generateDatesForFilter(): DateFilter[] {
+  return [
+    `${startHour}:00 - ${startHour + 1}:30`,
+    `${startHour + 2}:00 - ${startHour + 3}:30`,
+    `${startHour + 4}:00 - ${startHour + 5}:30`,
+    `${startHour + 6}:00 - ${startHour + 7}:30`,
+    `${startHour + 8}:00 - ${startHour + 9}:30`,
+    `${startHour + 10}:00 - ${startHour + 11}:30`,
+  ];
+}
+
+export function generateDatesForFilter(days = 15): DateFilter[] {
   const weekDays = ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sab"];
+  const months = [
+    "Jan", "Fev", "Mar", "Abr", "Mai", "Jun",
+    "Jul", "Ago", "Set", "Out", "Nov", "Dez"
+  ];
 
-  const firstDay = new Date();
-  const lastDay = new Date(firstDay);
-  lastDay.setMonth(lastDay.getMonth() + 2);
+  const today = new Date();
 
-  const filterDates: DateFilter[] = [];
-  const currentDay = new Date(firstDay);
+  return Array.from({ length: days }, (_, index) => {
+    const date = new Date(today);
+    date.setDate(today.getDate() + index);
 
-  while (currentDay.getTime() <= lastDay.getTime()) {
-    filterDates.push({
-      day: weekDays[currentDay.getDay()],
-      date: currentDay.getDate(),
-      selectedDate: true,
-      fullDate: new Date(currentDay)
-    });
-
-    currentDay.setDate(currentDay.getDate() + 1);
-  }
-
-  return filterDates;
+    return {
+      day: weekDays[date.getDay()],
+      date: date.getDate(),
+      formattedDate: `${date.getDate()} de ${months[date.getMonth()]}`,
+      selectedDate: false,
+      fullDate: date,
+      sessions: generateSessions(index),
+    };
+  });
 }
 
 export function generateMoviePeriod(release_date: string) {

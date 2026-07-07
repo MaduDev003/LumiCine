@@ -5,13 +5,19 @@ import DivisionBar from "@/src/components/ui/DivisorBar";
 
 export default function CheckoutProgress({ type }: CheckoutType) {
   const movie = useCheckoutStore((state) => state.movie);
+  const session = useCheckoutStore((state) => state.session);
+  const hasSessionInfo =
+    session.language !== "" ||
+    session.date !== null ||
+    session.time !== "" ||
+    session.ticket.length > 0;
 
   return (
     <div className="flex-1 bg-secondary-dark p-4 rounded-xl flex flex-col">
       <section className="flex flex-col gap-5 mb-3">
         <div className="flex justify-between">
           <h1>Resumo do Pedido</h1>
-          <Trash2 size={18} className="hover:stroke-red-500"/>
+          <Trash2 size={18} className="hover:stroke-red-500 cursor-pointer"/>
         </div>
 
         <div className="flex flex-col justify-center items-center gap-3">
@@ -24,24 +30,34 @@ export default function CheckoutProgress({ type }: CheckoutType) {
         </div>
       </section>
 
-      <DivisionBar />
+     {hasSessionInfo && (
+        <>
+          <DivisionBar />
 
-      <section className="mt-3 px-6">
-        <div className="flex justify-between">
-          <p>Idioma</p>
-          <p>Dublado</p>
-        </div>
+          <section className="mt-3 px-6">
+            {session.language && (
+              <div className="flex justify-between">
+                <p>Idioma</p>
+                <p>{session.language}</p>
+              </div>
+            )}
 
-        <div className="flex justify-between mt-3">
-          <p>Data</p>
-          <p>19 de Fev</p>
-        </div>
+            {session.date && (
+              <div className="flex justify-between mt-3">
+                <p>Data</p>
+                <p>{session.date}</p>
+              </div>
+            )}
 
-        <div className="flex justify-between mt-3">
-          <p>Horário</p>
-          <p>13:30 - 15:00</p>
-        </div>
-      </section>
+            {session.time && (
+              <div className="flex justify-between mt-3">
+                <p>Horário</p>
+                <p>{session.time}</p>
+              </div>
+            )}
+          </section>
+        </>
+      )}
 
       <div className="mt-auto">
             <DivisionBar />

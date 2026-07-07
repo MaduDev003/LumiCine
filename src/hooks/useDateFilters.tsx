@@ -1,28 +1,41 @@
 import { useEffect, useMemo, useState } from "react";
 import { generateDatesForFilter } from "../services/dateFiltersService";
 
-function getItemsPerPage(screenWidth: number) {
-  switch (true) {
-    case screenWidth < 580:
-      return 1;
+export function getItemsPerPage(
+  screenWidth: number,
+  type: "home" | "session"
+) {
+  switch (type) {
+    case "home":
+      switch (true) {
+        case screenWidth < 580:
+          return 1;
+        case screenWidth < 768:
+          return 3;
+        case screenWidth < 1024:
+          return 4;
+        default:
+          return 6;
+      }
 
-    case screenWidth < 768:
-      return 3;
-
-    case screenWidth < 1024:
-      return 4;
-
-    default:
-      return 6;
+    case "session":
+      switch (true) {
+        case screenWidth < 580:
+          return 1;
+        case screenWidth < 1024:
+          return 2;
+        default:
+          return 3;
+      }
   }
 }
 
-export function useDateFilter() {
+export function useDateFilter(days = 15, type: "home" | "session") {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [dateFilterPerPage, setDateFilterPerPage] = useState(6);
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
 
-  const dates = useMemo(() => generateDatesForFilter(), []);;
+  const dates = useMemo(() => generateDatesForFilter(days), [days]);
 
   const visibleDates = dates.slice(
     currentIndex,
@@ -49,7 +62,7 @@ export function useDateFilter() {
 
   useEffect(() => {
     function updateItemsPerPage() {
-      setDateFilterPerPage(getItemsPerPage(window.innerWidth));
+      setDateFilterPerPage(getItemsPerPage(window.innerWidth, type));
     }
 
     updateItemsPerPage();

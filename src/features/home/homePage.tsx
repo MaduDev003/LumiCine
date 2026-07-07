@@ -31,7 +31,7 @@ export default function HomePage() {
     setSelectedDate,
     handleNextDateFilter,
     handlePreviousDateFilter,
-  } = useDateFilter();
+  } = useDateFilter(60, "home");
   const {
     nowPlayingMoviesData,
     setNowPlayingMoviesData,
