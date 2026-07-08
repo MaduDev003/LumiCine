@@ -93,12 +93,13 @@ export default function SessionPage() {
     )}
     { !menu &&(
         <>
+        <div className="">
           <Header setMenu={setMenu} allMoviesForSearch={[...nowPlayingMoviesData, ...comingSoonMoviesData]} />
           <main className="mt-3 mb-10">
             <div className="px-3 flex justify-center pt-8 pb-13">
-                  <div className="w-full max-w-275 h-200 mx-auto pb-5  flex flex-col gap-4">
+                  <div className="w-full max-w-275 mx-auto pb-5 flex flex-col gap-4 lg:min-h-200">
                       <CheckoutProgress type="session"/>
-                      <div className="h-full flex">
+                      <div className="flex flex-col-reverse lg:flex-row gap-8 items-stretch">
                         <div className=" flex-2 px-10 gap-13 flex flex-col">
                             <section className="flex gap-6 flex-col">
                                 <h1 className="text-xl pt-3">Idioma</h1>
@@ -148,15 +149,15 @@ export default function SessionPage() {
                                             time: item.sessions[index],
                                           })
                                         }
-                                        className={`w-40 h-25 rounded flex flex-col items-center justify-center transition-colors gap-3 ${
+                                        className={`w-30 h-20 md:w-40 md:h-25 rounded flex flex-col items-center justify-center transition-colors gap-3 ${
                                           session.date === item.formattedDate
                                             ? "bg-accent"
                                             : "bg-secondary-dark hover:bg-accent"
                                         }`}
                                       >
-                                        <h2 className="text-xl">{item.formattedDate}</h2>
+                                        <h2 className="md:text-xl text-[15px]">{item.formattedDate}</h2>
 
-                                        <p className="text-[18px] text-font-secondary-dark">
+                                        <p className="md:text-[18px] text-[16px] text-font-secondary-dark">
                                           {item.sessions[index]}
                                         </p>
                                       </button>
@@ -172,67 +173,79 @@ export default function SessionPage() {
                                   />
                                 </div>
                             </section>
-                            <section className="flex flex-col gap-6">
+                           <section className="flex flex-col gap-6">
                               <h1 className="text-xl pt-3">Ingressos</h1>
-                              <div className="flex flex-col gap-3 mx-22">
-                                <div className="bg-secondary-dark h-22 rounded p-5 flex  items-center justify-between">
-                                    <div className="flex gap-4">
-                                        <div className="flex items-center">
-                                          <Ticket className="animation-trans -rotate-45 stroke-1 fill-tertiary-dark stroke-secondary-dark" size={28}/>
-                                        </div>
-                                        <div>
-                                          <h3>Inteira</h3>
-                                          <p className="text-font-secondary-dark">R$ 20,00</p>
-                                        </div>
+
+                              <div className="flex flex-col gap-3 mx-2 md:mx-8 lg:mx-22">
+                                <div className="bg-secondary-dark rounded-lg p-4 md:p-5 flex items-center justify-between">
+                                  <div className="flex items-center gap-3 md:gap-4">
+                                    <Ticket
+                                      className="animation-trans -rotate-45 stroke-1 fill-tertiary-dark stroke-secondary-dark"
+                                      size={24}
+                                    />
+
+                                    <div>
+                                      <h3 className="font-medium">Inteira</h3>
+                                      <p className="text-sm text-font-secondary-dark">
+                                        R$ 20,00
+                                      </p>
                                     </div>
-                                    <div className="flex items-center gap-3">
-                                      <button
-                                        className="w-8 h-8 rounded-full bg-background-dark/60 text-font-dark flex items-center justify-center hover:bg-background-dark/30 transition cursor-pointer"
-                                        onClick={() => updateTicketQuantity("full", "plus")}
-                                      >
-                                        <Plus size={18}/>
-                                      </button>
+                                  </div>
 
-                                      <span className="w-6 text-center text-font-dark font-medium">
-                                        {tickets.full.quantity}
-                                      </span>
+                                  <div className="flex items-center gap-2 md:gap-3">
+                                    <button
+                                      className="w-8 h-8 rounded-full bg-background-dark/60 flex items-center justify-center hover:bg-background-dark/30 transition"
+                                      onClick={() => updateTicketQuantity("full", "minus")}
+                                    >
+                                      <Minus size={18} />
+                                    </button>
 
-                                      <button
-                                        className="w-8 h-8 rounded-full bg-background-dark/60 text-font-dark flex items-center justify-center  hover:bg-background-dark/30 transition cursor-pointer"
-                                        onClick={() => updateTicketQuantity("full", "minus")}
-                                      >
-                                        <Minus size={18}/>
-                                      </button>
+                                    <span className="w-8 text-center font-medium">
+                                      {tickets.full.quantity}
+                                    </span>
+
+                                   
+                                    <button
+                                      className="w-8 h-8 rounded-full bg-background-dark/60 flex items-center justify-center hover:bg-background-dark/30 transition"
+                                      onClick={() => updateTicketQuantity("full", "plus")}
+                                    >
+                                      <Plus size={18} />
+                                    </button>
                                   </div>
                                 </div>
-                                <div className="bg-secondary-dark h-22 rounded p-5 flex  items-center justify-between">
-                                    <div className="flex gap-4">
-                                        <div className="flex items-center">
-                                          <Ticket className="animation-trans -rotate-45 stroke-1 fill-tertiary-dark stroke-secondary-dark" size={28}/>
-                                        </div>
-                                        <div>
-                                          <h3>Meia</h3>
-                                          <p className="text-font-secondary-dark">R$10,00</p>
-                                        </div>
+                                <div className="bg-secondary-dark rounded-lg p-4 md:p-5 flex items-center justify-between">
+                                  <div className="flex items-center gap-3 md:gap-4">
+                                    <Ticket
+                                      className="animation-trans -rotate-45 stroke-1 fill-tertiary-dark stroke-secondary-dark"
+                                      size={24}
+                                    />
+
+                                    <div>
+                                      <h3 className="font-medium">Meia</h3>
+                                      <p className="text-sm text-font-secondary-dark">
+                                        R$ 10,00
+                                      </p>
                                     </div>
-                                    <div className="flex items-center gap-3">
-                                      <button
-                                        className="w-8 h-8 rounded-full bg-background-dark/60 text-font-dark flex items-center justify-center  hover:bg-background-dark/30 transition cursor-pointer"
-                                        onClick={() => updateTicketQuantity("half", "plus")}
-                                      >
-                                        <Plus size={18}/>
-                                      </button>
+                                  </div>
 
-                                      <span className="w-6 text-center text-font-dark font-medium">
-                                         {tickets.half.quantity}
-                                      </span>
+                                  <div className="flex items-center gap-2 md:gap-3">
+                                    <button
+                                      className="w-8 h-8 rounded-full bg-background-dark/60 flex items-center justify-center hover:bg-background-dark/30 transition"
+                                      onClick={() => updateTicketQuantity("half", "minus")}
+                                    >
+                                      <Minus size={18} />
+                                    </button>   
 
-                                      <button
-                                        className="w-8 h-8 rounded-full bg-background-dark/60 text-font-dark flex items-center justify-center  hover:bg-background-dark/30 transition cursor-pointer"
-                                        onClick={() => updateTicketQuantity("half", "minus")}
-                                      >
-                                        <Minus size={18}/>
-                                      </button>
+                                    <span className="w-8 text-center font-medium">
+                                      {tickets.half.quantity}
+                                    </span>
+                
+                                    <button
+                                      className="w-8 h-8 rounded-full bg-background-dark/60 flex items-center justify-center hover:bg-background-dark/30 transition"
+                                      onClick={() => updateTicketQuantity("half", "plus")}
+                                    >
+                                      <Plus size={18} />
+                                    </button>
                                   </div>
                                 </div>
                               </div>
@@ -266,12 +279,14 @@ export default function SessionPage() {
                   </div>
               </div>
           </main>
+          <Footer/>
+          </div>
           {IsValidatorModalOpen && (
             <ValidatorModal missingFields={missingRequiredFields} setIsValidatorModalOpen={setIsValidatorModalOpen}/>
           )}
         </>
     )}
-    <Footer/>
+  
 
   </>
   )

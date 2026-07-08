@@ -21,9 +21,9 @@ export function getItemsPerPage(
     case "session":
       switch (true) {
         case screenWidth < 580:
-          return 1;
-        case screenWidth < 1024:
           return 2;
+        case screenWidth < 1024:
+          return 3;
         default:
           return 3;
       }

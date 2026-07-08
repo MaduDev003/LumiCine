@@ -33,8 +33,18 @@ export default function CheckoutProgress({ type }: CheckoutType) {
 
   return (
   <>
-    <div className="flex-1 bg-secondary-dark p-4 rounded-xl flex flex-col">
-      <section className="flex flex-col gap-5 mb-3">
+    <div
+      className="
+        w-full
+        lg:flex-1
+        bg-secondary-dark
+        p-4
+        rounded-xl
+        flex
+        flex-col
+      "
+    >
+      <section className="flex flex-col gap-3 mb-3">
         <div className="flex justify-between">
           <h1>Resumo do Pedido</h1>
 
@@ -62,7 +72,7 @@ export default function CheckoutProgress({ type }: CheckoutType) {
         <>
           <DivisionBar />
 
-          <section className="mt-3 px-6">
+          <section className="mt-5 mb-5">
             {session.language && (
               <div className="flex justify-between">
                 <p>Idioma</p>
