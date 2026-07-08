@@ -10,10 +10,13 @@ import Footer from "@/src/components/layout/Footer";
 import ButtonCine from "@/src/components/ui/ButtonCine";
 import CheckoutProduct  from "../components/CheckoutProduct";
 import Header from "@/src/components/layout/Header";
+import ValidatorModal from "../components/ValidatorModal";
 
 export default function SessionPage() {
     const [menu, setMenu] = useState(false);
     const { nowPlayingMoviesData, comingSoonMoviesData } = useMovieContext();
+    const [IsValidatorModalOpen, setIsValidatorModalOpen] = useState(false);
+    const [missingRequiredFields, setMissingRequiredFields] = useState<string[]>([]);
     const session = useCheckoutStore((state) => state.session);
     const setSession = useCheckoutStore((state) => state.setSession);
     const tickets = useCheckoutStore((state) => state.tickets);
@@ -22,7 +25,7 @@ export default function SessionPage() {
       session.language !== "" &&
       session.time !== "" &&
       (tickets.full.quantity > 0 || tickets.half.quantity > 0);
-    
+     
     const {
       visibleDates,
       hasNext,
@@ -59,6 +62,18 @@ export default function SessionPage() {
     
     }
     
+    function openValidatorModal() {
+      const missing: string[] = [];
+
+      if (!session.language) missing.push("Idioma");
+      if (!session.time) missing.push("Horário");
+      if (tickets.full.quantity === 0 && tickets.half.quantity === 0) {
+        missing.push("Ingressos");
+      }
+
+      setMissingRequiredFields(missing);
+      setIsValidatorModalOpen(missing.length > 0);
+    }
 
   return (
     <>
@@ -225,6 +240,7 @@ export default function SessionPage() {
                             <div className="flex justify-center">
                               <ButtonCine
                                   text="Continuar"
+                                  onClick={openValidatorModal}
                                   className={`
                                     w-60 h-12 text-font-dark
                                     ${canContinue 
@@ -238,7 +254,6 @@ export default function SessionPage() {
                                       `
                                       : `
                                         bg-tertiary-dark
-                                        cursor-not-allowed
                                         opacity-50
                                       `
                                     }
@@ -251,6 +266,9 @@ export default function SessionPage() {
                   </div>
               </div>
           </main>
+          {IsValidatorModalOpen && (
+            <ValidatorModal missingFields={missingRequiredFields} setIsValidatorModalOpen={setIsValidatorModalOpen}/>
+          )}
         </>
     )}
     <Footer/>

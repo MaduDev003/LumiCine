@@ -12,7 +12,7 @@ type Tickets = {
   full: Ticket;
 };
 
-interface Session {
+export interface Session {
   date: string;
   ticket: Ticket[];
   language: "Dublado" | "Legendado" | "";
