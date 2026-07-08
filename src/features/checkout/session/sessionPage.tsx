@@ -93,7 +93,7 @@ export default function SessionPage() {
     )}
     { !menu &&(
         <>
-        <div className="">
+
           <Header setMenu={setMenu} allMoviesForSearch={[...nowPlayingMoviesData, ...comingSoonMoviesData]} />
           <main className="mt-3 mb-10">
             <div className="px-3 flex justify-center pt-8 pb-13">
@@ -280,7 +280,6 @@ export default function SessionPage() {
               </div>
           </main>
           <Footer/>
-          </div>
           {IsValidatorModalOpen && (
             <ValidatorModal missingFields={missingRequiredFields} setIsValidatorModalOpen={setIsValidatorModalOpen}/>
           )}

@@ -118,7 +118,7 @@ export default function CheckoutProgress({ type }: CheckoutType) {
     </div>
 
     {isConfirmModalOpen && (
-      <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60">
+      <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
         <div className="w-115 rounded-2xl bg-secondary-dark shadow-2xl p-6">
           <h2 className="text-xl font-semibold text-font-dark">
              Cancelar Pedido
