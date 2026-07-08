@@ -75,22 +75,22 @@ export default function CheckoutProgress({ type }: CheckoutType) {
           <section className="mt-5 mb-5">
             {session.language && (
               <div className="flex justify-between">
-                <p>Idioma</p>
-                <p>{session.language}</p>
+                <p className="text-font-secondary-dark">Idioma</p>
+                <p  className="text-font-dark">{session.language}</p>
               </div>
             )}
 
             {session.date && (
               <div className="flex justify-between mt-3">
-                <p>Data</p>
-                <p>{session.date}</p>
+                <p className="text-font-secondary-dark">Data</p>
+                <p className="text-font-dark">{session.date}</p>
               </div>
             )}
 
             {session.time && (
               <div className="flex justify-between mt-3">
-                <p>Horário</p>
-                <p>{session.time}</p>
+                <p className="text-font-secondary-dark">Horário</p>
+                <p className="text-font-dark">{session.time}</p>
               </div>
             )}
           </section>
@@ -102,16 +102,16 @@ export default function CheckoutProgress({ type }: CheckoutType) {
 
         <div className="pt-4">
           <div className="flex justify-between">
-            <p>Itens</p>
+            <p className="text-font-secondary-dark">Itens</p>
 
             <div className="w-10">
-              <p>{calcItemsQuantity()}</p>
+              <p className="text-font-dark">{calcItemsQuantity()}</p>
             </div>
           </div>
 
           <div className="flex justify-between mt-3">
-            <p>Total</p>
-            <p>R$ {calcTotal()}</p>
+            <p  className="text-font-dark font-medium">Total</p>
+            <p  className="text-font-dark font-medium">R$ {calcTotal()}</p>
           </div>
         </div>
       </div>
