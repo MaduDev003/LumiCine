@@ -7,8 +7,12 @@ import { Trash2 } from "lucide-react";
 import ButtonCine from "../../../components/ui/ButtonCine";
 import DivisionBar from "@/src/components/ui/DivisorBar";
 
-export default function CheckoutProgress({ type }: CheckoutType) {
-  const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
+type Props = {
+  type: CheckoutType;
+};
+
+export default function CheckoutProgress({ type }: Props) {
+  const [isConfirmDeletionModalOpen, setIsConfirmDeletionModalOpen] = useState(false); 
   const movie = useCheckoutStore((state) => state.movie);
   const session = useCheckoutStore((state) => state.session);
   const tickets = useCheckoutStore((state) => state.tickets);
@@ -49,7 +53,7 @@ export default function CheckoutProgress({ type }: CheckoutType) {
           <h1>Resumo do Pedido</h1>
 
           <Trash2
-            onClick={() => setIsConfirmModalOpen(true)}
+            onClick={() => setIsConfirmDeletionModalOpen(true)}
             size={18}
             className="hover:stroke-red-500 cursor-pointer transition"
           />
@@ -117,7 +121,7 @@ export default function CheckoutProgress({ type }: CheckoutType) {
       </div>
     </div>
 
-    {isConfirmModalOpen && (
+    {isConfirmDeletionModalOpen && (
       <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
         <div className="w-115 rounded-2xl bg-secondary-dark shadow-2xl p-6">
           <h2 className="text-xl font-semibold text-font-dark">
@@ -136,7 +140,7 @@ export default function CheckoutProgress({ type }: CheckoutType) {
                 transition-all duration-200
                 hover:brightness-110
               "
-              onClick={() => setIsConfirmModalOpen(false)}
+              onClick={() => setIsConfirmDeletionModalOpen(false)}
             />
 
             <ButtonCine

@@ -3,9 +3,11 @@
 import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Search, Send, TextAlignJustify } from "lucide-react";
+import { MovieType } from "../../types/movieType";
+import { useCheckoutStore } from "@/src/store/checkoutStore";
 import logo from "../../assets/images/logo.png";
 import MenuListElements from "@/src/components/ui/MenuListElements";
-import { MovieType } from "../../types/movieType";
+
 
 interface HeaderProps {
   allMoviesForSearch?: Array<MovieType>;
@@ -16,6 +18,7 @@ export default function Header({ setMenu, allMoviesForSearch }: HeaderProps) {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [search, setSearch] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
+  const clearCheckout = useCheckoutStore((state) => state.clearCheckout);
   const router = useRouter();
 
   const foundMovies =
@@ -41,6 +44,7 @@ export default function Header({ setMenu, allMoviesForSearch }: HeaderProps) {
     if (!search.trim()) return;
 
     if (foundMovies.length > 0) {
+      clearCheckout();
       router.push(`/movie/${foundMovies[0].id}?type=${foundMovies[0].type}`);
     }
 
@@ -116,6 +120,7 @@ export default function Header({ setMenu, allMoviesForSearch }: HeaderProps) {
                 className="shrink-0 hover:scale-110 transition"
               >
                 <Send
+                  onClick={() => handleSearch()}
                   size={18}
                   className={
                     search.trim() ? "text-white" : "text-white/40"
@@ -131,9 +136,7 @@ export default function Header({ setMenu, allMoviesForSearch }: HeaderProps) {
                 <button
                   key={index}
                   type="button"
-                  onClick={() =>
-                    router.push(`/movie/${movie.id}?type=${movie.type}`)
-                  }
+                  onClick={() => handleSearch()}
                   className="w-full px-4 py-3 text-left text-font-dark hover:bg-white/10 transition"
                 >
                   {movie.title}

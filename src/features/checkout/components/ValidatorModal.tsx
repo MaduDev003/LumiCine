@@ -33,8 +33,8 @@ export default function ValidatorModal({
               </p>
 
               <ul className="mt-2 space-y-1 text-sm">
-                {missingFields.map((field) => (
-                  <li key={field}>• {field}</li>
+                {missingFields.map((field, index) => (
+                  <li key={index}>• {field}</li>
                 ))}
               </ul>
             </div>

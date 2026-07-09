@@ -7,6 +7,10 @@ import {
 } from "lucide-react";
 import { CheckoutType } from "@/src/types/checkoutType";
 
+type Props = {
+  type: CheckoutType;
+};
+
 const types = [
   { id: "session", Icon: Ticket },
   { id: "seat", Icon: Armchair },
@@ -15,9 +19,10 @@ const types = [
   { id: "confirmation", Icon: CircleCheckBig },
 ];
 
+
 //TODO: futuramente add o switch case para cor das linhas e dos elementos daqui pq serão 3 estados, ativo, inativo e concluído
 
-export default function CheckoutProgress({ type }: CheckoutType) {
+export default function CheckoutProgress({type}: Props) {
   const activeIndex = types.findIndex((item) => item.id === type);
 
   return (

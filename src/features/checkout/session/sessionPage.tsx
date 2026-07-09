@@ -94,7 +94,10 @@ export default function SessionPage() {
     { !menu &&(
         <>
 
-          <Header setMenu={setMenu} allMoviesForSearch={[...nowPlayingMoviesData, ...comingSoonMoviesData]} />
+          <Header 
+              setMenu={setMenu} 
+              allMoviesForSearch={[...nowPlayingMoviesData, ...comingSoonMoviesData]}
+            />
           <main className="mt-3 mb-10">
             <div className="px-3 flex justify-center pt-8 pb-13">
                   <div className="w-full max-w-275 mx-auto pb-5 flex flex-col gap-4 lg:min-h-200">
@@ -194,7 +197,7 @@ export default function SessionPage() {
 
                                   <div className="flex items-center gap-2 md:gap-3">
                                     <button
-                                      className="w-8 h-8 rounded-full bg-background-dark/60 flex items-center justify-center hover:bg-background-dark/30 transition"
+                                      className="cursor-pointer w-8 h-8 rounded-full bg-background-dark/60 flex items-center justify-center hover:bg-background-dark/30 transition"
                                       onClick={() => updateTicketQuantity("full", "minus")}
                                     >
                                       <Minus size={18} />
@@ -206,7 +209,7 @@ export default function SessionPage() {
 
                                    
                                     <button
-                                      className="w-8 h-8 rounded-full bg-background-dark/60 flex items-center justify-center hover:bg-background-dark/30 transition"
+                                      className="cursor-pointer w-8 h-8 rounded-full bg-background-dark/60 flex items-center justify-center hover:bg-background-dark/30 transition"
                                       onClick={() => updateTicketQuantity("full", "plus")}
                                     >
                                       <Plus size={18} />
@@ -230,7 +233,7 @@ export default function SessionPage() {
 
                                   <div className="flex items-center gap-2 md:gap-3">
                                     <button
-                                      className="w-8 h-8 rounded-full bg-background-dark/60 flex items-center justify-center hover:bg-background-dark/30 transition"
+                                      className="cursor-pointer w-8 h-8 rounded-full bg-background-dark/60 flex items-center justify-center hover:bg-background-dark/30 transition"
                                       onClick={() => updateTicketQuantity("half", "minus")}
                                     >
                                       <Minus size={18} />
@@ -241,7 +244,7 @@ export default function SessionPage() {
                                     </span>
                 
                                     <button
-                                      className="w-8 h-8 rounded-full bg-background-dark/60 flex items-center justify-center hover:bg-background-dark/30 transition"
+                                      className="cursor-pointer w-8 h-8 rounded-full bg-background-dark/60 flex items-center justify-center hover:bg-background-dark/30 transition"
                                       onClick={() => updateTicketQuantity("half", "plus")}
                                     >
                                       <Plus size={18} />
@@ -274,7 +277,9 @@ export default function SessionPage() {
                                 />
                             </div>
                         </div>
-                          <CheckoutProduct type="session"/>
+                          <CheckoutProduct 
+                            type="session"
+                          />
                       </div>
                   </div>
               </div>
