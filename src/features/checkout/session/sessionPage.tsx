@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { ChevronRight, ChevronLeft, Ticket, Minus, Plus, X } from "lucide-react";
 import { useCheckoutStore } from "@/src/store/checkoutStore";
 import { useMovieContext } from "@/src/context/MovieContext";
@@ -25,6 +26,7 @@ export default function SessionPage() {
       session.language !== "" &&
       session.time !== "" &&
       (tickets.full.quantity > 0 || tickets.half.quantity > 0);
+    const router = useRouter();
      
     const {
       visibleDates,
@@ -70,9 +72,10 @@ export default function SessionPage() {
       if (tickets.full.quantity === 0 && tickets.half.quantity === 0) {
         missing.push("Ingressos");
       }
-
+      
       setMissingRequiredFields(missing);
       setIsValidatorModalOpen(missing.length > 0);
+      router.push("/checkout/seats")
     }
 
   return (
