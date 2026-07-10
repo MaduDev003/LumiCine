@@ -9,17 +9,31 @@ import Footer from "@/src/components/layout/Footer";
 import Header from "@/src/components/layout/Header";
 import ChairGrid from "../components/ChairGrid";
 import ButtonCine from "@/src/components/ui/ButtonCine";
+import { useCheckoutStore } from "@/src/store/checkoutStore";
+import ValidatorModal from "../components/ValidatorModal";
 
 export default function SeatsPage() {
     const [menu, setMenu] = useState(false);
+    const [isValidatorModalOpen, setIsValidatorModalOpen] = useState(false);
+    const [missingSeatSelection, setMissingSeatSelection] = useState<string[]>([]);
     const { nowPlayingMoviesData, comingSoonMoviesData } = useMovieContext();
+    const seats = useCheckoutStore((state) => state.seats);
+    const canContinue = seats.length === 0 ? false : true;
+    function openValidatorModal() {
+        const missingFields = seats.length === 0 ? ["Selecione seu(s) assento(s)"] : [];
+        
+      setIsValidatorModalOpen(missingFields.length > 0);
+      setMissingSeatSelection(missingFields);
+      if(canContinue)console.log("passou")
+    }
+
     return (
         <>
             <Header 
               setMenu={setMenu} 
               allMoviesForSearch={[...nowPlayingMoviesData, ...comingSoonMoviesData]}
             />
-             <main className="mt-3 lg:mb-17 mb-2">
+             <main className="mt-3 mb-17">
             <div className="px-3 flex justify-center pt-8">
                   <div className="w-full max-w-280 mx-auto pb-0 lg:pb-5 flex flex-col gap-4 lg:min-h-200">
                       <CheckoutProgress type="seats"/>
@@ -81,7 +95,27 @@ export default function SeatsPage() {
                             </div>
                            
                             <div className=" w-full flex justify-center items-center mt-5 lg:mt-2">
-                                    <ButtonCine text="Continuar" className="w-50 h-10 text-font-dark bg-accent" />
+                                    <ButtonCine 
+                                    onClick={() => openValidatorModal()}
+                                    text="Continuar" 
+                                    className={`
+                                    w-50 h-10 text-font-dark
+                                    ${canContinue 
+                                      ? `
+                                        bg-accent
+                                        transition-all duration-300
+                                        hover:scale-105
+                                        cursor-pointer
+                                        hover:brightness-110
+                                        hover:shadow-[0_25px_60px_rgba(0,0,0,0.2)]
+                                      `
+                                      : `
+                                        bg-tertiary-dark
+                                        opacity-50
+                                      `
+                                    }
+                                  `} 
+                                  />
                                  </div>
                         </div>
                           <CheckoutProduct 
@@ -92,6 +126,9 @@ export default function SeatsPage() {
               </div>
               </main>
             <Footer />
+             {isValidatorModalOpen && (
+                        <ValidatorModal missingFields={missingSeatSelection} setIsValidatorModalOpen={setIsValidatorModalOpen}/>
+            )}
         </>
        
     )

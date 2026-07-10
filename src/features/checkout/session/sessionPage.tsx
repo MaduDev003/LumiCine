@@ -16,7 +16,7 @@ import ValidatorModal from "../components/ValidatorModal";
 export default function SessionPage() {
     const [menu, setMenu] = useState(false);
     const { nowPlayingMoviesData, comingSoonMoviesData } = useMovieContext();
-    const [IsValidatorModalOpen, setIsValidatorModalOpen] = useState(false);
+    const [isValidatorModalOpen, setIsValidatorModalOpen] = useState(false);
     const [missingRequiredFields, setMissingRequiredFields] = useState<string[]>([]);
     const session = useCheckoutStore((state) => state.session);
     const setSession = useCheckoutStore((state) => state.setSession);
@@ -101,7 +101,7 @@ export default function SessionPage() {
               setMenu={setMenu} 
               allMoviesForSearch={[...nowPlayingMoviesData, ...comingSoonMoviesData]}
             />
-          <main className="mt-3 lg:mb-17 mb-2">
+          <main className="mt-3 mb-17">
             <div className="px-3 flex justify-center pt-8 pb-13">
                   <div className="w-full max-w-275 mx-auto pb-5 flex flex-col gap-4 lg:min-h-200">
                       <CheckoutProgress type="session"/>
@@ -288,7 +288,7 @@ export default function SessionPage() {
               </div>
           </main>
           <Footer/>
-          {IsValidatorModalOpen && (
+          {isValidatorModalOpen && (
             <ValidatorModal missingFields={missingRequiredFields} setIsValidatorModalOpen={setIsValidatorModalOpen}/>
           )}
         </>

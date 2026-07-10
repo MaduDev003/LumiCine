@@ -13,27 +13,29 @@ type Props = {
 export default function ChairGrid({ accessible, row }: Props) {
     const seats = useCheckoutStore((state) => state.seats);
     const setSeats = useCheckoutStore((state) => state.setSeats);
+    const tickets = useCheckoutStore((state) => state.tickets);
+    
 
     function handleSeatSelection(seatPosition: string) {
+        const seatLimitSelection = tickets.full.quantity + tickets.half.quantity; 
         const selectedSeats = [];
         let isSeatAlreadySelected = false;
-
+        const isSeatsLimitReached = seats.length  === seatLimitSelection;
         for (const seat of seats) {
+
             if (seat === seatPosition) {
                 isSeatAlreadySelected = true;
                 continue;
             }
-
             selectedSeats.push(seat);
+            
         }
 
-        if (!isSeatAlreadySelected) {
+        if (!isSeatAlreadySelected && !isSeatsLimitReached) {
             selectedSeats.push(seatPosition);
         }
-
         setSeats(selectedSeats);
     }
-
     const leftTypes: ChairType[] = [
         accessible ? "accessible" : "standard",
         accessible ? "companion" : "standard",
