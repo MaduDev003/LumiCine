@@ -2,19 +2,20 @@ import { Accessibility } from "lucide-react";
 
 type Props = {
     type: "standard" | "accessible" | "companion";
+    position: number;
 };
 
-export default function Chair({ type }: Props) {
+export default function Chair({ type, position }: Props) {
     return (
         <>
             {type === "accessible" && (
-                <div className="w-15 h-10 mt-2 bg-[#D9D9D9] rounded-xl flex items-center justify-center">
+                <div className="w-15 h-10 mt-2 bg-[#cacaca] rounded-xl flex items-center justify-center  hover:brightness-115 hover:scale-105 cursor-pointer">
                     <Accessibility size={24} className="text-secondary-dark rotate-180" />
                 </div>
             )}
 
             {type === "companion" && (
-                <div className="flex items-center">
+                <div className="flex items-center hover:brightness-115 hover:scale-105 cursor-pointer">
                     <div className="bg-blue-500 w-1.5 h-8 rounded-full mt-2" />
 
                     <div className="relative w-12 flex flex-col items-center gap-1 px-0.5">
@@ -32,15 +33,17 @@ export default function Chair({ type }: Props) {
             )}
 
             {type === "standard" && (
-                <div className="flex items-center">
-                    <div className="bg-[#D9D9D9] w-1.5 h-8 rounded-full mt-2" />
+                <div className="flex items-center  hover:brightness-115 hover:scale-105 cursor-pointer">
+                    <div className="bg-[#cacaca] w-1.5 h-8 rounded-full mt-2" />
 
                     <div className="w-12 flex flex-col items-center gap-1 px-0.5">
-                        <div className="bg-[#D9D9D9] h-2 w-[90%] rounded-full" />
-                        <div className="bg-[#D9D9D9] h-8 w-full rounded-xl" />
+                        <div className="bg-[#cacaca] h-2 w-[90%] rounded-full" />
+                        <div className="bg-[#cacaca] h-8 w-full rounded-xl flex justify-center items-center" >
+                            <span className="text-background-dark text-xl  rotate-180">{position}</span>
+                        </div>
                     </div>
 
-                    <div className="bg-[#D9D9D9] w-1.5 h-8 rounded-full mt-2" />
+                    <div className="bg-[#cacaca] w-1.5 h-8 rounded-full mt-2" />
                 </div>
             )}
         </>

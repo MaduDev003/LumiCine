@@ -26,11 +26,11 @@ export default function SeatsPage() {
                          <div className="flex flex-col-reverse lg:flex-row gap-8 items-stretch lg:h-220 sm:h-400 lg:mt-4 mt-10">
                         <div className=" flex-2 px-2 gap-7 flex flex-col lg:mt-0 mt-10">
                             {/* LEGENDA */}
-                            <div className="bg-secondary-dark w-full h-30 rounded flex gap-2 flex-col py-3 items-center">
+                            <div className="bg-secondary-dark w-full h-30 rounded-xl flex gap-2 flex-col py-3 items-center">
                                 <p className="text-font-dark text-[18px]">Legenda</p>
                                 <div className="w-full px-2 flex justify-evenly">
                                     <div className="flex items-center gap-1">
-                                        <div className="bg-[#D9D9D9] h-4 w-4 shrink-0 rounded-full"></div>
+                                        <div className="bg-[#cacaca] h-4 w-4 shrink-0 rounded-full"></div>
                                         <span className="mt-1 text-font-secondary-dark">Disponível</span>
                                     </div>
                                     <div className="flex items-center gap-1">
@@ -42,7 +42,7 @@ export default function SeatsPage() {
                                         <span className="mt-1 text-font-secondary-dark">Selecionado</span>
                                     </div>
                                     <div className="flex items-center gap-1">
-                                        <div className="bg-[#D9D9D9] h-5 w-5 shrink-0 rounded-full flex items-center justify-center">
+                                        <div className="bg-[#cacaca] h-5 w-5 shrink-0 rounded-full flex items-center justify-center">
                                             <Accessibility size={16} color="#181717" />
                                         </div>
                                         <span className="mt-1 text-font-secondary-dark">Cadeirante</span>
@@ -56,31 +56,33 @@ export default function SeatsPage() {
                                 </div>
                             </div>
                             {/* Assentos */}
-                            <div className="h-full flex flex-col gap-10">
+                            {/* TODO: p-3 tá aq , da borda */}
+                            <div className="h-full flex flex-col gap-10 border border-secondary-dark rounded-xl p-3">
                                 <div className="bg-tertiary-dark h-4 rounded-b-3xl flex justify-center items-center py-3">
                                     <h3 className="text-background-dark font-medium text-[20px]">Tela</h3>
                                 </div>
-                                <div className="flex flex-col gap-20">
+                                <div className="flex flex-col gap-20  ">
                                     <div className="flex flex-col gap-4">
-                                        <ChairGrid accessible={true}/>
-                                        <ChairGrid accessible={false}/>
-                                        <ChairGrid accessible={false}/>
-                                        <ChairGrid accessible={false}/>
-                                        <ChairGrid accessible={false}/>
+                                        {
+                                            Array.from({ length: 5 }).map((_, index) => (
+                                                <ChairGrid key={index} index={index} accessible={index === 0 ? true : false}/>
+                                            ))
+                                       }
                                     </div>
                                      <div className="flex flex-col gap-4">
-                                        <ChairGrid  accessible={true}/>
-                                        <ChairGrid  accessible={false}/>
-                                        <ChairGrid  accessible={false}/>
-                                        <ChairGrid  accessible={false}/>
+                                         {
+                                            Array.from({ length: 4 }).map((_, index) => (
+                                                <ChairGrid key={index} index={index} accessible={index === 0 ? true : false}/>
+                                            ))
+                                       }
                                     </div>
                                 </div>
-                                <div className=" w-full flex justify-center items-center mt-5 lg:mt-3">
-                                    <ButtonCine text="Continuar" className="w-50 h-10 text-font-dark bg-accent" />
-                                 </div>
+                                
                             </div>
                            
-                            
+                            <div className=" w-full flex justify-center items-center mt-5 lg:mt-2">
+                                    <ButtonCine text="Continuar" className="w-50 h-10 text-font-dark bg-accent" />
+                                 </div>
                         </div>
                           <CheckoutProduct 
                             type="seats"
