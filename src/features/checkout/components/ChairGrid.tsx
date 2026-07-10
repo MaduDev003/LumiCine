@@ -17,12 +17,12 @@ export default function ChairGrid({ accessible, row }: Props) {
     
 
     function handleSeatSelection(seatPosition: string) {
-        const seatLimitSelection = tickets.full.quantity + tickets.half.quantity; 
         const selectedSeats = [];
-        let isSeatAlreadySelected = false;
+        const seatLimitSelection = tickets.full.quantity + tickets.half.quantity; 
         const isSeatsLimitReached = seats.length  === seatLimitSelection;
+        let isSeatAlreadySelected = false;
+        
         for (const seat of seats) {
-
             if (seat === seatPosition) {
                 isSeatAlreadySelected = true;
                 continue;
@@ -34,8 +34,10 @@ export default function ChairGrid({ accessible, row }: Props) {
         if (!isSeatAlreadySelected && !isSeatsLimitReached) {
             selectedSeats.push(seatPosition);
         }
+
         setSeats(selectedSeats);
     }
+    
     const leftTypes: ChairType[] = [
         accessible ? "accessible" : "standard",
         accessible ? "companion" : "standard",

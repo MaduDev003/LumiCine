@@ -29,7 +29,7 @@ export default function ValidatorModal({
               </h3>
 
               <p className="mt-1 text-sm text-font-secondary-dark">
-                Antes de continuar, complete o(s) campo(s):
+                Antes de continuar, complete as etapas abaixo:
               </p>
 
               <ul className="mt-2 space-y-1 text-sm">
