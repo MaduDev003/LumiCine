@@ -15,11 +15,23 @@ export default function ChairGrid({ accessible, row }: Props) {
     const setSeats = useCheckoutStore((state) => state.setSeats);
 
     function handleSeatSelection(seatPosition: string) {
-        if (seats.includes(seatPosition)) {
-            setSeats(seats.filter((seat) => seat !== seatPosition));
-        } else {
-            setSeats([...seats, seatPosition]);
+        const selectedSeats = [];
+        let isSeatAlreadySelected = false;
+
+        for (const seat of seats) {
+            if (seat === seatPosition) {
+                isSeatAlreadySelected = true;
+                continue;
+            }
+
+            selectedSeats.push(seat);
         }
+
+        if (!isSeatAlreadySelected) {
+            selectedSeats.push(seatPosition);
+        }
+
+        setSeats(selectedSeats);
     }
 
     const leftTypes: ChairType[] = [
