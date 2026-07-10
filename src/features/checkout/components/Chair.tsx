@@ -15,20 +15,20 @@ export default function Chair({ type, position }: Props) {
             )}
 
             {type === "companion" && (
-                <div className="flex items-center hover:brightness-115 hover:scale-105 cursor-pointer">
-                    <div className="bg-blue-500 w-1.5 h-8 rounded-full mt-2" />
+                <div className="flex items-center hover:brightness-110 hover:scale-105 cursor-pointer">
+                    <div className="bg-[#006BAD] w-1.5 h-8 rounded-full mt-2" />
 
                     <div className="relative w-12 flex flex-col items-center gap-1 px-0.5">
-                        <div className="bg-blue-500 h-2 w-[90%] rounded-full" />
+                        <div className="bg-[#006BAD] h-2 w-[90%] rounded-full" />
 
-                        <div className="bg-blue-500 h-8 w-full rounded-xl flex items-center justify-center">
+                        <div className="bg-[#006BAD] h-8 w-full rounded-xl flex items-center justify-center">
                             <span className="text-white text-[14px] rotate-180">
                                 AC
                             </span>
                         </div>
                     </div>
 
-                    <div className="bg-blue-500 w-1.5 h-8 rounded-full mt-2" />
+                    <div className="bg-[#006BAD] w-1.5 h-8 rounded-full mt-2" />
                 </div>
             )}
 
