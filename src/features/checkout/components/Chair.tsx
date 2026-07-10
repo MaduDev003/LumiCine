@@ -2,14 +2,21 @@ import { Accessibility } from "lucide-react";
 
 type Props = {
     type: "standard" | "accessible" | "companion";
-    position: number;
+    position: {
+        seatNumber: number,
+        seatLetter: string
+    };
+    onClick: (position: string) => void;
 };
 
-export default function Chair({ type, position }: Props) {
+export default function Chair({ type, position, onClick }: Props) {
     return (
         <>
             {type === "accessible" && (
-                <div className="w-15 h-10 mt-2 bg-[#cacaca] rounded-xl flex items-center justify-center  hover:brightness-115 hover:scale-105 cursor-pointer">
+                <div 
+                    onClick={() => onClick(`${position.seatLetter}${position.seatNumber}`)}
+                    className="w-15 h-10 mt-2 bg-[#cacaca] rounded-xl flex items-center justify-center  hover:brightness-115 hover:scale-105 cursor-pointer"
+                >
                     <Accessibility size={24} className="text-secondary-dark rotate-180" />
                 </div>
             )}
@@ -39,7 +46,7 @@ export default function Chair({ type, position }: Props) {
                     <div className="w-12 flex flex-col items-center gap-1 px-0.5">
                         <div className="bg-[#cacaca] h-2 w-[90%] rounded-full" />
                         <div className="bg-[#cacaca] h-8 w-full rounded-xl flex justify-center items-center" >
-                            <span className="text-background-dark text-xl  rotate-180">{position}</span>
+                            <span className="text-background-dark text-xl  rotate-180">{position.seatNumber}</span>
                         </div>
                     </div>
 

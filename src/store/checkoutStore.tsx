@@ -23,11 +23,12 @@ interface CheckoutStore {
   movie: MovieType | null;
   session: Session;
   tickets: Tickets;
+  seats: string[];
 
   setMovie: (movie: MovieType) => void;
   setSession: (session: Partial<Session>) => void;
   setTickets: (tickets: Tickets) => void;
-
+  setSeats: (seats: string[]) => void;
   clearCheckout: () => void;
 }
 
@@ -55,6 +56,7 @@ export const useCheckoutStore = create<CheckoutStore>()(
       movie: null,
       session: initialSession,
       tickets: initialTickets,
+      seats: [],
 
       setMovie: (movie) => set({ movie }),
 
@@ -68,11 +70,14 @@ export const useCheckoutStore = create<CheckoutStore>()(
           },
         })),
 
+      setSeats: (seats) => set({ seats }),
+
       clearCheckout: () =>
         set({
           movie: null,
           session: initialSession,
           tickets: initialTickets,
+          seats: [],
         }),
     }),
     {

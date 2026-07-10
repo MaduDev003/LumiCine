@@ -62,19 +62,19 @@ export default function SeatsPage() {
                                     <h3 className="text-background-dark font-medium text-[20px]">Tela</h3>
                                 </div>
                                 <div className="flex flex-col gap-20  ">
-                                    <div className="flex flex-col gap-4">
-                                        {
-                                            Array.from({ length: 5 }).map((_, index) => (
-                                                <ChairGrid key={index} index={index} accessible={index === 0 ? true : false}/>
-                                            ))
-                                       }
-                                    </div>
                                      <div className="flex flex-col gap-4">
-                                         {
-                                            Array.from({ length: 4 }).map((_, index) => (
-                                                <ChairGrid key={index} index={index} accessible={index === 0 ? true : false}/>
-                                            ))
-                                       }
+                                        <ChairGrid row="A" accessible={true} />
+                                        <ChairGrid row="B" accessible={false}/>
+                                        <ChairGrid row="C" accessible={false}/>
+                                        <ChairGrid row="D" accessible={false}/>
+                                        <ChairGrid row="E" accessible={false}/>
+                                    </div>
+
+                                    <div className="flex flex-col gap-4">
+                                        <ChairGrid row="F" accessible={true}/>
+                                        <ChairGrid row="G" accessible={false}/>
+                                        <ChairGrid row="H" accessible={false}/>
+                                        <ChairGrid row="I" accessible={false}/>
                                     </div>
                                 </div>
                                 
