@@ -13,44 +13,63 @@ type Props = {
 
 const types = [
   { id: "session", Icon: Ticket },
-  { id: "seat", Icon: Armchair },
+  { id: "seats", Icon: Armchair },
   { id: "snack", Icon: Popcorn },
   { id: "payment", Icon: CreditCard },
   { id: "confirmation", Icon: CircleCheckBig },
 ];
 
-
-//TODO: futuramente add o switch case para cor das linhas e dos elementos daqui pq serão 3 estados, ativo, inativo e concluído
-
 export default function CheckoutProgress({type}: Props) {
   const activeIndex = types.findIndex((item) => item.id === type);
 
+  function getProgressStateColors(index: number) {
+    const isActive = index === activeIndex;
+    const isConcluded = index < activeIndex;
+    const isInactive = index > activeIndex;
+
+    if(isActive) {
+      return {
+       container: "border-accent",
+      icon: "#FF5900",
+      bar: "bg-gray-400"
+      }
+    }
+   if (isConcluded) {
+        return {
+          container: "border-[#BE5015]",
+          icon: "#BE5015",
+          bar: "bg-[#BE5015]",
+        };
+    }
+    if(isInactive) {
+      return {
+        container:"border-secondary-dark", 
+        icon:"#7e7c7c", 
+        bar:"bg-secondary-dark" 
+      }
+    }
+  }
   return (
     <div className="flex items-center justify-center mb-8">
       {types.map(({ id, Icon }, index) => {
-        const isActive = index <= activeIndex;
-
+        const colors = getProgressStateColors(index);
         return (
           <div key={id} className="flex items-center">
             <div
               className={`w-7 h-7 rounded-full border flex items-center justify-center ${
-                isActive
-                  ? "border-accent"
-                  : "border-tertiary-dark"
+               colors?.container
               }`}
             >
               <Icon
                 size={16}
-                color={isActive ? "#FF5900" : "#7e7c7c"}
+                color={colors?.icon}
               />
             </div>
 
             {index < types.length - 1 && (
               <span
                 className={`w-12 h-0.5 ${
-                  index === activeIndex
-                    ? "bg-gray-400"
-                    : "bg-secondary-dark"
+                  colors?.bar
                 }`}
               />
             )}

@@ -75,7 +75,7 @@ export default function SessionPage() {
       
       setMissingRequiredFields(missing);
       setIsValidatorModalOpen(missing.length > 0);
-      router.push("/checkout/seats")
+      if(missing.length === 0) router.push("/checkout/seats")
     }
 
   return (
@@ -101,7 +101,7 @@ export default function SessionPage() {
               setMenu={setMenu} 
               allMoviesForSearch={[...nowPlayingMoviesData, ...comingSoonMoviesData]}
             />
-          <main className="mt-3 mb-10">
+          <main className="mt-3 lg:mb-17 mb-2">
             <div className="px-3 flex justify-center pt-8 pb-13">
                   <div className="w-full max-w-275 mx-auto pb-5 flex flex-col gap-4 lg:min-h-200">
                       <CheckoutProgress type="session"/>
@@ -261,7 +261,7 @@ export default function SessionPage() {
                                   text="Continuar"
                                   onClick={openValidatorModal}
                                   className={`
-                                    w-60 h-12 text-font-dark
+                                    w-50 h-10 text-font-dark
                                     ${canContinue 
                                       ? `
                                         bg-accent
