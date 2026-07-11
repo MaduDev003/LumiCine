@@ -30,6 +30,7 @@ export default function Chair({ type, position, onClick }: Props) {
                     >
                     <Accessibility
                         size={12}
+                        stroke={isSeatSelected ? "#e6e3e3" :"#181717" }
                         className="text-secondary-dark md:w-6 md:h-6"
                         style={{ transform: "rotate(180deg)" }}
                     />
@@ -111,7 +112,8 @@ export default function Chair({ type, position, onClick }: Props) {
                         `}
                         >
                         <span
-                            className="text-background-dark text-[10px] md:text-xl"
+                            className={`
+                                ${isSeatSelected ? "text-font-dark" : "text-background-dark"}  text-[10px] md:text-xl `}
                             style={{ transform: "rotate(180deg)" }}
                         >
                             {position.seatNumber}

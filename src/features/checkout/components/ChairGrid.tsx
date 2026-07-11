@@ -44,8 +44,8 @@ export default function ChairGrid({ accessible, row }: Props) {
 
     const rightTypes: ChairType[] = [
         "standard",
-        "standard",
         accessible ? "companion" : "standard",
+        accessible ? "accessible" : "standard",
         accessible ? "accessible" : "standard",
     ];
 
