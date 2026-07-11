@@ -48,28 +48,28 @@ export default function SeatsPage() {
                                 <p className="text-font-dark text-[18px]">Legenda</p>
                                 <div className="w-full px-2 flex justify-evenly">
                                     <div className="flex items-center gap-1">
-                                        <div className="bg-[#cacaca] h-4 w-4 shrink-0 rounded-full"></div>
-                                        <span className="mt-1 text-font-secondary-dark">Disponível</span>
+                                        <div className="bg-[#cacaca] h-3 w-3 md:h-4 md:w-4 shrink-0 rounded-full"></div>
+                                        <span className="mt-1 text-font-secondary-dark md:text-[15px] text-[8px]">Disponível</span>
                                     </div>
                                     <div className="flex items-center gap-1">
-                                        <div className="bg-[#828181] h-5 w-5 shrink-0 rounded-full"></div>
-                                        <span className="mt-1 text-font-secondary-dark">Ocupado</span>
+                                        <div className="bg-[#828181] h-3 w-3 md:h-4 md:w-4 shrink-0 rounded-full"></div>
+                                        <span className="mt-1 text-font-secondary-dark md:text-[15px] text-[8px]">Ocupado</span>
                                     </div>
                                     <div className="flex items-center gap-1">
-                                        <div className="bg-accent h-5 w-5 shrink-0 rounded-full"></div>
-                                        <span className="mt-1 text-font-secondary-dark">Selecionado</span>
+                                        <div className="bg-accent h-3 w-3 md:h-4 md:w-4 shrink-0 rounded-full"></div>
+                                        <span className="mt-1 text-font-secondary-dark md:text-[15px] text-[8px]">Selecionado</span>
                                     </div>
                                     <div className="flex items-center gap-1">
-                                        <div className="bg-[#cacaca] h-5 w-5 shrink-0 rounded-full flex items-center justify-center">
+                                        <div className="bg-[#cacaca] h-3 w-3 md:h-4 md:w-4 shrink-0 rounded-full flex items-center justify-center">
                                             <Accessibility size={16} color="#181717" />
                                         </div>
-                                        <span className="mt-1 text-font-secondary-dark">Cadeirante</span>
+                                        <span className="mt-1 text-font-secondary-dark md:text-[15px] text-[8px]">Cadeirante</span>
                                     </div>
                                     <div className="flex items-center gap-1">
-                                        <div className="bg-[#006BAD] h-5 w-5 shrink-0 rounded-full flex justify-center items-center">
-                                            <p className="font-medium text-[10px]">AC</p>
+                                        <div className="bg-[#006BAD] h-3 w-3 md:h-4.5 md:w-4.5 shrink-0 rounded-full flex justify-center items-center">
+                                            <p className="font-medium md:text-[9px] text-[5px] mt-0.5 md:mt-0">AC</p>
                                         </div>
-                                        <span className="mt-1 text-font-secondary-dark">Acompanhante</span>
+                                        <span className="mt-1 text-font-secondary-dark text-[8px] md:text-[15px]">Acompanhante</span>
                                     </div>
                                 </div>
                             </div>

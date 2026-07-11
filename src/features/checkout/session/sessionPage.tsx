@@ -28,8 +28,6 @@ export default function SessionPage() {
       session.language !== "" &&
       session.time !== "" &&
       (tickets.full.quantity > 0 || tickets.half.quantity > 0);
-    const router = useRouter();
-     
     const {
       visibleDates,
       hasNext,
@@ -37,25 +35,26 @@ export default function SessionPage() {
       handleNextDateFilter,
       handlePreviousDateFilter,
     } = useDateFilter(15, "session");
+    const router = useRouter();
     
     function handleUpdateTicketQuantity(
-    type: "half" | "full",
-    operationType: "plus" | "minus"
+      type: "half" | "full",
+      operationType: "plus" | "minus"
     ) {
       const operationResult = updateTicketQuantity(tickets, type, operationType)
       setTickets(operationResult);
     }
     
-     function openValidatorModal() {
-            const result = validateSessionSelection(session, tickets);
+    function openValidatorModal() {
+      const result = validateSessionSelection(session, tickets);
     
-            setMissingRequiredFields(result.missingFields);
-            setIsValidatorModalOpen(!result.isValid);
+      setMissingRequiredFields(result.missingFields);
+      setIsValidatorModalOpen(!result.isValid);
     
-            if (result.isValid) {
-              router.push("/checkout/seats")
-            }
+      if (result.isValid) {
+        router.push("/checkout/seats")
       }
+    }
     
 
   return (
