@@ -3,13 +3,15 @@
 import { useState } from "react";
 import { Accessibility } from "lucide-react";
 import { useMovieContext } from "@/src/context/MovieContext";
+import { useCheckoutStore } from "@/src/store/checkoutStore";
 import CheckoutProduct from "../components/CheckoutProduct";
 import CheckoutProgress from "../components/CheckoutProgress";
 import Footer from "@/src/components/layout/Footer";
 import Header from "@/src/components/layout/Header";
 import ChairGrid from "../components/ChairGrid";
 import ButtonCine from "@/src/components/ui/ButtonCine";
-import { useCheckoutStore } from "@/src/store/checkoutStore";
+import { validateSeatSelection } from "@/src/services/checkout/checkoutValidationService";
+
 import ValidatorModal from "../components/ValidatorModal";
 
 export default function SeatsPage() {
@@ -19,12 +21,14 @@ export default function SeatsPage() {
     const { nowPlayingMoviesData, comingSoonMoviesData } = useMovieContext();
     const seats = useCheckoutStore((state) => state.seats);
     const canContinue = seats.length === 0 ? false : true;
+    
     function openValidatorModal() {
-        const missingFields = seats.length === 0 ? ["Selecione seu(s) assento(s)"] : [];
-        
-      setIsValidatorModalOpen(missingFields.length > 0);
-      setMissingSeatSelection(missingFields);
-      if(canContinue)console.log("passou")
+        const result = validateSeatSelection(seats);
+
+        setMissingSeatSelection(result.missingFields);
+        setIsValidatorModalOpen(!result.isValid);
+
+        if (result.isValid) console.log('sem erros de validação')
     }
 
     return (

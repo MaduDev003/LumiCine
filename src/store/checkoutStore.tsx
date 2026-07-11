@@ -1,23 +1,8 @@
 import { create } from "zustand";
 import { MovieType } from "../types/movieType";
 import { persist } from "zustand/middleware";
-
-type Ticket = {
-  quantity: number;
-  price: number;
-};
-
-type Tickets = {
-  half: Ticket;
-  full: Ticket;
-};
-
-export interface Session {
-  date: string;
-  ticket: Ticket[];
-  language: "Dublado" | "Legendado" | "";
-  time: string;
-}
+import { Tickets } from "../types/checkout/ticketsType";
+import { Session } from "../types/checkout/sessionType";
 
 interface CheckoutStore {
   movie: MovieType | null;

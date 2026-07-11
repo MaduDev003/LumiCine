@@ -5,6 +5,7 @@ import { ChevronRight, ChevronLeft, Ticket, Minus, Plus, X } from "lucide-react"
 import { useCheckoutStore } from "@/src/store/checkoutStore";
 import { useMovieContext } from "@/src/context/MovieContext";
 import { useDateFilter } from "@/src/hooks/useDateFilters";
+import { validateSessionSelection } from "@/src/services/checkout/checkoutValidationService";
 import MenuListElements from "@/src/components/ui/MenuListElements";
 import CheckoutProgress from "../components/CheckoutProgress";
 import Footer from "@/src/components/layout/Footer";
@@ -12,6 +13,7 @@ import ButtonCine from "@/src/components/ui/ButtonCine";
 import CheckoutProduct  from "../components/CheckoutProduct";
 import Header from "@/src/components/layout/Header";
 import ValidatorModal from "../components/ValidatorModal";
+import { updateTicketQuantity } from "@/src/services/checkout/sessionService";
 
 export default function SessionPage() {
     const [menu, setMenu] = useState(false);
@@ -36,47 +38,25 @@ export default function SessionPage() {
       handlePreviousDateFilter,
     } = useDateFilter(15, "session");
     
-    function updateTicketQuantity(
+    function handleUpdateTicketQuantity(
     type: "half" | "full",
     operationType: "plus" | "minus"
     ) {
-      const value = operationType === "plus" ? 1 : -1;
-  
-      if (type === "full") {
-        setTickets({
-          ...tickets,
-          full: {
-            ...tickets.full,
-            quantity: Math.max(0, tickets.full.quantity + value)
-          },
-        });
-      }
-
-      if(type === "half"){
-        setTickets({
-          ...tickets,
-          half: {
-            ...tickets.half,
-            quantity: Math.max(0, tickets.half.quantity + value)
-          },
-        });
-      }
-    
+      const operationResult = updateTicketQuantity(tickets, type, operationType)
+      setTickets(operationResult);
     }
     
-    function openValidatorModal() {
-      const missing: string[] = [];
-
-      if (!session.language) missing.push("Idioma");
-      if (!session.time) missing.push("Horário");
-      if (tickets.full.quantity === 0 && tickets.half.quantity === 0) {
-        missing.push("Ingressos");
+     function openValidatorModal() {
+            const result = validateSessionSelection(session, tickets);
+    
+            setMissingRequiredFields(result.missingFields);
+            setIsValidatorModalOpen(!result.isValid);
+    
+            if (result.isValid) {
+              router.push("/checkout/seats")
+            }
       }
-      
-      setMissingRequiredFields(missing);
-      setIsValidatorModalOpen(missing.length > 0);
-      if(missing.length === 0) router.push("/checkout/seats")
-    }
+    
 
   return (
     <>
@@ -201,7 +181,7 @@ export default function SessionPage() {
                                   <div className="flex items-center gap-2 md:gap-3">
                                     <button
                                       className="cursor-pointer w-8 h-8 rounded-full bg-background-dark/60 flex items-center justify-center hover:bg-background-dark/30 transition"
-                                      onClick={() => updateTicketQuantity("full", "minus")}
+                                      onClick={() => handleUpdateTicketQuantity("full", "minus")}
                                     >
                                       <Minus size={18} />
                                     </button>
@@ -213,7 +193,7 @@ export default function SessionPage() {
                                    
                                     <button
                                       className="cursor-pointer w-8 h-8 rounded-full bg-background-dark/60 flex items-center justify-center hover:bg-background-dark/30 transition"
-                                      onClick={() => updateTicketQuantity("full", "plus")}
+                                      onClick={() => handleUpdateTicketQuantity("full", "plus")}
                                     >
                                       <Plus size={18} />
                                     </button>
@@ -237,7 +217,7 @@ export default function SessionPage() {
                                   <div className="flex items-center gap-2 md:gap-3">
                                     <button
                                       className="cursor-pointer w-8 h-8 rounded-full bg-background-dark/60 flex items-center justify-center hover:bg-background-dark/30 transition"
-                                      onClick={() => updateTicketQuantity("half", "minus")}
+                                      onClick={() => handleUpdateTicketQuantity("half", "minus")}
                                     >
                                       <Minus size={18} />
                                     </button>   
@@ -248,7 +228,7 @@ export default function SessionPage() {
                 
                                     <button
                                       className="cursor-pointer w-8 h-8 rounded-full bg-background-dark/60 flex items-center justify-center hover:bg-background-dark/30 transition"
-                                      onClick={() => updateTicketQuantity("half", "plus")}
+                                      onClick={() => handleUpdateTicketQuantity("half", "plus")}
                                     >
                                       <Plus size={18} />
                                     </button>
