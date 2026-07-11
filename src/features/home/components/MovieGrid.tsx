@@ -1,9 +1,9 @@
 import MovieCard from "./MovieCard";
-import { MovieType } from "@/src/types/movieType";
+import { Movie } from "@/src/types/movieType";
 
 type MovieGridProps = {
   isLoading: boolean;
-  moviesData: MovieType[];
+  moviesData: Movie[];
 };
 
 export default function MovieGrid({

@@ -3,14 +3,14 @@
 import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Search, Send, TextAlignJustify } from "lucide-react";
-import { MovieType } from "../../types/movieType";
+import { Movie } from "../../types/movieType";
 import { useCheckoutStore } from "@/src/store/checkoutStore";
 import logo from "../../assets/images/logo.png";
 import MenuListElements from "@/src/components/ui/MenuListElements";
 
 
 interface HeaderProps {
-  allMoviesForSearch?: Array<MovieType>;
+  allMoviesForSearch?: Array<Movie>;
   setMenu: React.Dispatch<React.SetStateAction<boolean>>;
 }
 

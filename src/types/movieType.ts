@@ -1,7 +1,7 @@
-import { MoviePeriodType } from "./moviePeriodType";
-import { CastMemberType } from "./castMemberType";
+import { MoviePeriod } from "./moviePeriodType";
+import { CastMember } from "./castMemberType";
 
-export type MovieType = {
+export type Movie = {
   id: number;
   title: string;
   poster_url: string;
@@ -11,8 +11,8 @@ export type MovieType = {
   age_rating: string;
   duration: string;
   type: "comingSoon" | "nowPlaying";
-  show_period: MoviePeriodType;
+  show_period: MoviePeriod;
   release_date: string;
   pre_sale: boolean | undefined;
-  cast: Array<CastMemberType>
+  cast: Array<CastMember>
 };

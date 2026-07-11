@@ -5,10 +5,10 @@ import {
   CreditCard,
   CircleCheckBig,
 } from "lucide-react";
-import { CheckoutType } from "@/src/types/checkoutType";
+import { Checkout } from "@/src/types/checkoutType";
 
 type Props = {
-  type: CheckoutType;
+  type: Checkout;
 };
 
 const types = [

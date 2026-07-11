@@ -2,13 +2,13 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useCheckoutStore } from "@/src/store/checkoutStore";
-import { CheckoutType } from "@/src/types/checkoutType";
+import { Checkout } from "@/src/types/checkoutType";
 import { Trash2 } from "lucide-react";
 import ButtonCine from "../../../components/ui/ButtonCine";
 import DivisionBar from "@/src/components/ui/DivisorBar";
 
 type Props = {
-  type: CheckoutType;
+  type: Checkout;
 };
 
 export default function CheckoutProgress({ type }: Props) {

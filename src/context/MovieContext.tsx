@@ -1,21 +1,21 @@
 "use client"
 
 import { createContext, useContext, useState } from "react";
-import type { MovieType } from "@/src/types/movieType";
+import type { Movie } from "@/src/types/movieType";
 
 type MovieContextType = {
-  nowPlayingMoviesData: MovieType[];
-  setNowPlayingMoviesData: React.Dispatch<React.SetStateAction<MovieType[]>>;
+  nowPlayingMoviesData: Movie[];
+  setNowPlayingMoviesData: React.Dispatch<React.SetStateAction<Movie[]>>;
 
-  comingSoonMoviesData: MovieType[];
-  setComingSoonMoviesData: React.Dispatch<React.SetStateAction<MovieType[]>>;
+  comingSoonMoviesData: Movie[];
+  setComingSoonMoviesData: React.Dispatch<React.SetStateAction<Movie[]>>;
 };
 
 const MovieContext = createContext<MovieContextType | undefined>(undefined);
 
 export function MovieProvider({ children }: { children: React.ReactNode }) {
-  const [nowPlayingMoviesData, setNowPlayingMoviesData] = useState<MovieType[]>([]);
-  const [comingSoonMoviesData, setComingSoonMoviesData] = useState<MovieType[]>([]);
+  const [nowPlayingMoviesData, setNowPlayingMoviesData] = useState<Movie[]>([]);
+  const [comingSoonMoviesData, setComingSoonMoviesData] = useState<Movie[]>([]);
 
   const value: MovieContextType = {
     nowPlayingMoviesData,

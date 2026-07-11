@@ -1,16 +1,16 @@
 import { create } from "zustand";
-import { MovieType } from "../types/movieType";
+import { Movie } from "../types/movieType";
 import { persist } from "zustand/middleware";
 import { Tickets } from "../types/checkout/ticketsType";
 import { Session } from "../types/checkout/sessionType";
 
 interface CheckoutStore {
-  movie: MovieType | null;
+  movie: Movie | null;
   session: Session;
   tickets: Tickets;
   seats: string[];
 
-  setMovie: (movie: MovieType) => void;
+  setMovie: (movie: Movie) => void;
   setSession: (session: Partial<Session>) => void;
   setTickets: (tickets: Tickets) => void;
   setSeats: (seats: string[]) => void;

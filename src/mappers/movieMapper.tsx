@@ -1,9 +1,9 @@
 import { movieGenres } from "../lib/movieGenres";
-import { MovieType } from "../types/movieType";
-import { MovieResponseType } from "../types/movieResponseType";
+import { Movie } from "../types/movieType";
+import { MovieResponse } from "../types/movieResponseType";
 
 export class MovieMapper {
-  public static toDomain(movie: MovieResponseType): MovieType {
+  public static toDomain(movie: MovieResponse): Movie {
     const genres = movie.genre_ids
       .map((id) => movieGenres[id])
       .slice(0, 2);

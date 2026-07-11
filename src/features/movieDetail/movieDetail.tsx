@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { X } from "lucide-react";
 import {renderAgeClassificationColor} from "../../utils/renderAgeClassificationColor";
-import { MovieType } from "@/src/types/movieType";
+import { Movie } from "@/src/types/movieType";
 import { useMovieContext } from "@/src/context/MovieContext";
 import { formatDateToBrazilianFormat } from "@/src/utils/formatDate";
 import { useCheckoutStore } from "@/src/store/checkoutStore";
@@ -13,7 +13,7 @@ import Header from "@/src/components/layout/Header";
 import Footer from "@/src/components/layout/Footer";
 import DivisionBar from "@/src/components/ui/DivisorBar";
 
-export default function MovieDetail({ movie }: { movie: MovieType }) {
+export default function MovieDetail({ movie }: { movie: Movie }) {
     const [menu, setMenu] = useState(false);
     const { nowPlayingMoviesData, comingSoonMoviesData } = useMovieContext();
     const setMovie = useCheckoutStore((state) => state.setMovie);

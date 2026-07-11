@@ -1,4 +1,4 @@
-export type CheckoutType =
+export type Checkout =
   | "session"
   | "seats"
   | "snack"

@@ -1,9 +1,9 @@
 import { useRouter } from "next/navigation";
-import { MovieType } from "@/src/types/movieType";
+import { Movie } from "@/src/types/movieType";
 import {renderAgeClassificationColor} from "../../../utils/renderAgeClassificationColor";
 
 type Props = {
-  movie: MovieType;
+  movie: Movie;
 };
 
 export default function MovieCard({movie}: Props) {

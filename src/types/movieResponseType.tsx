@@ -1,7 +1,7 @@
-import { CastMemberType } from "./castMemberType";
-import { MoviePeriodType } from "./moviePeriodType";
+import { CastMember } from "./castMemberType";
+import { MoviePeriod } from "./moviePeriodType";
 
-export type MovieResponseType = {
+export type MovieResponse = {
   id: number;
   title: string;
   poster_path: string;
@@ -11,8 +11,8 @@ export type MovieResponseType = {
   age_rating: string;
   duration: string;
   type: "comingSoon" | "nowPlaying";
-  show_period: MoviePeriodType;
+  show_period: MoviePeriod;
   release_date: string;
-  cast: CastMemberType[];
+  cast: CastMember[];
   pre_sale?: boolean;
 };

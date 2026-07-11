@@ -2,7 +2,7 @@ import { getMovies } from "../../api/movie/getMovies";
 import { getMovieReleaseDates } from "../../api/movie/getMovieReleaseDates";
 import { MovieMapper } from "../../mappers/movieMapper";
 import { extractAgeRating } from "../../utils/extractAgeRating";
-import { MovieResponseType } from "../../types/movieResponseType";
+import { MovieResponse } from "../../types/movieResponseType";
 import { generateMoviePeriod } from "../dateFiltersService";
 
 export async function getMoviesData(page: number) {
@@ -37,7 +37,7 @@ export async function getMoviesData(page: number) {
 }
 
 export function filterMovieByDate(
-  movies: MovieResponseType[],
+  movies: MovieResponse[],
   selectedDate: Date
 ) {
   const selectedTime = selectedDate.getTime();
