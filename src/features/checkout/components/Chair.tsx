@@ -1,13 +1,13 @@
 import { Accessibility } from "lucide-react";
 import { useCheckoutStore } from "@/src/store/checkoutStore";
-
+import {Seat} from "../../../types/checkout/seatType";
 type Props = {
-    type: "standard" | "accessible" | "companion";
+    type: Seat;
     position: {
         seatNumber: number;
         seatLetter: string;
     };
-    onClick: (position: string) => void;
+    onClick: (position: string, seatType: Seat) => void;
 };
 
 export default function Chair({ type, position, onClick }: Props) {
@@ -19,7 +19,7 @@ export default function Chair({ type, position, onClick }: Props) {
             <>
                 {type === "accessible" && (
                     <div
-                    onClick={() => onClick(seatPosition)}
+                    onClick={() => onClick(seatPosition, "accessible")}
                     className={`
                             ${isSeatSelected ? "bg-accent" : "bg-[#cacaca]"}
                             w-5 h-5 rounded-full
@@ -39,7 +39,7 @@ export default function Chair({ type, position, onClick }: Props) {
 
                 {type === "companion" && (
                     <div
-                    onClick={() => onClick(seatPosition)}
+                    onClick={() => onClick(seatPosition, "companion")}
                     className="flex items-center hover:brightness-110 hover:scale-105 cursor-pointer"
                     >
                     <div
@@ -85,7 +85,7 @@ export default function Chair({ type, position, onClick }: Props) {
 
                 {type === "standard" && (
                     <div
-                        onClick={() => onClick(seatPosition)}
+                        onClick={() => onClick(seatPosition, "standard")}
                         className="flex items-center hover:brightness-115 hover:scale-105 cursor-pointer"
                     >
                     <div

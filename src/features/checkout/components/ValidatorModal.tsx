@@ -1,12 +1,12 @@
 import { X, AlertCircle } from "lucide-react";
 
 type Props = {
-  missingFields: string[];
+  invalidFields: string[];
   setIsValidatorModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export default function ValidatorModal({
-  missingFields,
+  invalidFields,
   setIsValidatorModalOpen,
 }: Props) {
   return (
@@ -25,15 +25,15 @@ export default function ValidatorModal({
 
             <div className="flex-1">
               <h3 className="font-medium text-font-dark">
-                Campos obrigatórios
+                Revise os campos abaixo
               </h3>
 
               <p className="mt-1 text-sm text-font-secondary-dark">
-                Antes de continuar, complete as etapas abaixo:
+                  preencha corretamente:
               </p>
 
               <ul className="mt-2 space-y-1 text-sm">
-                {missingFields.map((field, index) => (
+                {invalidFields.map((field, index) => (
                   <li key={index}>• {field}</li>
                 ))}
               </ul>

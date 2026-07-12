@@ -1,7 +1,10 @@
+import { useState } from "react";
 import { useCheckoutStore } from "@/src/store/checkoutStore";
+import ValidatorModal from "./ValidatorModal";
+import {Seat} from "../../../types/checkout/seatType";
 import Chair from "./Chair";
+import { isSeatValidForPurchase } from "@/src/services/checkout/seatsService";
 
-type ChairType = "standard" | "accessible" | "companion";
 
 type Props = {
     accessible: boolean;
@@ -9,16 +12,22 @@ type Props = {
 };
 
 export default function ChairGrid({ accessible, row }: Props) {
+    const [isValidatorModalOpen, setIsValidatorModalOpen] = useState(false);
     const seats = useCheckoutStore((state) => state.seats);
     const setSeats = useCheckoutStore((state) => state.setSeats);
     const tickets = useCheckoutStore((state) => state.tickets);
 
-    function handleSeatSelection(seatPosition: string) {
+   function handleSeatSelection(seatPosition: string, seatType: Seat) {
         const selectedSeats = [];
         const seatLimitSelection = tickets.full.quantity + tickets.half.quantity;
         const isSeatsLimitReached = seats.length === seatLimitSelection;
         let isSeatAlreadySelected = false;
-
+        
+        if (!isSeatValidForPurchase(tickets,seatType)) {
+            setIsValidatorModalOpen(true);
+            return;
+        }
+        
         for (const seat of seats) {
             if (seat === seatPosition) {
                 isSeatAlreadySelected = true;
@@ -35,14 +44,14 @@ export default function ChairGrid({ accessible, row }: Props) {
         setSeats(selectedSeats);
     }
 
-    const leftTypes: ChairType[] = [
+    const leftTypes: Seat[] = [
         accessible ? "accessible" : "standard",
         accessible ? "companion" : "standard",
         accessible ? "accessible" : "standard",
         accessible ? "companion" : "standard",
     ];
 
-    const rightTypes: ChairType[] = [
+    const rightTypes: Seat[] = [
         "standard",
         accessible ? "companion" : "standard",
         accessible ? "accessible" : "standard",
@@ -90,6 +99,10 @@ export default function ChairGrid({ accessible, row }: Props) {
                     />
                 ))}
             </div>
+            {isValidatorModalOpen && (
+                <ValidatorModal invalidFields={["Assento: Este assento possui regras de seleção"]} setIsValidatorModalOpen={setIsValidatorModalOpen}/>
+            )}
         </div>
+        
     );
 }

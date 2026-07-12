@@ -131,7 +131,7 @@ export default function SeatsPage() {
               </main>
             <Footer />
              {isValidatorModalOpen && (
-                        <ValidatorModal missingFields={missingSeatSelection} setIsValidatorModalOpen={setIsValidatorModalOpen}/>
+                <ValidatorModal invalidFields={missingSeatSelection} setIsValidatorModalOpen={setIsValidatorModalOpen}/>
             )}
         </>
        

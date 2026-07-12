@@ -1,0 +1,1 @@
+export type Seat = "standard" | "accessible" | "companion";

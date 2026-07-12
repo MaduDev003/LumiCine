@@ -19,7 +19,7 @@ export default function SessionPage() {
     const [menu, setMenu] = useState(false);
     const { nowPlayingMoviesData, comingSoonMoviesData } = useMovieContext();
     const [isValidatorModalOpen, setIsValidatorModalOpen] = useState(false);
-    const [missingRequiredFields, setMissingRequiredFields] = useState<string[]>([]);
+    const [invalidFields, setInvalidFields] = useState<string[]>([]);
     const session = useCheckoutStore((state) => state.session);
     const setSession = useCheckoutStore((state) => state.setSession);
     const tickets = useCheckoutStore((state) => state.tickets);
@@ -41,6 +41,13 @@ export default function SessionPage() {
       type: "half" | "full",
       operationType: "plus" | "minus"
     ) {
+      const limitTickets = 6;
+      const totalTickets = tickets.full.quantity + tickets.half.quantity;
+      if(totalTickets === limitTickets && operationType === "plus") {
+        setInvalidFields(["Quantidade máxima de ingressos atingida"]);
+        setIsValidatorModalOpen(true);
+        return;
+      }
       const operationResult = updateTicketQuantity(tickets, type, operationType)
       setTickets(operationResult);
     }
@@ -48,7 +55,7 @@ export default function SessionPage() {
     function openValidatorModal() {
       const result = validateSessionSelection(session, tickets);
     
-      setMissingRequiredFields(result.missingFields);
+      setInvalidFields(result.missingFields);
       setIsValidatorModalOpen(!result.isValid);
     
       if (result.isValid) {
@@ -268,7 +275,7 @@ export default function SessionPage() {
           </main>
           <Footer/>
           {isValidatorModalOpen && (
-            <ValidatorModal missingFields={missingRequiredFields} setIsValidatorModalOpen={setIsValidatorModalOpen}/>
+            <ValidatorModal invalidFields={invalidFields} setIsValidatorModalOpen={setIsValidatorModalOpen}/>
           )}
         </>
     )}

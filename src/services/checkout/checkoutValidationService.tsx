@@ -7,6 +7,7 @@ export function validateSeatSelection(seats: string[]) {
     ? ["Selecione seu(s) assento(s)"]
     : [];
 
+  
   return {
     isValid: missingFields.length === 0,
     missingFields,
