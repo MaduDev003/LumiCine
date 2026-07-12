@@ -27,7 +27,7 @@ export default function ChairGrid({ accessible, row }: Props) {
             setIsValidatorModalOpen(true);
             return;
         }
-        
+
         for (const seat of seats) {
             if (seat === seatPosition) {
                 isSeatAlreadySelected = true;

@@ -1,12 +1,19 @@
-import { Seat } from "@/src/types/checkout/seatType";
 import { Tickets } from "@/src/types/checkout/ticketsType";
+import { Seat } from "@/src/types/checkout/seatType";
 
 export function isSeatValidForPurchase(
   tickets: Tickets,
   seatType: Seat
 ) {
-  const seatLimitSelection =
+  const totalTickets =
     tickets.full.quantity + tickets.half.quantity;
 
-  return seatLimitSelection > 1 || seatType === "standard";
+  const hasOnlyOneTicket = totalTickets === 1;
+
+
+  if (hasOnlyOneTicket && seatType === "companion") {
+    return false;
+  }
+
+  return true;
 }
