@@ -6,6 +6,7 @@ import { useCheckoutStore } from "@/src/store/checkoutStore";
 import { useMovieContext } from "@/src/context/MovieContext";
 import { useDateFilter } from "@/src/hooks/useDateFilters";
 import { validateSessionSelection } from "@/src/services/checkout/checkoutValidationService";
+import { updateTicketQuantity } from "@/src/services/checkout/sessionService";
 import MenuListElements from "@/src/components/ui/MenuListElements";
 import CheckoutProgress from "../components/CheckoutProgress";
 import Footer from "@/src/components/layout/Footer";
@@ -13,7 +14,6 @@ import ButtonCine from "@/src/components/ui/ButtonCine";
 import CheckoutProduct  from "../components/CheckoutProduct";
 import Header from "@/src/components/layout/Header";
 import ValidatorModal from "../components/ValidatorModal";
-import { updateTicketQuantity } from "@/src/services/checkout/sessionService";
 
 export default function SessionPage() {
     const [menu, setMenu] = useState(false);
@@ -59,7 +59,7 @@ export default function SessionPage() {
       setIsValidatorModalOpen(!result.isValid);
     
       if (result.isValid) {
-        router.push("/checkout/seats")
+        router.push("/checkout/seats");
       }
     }
     
@@ -83,7 +83,7 @@ export default function SessionPage() {
     { !menu &&(
         <>
 
-          <Header 
+          <Header
               setMenu={setMenu} 
               allMoviesForSearch={[...nowPlayingMoviesData, ...comingSoonMoviesData]}
             />

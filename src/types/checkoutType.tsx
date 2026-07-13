@@ -1,6 +1,6 @@
 export type Checkout =
   | "session"
   | "seats"
-  | "snack"
+  | "lumiBar"
   | "payment"
   | "confirmation";

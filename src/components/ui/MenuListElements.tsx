@@ -41,11 +41,11 @@ export default function MenuListElements({
 
       <Link 
         href="/lumibar" 
-        className={linkClasses("/lumibar")}
+        className={linkClasses("/lumiBar")}
         onClick={() => clearCheckout()} 
         >
           LumiBar
-          {isActive("/lumibar") && (
+          {isActive("/lumiBar") && (
             <span className="w-1.5 h-1.5 rounded-full bg-accent" />
           )}
       </Link>

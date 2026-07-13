@@ -7,11 +7,13 @@ export function isSeatValidForPurchase(
 ) {
   const totalTickets =
     tickets.full.quantity + tickets.half.quantity;
-
   const hasOnlyOneTicket = totalTickets === 1;
 
-
-  if (hasOnlyOneTicket && seatType === "companion") {
+  if(tickets.half.quantity === 0 && seatType === "companion"){
+    return false;
+  }
+  
+  if (hasOnlyOneTicket && seatType === "companion" ) {
     return false;
   }
 

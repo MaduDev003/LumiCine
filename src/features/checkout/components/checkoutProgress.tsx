@@ -14,7 +14,7 @@ type Props = {
 const types = [
   { id: "session", Icon: Ticket },
   { id: "seats", Icon: Armchair },
-  { id: "snack", Icon: Popcorn },
+  { id: "lumiBar", Icon: Popcorn },
   { id: "payment", Icon: CreditCard },
   { id: "confirmation", Icon: CircleCheckBig },
 ];
@@ -29,16 +29,16 @@ export default function CheckoutProgress({type}: Props) {
 
     if(isActive) {
       return {
-       container: "border-accent",
-      icon: "#FF5900",
-      bar: "bg-gray-400"
+       container: "border-font-secondary-dark",
+      icon: "#adadad",
+      bar: "bg-font-secondary-dark"
       }
     }
    if (isConcluded) {
         return {
-          container: "border-[#BE5015]",
-          icon: "#BE5015",
-          bar: "bg-[#BE5015]",
+          container: "border-[#28A745]",
+          icon: "#28A745",
+          bar: "bg-[#28A745]",
         };
     }
     if(isInactive) {
