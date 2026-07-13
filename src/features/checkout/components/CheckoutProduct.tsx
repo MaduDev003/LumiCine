@@ -25,7 +25,7 @@ export default function CheckoutProgress({ type }: Props) {
     session.date !== null ||
     session.time !== "" 
 
-  const hasSeatsInfo = seats;
+  const hasSeatsInfo = seats.length > 0;
 
   function calcTotal() {
     const fullTicketsPrice = tickets.full.price * tickets.full.quantity;

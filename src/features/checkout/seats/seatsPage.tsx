@@ -91,8 +91,6 @@ export default function SeatsPage() {
                                         </div>
                                     </div>
                                 </div>
-                                {/* Assentos */}
-                                {/* TODO: p-3 tá aq , da borda */}
                                 <div className="h-full flex flex-col gap-10 border border-secondary-dark rounded-xl p-3">
                                     <div className="bg-tertiary-dark h-4 rounded-b-3xl flex justify-center items-center py-3">
                                         <h3 className="text-background-dark font-medium text-[20px]">Tela</h3>
