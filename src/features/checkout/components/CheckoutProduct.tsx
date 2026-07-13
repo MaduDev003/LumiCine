@@ -14,6 +14,7 @@ type Props = {
 export default function CheckoutProgress({ type }: Props) {
   const [isConfirmDeletionModalOpen, setIsConfirmDeletionModalOpen] = useState(false); 
   const movie = useCheckoutStore((state) => state.movie);
+  const seats = useCheckoutStore((state) => state.seats);
   const session = useCheckoutStore((state) => state.session);
   const tickets = useCheckoutStore((state) => state.tickets);
   const clearCheckout = useCheckoutStore((state) => state.clearCheckout);
@@ -23,6 +24,8 @@ export default function CheckoutProgress({ type }: Props) {
     session.language !== "" ||
     session.date !== null ||
     session.time !== "" 
+
+  const hasSeatsInfo = seats;
 
   function calcTotal() {
     const fullTicketsPrice = tickets.full.price * tickets.full.quantity;
@@ -99,6 +102,19 @@ export default function CheckoutProgress({ type }: Props) {
             )}
           </section>
         </>
+      )}
+      {hasSeatsInfo && (
+        <section className="flex justify-between">
+          <p className="text-font-secondary-dark">Assentos</p>
+           <div className="flex justify-end gap-2">
+              {seats.map((seat, index) => (
+                <p key={seat} className="text-font-dark">
+                  {seat}
+                  {index < seats.length - 1 && ","}
+                </p>
+              ))}
+            </div>
+        </section>
       )}
 
       <div className="mt-auto">

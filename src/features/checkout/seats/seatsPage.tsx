@@ -30,7 +30,7 @@ export default function SeatsPage() {
         setMissingSeatSelection(result.missingFields);
         setIsValidatorModalOpen(!result.isValid);
 
-        if (result.isValid) router.push("/checkout/lumiBar")
+        if (result.isValid) router.push("/checkout/lumibar")
     }
 
     return (
