@@ -17,7 +17,7 @@ export default function CheckoutLumiBar(){
                 setMenu={setMenu} 
                 allMoviesForSearch={[...nowPlayingMoviesData, ...comingSoonMoviesData]}
             />
-             <main className="mt-3 md:mb-0 mb-17 lg:mb-17">
+             <main className="mt-3 md:mb-0 mb-17 lg:mb-40">
                 <div className="px-3 flex justify-center pt-8">
                     <div className="w-full max-w-280 mx-auto pb-0 lg:pb-5 flex flex-col gap-4 lg:min-h-200">
                         <CheckoutProgress type="lumiBar"/>

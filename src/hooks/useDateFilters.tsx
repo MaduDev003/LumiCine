@@ -1,36 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { generateDatesForFilter } from "../services/dateFiltersService";
-
-export function getItemsPerPage(
-  screenWidth: number,
-  type: "home" | "session"
-) {
-  switch (type) {
-    case "home":
-      switch (true) {
-        case screenWidth < 580:
-          return 1;
-        case screenWidth < 768:
-          return 3;
-        case screenWidth < 1024:
-          return 4;
-        default:
-          return 6;
-      }
-
-    case "session":
-      switch (true) {
-        case screenWidth < 500:
-          return 1;
-        case screenWidth < 650:
-          return 2;
-        case screenWidth < 1024:
-          return 3;
-        default:
-          return 3;
-      }
-  }
-}
+import {renderItemsPerPage} from "../utils/renderItensPerPage";
 
 export function useDateFilter(days = 15, type: "home" | "session") {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -64,7 +34,7 @@ export function useDateFilter(days = 15, type: "home" | "session") {
 
   useEffect(() => {
     function updateItemsPerPage() {
-      setDateFilterPerPage(getItemsPerPage(window.innerWidth, type));
+      setDateFilterPerPage(renderItemsPerPage(window.innerWidth, type));
     }
 
     updateItemsPerPage();

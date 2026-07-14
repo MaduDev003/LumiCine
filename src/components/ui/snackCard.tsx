@@ -29,20 +29,19 @@ export default function SnackCard({
 
   return (
     <div className="relative w-48">
-      {/* Preço */}
       <div className="absolute top-2 right-0 z-20 flex items-center justify-center rounded-full bg-secondary-dark px-3 py-1 shadow-[0_8px_20px_rgba(0,0,0,0.45)]">
         <span className="text-[16px] font-semibold">
           R$ {price.toFixed(2)}
         </span>
       </div>
-      <div className="relative z-10 flex justify-center h-40 mb-5">
+      <div className="relative z-10 flex justify-center h-40 mb-5 ">
         <img
           src={image}
           alt={name}
-          className="w-35 object-contain drop-shadow-xl"
+          className="w-35 object-contain drop-shadow-xl "
         />
       </div>
-      <div className="-mt-5 h-52 rounded-2xl bg-secondary-dark px-4 pt-8 pb-4 flex flex-col justify-between">
+      <div className="-mt-5 h-52 rounded-2xl bg-secondary-dark px-4 pt-8 pb-4 flex flex-col justify-between  shadow-[0_8px_20px_rgba(0,0,0,0.45)]">
         <div>
           <h2 className="text-center text-lg font-medium">
             {name}

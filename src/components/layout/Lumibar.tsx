@@ -1,55 +1,112 @@
+import {useState, useEffect} from "react";
+import { ChevronRight, ChevronLeft } from "lucide-react";
+import { lumiBarProducts } from "@/src/data/lumibarProducts";
+import { renderItemsPerPage } from "@/src/utils/renderItensPerPage";
 import SnackCard from "../ui/snackCard";
-import popcorn from "../../assets/images/popcorn.png";
-import hotDog from "../../assets/images/hotDog.png";
-import nachos from "../../assets/images/nachos.png"
 
 export default function LumiBar() {
+    const [startIndex, setStartIndex] = useState(0);
+    const [screenWidth, setScreenWidth] = useState(0);
+    const {drinks, snacks} = lumiBarProducts;
+    const limitItensPerPageSize = renderItemsPerPage(
+        screenWidth,
+        "lumibar"
+    );
+    const endSnacks = startIndex + limitItensPerPageSize;
+    const hasPrevious = startIndex > 0;
+    const hasNext = endSnacks < snacks.length;
+
+    useEffect(() => {
+        function handleResize() {
+            setScreenWidth(window.innerWidth);
+        }
+
+        handleResize();
+
+        window.addEventListener(
+            "resize",
+            handleResize
+        );
+
+        return () => {
+            window.removeEventListener(
+            "resize",
+            handleResize
+            );
+        };
+    }, []);
+    function handlePrevious() {
+        if (hasPrevious) {
+            setStartIndex(prev => 
+                prev - limitItensPerPageSize
+            );
+        }
+    }
+
+
+    function handleNext() {
+        if (hasNext) {
+            setStartIndex(prev => 
+                prev + limitItensPerPageSize
+            );
+        }
+    }
   return (
     <div className="flex flex-col  gap-14">
         <section className="w-full">
-            <h1 className="text-2xl mb-6">Comidas</h1>
-            <div className="flex justify-around">
-                    <SnackCard
-                        name="Pipoca"
-                        description="Caramelo ou Manteiga • Escolha na retirada"
-                        price={16}
-                        image={popcorn.src}
-                    />
-                    <SnackCard
-                        name="Nachos"
-                        description="Cheddar, carne, pimenta e guacamole"
-                        price={25}
-                        image={nachos.src}
-                    />
-                     <SnackCard
-                        name="Cachorro Quente"
-                        description="Salsicha, queijo, molho e batata palha"
-                        price={28}
-                        image={hotDog.src}
-                    />
+            <h1 className="text-2xl mb-2">Comidas</h1>
+            <div className="flex justify-center items-center gap-5">
+                <ChevronLeft 
+                     onClick={handlePrevious}
+                    className={`
+                        w-10 h-10 p-1 stroke-1 rounded-full transition ${
+                        hasPrevious
+                            ? "hover:bg-white/10 cursor-pointer"
+                            : "opacity-40 cursor-not-allowed"
+                    }`}
+                />
+                <div className="flex gap-5">
+                    {snacks.map((snack, index) => {
+                        if (
+                            //0 //-1
+                           index >= startIndex &&
+                            index < endSnacks
+                        ) {
+                            return (
+                                <SnackCard
+                                    key={snack.id}
+                                    name={snack.name}
+                                    description={snack.description}
+                                    image={snack.image}
+                                    price={snack.price}
+                                />
+                            );
+                        }
+                    })}
+                </div>
+                <ChevronRight  
+                  onClick={handleNext}
+                    className={`
+                        w-10 h-10 p-1 stroke-1 rounded-full transition ${
+                        hasNext
+                            ? "hover:bg-white/10 cursor-pointer"
+                            : "opacity-40 cursor-not-allowed"
+                    }`}
+                />
             </div>
         </section>
         <section className="w-full">
-            <h1 className="text-2xl mb-6">Bebidas</h1>
+            <h1 className="text-2xl mb-2">Bebidas</h1>
             <div className="flex justify-around">
-                    <SnackCard
-                        name="Combo Dupla Hot"
-                        description="2 refrigerantes + 2 Hot Dogs"
-                        price={20}
-                        image={popcorn.src}
+                {drinks.map((drink, index) => (
+                    <SnackCard 
+                        key={index}
+                        name={drink.name}
+                        description={drink.description}
+                        image={drink.image}
+                        price={drink.price}
                     />
-                    <SnackCard
-                        name="Combo Dupla Hot"
-                        description="2 refrigerantes + 2 Hot Dogs"
-                        price={20}
-                        image={popcorn.src}
-                    />
-                    <SnackCard
-                        name="Combo Dupla Hot"
-                        description="2 refrigerantes + 2 Hot Dogs"
-                        price={20}
-                        image={popcorn.src}
-                    />
+                  ))}
             </div>
         </section>
     </div>
