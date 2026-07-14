@@ -1,90 +1,102 @@
 import popcorn from "../assets/images/popcorn.png";
 import hotDog from "../assets/images/hotDog.png";
 import nachos from "../assets/images/nachos.png";
-import cocaCola from "../assets/images/cocaCola.png";
+import strawberryMilk from "../assets/images/strawberryMilk.png";
+import frenchFries from "../assets/images/frenchFries.png";
+import water from "../assets/images/water.png";
+import softDrink from "../assets/images/softDrink.png";
+import juice from "../assets/images/juice.png";
+import chocoMilk from "../assets/images/chocoMilk.png";
+import vanillaMilk from "../assets/images/vanillaMilk.png";
 
 export const lumiBarProducts = {
   snacks: [
     {
       id: 1,
-      name: "Pipoca",
-      description: "Caramelo ou manteiga",
-      price: 16,
+      name: "Pipoca Salgada - P",
+      description: "Amanteigada",
+      price: 9,
       image: popcorn.src,
     },
     {
       id: 2,
-      name: "Nachos",
-      description: "Cheddar, carne, pimenta e guacamole",
-      price: 25,
-      image: nachos.src,
+      name: "Pipoca Salgada - M",
+      description: "Amanteigada",
+      price: 12,
+      image: popcorn.src,
     },
     {
       id: 3,
-      name: "Cachorro-Quente",
-      description: "Salsicha, molho e batata palha",
-      price: 28,
-      image: hotDog.src,
-    },
-    {
-      id: 4,
-      name: "Pipoca",
-      description: "Caramelo ou manteiga",
+      name: "Pipoca Salgada - G",
+      description: "Amanteigada",
       price: 16,
       image: popcorn.src,
     },
     {
+      id: 4,
+      name: "Nachos",
+      description: "Cheddar, carne, pimenta e guacamole",
+      price: 28,
+      image: nachos.src,
+    },
+    {
       id: 5,
-      name: "Macarrão",
-      description: "Caramelo ou manteiga",
-      price: 16,
+      name: "Cachorro Quente",
+      description: "Salsicha, molho e batata palha",
+      price: 25,
       image: hotDog.src,
     },
     {
       id: 6,
-      name: "Nachos",
-      description: "Cheddar, carne, pimenta e guacamole",
+      name: "Batata Frita",
+      description: "Serve 2 pessoas e acompanha ketchup",
       price: 25,
-      image: nachos.src,
-    },
-      {
-      id: 7,
-      name: "Cachorro-Quente",
-      description: "Salsicha, molho e batata palha",
-      price: 28,
-      image: hotDog.src,
-    },
-     {
-      id: 8,
-      name: "Nachos",
-      description: "Cheddar, carne, pimenta e guacamole",
-      price: 25,
-      image: nachos.src,
-    },
-      {
-      id: 9,
-      name: "Pipoca",
-      description: "Caramelo ou manteiga",
-      price: 16,
-      image: popcorn.src,
-    },
-    {
-      id: 5,
-      name: "Doce",
-      description: "Caramelo ou manteiga",
-      price: 16,
-      image: hotDog.src,
-    },
-
+      image: frenchFries.src,
+    }
   ],
 
   drinks: [
     {
-      id: 4,
-      name: "Coca Cola",
-      description: "Lata 350ml",
+      id: 1,
+      name: "Água Mineral",
+      description: "Água sem gás",
+      price: 3,
+      image: water.src,
+    },
+    {
+      id: 2,
+      name: "Refrigenrante",
+      description: "500 ML Sabor escolhido na retirada",
       price: 8,
-      image: cocaCola.src,
+      image: softDrink.src,
+    },
+    {
+      id: 3,
+      name: "Suco ",
+      description: "500 ML Sabor escolhido na retirada",
+      price: 8,
+      image: juice.src,
+    },
+    {
+      id: 4,
+      name: "MilkShake De Chocolate",
+      description: "500 ML",
+      price: 12,
+      image: chocoMilk.src,
+    },
+    {
+      id: 5,
+      name: "MilkShake De Baunilha",
+      description: "500 ML",
+      price: 12,
+      image: vanillaMilk.src,
+    },
+    {
+      id: 6,
+      name: "Milkshake De Morango",
+      description: "500 ML",
+      price: 12,
+      image: strawberryMilk.src,
     }
   ],
 };
