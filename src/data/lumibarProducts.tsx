@@ -13,22 +13,22 @@ export const lumiBarProducts = {
   snacks: [
     {
       id: 1,
-      name: "Pipoca Salgada - P",
-      description: "Amanteigada",
+      name: "Pipoca P",
+      description: "escolha entre doce ou salgada na retirada",
       price: 9,
       image: popcorn.src,
     },
     {
       id: 2,
-      name: "Pipoca Salgada - M",
-      description: "Amanteigada",
+      name: "Pipoca M",
+      description: "escolha entre doce ou salgada na retirada",
       price: 12,
       image: popcorn.src,
     },
     {
       id: 3,
-      name: "Pipoca Salgada - G",
-      description: "Amanteigada",
+      name: "Pipoca G",
+      description: "escolha entre doce ou salgada na retirada",
       price: 16,
       image: popcorn.src,
     },

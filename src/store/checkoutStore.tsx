@@ -3,17 +3,20 @@ import { Movie } from "../types/movieType";
 import { persist } from "zustand/middleware";
 import { Tickets } from "../types/checkout/ticketsType";
 import { Session } from "../types/checkout/sessionType";
+import { Lumibar } from "../types/checkout/lumiBarType";
 
 interface CheckoutStore {
   movie: Movie | null;
   session: Session;
   tickets: Tickets;
   seats: string[];
+  lumibar: Lumibar[];
 
   setMovie: (movie: Movie) => void;
   setSession: (session: Partial<Session>) => void;
   setTickets: (tickets: Tickets) => void;
   setSeats: (seats: string[]) => void;
+  setLumibar: (lumibar: Lumibar[]) => void;
   clearCheckout: () => void;
 }
 
@@ -42,11 +45,10 @@ export const useCheckoutStore = create<CheckoutStore>()(
       session: initialSession,
       tickets: initialTickets,
       seats: [],
+      lumibar: [],
 
       setMovie: (movie) => set({ movie }),
-
       setTickets: (tickets) => set({ tickets }),
-
       setSession: (session) =>
         set((state) => ({
           session: {
@@ -54,8 +56,8 @@ export const useCheckoutStore = create<CheckoutStore>()(
             ...session,
           },
         })),
-
       setSeats: (seats) => set({ seats }),
+      setLumibar: (lumibar) => set({lumibar}),
 
       clearCheckout: () =>
         set({
@@ -63,6 +65,7 @@ export const useCheckoutStore = create<CheckoutStore>()(
           session: initialSession,
           tickets: initialTickets,
           seats: [],
+          lumibar: []
         }),
     }),
     {

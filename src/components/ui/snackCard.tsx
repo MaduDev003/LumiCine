@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
 import { Minus, Plus } from "lucide-react";
+import { useCheckoutStore } from "@/src/store/checkoutStore";
 
 type Props = {
   name: string;
@@ -16,32 +16,85 @@ export default function SnackCard({
   price,
   image,
 }: Props) {
-  const [quantity, setQuantity] = useState(0);
+  const lumibar = useCheckoutStore((state) => state.lumibar);
+  const setLumibar = useCheckoutStore((state) => state.setLumibar);
 
-  function handleIncrease() {
-    if (quantity === 6) return;
-    setQuantity((prev) => prev + 1);
-  }
+  const quantity =
+    lumibar.find((item) => item.name === name)?.quantity ?? 0;
 
-  function handleDecrease() {
-    setQuantity((prev) => Math.max(prev - 1, 0));
+
+    //TODO: Por essa func em um service
+  function handlePurchase(operation: "plus" | "minus") {
+    const product = lumibar.find(
+      (item) => item.name === name
+    );
+
+    if (operation === "plus") {
+      if (product?.quantity === 6) return;
+
+      if (product) {
+        setLumibar(
+          lumibar.map((item) =>
+            item.name === name
+              ? {
+                  ...item,
+                  quantity: item.quantity + 1,
+                }
+              : item
+          )
+        );
+      } else {
+        setLumibar([
+          ...lumibar,
+          {
+            name,
+            price,
+            quantity: 1,
+          },
+        ]);
+      }
+    }
+
+    if (operation === "minus") {
+      if (product?.quantity === 1) {
+        setLumibar(
+          lumibar.filter(
+            (item) => item.name !== name
+          )
+        );
+      } else {
+        setLumibar(
+          lumibar.map((item) =>
+            item.name === name
+              ? {
+                  ...item,
+                  quantity: item.quantity - 1,
+                }
+              : item
+          )
+        );
+      }
+    }
   }
 
   return (
     <div className="relative w-48">
-      <div className="absolute top-2 right-0 z-20 flex items-center justify-center rounded-full bg-secondary-dark px-3 py-1 shadow-[0_8px_20px_rgba(0,0,0,0.45)]">
+      <div className="absolute top-2 right-0 z-20 flex items-center justify-center rounded-full bg-secondary-dark px-3 py-1">
         <span className="text-[16px] font-semibold">
           R$ {price.toFixed(2)}
         </span>
       </div>
-      <div className="relative z-10 flex justify-center h-40 mb-5 ">
+
+      <div className="relative z-10 flex justify-center h-40 mb-5">
         <img
           src={image}
           alt={name}
-          className="w-35 object-contain drop-shadow-xl "
+          className="w-35 object-contain drop-shadow-xl"
         />
       </div>
-      <div className="-mt-5 h-52 rounded-2xl bg-secondary-dark px-4 pt-8 pb-4 flex flex-col justify-between  shadow-[0_8px_20px_rgba(0,0,0,0.45)]">
+
+      <div className="-mt-5 h-52 rounded-2xl bg-secondary-dark px-4 pt-8 pb-4 flex flex-col justify-between">
+
         <div>
           <h2 className="text-center text-lg font-medium">
             {name}
@@ -52,19 +105,22 @@ export default function SnackCard({
           </p>
         </div>
 
+
         <div className="flex justify-center items-center h-20">
+
           {quantity === 0 ? (
             <button
-              onClick={() => setQuantity(1)}
-              className="cursor-pointer rounded-full h-10 mt-3 bg-accent px-6 py-2 text-sm font-medium text-white transition hover:brightness-110"
+              onClick={() => handlePurchase("plus")}
+              className="cursor-pointer rounded-full h-10 mt-3 bg-accent px-6 py-2 text-sm font-medium text-white"
             >
               Adicionar
             </button>
           ) : (
             <div className="flex items-center gap-4">
+
               <button
-                onClick={handleDecrease}
-                className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-zinc-800 transition hover:bg-zinc-600"
+                onClick={() => handlePurchase("minus")}
+                className="flex h-8 w-8 items-center justify-center rounded-full bg-zinc-800"
               >
                 <Minus size={15} />
               </button>
@@ -74,13 +130,15 @@ export default function SnackCard({
               </span>
 
               <button
-                onClick={handleIncrease}
-                className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-accent text-white transition hover:brightness-110"
+                onClick={() => handlePurchase("plus")}
+                className="flex h-8 w-8 items-center justify-center rounded-full bg-accent text-white"
               >
                 <Plus size={15} />
               </button>
+
             </div>
           )}
+
         </div>
       </div>
     </div>

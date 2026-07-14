@@ -2,9 +2,9 @@
 
 import {useState, useEffect} from "react";
 import { ChevronRight, ChevronLeft } from "lucide-react";
-import { lumiBarProducts } from "@/src/data/lumibarProducts";
 import { renderItemsPerPage } from "@/src/utils/renderItensPerPage";
 import { getPagination } from "@/src/utils/pagination";
+import { lumiBarProducts } from "@/src/data/lumibarProducts";
 import SnackCard from "../ui/snackCard";
 
 export default function LumiBar() {
@@ -38,7 +38,6 @@ export default function LumiBar() {
         }
         
     }
-
 
     function handleNext(type: "snacks" | "drinks") {
         if (type === "snacks" && snacksPagination.hasNext) {
