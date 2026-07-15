@@ -38,3 +38,26 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans), sans-serif;
 }
+
+.lumibar-scroll {
+  scrollbar-color: #AAA9A8 transparent;
+}
+
+.lumibar-scroll::-webkit-scrollbar {
+  width: 10px;
+}
+
+.lumibar-scroll::-webkit-scrollbar-track {
+  border-radius: 9999px;
+  margin: 8px 0;
+}
+
+.lumibar-scroll::-webkit-scrollbar-thumb {
+  background: #AAA9A8;
+  border-radius: 9999px;
+  min-height: 40px;
+}
+
+.lumibar-scroll::-webkit-scrollbar-thumb:hover {
+  background: #ECECEC;
+}

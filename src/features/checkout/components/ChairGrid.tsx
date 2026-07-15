@@ -61,13 +61,13 @@ export default function ChairGrid({ accessible, row }: Props) {
     return (
         <div className="flex justify-between">
             <div className="rotate-180 flex gap-1 md:gap-2">
-                {leftTypes.map((type, seatIndex) => (
+                {leftTypes.map((type, index) => (
                     <Chair
-                        key={seatIndex}
+                        key={index}
                         type={type}
                         position={{
                             seatLetter: row,
-                            seatNumber: 4 - seatIndex,
+                            seatNumber: 4 - index,
                         }}
                         onClick={handleSeatSelection}
                     />
@@ -87,13 +87,13 @@ export default function ChairGrid({ accessible, row }: Props) {
                     </p>
                 </div>
 
-                {rightTypes.map((type, seatIndex) => (
+                {rightTypes.map((type, index) => (
                     <Chair
-                        key={seatIndex}
+                        key={index}
                         type={type}
                         position={{
                             seatLetter: row,
-                            seatNumber: 8 - seatIndex,
+                            seatNumber: 8 - index,
                         }}
                         onClick={handleSeatSelection}
                     />

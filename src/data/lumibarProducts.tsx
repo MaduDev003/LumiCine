@@ -65,7 +65,7 @@ export const lumiBarProducts = {
     },
     {
       id: 2,
-      name: "Refrigenrante",
+      name: "Refrigerante",
       description: "500 ML Sabor escolhido na retirada",
       price: 8,
       image: softDrink.src,

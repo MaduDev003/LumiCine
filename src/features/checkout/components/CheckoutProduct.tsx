@@ -6,6 +6,7 @@ import { Checkout } from "@/src/types/checkoutType";
 import { Trash2 } from "lucide-react";
 import ButtonCine from "../../../components/ui/ButtonCine";
 import DivisionBar from "@/src/components/ui/DivisorBar";
+import { sumLumibarProducts } from "@/src/services/checkout/lumiBarService";
 
 type Props = {
   type: Checkout;
@@ -17,6 +18,7 @@ export default function CheckoutProgress({ type }: Props) {
   const seats = useCheckoutStore((state) => state.seats);
   const session = useCheckoutStore((state) => state.session);
   const tickets = useCheckoutStore((state) => state.tickets);
+  const lumibar = useCheckoutStore((state) => state.lumibar);
   const clearCheckout = useCheckoutStore((state) => state.clearCheckout);
   const router = useRouter();
   
@@ -27,15 +29,19 @@ export default function CheckoutProgress({ type }: Props) {
 
   const hasSeatsInfo = seats.length > 0;
 
-  function calcTotal() {
-    const fullTicketsPrice = tickets.full.price * tickets.full.quantity;
-    const halfTicketsPrice = tickets.half.price * tickets.half.quantity;
 
-    return (fullTicketsPrice + halfTicketsPrice).toFixed(2);
+  function calcTotal() {
+   const ticketsPrice =
+    tickets.full.price * tickets.full.quantity +
+    tickets.half.price * tickets.half.quantity;
+
+    return (ticketsPrice + sumLumibarProducts(lumibar).price).toFixed(2);
   }
 
-  function calcItemsQuantity(){
-    return tickets.full.quantity + tickets.half.quantity
+  function calcItemsQuantity() {
+    const ticketsSum = tickets.full.quantity + tickets.half.quantity;
+
+    return ticketsSum + sumLumibarProducts(lumibar).quantity;
   }
 
   return (
@@ -116,7 +122,23 @@ export default function CheckoutProgress({ type }: Props) {
             </div>
         </section>
       )}
-
+      {lumibar.length > 0 && (
+        <>
+          <div className="flex justify-center items-center flex-col mt-3">
+             <DivisionBar />
+            <p className="text-font-secondary-dark mt-3">Pedidos Lumibar</p>
+            <div  className="lumibar-scroll bg-[#262626] rounded w-full h-30 overflow-y-auto flex flex-col gap-2 p-3 mb-3 items-start ">
+              {lumibar.map((item, index) => (
+                <div key={index} className="flex gap-2">
+                  <span className="text-[#AAA9A8]">x{item.quantity}</span>
+                  <p className="text-font-dark">{item.name}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </>
+      )}
+      
       <div className="mt-auto">
         <DivisionBar />
 
