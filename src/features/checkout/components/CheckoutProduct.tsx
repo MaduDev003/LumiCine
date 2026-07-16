@@ -4,9 +4,9 @@ import { useRouter } from "next/navigation";
 import { useCheckoutStore } from "@/src/store/checkoutStore";
 import { Checkout } from "@/src/types/checkoutType";
 import { Trash2 } from "lucide-react";
+import { sumLumibarProducts } from "@/src/services/checkout/lumiBarService";
 import ButtonCine from "../../../components/ui/ButtonCine";
 import DivisionBar from "@/src/components/ui/DivisorBar";
-import { sumLumibarProducts } from "@/src/services/checkout/lumiBarService";
 
 type Props = {
   type: Checkout;
@@ -55,6 +55,7 @@ export default function CheckoutProgress({ type }: Props) {
         rounded-xl
         flex
         flex-col
+        h-fit
       "
     >
       <section className="flex flex-col gap-3 mb-3">
@@ -139,7 +140,7 @@ export default function CheckoutProgress({ type }: Props) {
         </>
       )}
       
-      <div className="mt-auto">
+      <div className="pt-6">
         <DivisionBar />
 
         <div className="pt-4">
