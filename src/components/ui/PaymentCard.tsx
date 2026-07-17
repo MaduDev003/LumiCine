@@ -10,7 +10,7 @@ interface Props {
   isCreditCard: boolean;
 }
 
-export default function App(isCreditCard: Props) {
+export default function App({ isCreditCard }: Props) {
   const [number, setNumber] = useState("");
   const [name, setName] = useState("");
   const [expiry, setExpiry] = useState("");
@@ -112,7 +112,14 @@ export default function App(isCreditCard: Props) {
           >
             <span>{installment}</span>
 
-            <ChevronDown size={18} />
+             <ChevronDown
+                size={20}
+                className={`transition-transform duration-300 ${
+                isOpen
+                ? "rotate-180"
+                : ""
+                }`}
+              />
           </button>
 
           {isOpen && (
