@@ -125,7 +125,7 @@ export default function CheckoutProgress({ type }: Props) {
       )}
       {lumibar.length > 0 && (
         <>
-          <div className="flex justify-center items-center flex-col mt-3">
+          <div className="flex justify-center items-center flex-col mt-4">
              <DivisionBar />
             <p className="text-font-secondary-dark mt-3">Pedidos Lumibar</p>
             <div  className="lumibar-scroll bg-[#262626] rounded w-full h-30 overflow-y-auto flex flex-col gap-2 p-3 mb-3 items-start ">
@@ -140,7 +140,7 @@ export default function CheckoutProgress({ type }: Props) {
         </>
       )}
       
-      <div className="pt-6">
+      <div className="mt-4">
         <DivisionBar />
 
         <div className="pt-4">
@@ -148,7 +148,7 @@ export default function CheckoutProgress({ type }: Props) {
             <p className="text-font-secondary-dark">Itens</p>
 
             <div className="w-10">
-              <p className="text-font-dark">{calcItemsQuantity()}</p>
+              <p className="text-font-secondary-dark">{calcItemsQuantity()}</p>
             </div>
           </div>
 

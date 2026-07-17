@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { CreditCard } from "lucide-react";
 import pix from "../../assets/icons/pix.svg";
+import PaymentCard from "../ui/PaymentCard";
 
 type PaymentType = "credit" | "debit" | "pix" | null;
 
@@ -19,13 +20,15 @@ export default function PaymentPurchase() {
         return `
             bg-secondary-dark
             w-[85%]
-            ${isSelected ? "h-86" : "h-18"}
+           ${isSelected ? "h-auto" : "h-18"}
             rounded
             flex
-            ${isSelected ? "items-baseline py-4" : "items-center"}
+            flex-col
+            ${isSelected ? "py-4" : "justify-center"}
             px-4
             gap-4
-            hover:bg-white/22
+            ${isSelected ? " hover:bg-secondary-dark" : " hover:bg-white/22"}
+           
             cursor-pointer
             text-left
             transition-all
@@ -35,104 +38,97 @@ export default function PaymentPurchase() {
 
     return (
         <>
-            <button
-                onClick={() => handlePaymentSelect("credit")}
+            {/* Crédito */}
+            <div
                 className={getPaymentClass("credit")}
+                onClick={() => handlePaymentSelect("credit")}
             >
-                {selectedPayment === "credit" ? (
+                <div className="flex items-center gap-3 w-full">
+                    <CreditCard 
+                        size={26} 
+                        color="#FF5900" 
+                        fill="#8C380B"
+                    />
+
                     <div>
                         <h2 className="text-font-dark text-[20px]">
-                            Crédito
+                            Cartão de Crédito
                         </h2>
 
-                        <p className="text-font-secondary-dark text-[15px] mt-2">
-                            Informe os dados do cartão de crédito.
+                        <p className="text-font-secondary-dark text-[15px]">
+                            Parcelamento em até 2x ( valor mínimo 40 reais )
                         </p>
                     </div>
-                ) : (
-                    <>
-                        <CreditCard 
-                            size={26} 
-                            color="#FF5900" 
-                            fill="#8C380B"
-                        />
+                </div>
 
-                        <div>
-                            <h2 className="text-font-dark text-[20px]">
-                                Cartão de Crédito
-                            </h2>
-
-                            <p className="text-font-secondary-dark text-[15px]">
-                                Parcelamento em até 2x ( valor mínimo 40 reais )
-                            </p>
-                        </div>
-                    </>
+                {selectedPayment === "credit" && (
+                    <div onClick={(e) => e.stopPropagation()}>
+                        <PaymentCard isCreditCard={true}/>
+                    </div>
                 )}
-            </button>
+            </div>
 
 
-            <button
-                onClick={() => handlePaymentSelect("debit")}
+            {/* Débito */}
+            <div
                 className={getPaymentClass("debit")}
+                onClick={() => handlePaymentSelect("debit")}
             >
-                {selectedPayment === "debit" ? (
+                <div className="flex items-center gap-3 w-full">
+                    <CreditCard 
+                        size={26} 
+                        color="#FF5900" 
+                        fill="#8C380B"
+                    />
+
                     <div>
                         <h2 className="text-font-dark text-[20px]">
-                            Débito
+                            Cartão de Débito
                         </h2>
 
-                        <p className="text-font-secondary-dark text-[15px] mt-2">
+                        <p className="text-font-secondary-dark text-[15px]">
                             Informe os dados do cartão de débito.
                         </p>
                     </div>
-                ) : (
-                    <>
-                        <CreditCard 
-                            size={26} 
-                            color="#FF5900" 
-                            fill="#8C380B"
-                        />
+                </div>
 
-                        <div>
-                            <h2 className="text-font-dark text-[20px]">
-                                Cartão de Débito
-                            </h2>
-                        </div>
-                    </>
+                {selectedPayment === "debit" && (
+                    <div onClick={(e) => e.stopPropagation()}>
+                        <p className="text-font-secondary-dark text-[15px]">
+                            Informe os dados do cartão de débito.
+                        </p>
+                    </div>
                 )}
-            </button>
+            </div>
 
 
-            <button
-                onClick={() => handlePaymentSelect("pix")}
+            {/* Pix */}
+            <div
                 className={getPaymentClass("pix")}
+                onClick={() => handlePaymentSelect("pix")}
             >
-                {selectedPayment === "pix" ? (
+                <div className="flex items-center gap-3 w-full">
+                    <img 
+                        src={pix.src} 
+                        alt="Símbolo do Pix" 
+                        className="w-6 h-6"
+                    />
+
                     <div>
                         <h2 className="text-font-dark text-[20px]">
                             Pix
                         </h2>
+                    </div>
+                </div>
 
-                        <p className="text-font-secondary-dark text-[15px] mt-2">
+                {selectedPayment === "pix" && (
+                    <div onClick={(e) => e.stopPropagation()}>
+                        <p className="text-font-secondary-dark text-[15px]">
                             Gere o QR Code para realizar o pagamento.
                         </p>
                     </div>
-                ) : (
-                    <>
-                        <img 
-                            src={pix.src} 
-                            alt="Símbolo do Pix" 
-                            className="w-6 h-6"
-                        />
-
-                        <div>
-                            <h2 className="text-font-dark text-[20px]">
-                                Pix
-                            </h2>
-                        </div>
-                    </>
                 )}
-            </button>
+            </div>
         </>
-    )
+    );
 }
