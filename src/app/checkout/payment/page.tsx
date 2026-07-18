@@ -1,7 +1,7 @@
-import PaymentPage from "@/src/features/checkout/paymentPage";
+import CheckoutPaymentPage from "@/src/features/checkout/checkoutPaymentPage";
 
 export default function Payment() {
   return (
-    <PaymentPage />
+    <CheckoutPaymentPage />
   );
 }
