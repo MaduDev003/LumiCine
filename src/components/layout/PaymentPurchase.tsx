@@ -71,25 +71,25 @@ export default function PaymentPurchase() {
 
 
   function getPaymentClass(payment: PaymentType) {
-    const isSelected = selectedPayment === payment;
+  const isSelected = selectedPayment === payment;
 
-    return `
-      bg-secondary-dark
-      w-[85%]
-      ${isSelected ? "h-auto" : "h-18"}
-      rounded
-      flex
-      flex-col
-      ${isSelected ? "py-4" : "justify-center"}
-      px-4
-      gap-4
-      ${isSelected ? "hover:bg-secondary-dark" : "hover:bg-white/22"}
-      cursor-pointer
-      text-left
-      transition-all
-      duration-300
-    `;
-  }
+  return `
+    bg-secondary-dark
+    w-[85%]
+    rounded
+    flex
+    flex-col
+    ${isSelected ? "py-4" : "py-0 h-18"}
+    px-4
+    gap-4
+    ${isSelected ? "hover:bg-secondary-dark" : "hover:bg-white/22"}
+    cursor-pointer
+    text-left
+    transition-all
+    duration-700
+    ease-out
+  `;
+}
 
 
   return (
@@ -125,7 +125,7 @@ export default function PaymentPurchase() {
 
             <ChevronDown
               size={20}
-              className={`transition-transform duration-300 ${
+              className={`transition-transform duration-700 ${
                 selectedPayment === "credit"
                   ? "rotate-180"
                   : ""
@@ -139,6 +139,7 @@ export default function PaymentPurchase() {
             <PaymentCard
               isCreditCard={true}
               register={register}
+              errors={errors}
               watch={watch}
               setValue={setValue}
             />
@@ -178,7 +179,7 @@ export default function PaymentPurchase() {
 
             <ChevronDown
               size={20}
-              className={`transition-transform duration-300 ${
+              className={`transition-transform duration-700 ${
                 selectedPayment === "debit"
                   ? "rotate-180"
                   : ""
@@ -192,6 +193,7 @@ export default function PaymentPurchase() {
             <PaymentCard
               isCreditCard={false}
               register={register}
+              errors={errors}
               watch={watch}
               setValue={setValue}
             />
@@ -221,7 +223,7 @@ export default function PaymentPurchase() {
 
             <ChevronDown
               size={20}
-              className={`transition-transform duration-300 ${
+              className={`transition-transform duration-700 ${
                 selectedPayment === "pix"
                   ? "rotate-180"
                   : ""
@@ -249,7 +251,7 @@ export default function PaymentPurchase() {
           text-font-dark
           bg-accent
           transition-all
-          duration-300
+         duration-700
           hover:scale-105
           cursor-pointer
           hover:brightness-110

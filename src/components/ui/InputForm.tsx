@@ -1,4 +1,4 @@
-import { UseFormRegister } from "react-hook-form";
+import { UseFormRegister, FieldErrors } from "react-hook-form";
 import { PaymentFormData } from "@/src/schemas/paymentSchema";
 
 interface Props {
@@ -7,6 +7,7 @@ interface Props {
   type: string;
   placeholder: string;
   register: UseFormRegister<PaymentFormData>;
+  errors: FieldErrors<PaymentFormData>;
   onFocus: (e: React.FocusEvent<HTMLInputElement>) => void;
 }
 
@@ -16,6 +17,7 @@ export default function InputForm({
   type,
   placeholder,
   register,
+  errors,
   onFocus,
 }: Props) {
   return (
@@ -26,13 +28,13 @@ export default function InputForm({
 
       <input
         className="
-          border 
-          rounded-xl 
-          h-10 
-          w-60 
-          border-tertiary-dark 
-          px-2 
-          placeholder:text-[14px] 
+          border
+          rounded-xl
+          h-10
+          w-60
+          border-tertiary-dark
+          px-2
+          placeholder:text-[14px]
           focus:outline-none
         "
         type={type}
@@ -40,6 +42,29 @@ export default function InputForm({
         onFocus={onFocus}
         {...register(name)}
       />
+
+      {errors[name] && (
+          <>
+            {errors[name] && (
+              <span
+                className="
+                  mt-1
+                  flex
+                  items-center
+                  gap-1
+                  text-[13px]
+                  text-red-400
+                  animate-in
+                  fade-in
+                  slide-in-from-top-1
+                "
+              >
+                <span className="h-1.5 w-1.5 rounded-full bg-red-400" />
+                {errors[name]?.message}
+              </span>
+            )}
+          </>
+      )}
     </div>
   );
 }

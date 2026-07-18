@@ -6,6 +6,7 @@ import Cards from "react-19-credit-card";
 import "react-19-credit-card/dist/es/index.css";
 
 import {
+  FieldErrors,
   UseFormRegister,
   UseFormSetValue,
   UseFormWatch,
@@ -19,6 +20,7 @@ type Focused = "number" | "name" | "expiry" | "cvc" | "";
 interface Props {
   isCreditCard: boolean;
   register: UseFormRegister<PaymentFormData>;
+  errors: FieldErrors<PaymentFormData>,
   watch: UseFormWatch<PaymentFormData>;
   setValue: UseFormSetValue<PaymentFormData>;
 }
@@ -26,6 +28,7 @@ interface Props {
 export default function PaymentCard({
   isCreditCard,
   register,
+  errors,
   watch,
   setValue,
 }: Props) {
@@ -66,6 +69,7 @@ export default function PaymentCard({
             name="number"
             type="tel"
             placeholder="4111 5555 3782 6011"
+            errors={errors}
             register={register}
             onFocus={handleFocus}
           />
@@ -76,6 +80,7 @@ export default function PaymentCard({
             name="name"
             type="text"
             placeholder="Nome como está no cartão"
+            errors={errors}
             register={register}
             onFocus={handleFocus}
           />
@@ -90,6 +95,7 @@ export default function PaymentCard({
             name="expiry"
             type="text"
             placeholder="MM/YY"
+            errors={errors}
             register={register}
             onFocus={handleFocus}
           />
@@ -100,6 +106,7 @@ export default function PaymentCard({
             name="cvc"
             type="tel"
             placeholder="3 Dígitos"
+            errors={errors}
             register={register}
             onFocus={handleFocus}
           />
