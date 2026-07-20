@@ -4,19 +4,20 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ChevronDown, CreditCard } from "lucide-react";
+import { ChevronDown, CreditCard, CircleX, CircleCheck } from "lucide-react";
 import { processPayment, calcItemsTotalPrice, canInstallment } from "@/src/services/paymentService";
 import { paymentSchema, PaymentFormData} from "@/src/schemas/paymentSchema";
 import { useCheckoutStore } from "@/src/store/checkoutStore";
 import PaymentCard from "../ui/PaymentCard";
 import ButtonCine from "../ui/ButtonCine";
-import ValidatorModal from "@/src/features/checkout/components/ValidatorModal";
 
 type PaymentType = "credit" | "debit" | "pix" | null;
 
 export default function PaymentPurchase() {
   const [selectedPayment, setSelectedPayment] = useState<PaymentType>(null);
-  const [isValidatorModalOpen, setIsValidatorModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalType, setModalType] = useState<"success" | "error">("error");
+  const [modalMessage, setModalMessage] = useState("");
   const tickets = useCheckoutStore((state) => state.tickets);
   const lumibar = useCheckoutStore((state) => state.lumibar);
   const totalPrice = calcItemsTotalPrice(tickets, lumibar);
@@ -75,12 +76,18 @@ export default function PaymentPurchase() {
     }
 
     async function onSubmit(data: PaymentFormData) {
-        if (selectedPayment === "credit" && !canInstallment(totalPrice)) {
-        setIsValidatorModalOpen(true);
+      if (selectedPayment === "credit" && !canInstallment(totalPrice)) {
+        setModalType("error");
+        setModalMessage(
+          "Compras parceladas apenas para valores a partir de R$ 40,00."
+        );
+        setIsModalOpen(true);
         return;
       }
 
-      setIsValidatorModalOpen(false);
+      setModalType("success");
+      setModalMessage("Pagamento realizado com sucesso!");
+      setIsModalOpen(true);
 
       await finishPayment(data);
     }
@@ -95,7 +102,7 @@ export default function PaymentPurchase() {
         cvc: ""
       });
 
-      router.push("/checkout/concluded");
+      
     }
 
   return (
@@ -223,8 +230,43 @@ export default function PaymentPurchase() {
         "
       />
 
-      {isValidatorModalOpen && (
-        <ValidatorModal invalidFields={["Compra Inválida: Compras parceladas apenas para valores a partir de 40 Reais"]} setIsValidatorModalOpen={setIsValidatorModalOpen}/>
+      {isModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70">
+          <div className="bg-secondary-dark rounded-2xl p-8 w-[90%] max-w-md flex flex-col items-center text-center gap-6 border border-white/10">
+            {modalType === "error" ? (
+              <CircleX size={90} className="text-red-500" strokeWidth={1.8} />
+            ) : (
+              <CircleCheck size={90} className="text-green-500" strokeWidth={1.8} />
+            )}
+
+            {/* Texto */}
+            <div className="space-y-2">
+              <h2 className="text-2xl font-bold text-font-dark">
+                {modalType === "error" ? "Ops! Algo deu errado" : "Sucesso!"}
+              </h2>
+
+              <p className="text-font-secondary-dark text-base leading-relaxed">
+                {modalMessage}
+              </p>
+            </div>
+            <button
+              onClick={() => {
+                setIsModalOpen(false);
+
+                if (modalType === "success") {
+                  router.push("/checkout/concluded");
+                }
+              }}
+              className={`px-6 py-3 rounded-lg font-semibold transition-all cursor-pointer ${
+                modalType === "error"
+                  ? "bg-red-500 hover:bg-red-600 text-white"
+                  : "bg-green-500 hover:bg-green-600 text-white"
+              }`}
+            >
+              Fechar
+            </button>
+          </div>
+        </div>
       )}
     </>
   );
