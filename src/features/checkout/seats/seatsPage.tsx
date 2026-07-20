@@ -14,6 +14,7 @@ import ChairGrid from "../components/ChairGrid";
 import ButtonCine from "@/src/components/ui/ButtonCine";
 import ValidatorModal from "../components/ValidatorModal";
 import MenuListElements from "@/src/components/ui/MenuListElements";
+import { calcTicketsTotal } from "@/src/services/checkout/sessionService";
 
 export default function SeatsPage() {
     const [menu, setMenu] = useState(false);
@@ -26,7 +27,8 @@ export default function SeatsPage() {
     const router = useRouter();
     
     function openValidatorModal() {
-        const result = validateSeatSelection(seats, tickets);
+        const totalSeatsPermitted = calcTicketsTotal(tickets);
+        const result = validateSeatSelection(seats, totalSeatsPermitted.totalQuantity);
 
         setMissingSeatSelection(result.missingFields);
         setIsValidatorModalOpen(!result.isValid);
