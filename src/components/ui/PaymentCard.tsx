@@ -4,17 +4,16 @@ import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import Cards from "react-19-credit-card";
 import "react-19-credit-card/dist/es/index.css";
-
 import {
   FieldErrors,
   UseFormRegister,
   UseFormSetValue,
   UseFormWatch,
 } from "react-hook-form";
-
+import { canInstallment } from "@/src/services/paymentService";import { BRFormat } from "@/src/utils/fixValueForBrazilianFormat";;
 import { PaymentFormData } from "@/src/schemas/paymentSchema";
 import InputForm from "./InputForm";
-import { canInstallment } from "@/src/services/paymentService";;
+
 
 type Focused = "number" | "name" | "expiry" | "cvc" | "";
 
@@ -39,8 +38,8 @@ export default function PaymentCard({
   const [isOpen, setIsOpen] = useState(false);
 
 
-  const oneInstallment = `1x de R$ ${totalPrice},00`;
-  const twoInstallment = `2x de R$ ${totalPrice / 2},00`;
+  const oneInstallment = `1x de R$ ${BRFormat(totalPrice)}`;
+  const twoInstallment = `2x de R$ ${BRFormat(totalPrice / 2)}`;
   const initialInstallment =
     !canInstallment(totalPrice)
     ? "Parcelamento disponível para compras a partir de R$ 40,00"

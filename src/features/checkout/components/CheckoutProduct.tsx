@@ -8,6 +8,7 @@ import { sumLumibarProducts } from "@/src/services/checkout/lumiBarService";
 import ButtonCine from "../../../components/ui/ButtonCine";
 import DivisionBar from "@/src/components/ui/DivisorBar";
 import { calcItemsTotalPrice } from "@/src/services/paymentService";
+import { BRFormat } from "@/src/utils/fixValueForBrazilianFormat";
 
 type Props = {
   type: Checkout;
@@ -147,7 +148,7 @@ export default function CheckoutProgress({ type }: Props) {
 
           <div className="flex justify-between mt-3">
             <p  className="text-font-dark font-medium">Total</p>
-            <p  className="text-font-dark font-medium">R$ {calcItemsTotalPrice(tickets, lumibar)}, 00</p>
+            <p  className="text-font-dark font-medium">R$ {BRFormat(calcItemsTotalPrice(tickets, lumibar))}</p>
           </div>
         </div>
       </div>

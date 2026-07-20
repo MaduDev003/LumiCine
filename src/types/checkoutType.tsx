@@ -3,4 +3,4 @@ export type Checkout =
   | "seats"
   | "lumiBar"
   | "payment"
-  | "confirmation";
+  | "concluded";
