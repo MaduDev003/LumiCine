@@ -21,11 +21,12 @@ export default function SeatsPage() {
     const [missingSeatSelection, setMissingSeatSelection] = useState<string[]>([]);
     const { nowPlayingMoviesData, comingSoonMoviesData } = useMovieContext();
     const seats = useCheckoutStore((state) => state.seats);
+    const tickets = useCheckoutStore((state) => state.tickets);
     const canContinue = seats.length === 0 ? false : true;
     const router = useRouter();
     
     function openValidatorModal() {
-        const result = validateSeatSelection(seats);
+        const result = validateSeatSelection(seats, tickets);
 
         setMissingSeatSelection(result.missingFields);
         setIsValidatorModalOpen(!result.isValid);

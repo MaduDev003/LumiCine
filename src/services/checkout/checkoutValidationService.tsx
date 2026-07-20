@@ -1,11 +1,21 @@
 // services/checkout/checkoutValidationService.ts
-import { Tickets } from "../../types/checkout/ticketsType";
-import { Session } from "@/src/types/checkout/sessionType";
 
-export function validateSeatSelection(seats: string[]) {
-  const missingFields = seats.length === 0
-    ? ["Selecione seu(s) assento(s)"]
-    : [];
+import { Session } from "@/src/types/checkout/sessionType";
+import { calcTicketsTotal } from "./sessionService";
+import { Tickets } from "@/src/types/checkout/ticketsType";
+
+export function validateSeatSelection(seats: string[], tickets: Tickets) {
+  const missingFields = []
+
+  const {totalQuantity} = calcTicketsTotal(tickets);
+  
+  if(seats.length < totalQuantity){
+    const remainingSeats = totalQuantity - seats.length;
+
+    missingFields.push(
+      `Selecione ${remainingSeats > 1 ? "mais" : ""} ${remainingSeats} assento${remainingSeats > 1 ? "s" : ""}.`
+    );
+  }
 
   
   return {
