@@ -9,10 +9,10 @@ import Header from "@/src/components/layout/Header";
 import Footer from "@/src/components/layout/Footer";
 import LumiBar from "@/src/components/layout/Lumibar";
 import ButtonCine from "@/src/components/ui/ButtonCine";
-import CheckoutProduct from "@/src/features/checkout/components/CheckoutProduct";
+import CheckoutProduct from "@/src/components/ui/ResumePurchase";
 import { useCheckoutStore } from "@/src/store/checkoutStore";
 
-export default function CheckoutLumiBar() {
+export default function LumiBarMenu() {
   const [menu, setMenu] = useState(false);
   const { nowPlayingMoviesData, comingSoonMoviesData } = useMovieContext();
   const lumibar = useCheckoutStore((state) => state.lumibar);

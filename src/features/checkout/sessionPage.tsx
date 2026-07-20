@@ -8,12 +8,12 @@ import { useDateFilter } from "@/src/hooks/useDateFilters";
 import { validateSessionSelection } from "@/src/services/checkout/checkoutValidationService";
 import { updateTicketQuantity } from "@/src/services/checkout/sessionService";
 import MenuListElements from "@/src/components/ui/MenuListElements";
-import CheckoutProgress from "../components/CheckoutProgress";
+import CheckoutProgress from "./components/CheckoutProgress";
 import Footer from "@/src/components/layout/Footer";
 import ButtonCine from "@/src/components/ui/ButtonCine";
-import CheckoutProduct  from "../components/CheckoutProduct";
+import ResumePurchase  from "../../components/ui/ResumePurchase";
 import Header from "@/src/components/layout/Header";
-import ValidatorModal from "../components/ValidatorModal";
+import ValidatorModal from "./components/ValidatorModal";
 
 export default function SessionPage() {
     const [menu, setMenu] = useState(false);
@@ -268,7 +268,7 @@ export default function SessionPage() {
                                 />
                             </div>
                         </div>
-                          <CheckoutProduct />
+                          <ResumePurchase />
                       </div>
                   </div>
               </div>

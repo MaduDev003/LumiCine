@@ -9,7 +9,7 @@ import { sumLumibarProducts } from "@/src/services/checkout/lumiBarService";
 import { calcItemsTotalPrice } from "@/src/services/paymentService";
 import { BRFormat } from "@/src/utils/fixValueForBrazilianFormat";
 
-import ButtonCine from "../../../components/ui/ButtonCine";
+import ButtonCine from "./ButtonCine";
 import DivisionBar from "@/src/components/ui/DivisorBar";
 
 export default function CheckoutProduct() {

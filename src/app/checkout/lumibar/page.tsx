@@ -1,7 +1,8 @@
-import CheckoutLumiBar from "@/src/features/checkout/lumibar/lumibarPage";
+import LumibarPage from "@/src/features/checkout/lumibarPage";
+
 
 export default function LumiBar() {
   return (
-    <CheckoutLumiBar />
+    <LumibarPage />
   );
 }

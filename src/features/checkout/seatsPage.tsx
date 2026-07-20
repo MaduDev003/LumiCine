@@ -7,13 +7,13 @@ import { useMovieContext } from "@/src/context/MovieContext";
 import { useCheckoutStore } from "@/src/store/checkoutStore";
 import { validateSeatSelection } from "@/src/services/checkout/checkoutValidationService";
 import { calcTicketsTotal } from "@/src/services/checkout/sessionService";
-import CheckoutProduct from "../components/CheckoutProduct";
-import CheckoutProgress from "../components/CheckoutProgress";
+import ResumePurchase from "../../components/ui/ResumePurchase";
+import CheckoutProgress from "./components/CheckoutProgress";
 import Footer from "@/src/components/layout/Footer";
 import Header from "@/src/components/layout/Header";
-import ChairGrid from "../components/ChairGrid";
+import ChairGrid from "./components/ChairGrid";
 import ButtonCine from "@/src/components/ui/ButtonCine";
-import ValidatorModal from "../components/ValidatorModal";
+import ValidatorModal from "./components/ValidatorModal";
 import MenuListElements from "@/src/components/ui/MenuListElements";
 
 export default function SeatsPage() {
@@ -141,7 +141,7 @@ export default function SeatsPage() {
                                     />
                                     </div>
                             </div>
-                            <CheckoutProduct />
+                            <ResumePurchase />
                         </div>
                     </div>
                     </div>

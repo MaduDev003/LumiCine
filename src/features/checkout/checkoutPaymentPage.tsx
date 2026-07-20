@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useMovieContext } from "@/src/context/MovieContext";
 import { X } from "lucide-react";
 import CheckoutProgress from "./components/CheckoutProgress";
-import CheckoutProduct from "./components/CheckoutProduct";
+import ResumePurchase from "../../components/ui/ResumePurchase";
 import Header from "@/src/components/layout/Header";
 import Footer from "@/src/components/layout/Footer";
 import PaymentPurchase from "@/src/components/layout/PaymentPurchase";
@@ -48,7 +48,7 @@ export default function CheckoutPaymentPage() {
                             <div className="flex-2 gap-10 flex flex-col lg:mt-0 mt-10 items-center">
                                 <PaymentPurchase />
                             </div>
-                            <CheckoutProduct />
+                            <ResumePurchase />
                         </div>
                     </div>
                 </div>

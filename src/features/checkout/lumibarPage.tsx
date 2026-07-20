@@ -6,12 +6,12 @@ import { useMovieContext } from "@/src/context/MovieContext";
 import MenuListElements from "@/src/components/ui/MenuListElements";
 import Header from "@/src/components/layout/Header";
 import Footer from "@/src/components/layout/Footer";
-import CheckoutProgress from "../components/CheckoutProgress";
-import CheckoutProduct from "../components/CheckoutProduct";
+import CheckoutProgress from "./components/CheckoutProgress";
+import ResumePurchase from "../../components/ui/ResumePurchase";
 import LumiBar from "@/src/components/layout/Lumibar";
 import ButtonCine from "@/src/components/ui/ButtonCine";
 
-export default function CheckoutLumiBar(){
+export default function LumibarPage(){
     const [menu, setMenu] = useState(false);
     const { nowPlayingMoviesData, comingSoonMoviesData } = useMovieContext();
     const router = useRouter();
@@ -62,7 +62,7 @@ export default function CheckoutLumiBar(){
                                         />
                                     </div>
                                 </div>
-                                <CheckoutProduct />
+                                <ResumePurchase />
                             </div>
                         
                         </div>
