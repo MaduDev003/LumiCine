@@ -3,7 +3,8 @@ import { useCheckoutStore } from "@/src/store/checkoutStore";
 import ValidatorModal from "./ValidatorModal";
 import {Seat} from "../../../types/checkout/seatType";
 import Chair from "./Chair";
-import { isSeatValidForPurchase } from "@/src/services/checkout/seatsService";
+import { isSeatValidForPurchase} from "@/src/services/checkout/seatsService";
+import { calcTicketsTotal } from "@/src/services/checkout/sessionService";
 
 
 type Props = {
@@ -19,10 +20,11 @@ export default function ChairGrid({ accessible, row }: Props) {
 
    function handleSeatSelection(seatPosition: string, seatType: Seat) {
         const selectedSeats = [];
-        const seatLimitSelection = tickets.full.quantity + tickets.half.quantity;
-        const isSeatsLimitReached = seats.length === seatLimitSelection;
+        const {totalQuantity} = calcTicketsTotal(tickets);
+        const isSeatsLimitReached = seats.length === totalQuantity;
         let isSeatAlreadySelected = false;
-        
+
+
         if (!isSeatValidForPurchase(tickets,seatType)) {
             setIsValidatorModalOpen(true);
             return;
@@ -44,6 +46,7 @@ export default function ChairGrid({ accessible, row }: Props) {
         setSeats(selectedSeats);
     }
 
+    
     const leftTypes: Seat[] = [
         accessible ? "accessible" : "standard",
         accessible ? "companion" : "standard",

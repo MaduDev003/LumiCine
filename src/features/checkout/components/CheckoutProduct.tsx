@@ -7,6 +7,7 @@ import { Trash2 } from "lucide-react";
 import { sumLumibarProducts } from "@/src/services/checkout/lumiBarService";
 import ButtonCine from "../../../components/ui/ButtonCine";
 import DivisionBar from "@/src/components/ui/DivisorBar";
+import { calcItemsTotalPrice } from "@/src/services/paymentService";
 
 type Props = {
   type: Checkout;
@@ -29,14 +30,6 @@ export default function CheckoutProgress({ type }: Props) {
 
   const hasSeatsInfo = seats.length > 0;
 
-
-  function calcTotal() {
-   const ticketsPrice =
-    tickets.full.price * tickets.full.quantity +
-    tickets.half.price * tickets.half.quantity;
-
-    return (ticketsPrice + sumLumibarProducts(lumibar).price).toFixed(2);
-  }
 
   function calcItemsQuantity() {
     const ticketsSum = tickets.full.quantity + tickets.half.quantity;
@@ -154,7 +147,7 @@ export default function CheckoutProgress({ type }: Props) {
 
           <div className="flex justify-between mt-3">
             <p  className="text-font-dark font-medium">Total</p>
-            <p  className="text-font-dark font-medium">R$ {calcTotal()}</p>
+            <p  className="text-font-dark font-medium">R$ {calcItemsTotalPrice(tickets, lumibar)}, 00</p>
           </div>
         </div>
       </div>

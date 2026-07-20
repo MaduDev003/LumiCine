@@ -1,6 +1,6 @@
 import { Tickets } from "@/src/types/checkout/ticketsType";
 
-export   function updateTicketQuantity(
+export function updateTicketQuantity(
     tickets: Tickets,
     type: "half" | "full",
     operationType: "plus" | "minus"
@@ -16,3 +16,14 @@ export   function updateTicketQuantity(
       }
     
     }
+
+  export function calcTicketsTotal(tickets: Tickets){
+   const sumTicketsPrice =  
+    tickets.full.price * tickets.full.quantity +
+    tickets.half.price * tickets.half.quantity;  
+
+   return {
+    totalQuantity: tickets.full.quantity + tickets.half.quantity,
+    totalPrice: sumTicketsPrice
+   }
+  }

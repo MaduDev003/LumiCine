@@ -1,25 +1,26 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ChevronDown, CreditCard } from "lucide-react";
-
-import {
-  paymentSchema,
-  PaymentFormData,
-} from "@/src/schemas/paymentSchema";
-
-import pix from "../../assets/icons/pix.svg";
+import { processPayment, calcItemsTotalPrice, canInstallment } from "@/src/services/paymentService";
+import { paymentSchema, PaymentFormData} from "@/src/schemas/paymentSchema";
+import { useCheckoutStore } from "@/src/store/checkoutStore";
 import PaymentCard from "../ui/PaymentCard";
 import ButtonCine from "../ui/ButtonCine";
+import ValidatorModal from "@/src/features/checkout/components/ValidatorModal";
 
 type PaymentType = "credit" | "debit" | "pix" | null;
 
 export default function PaymentPurchase() {
-  const [selectedPayment, setSelectedPayment] =
-    useState<PaymentType>(null);
-
+  const [selectedPayment, setSelectedPayment] = useState<PaymentType>(null);
+  const [isValidatorModalOpen, setIsValidatorModalOpen] = useState(false);
+  const tickets = useCheckoutStore((state) => state.tickets);
+  const lumibar = useCheckoutStore((state) => state.lumibar);
+  const totalPrice = calcItemsTotalPrice(tickets, lumibar);
+  const router = useRouter();
   const {
     register,
     watch,
@@ -38,68 +39,72 @@ export default function PaymentPurchase() {
     },
   });
 
+    function getPaymentClass(payment: PaymentType) {
+      const isSelected = selectedPayment === payment;
 
-  function clearInputs() {
-    reset({
-      number: "",
-      name: "",
-      expiry: "",
-      cvc: "",
-      installment: "1x sem juros",
-    });
-  }
+      return `
+        bg-secondary-dark
+        w-[85%]
+        rounded
+        flex
+        flex-col
+        ${isSelected ? "py-4" : "py-0 h-18"}
+        px-4
+        gap-4
+        ${isSelected ? "hover:bg-secondary-dark" : "hover:bg-white/22"}
+        cursor-pointer
+        text-left
+        transition-all
+        duration-700
+        ease-out
+      `;
+    }
+  
+    async function handlePaymentSelect(payment: PaymentType) {
+        const nextPayment =
+          selectedPayment === payment ? null : payment;
 
+        setSelectedPayment(nextPayment);
 
-  function onSubmit(data: PaymentFormData) {
-    console.log(data);
+         reset({
+            number: "",
+            name: "",
+            expiry: "",
+            cvc: ""
+          });
+    }
 
-    // Aqui depois você chama sua API de pagamento
+    async function onSubmit(data: PaymentFormData) {
+        if (selectedPayment === "credit" && !canInstallment(totalPrice)) {
+        setIsValidatorModalOpen(true);
+        return;
+      }
 
-    clearInputs();
-  }
+      setIsValidatorModalOpen(false);
 
+      await finishPayment(data);
+    }
 
-  function handlePaymentSelect(payment: PaymentType) {
-    setSelectedPayment((prev) => {
-      const nextPayment = prev === payment ? null : payment;
+    async function finishPayment(data: PaymentFormData) {
+      await processPayment(data);
 
-      clearInputs();
+      reset({
+        number: "",
+        name: "",
+        expiry: "",
+        cvc: ""
+      });
 
-      return nextPayment;
-    });
-  }
-
-
-  function getPaymentClass(payment: PaymentType) {
-  const isSelected = selectedPayment === payment;
-
-  return `
-    bg-secondary-dark
-    w-[85%]
-    rounded
-    flex
-    flex-col
-    ${isSelected ? "py-4" : "py-0 h-18"}
-    px-4
-    gap-4
-    ${isSelected ? "hover:bg-secondary-dark" : "hover:bg-white/22"}
-    cursor-pointer
-    text-left
-    transition-all
-    duration-700
-    ease-out
-  `;
-}
-
+      router.push("/checkout/concluded");
+    }
 
   return (
     <>
-      {/* Crédito */}
       <div
         className={getPaymentClass("credit")}
         onClick={() => handlePaymentSelect("credit")}
       >
-        <div className="flex items-center gap-3 w-full">
+        <div className="flex items-center gap-3 w-full h-full">
           <CreditCard
             size={26}
             color="#FF5900"
@@ -138,6 +143,7 @@ export default function PaymentPurchase() {
           <div onClick={(e) => e.stopPropagation()}>
             <PaymentCard
               isCreditCard={true}
+              totalPrice={totalPrice}
               register={register}
               errors={errors}
               watch={watch}
@@ -147,13 +153,11 @@ export default function PaymentPurchase() {
         )}
       </div>
 
-
-      {/* Débito */}
       <div
         className={getPaymentClass("debit")}
         onClick={() => handlePaymentSelect("debit")}
       >
-        <div className="flex items-center gap-3 w-full">
+        <div className="flex items-center gap-3 w-full h-full">
           <CreditCard
             size={26}
             color="#FF5900"
@@ -192,6 +196,7 @@ export default function PaymentPurchase() {
           <div onClick={(e) => e.stopPropagation()}>
             <PaymentCard
               isCreditCard={false}
+              totalPrice={totalPrice}
               register={register}
               errors={errors}
               watch={watch}
@@ -200,47 +205,6 @@ export default function PaymentPurchase() {
           </div>
         )}
       </div>
-
-
-      {/* Pix */}
-      <div
-        className={getPaymentClass("pix")}
-        onClick={() => handlePaymentSelect("pix")}
-      >
-        <div className="flex items-center gap-3 w-full">
-          <img
-            src={pix.src}
-            alt="Símbolo do Pix"
-            className="w-6 h-6"
-          />
-
-          <div className="flex w-full justify-between items-center">
-            <div>
-              <h2 className="text-font-dark text-[20px]">
-                Pix
-              </h2>
-            </div>
-
-            <ChevronDown
-              size={20}
-              className={`transition-transform duration-700 ${
-                selectedPayment === "pix"
-                  ? "rotate-180"
-                  : ""
-              }`}
-            />
-          </div>
-        </div>
-
-        {selectedPayment === "pix" && (
-          <div onClick={(e) => e.stopPropagation()}>
-            <p className="text-font-secondary-dark text-[15px]">
-              Gere o QR Code para realizar o pagamento.
-            </p>
-          </div>
-        )}
-      </div>
-
 
       <ButtonCine
         onClick={handleSubmit(onSubmit)}
@@ -258,6 +222,10 @@ export default function PaymentPurchase() {
           hover:shadow-[0_25px_60px_rgba(0,0,0,0.2)]
         "
       />
+
+      {isValidatorModalOpen && (
+        <ValidatorModal invalidFields={["Compra Inválida: Compras parceladas apenas para valores a partir de 40 Reais"]} setIsValidatorModalOpen={setIsValidatorModalOpen}/>
+      )}
     </>
   );
 }

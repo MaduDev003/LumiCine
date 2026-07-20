@@ -14,19 +14,22 @@ import {
 
 import { PaymentFormData } from "@/src/schemas/paymentSchema";
 import InputForm from "./InputForm";
+import { canInstallment } from "@/src/services/paymentService";;
 
 type Focused = "number" | "name" | "expiry" | "cvc" | "";
 
 interface Props {
   isCreditCard: boolean;
+  totalPrice: number;
   register: UseFormRegister<PaymentFormData>;
-  errors: FieldErrors<PaymentFormData>,
+  errors: FieldErrors<PaymentFormData>;
   watch: UseFormWatch<PaymentFormData>;
   setValue: UseFormSetValue<PaymentFormData>;
 }
 
 export default function PaymentCard({
   isCreditCard,
+  totalPrice,
   register,
   errors,
   watch,
@@ -34,20 +37,25 @@ export default function PaymentCard({
 }: Props) {
   const [focus, setFocus] = useState<Focused>("");
   const [isOpen, setIsOpen] = useState(false);
-  const [installment, setInstallment] = useState("1x sem juros");
 
 
+  const oneInstallment = `1x de R$ ${totalPrice},00`;
+  const twoInstallment = `2x de R$ ${totalPrice / 2},00`;
+  const initialInstallment =
+    !canInstallment(totalPrice)
+    ? "Parcelamento disponível para compras a partir de R$ 40,00"
+    : oneInstallment;
+  const [installment, setInstallment] = useState(initialInstallment);
+  
   function handleFocus(e: React.FocusEvent<HTMLInputElement>) {
     setFocus(e.target.name as Focused);
   }
-
 
   function handleInstallment(value: string) {
     setInstallment(value);
     setValue("installment", value);
     setIsOpen(false);
   }
-
 
   return (
     <div>
@@ -59,11 +67,8 @@ export default function PaymentCard({
         focused={focus}
       />
 
-
       <div className="flex flex-col gap-3 mt-3 px-5">
-
         <div className="flex justify-between">
-
           <InputForm
             label="Número do cartão"
             name="number"
@@ -74,7 +79,6 @@ export default function PaymentCard({
             onFocus={handleFocus}
           />
 
-
           <InputForm
             label="Nome"
             name="name"
@@ -84,12 +88,9 @@ export default function PaymentCard({
             register={register}
             onFocus={handleFocus}
           />
-
         </div>
 
-
         <div className="flex justify-between">
-
           <InputForm
             label="Data de Expiração"
             name="expiry"
@@ -100,7 +101,6 @@ export default function PaymentCard({
             onFocus={handleFocus}
           />
 
-
           <InputForm
             label="CVC"
             name="cvc"
@@ -110,49 +110,44 @@ export default function PaymentCard({
             register={register}
             onFocus={handleFocus}
           />
-
         </div>
-
 
         {isCreditCard && (
           <div className="w-full">
-
             <h3 className="text-[13px] mb-1 text-font-dark">
               Parcelas
             </h3>
-
 
             <button
               type="button"
               onClick={() => setIsOpen(!isOpen)}
               className="
-                w-full 
-                h-10 
-                border 
-                border-tertiary-dark 
-                rounded-xl 
-                px-3 
-                flex 
-                items-center 
-                justify-between 
+                w-full
+                h-10
+                border
+                border-tertiary-dark
+                rounded-xl
+                px-3
+                flex
+                items-center
+                justify-between
                 cursor-pointer
               "
             >
-
               <span>{installment}</span>
-
 
               <ChevronDown
                 size={20}
-                className={`transition-transform duration-300 ${
-                  isOpen ? "rotate-180" : ""
-                }`}
+                className={`
+                  transition-transform
+                  duration-300
+                  ${ !canInstallment(totalPrice) ? "opacity-40 cursor-not-allowed" : ""}
+                  ${isOpen && canInstallment(totalPrice) ? "rotate-180" : ""}
+                `}
               />
-
             </button>
 
-
-            {isOpen && (
+            {isOpen && canInstallment(totalPrice)  && (
               <div
                 className="
                   mt-2
@@ -163,10 +158,9 @@ export default function PaymentCard({
                   border-tertiary-dark
                 "
               >
-
                 <button
                   type="button"
-                  onClick={() => handleInstallment("1x sem juros")}
+                  onClick={() => handleInstallment(oneInstallment)}
                   className="
                     w-full
                     px-3
@@ -176,13 +170,12 @@ export default function PaymentCard({
                     cursor-pointer
                   "
                 >
-                  1x sem juros
+                  {oneInstallment}
                 </button>
-
 
                 <button
                   type="button"
-                  onClick={() => handleInstallment("2x sem juros")}
+                  onClick={() => handleInstallment(twoInstallment)}
                   className="
                     w-full
                     px-3
@@ -192,15 +185,12 @@ export default function PaymentCard({
                     cursor-pointer
                   "
                 >
-                  2x sem juros
+                  {twoInstallment}
                 </button>
-
               </div>
             )}
-
           </div>
         )}
-
       </div>
     </div>
   );
