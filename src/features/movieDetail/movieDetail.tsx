@@ -67,7 +67,7 @@ export default function MovieDetail({ movie }: { movie: Movie }) {
 
                                     {movie.type === "comingSoon" && !movie.pre_sale && (
                                         <ButtonCine
-                                        text="Em Breve"
+                                        text="Disponível apenas na pré-venda"
                                         className="h-14 w-full bg-tertiary-dark text-font-dark font-semibold rounded-xl disabled:cursor-not-allowed disabled:opacity-50"
                                         />
                                     )}

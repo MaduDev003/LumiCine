@@ -8,8 +8,8 @@ import { ChevronDown, CreditCard, CircleX, CircleCheck } from "lucide-react";
 import { processPayment, calcItemsTotalPrice, canInstallment } from "@/src/services/paymentService";
 import { paymentSchema, PaymentFormData} from "@/src/schemas/paymentSchema";
 import { useCheckoutStore } from "@/src/store/checkoutStore";
-import PaymentCard from "../ui/PaymentCard";
-import ButtonCine from "../ui/ButtonCine";
+import PaymentCard from "./PaymentCard";
+import ButtonCine from "../../../components/ui/ButtonCine";
 
 type PaymentType = "credit" | "debit" | "pix" | null;
 
@@ -215,9 +215,9 @@ export default function PaymentPurchase() {
 
       <ButtonCine
         onClick={handleSubmit(onSubmit)}
-        text="Realizar Pagamento"
+        text="Pagar"
         className="
-          w-60
+          w-40
           h-10
           text-font-dark
           bg-accent

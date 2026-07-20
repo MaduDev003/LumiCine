@@ -30,10 +30,6 @@ export default function CheckoutProduct() {
   !!session.date ||
   !!session.time;
 
-  console.log("hasSeatsInfo", seats)
-  console.log(hasSessionInfo, "hasSessionInfo")
-  console.log("haslumibar:", lumibar)
-
   function calcItemsQuantity() {
     const ticketsSum = tickets.full.quantity + tickets.half.quantity;
 
