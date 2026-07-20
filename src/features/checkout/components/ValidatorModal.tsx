@@ -41,7 +41,7 @@ export default function ValidatorModal({
 
             <button
               onClick={() => setIsValidatorModalOpen(false)}
-              className="rounded-full p-1 transition hover:bg-white/20"
+              className="rounded-full p-1 transition hover:bg-white/20 cursor-pointer"
             >
               <X size={18} />
             </button>

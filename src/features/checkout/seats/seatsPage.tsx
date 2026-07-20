@@ -6,6 +6,7 @@ import { Accessibility, X} from "lucide-react";
 import { useMovieContext } from "@/src/context/MovieContext";
 import { useCheckoutStore } from "@/src/store/checkoutStore";
 import { validateSeatSelection } from "@/src/services/checkout/checkoutValidationService";
+import { calcTicketsTotal } from "@/src/services/checkout/sessionService";
 import CheckoutProduct from "../components/CheckoutProduct";
 import CheckoutProgress from "../components/CheckoutProgress";
 import Footer from "@/src/components/layout/Footer";
@@ -14,7 +15,6 @@ import ChairGrid from "../components/ChairGrid";
 import ButtonCine from "@/src/components/ui/ButtonCine";
 import ValidatorModal from "../components/ValidatorModal";
 import MenuListElements from "@/src/components/ui/MenuListElements";
-import { calcTicketsTotal } from "@/src/services/checkout/sessionService";
 
 export default function SeatsPage() {
     const [menu, setMenu] = useState(false);
@@ -23,11 +23,11 @@ export default function SeatsPage() {
     const { nowPlayingMoviesData, comingSoonMoviesData } = useMovieContext();
     const seats = useCheckoutStore((state) => state.seats);
     const tickets = useCheckoutStore((state) => state.tickets);
-    const canContinue = seats.length === 0 ? false : true;
+    const totalSeatsPermitted = calcTicketsTotal(tickets);
+    const canContinue = seats.length === totalSeatsPermitted.totalQuantity ? true : false;
     const router = useRouter();
     
     function openValidatorModal() {
-        const totalSeatsPermitted = calcTicketsTotal(tickets);
         const result = validateSeatSelection(seats, totalSeatsPermitted.totalQuantity);
 
         setMissingSeatSelection(result.missingFields);

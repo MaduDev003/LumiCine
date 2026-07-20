@@ -98,7 +98,7 @@ export default function SessionPage() {
                                 <div className="items-center pl-22 flex gap-5">
                                   <button
                                     onClick={() => setSession({ language: "Legendado" })}
-                                    className={`h-10 w-25 px-2 rounded transition-colors ${
+                                    className={`h-10 w-25 px-2 rounded transition-colors cursor-pointer ${
                                       session.language === "Legendado"
                                         ? "bg-accent"
                                         : "bg-secondary-dark hover:bg-accent"
@@ -109,7 +109,7 @@ export default function SessionPage() {
 
                                   <button
                                     onClick={() => setSession({ language: "Dublado" })}
-                                    className={`h-10 w-25 px-2 rounded transition-colors ${
+                                    className={`h-10 w-25 px-2 rounded transition-color cursor-pointer ${
                                       session.language === "Dublado"
                                         ? "bg-accent"
                                         : "bg-secondary-dark hover:bg-accent"
@@ -141,7 +141,7 @@ export default function SessionPage() {
                                             time: item.sessions[index],
                                           })
                                         }
-                                        className={`w-30 h-20 md:w-40 md:h-25 rounded flex flex-col items-center justify-center transition-colors gap-3 ${
+                                        className={`group w-30 h-20 md:w-40 md:h-25 rounded flex flex-col items-center cursor-pointer justify-center transition-colors gap-3  hover:text-font-dark ${
                                           session.date === item.formattedDate
                                             ? "bg-accent"
                                             : "bg-secondary-dark hover:bg-accent"
@@ -149,7 +149,9 @@ export default function SessionPage() {
                                       >
                                         <h2 className="md:text-xl text-[15px]">{item.formattedDate}</h2>
 
-                                        <p className="md:text-[18px] text-[16px] text-font-secondary-dark">
+                                        <p className={`md:text-[18px] text-[16px] group-hover:text-font-dark ${
+                                          session.date === item.formattedDate ? "text-font-dark" : "text-font-secondary-dark"
+                                        } `}>
                                           {item.sessions[index]}
                                         </p>
                                       </button>
