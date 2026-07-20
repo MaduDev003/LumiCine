@@ -8,12 +8,12 @@ export function validateSeatSelection(seats: string[], tickets: Tickets) {
   const missingFields = []
 
   const {totalQuantity} = calcTicketsTotal(tickets);
-  
+
   if(seats.length < totalQuantity){
     const remainingSeats = totalQuantity - seats.length;
 
     missingFields.push(
-      `Selecione ${remainingSeats > 1 ? "mais" : ""} ${remainingSeats} assento${remainingSeats > 1 ? "s" : ""}.`
+      `Selecione ${seats.length >= 1 ? "mais" : ""} ${remainingSeats} assento${remainingSeats > 1 ? "s" : ""}.`
     );
   }
 
