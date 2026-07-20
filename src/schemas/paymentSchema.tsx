@@ -17,9 +17,10 @@ export const paymentSchema = z.object({
 
   expiry: z
     .string()
-    .min(1, "Informe a data de validade")
-    .regex(/^\d+$/, "A data deve conter apenas números")
-    .length(4, "A data deve conter 4 números"),
+    .regex(
+      /^(0[1-9]|1[0-2])\d{2}$/,
+      "Informe uma data válida"
+    ),
 
   cvc: z
     .string()
