@@ -16,7 +16,7 @@ const types = [
   { id: "seats", Icon: Armchair },
   { id: "lumiBar", Icon: Popcorn },
   { id: "payment", Icon: CreditCard },
-  { id: "confirmation", Icon: CircleCheckBig },
+  { id: "concluded", Icon: CircleCheckBig },
 ];
 
 export default function CheckoutProgress({type}: Props) {
