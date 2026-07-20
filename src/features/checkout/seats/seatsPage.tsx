@@ -141,9 +141,7 @@ export default function SeatsPage() {
                                     />
                                     </div>
                             </div>
-                            <CheckoutProduct 
-                                type="seats"
-                            />
+                            <CheckoutProduct />
                         </div>
                     </div>
                     </div>

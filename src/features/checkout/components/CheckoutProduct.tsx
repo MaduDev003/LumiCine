@@ -10,11 +10,8 @@ import DivisionBar from "@/src/components/ui/DivisorBar";
 import { calcItemsTotalPrice } from "@/src/services/paymentService";
 import { BRFormat } from "@/src/utils/fixValueForBrazilianFormat";
 
-type Props = {
-  type: Checkout;
-};
 
-export default function CheckoutProgress({ type }: Props) {
+export default function CheckoutProduct() {
   const [isConfirmDeletionModalOpen, setIsConfirmDeletionModalOpen] = useState(false); 
   const movie = useCheckoutStore((state) => state.movie);
   const seats = useCheckoutStore((state) => state.seats);

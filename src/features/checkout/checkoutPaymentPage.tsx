@@ -48,9 +48,7 @@ export default function CheckoutPaymentPage() {
                             <div className="flex-2 gap-10 flex flex-col lg:mt-0 mt-10 items-center">
                                 <PaymentPurchase />
                             </div>
-                            <CheckoutProduct 
-                                type="lumiBar"
-                            />
+                            <CheckoutProduct />
                         </div>
                     </div>
                 </div>

@@ -36,6 +36,8 @@ export default function InputForm({
           px-2
           placeholder:text-[14px]
           focus:outline-none
+          focus:border-accent
+          
         "
         type={type}
         placeholder={placeholder}

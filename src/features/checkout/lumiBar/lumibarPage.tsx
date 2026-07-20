@@ -62,9 +62,7 @@ export default function CheckoutLumiBar(){
                                         />
                                     </div>
                                 </div>
-                                <CheckoutProduct 
-                                    type="lumiBar"
-                                />
+                                <CheckoutProduct />
                             </div>
                         
                         </div>

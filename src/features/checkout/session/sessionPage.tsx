@@ -268,9 +268,7 @@ export default function SessionPage() {
                                 />
                             </div>
                         </div>
-                          <CheckoutProduct 
-                            type="session"
-                          />
+                          <CheckoutProduct />
                       </div>
                   </div>
               </div>
