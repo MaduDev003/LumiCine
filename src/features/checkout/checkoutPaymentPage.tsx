@@ -2,11 +2,14 @@
 
 import { useState } from "react";
 import { useMovieContext } from "@/src/context/MovieContext";
+import { X } from "lucide-react";
 import CheckoutProgress from "./components/CheckoutProgress";
 import CheckoutProduct from "./components/CheckoutProduct";
 import Header from "@/src/components/layout/Header";
 import Footer from "@/src/components/layout/Footer";
 import PaymentPurchase from "@/src/components/layout/PaymentPurchase";
+import MenuListElements from "@/src/components/ui/MenuListElements";
+
 
 export default function CheckoutPaymentPage() {
     const [menu, setMenu] = useState(false);
@@ -14,7 +17,23 @@ export default function CheckoutPaymentPage() {
 
     return (
         <>
-            <Header 
+        {menu && (
+          <div className="w-full h-screen flex items-center justify-center relative">
+            
+            <button
+              onClick={() => setMenu(false)}
+              className="absolute top-6 right-6 p-2 rounded-full transition-all hover:bg-white/10 hover:backdrop-blur-sm"
+            >
+              <X className="w-6 h-6 text-font-dark " />
+            </button>
+    
+            <MenuListElements className="flex-col gap-10 items-center" />
+    
+          </div>
+        )}
+         {!menu && (
+            <>
+                <Header 
                 setMenu={setMenu} 
                 allMoviesForSearch={[
                     ...nowPlayingMoviesData, 
@@ -37,6 +56,10 @@ export default function CheckoutPaymentPage() {
                 </div>
             </main>
             <Footer />
+            </>
+         )}
+
+            
         </>
     )
 }
