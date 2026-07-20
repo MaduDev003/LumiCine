@@ -24,23 +24,26 @@ export default function CheckoutProgress({type}: Props) {
 
   function getProgressStateColors(index: number) {
     const isActive = index === activeIndex;
-    const isConcluded = index < activeIndex;
+    const isStepConcluded = index < activeIndex;
     const isInactive = index > activeIndex;
+    const finalStep =  types[types.length - 1].id;
 
-    if(isActive) {
-      return {
-       container: "border-font-secondary-dark",
-      icon: "#adadad",
-      bar: "bg-font-secondary-dark"
-      }
-    }
-   if (isConcluded) {
+    if (isStepConcluded || finalStep === type) {
         return {
           container: "border-[#28A745]",
           icon: "#28A745",
           bar: "bg-[#28A745]",
         };
     }
+
+    if(isActive) {
+      return {
+        container: "border-font-secondary-dark",
+        icon: "#adadad",
+        bar: "bg-font-secondary-dark"
+      }
+    }
+   
     if(isInactive) {
       return {
         container:"border-secondary-dark", 
