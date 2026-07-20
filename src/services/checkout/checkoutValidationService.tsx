@@ -1,5 +1,3 @@
-// services/checkout/checkoutValidationService.ts
-
 import { Session } from "@/src/types/checkout/sessionType";
 import { calcTicketsTotal } from "./sessionService";
 import { Tickets } from "@/src/types/checkout/ticketsType";
