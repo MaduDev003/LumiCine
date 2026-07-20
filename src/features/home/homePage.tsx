@@ -8,7 +8,7 @@ import DateMovieFilter from "./components/DateMovieFilter";
 import ButtonCine from "../../components/ui/ButtonCine";
 import AvatarMovie from "../../assets/images/avatar_h_.jpg";
 import {loadNowPlayingMovies, loadComingSoonMovies} from "../../services/movie/movieService";
-import { ChevronRight, ChevronLeft, X } from "lucide-react";
+import { ChevronRight, ChevronLeft, X, ChevronDown} from "lucide-react";
 import MovieGrid from "./components/MovieGrid";
 import { ErrorState } from "@/src/components/ui/ErrorState";
 import { useDateFilter } from "@/src/hooks/useDateFilters";
@@ -22,6 +22,8 @@ export default function HomePage() {
   const [bannerMovies, setbannerMovies] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
+  const [filter, setFilter] = useState<"Todos" | "Pré venda">("Todos");
   const currentMovie = bannerMovies[currentIndex];
   const {
     visibleDates,
@@ -52,11 +54,11 @@ export default function HomePage() {
       try {
         setIsLoading(true);
 
-        const { movies: comingSoonMovies } = await loadComingSoonMovies(selectedDate);
+        const { movies: comingSoonMovies } = await loadComingSoonMovies(selectedDate, filter);
         const { movies: nowPlayingMovies, bannerMovies: banner } = await loadNowPlayingMovies();
 
         setbannerMovies(banner);
-        setComingSoonMoviesData(comingSoonMovies);
+        setComingSoonMoviesData(comingSoonMovies)
         setNowPlayingMoviesData(nowPlayingMovies);
       } catch(error: any) {
         setError("Não foi possível carregar os filmes...");
@@ -66,7 +68,7 @@ export default function HomePage() {
     }
 
     loadMovies();
-  }, [selectedDate]);
+  }, [selectedDate, filter]);
 
   return (
     <>
@@ -233,10 +235,44 @@ export default function HomePage() {
                 
                 {/* EM BREVE */}
                <section className="mt-14">
-                <h1 className="text-4xl text-font-light mb-12">
-                  Em Breve
-                </h1>
+                <div className="mb-12 flex gap-3 items-center">
+                  <h1 className="text-4xl text-font-light">
+                    Em Breve
+                  </h1>
+                  <div className="relative">
+                    <button
+                      onClick={() => setIsOpen(!isOpen)}
+                      className="z-10 flex justify-around items-center bg-accent w-28 h-8 px-3 rounded cursor-pointer hover:bg-accent/90"
+                    >
+                      <span>{filter}</span>
+                      <ChevronDown size={16} className={` transition-all duration-300 ${isOpen ? "rotate-180" : "rotate-0"}`}/>
+                    </button>
 
+                    {isOpen && (
+                      <div className="absolute z-10 mt-1 w-28 bg-secondary-dark rounded shadow-lg overflow-hidden cursor-pointer">
+                        <button
+                          onClick={() => {
+                            setFilter("Todos");
+                            setIsOpen(false);
+                          }}
+                          className="w-full text-left px-3 py-2 hover:bg-accent cursor-pointer"
+                        >
+                          Todos
+                        </button>
+
+                        <button
+                          onClick={() => {
+                            setFilter("Pré venda");
+                            setIsOpen(false);
+                          }}
+                          className="w-full text-left px-3 py-2 hover:bg-accent cursor-pointer"
+                        >
+                          Pré venda
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                </div>
                 {error ? (
                   <ErrorState
                     title="Ops... algo deu errado"

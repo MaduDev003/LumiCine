@@ -1,6 +1,10 @@
 import { Lumibar } from "@/src/types/checkout/lumiBarType";
 
-export function handlePurchase(operation: "plus" | "minus", purchasedProducts: Lumibar[], productForPurchase: {name: string, price:number}) {
+export function handlePurchase(
+    operation: "plus" | "minus", 
+    purchasedProducts: Lumibar[], 
+    productForPurchase: {name: string, price:number}
+  ) {
     const product = purchasedProducts.find(
       (item) => item.name === productForPurchase.name
     );

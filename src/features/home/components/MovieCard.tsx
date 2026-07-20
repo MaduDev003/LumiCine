@@ -33,11 +33,11 @@ export default function MovieCard({movie}: Props) {
                 backgroundPosition: "center",
                 }}
             >
-                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
+                <div className="absolute inset-0 bg-black/25 group-hover:bg-black/10 transition-colors" />
 
                 {movie.pre_sale && movie.type === "comingSoon" && (
                 <span className="absolute top-0 left-20 bg-accent text-white text-xs px-2 py-1 rounded z-10 shadow-[0_4px_12px_rgba(0,0,0,0.35)]">
-                    Pré-venda
+                   <p className="text-[15px]">Pré-venda</p> 
                 </span>
                 )}
             </div>
