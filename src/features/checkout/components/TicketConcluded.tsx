@@ -1,6 +1,7 @@
 "use client";
 
-import { LucideScanQrCode } from "lucide-react";
+import QRCode from "qrcode";
+import { useEffect, useState } from "react";
 
 type Props = {
     posterUrl?: string;
@@ -20,7 +21,26 @@ export default function TicketConcluded({
     ticketType
 }: Props) {
     const initialTime = time.slice(0, 5);
-    const translateTicketType = ticketType === "full" ? "Inteira" : "Meia"
+    const translateTicketType = ticketType === "full" ? "Inteira" : "Meia";
+    const [qrCode, setQrCode] = useState("");
+
+    async function mountQRCode() {
+        const content = JSON.stringify({
+            movieTitle,
+            date,
+            time,
+            seatPosition,
+            ticketType
+        });
+
+        const qr = await QRCode.toDataURL(content);
+
+        setQrCode(qr);
+    }
+
+    useEffect(() => {
+        mountQRCode();
+    }, []);
 
     return (
         <div
@@ -58,7 +78,7 @@ export default function TicketConcluded({
                             Data e Hora
                         </p>
                         <p className="text-font-dark font-semibold text-sm">
-                            {date || "20 Jul"} • {initialTime || "19:30"}
+                            {date} • {initialTime}
                         </p>
                     </div>
 
@@ -91,10 +111,26 @@ export default function TicketConcluded({
                 </div>
 
                 <div className="flex flex-col items-center gap-3 pt-2">
-                    <div className="bg-white rounded-2xl p-5 shadow-lg">
-                        <LucideScanQrCode size={88} className="text-black" />
-                    </div>
-
+                   <div className="bg-tertiary-dark rounded-2xl p-4 shadow-lg">
+                            <div
+                                className="
+                                    bg-white rounded-xl p-4
+                                    shadow-[0_8px_25px_rgba(0,0,0,0.15)]
+                                    border border-black/5
+                                    flex items-center justify-center
+                                "
+                            >
+                                {qrCode && (
+                                    <img
+                                        src={qrCode}
+                                        alt="QR Code do ingresso"
+                                        width={140}
+                                        height={140}
+                                        className="rounded-md"
+                                    />
+                                )}
+                            </div>
+                        </div>
                     <p className="text-font-dark/60 text-xs text-center leading-relaxed max-w-55">
                         Apresente este QR Code na entrada da sala
                     </p>

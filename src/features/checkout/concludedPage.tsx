@@ -48,7 +48,7 @@ export default function ConcludedPage() {
                             <div className="w-full max-w-280 mx-auto flex flex-col gap-6 items-center">
                                 <CheckoutProgress type="concluded" />
 
-                                <div className="flex flex-wrap gap-6 justify-center">
+                                <div className="flex flex-wrap gap-6 justify-center ">
                                     {tickets.map((ticket) => (
                                         <TicketConcluded
                                             key={ticket.id}

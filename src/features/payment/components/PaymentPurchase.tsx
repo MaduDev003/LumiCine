@@ -26,13 +26,9 @@ export default function PaymentPurchase() {
   const movie = useCheckoutStore((state) => state.movie);
   const seats = useCheckoutStore((state) => state.seats);
   const session = useCheckoutStore((state) => state.session);
-
   const setPurchasedTickets = usePurchasedTicketsStore(
     (state) => state.setTickets
 );
-
-
-
   const clearCheckout = useCheckoutStore(
     (state) => state.clearCheckout
   );
