@@ -13,7 +13,9 @@ type Props = {
 export default function Chair({ type, position, onClick }: Props) {
     const seats = useCheckoutStore((state) => state.seats);
     const seatPosition = `${position.seatLetter}${position.seatNumber}`;
-    const isSeatSelected = seats.includes(seatPosition);
+    const isSeatSelected = seats.some(
+    (seat) => seat.position === seatPosition
+    );
 
     return (
             <>

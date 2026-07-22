@@ -19,28 +19,26 @@ export default function ChairGrid({ accessible, row }: Props) {
     const tickets = useCheckoutStore((state) => state.tickets);
 
    function handleSeatSelection(seatPosition: string, seatType: Seat) {
-        const selectedSeats = [];
-        const {totalQuantity} = calcTicketsTotal(tickets);
-        const isSeatsLimitReached = seats.length === totalQuantity;
-        let isSeatAlreadySelected = false;
+        const { totalQuantity } = calcTicketsTotal(tickets);
 
-
-        if (!isSeatValidForPurchase(tickets,seatType)) {
+        if (!isSeatValidForPurchase(tickets, seatType)) {
             setIsValidatorModalOpen(true);
             return;
         }
 
-        for (const seat of seats) {
-            if (seat === seatPosition) {
-                isSeatAlreadySelected = true;
-                continue;
-            }
+        const isSeatAlreadySelected = seats.some(
+            (seat) => seat.position === seatPosition
+        );
 
-            selectedSeats.push(seat);
-        }
+        let selectedSeats = seats.filter(
+            (seat) => seat.position !== seatPosition
+        );
 
-        if (!isSeatAlreadySelected && !isSeatsLimitReached) {
-            selectedSeats.push(seatPosition);
+        if (!isSeatAlreadySelected && selectedSeats.length < totalQuantity) {
+            selectedSeats.push({
+                type: seatType,
+                position: seatPosition,
+            });
         }
 
         setSeats(selectedSeats);

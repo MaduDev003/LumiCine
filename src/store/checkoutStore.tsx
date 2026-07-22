@@ -4,18 +4,20 @@ import { persist } from "zustand/middleware";
 import { Tickets } from "../types/checkout/ticketsType";
 import { Session } from "../types/checkout/sessionType";
 import { Lumibar } from "../types/checkout/lumiBarType";
+import { SeatSelected } from "../types/checkout/seatType";
 
 interface CheckoutStore {
   movie: Movie | null;
   session: Session;
   tickets: Tickets;
-  seats: string[];
+  seats: SeatSelected[];
   lumibar: Lumibar[];
 
+ 
   setMovie: (movie: Movie) => void;
   setSession: (session: Partial<Session>) => void;
   setTickets: (tickets: Tickets) => void;
-  setSeats: (seats: string[]) => void;
+  setSeats: (seats: SeatSelected[]) => void;
   setLumibar: (lumibar: Lumibar[]) => void;
   clearCheckout: () => void;
 }

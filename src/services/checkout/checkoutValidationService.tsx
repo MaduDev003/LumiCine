@@ -1,7 +1,8 @@
+import { SeatSelected } from "@/src/types/checkout/seatType";
 import { Session } from "@/src/types/checkout/sessionType";
 import { Tickets } from "@/src/types/checkout/ticketsType";
 
-export function validateSeatSelection(seats: string[], totalSeatsPermitted: number) {
+export function validateSeatSelection(seats: SeatSelected[], totalSeatsPermitted: number) {
   const missingFields = []
 
   if(seats.length < totalSeatsPermitted){

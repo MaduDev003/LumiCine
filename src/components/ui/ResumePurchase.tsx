@@ -112,8 +112,8 @@ export default function CheckoutProduct() {
 
                     <div className="flex justify-end gap-2">
                       {seats.map((seat, index) => (
-                        <p key={seat} className="text-font-dark">
-                          {seat}
+                        <p key={seat.position} className="text-font-dark">
+                          {seat.position}
                           {index < seats.length - 1 && ","}
                         </p>
                       ))}
