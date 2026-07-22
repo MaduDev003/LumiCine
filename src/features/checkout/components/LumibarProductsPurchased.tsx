@@ -1,12 +1,11 @@
 import { Lumibar } from "@/src/types/checkout/lumiBarType";
+import { BRFormat } from "@/src/utils/fixValueForBrazilianFormat";
 
 type Props = {
     items: Lumibar[];
 };
 
 export default function LumibarProductsPurchased({ items }: Props) {
-    console.log(items[0], 'lumibar p')
-    console.log(items, 'lumibar x')
     return (
         <div
             className="
@@ -47,7 +46,7 @@ export default function LumibarProductsPurchased({ items }: Props) {
                             </div>
 
                             <p className="text-font-dark font-semibold text-sm">
-                                R$ {(item.price * item.quantity).toFixed(2)}
+                                R$ {BRFormat(item.price * item.quantity)}
                             </p>
                         </div>
                     ))}

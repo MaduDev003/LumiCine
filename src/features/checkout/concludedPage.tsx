@@ -22,28 +22,23 @@ export default function ConcludedPage() {
     const lumibar = usePurchasedProductsStore(
         (state) => state.lumibar
     );
+    const totalItems = tickets.length + (lumibar.length > 0 ? 1 : 0);
+    const ticket = tickets[
+        lumibar.length > 0
+            ? currentItem - 1
+            : currentItem
+    ];
 
-
-    const hasLumibar = lumibar.length > 0;
-    const totalItems = tickets.length + (hasLumibar ? 1 : 0);
-    const showingLumibar = hasLumibar && currentItem === 0;
-    const ticketIndex = hasLumibar
-        ? currentItem - 1
-        : currentItem;
-
-    const ticket = tickets[ticketIndex];
-    const hasPrevious = currentItem > 0;
-    const hasNext = currentItem < totalItems - 1;
 
     function previousItem() {
-        if (hasPrevious) {
+        if (currentItem > 0) {
             setCurrentItem((prev) => prev - 1);
         }
     }
 
 
     function nextItem() {
-        if (hasNext) {
+        if (currentItem < totalItems - 1) {
             setCurrentItem((prev) => prev + 1);
         }
     }
@@ -81,7 +76,9 @@ export default function ConcludedPage() {
 
                             <div className="w-full max-w-280 mx-auto flex flex-col gap-6 items-center">
 
-                                <CheckoutProgress type="concluded" />
+                                {(tickets.length > 0 || lumibar.length > 0) && (
+                                    <CheckoutProgress type="concluded" />
+                                )}
 
 
                                 <div className="w-2/3 flex flex-col gap-6 items-center">
@@ -92,22 +89,26 @@ export default function ConcludedPage() {
                                             <>
 
                                                 <button
-                                                    disabled={!hasPrevious}
+                                                    disabled={currentItem === 0}
                                                     onClick={previousItem}
-                                                    className={`w-14 h-14 flex items-center justify-center rounded-full transition ${hasPrevious ? "hover:bg-white/10 cursor-pointer" : "opacity-40 cursor-not-allowed"}`}
+                                                    className={`w-14 h-14 flex items-center justify-center rounded-full transition ${
+                                                        currentItem > 0
+                                                            ? "hover:bg-white/10 cursor-pointer"
+                                                            : "opacity-40 cursor-not-allowed"
+                                                    }`}
                                                 >
                                                     <ChevronLeft className="w-10 h-10 stroke-1" />
                                                 </button>
 
 
-                                                {showingLumibar && (
+                                                {lumibar.length > 0 && currentItem === 0 && (
                                                     <LumibarProductsPurchased
                                                         items={lumibar}
                                                     />
                                                 )}
 
 
-                                                {!showingLumibar && ticket && (
+                                                {ticket && (
                                                     <TicketConcluded
                                                         key={ticket.id}
                                                         posterUrl={ticket.movie.poster}
@@ -121,9 +122,13 @@ export default function ConcludedPage() {
 
 
                                                 <button
-                                                    disabled={!hasNext}
+                                                    disabled={currentItem >= totalItems - 1}
                                                     onClick={nextItem}
-                                                    className={`w-14 h-14 flex items-center justify-center rounded-full transition ${hasNext ? "hover:bg-white/10 cursor-pointer" : "opacity-40 cursor-not-allowed"}`}
+                                                    className={`w-14 h-14 flex items-center justify-center rounded-full transition ${
+                                                        currentItem < totalItems - 1
+                                                            ? "hover:bg-white/10 cursor-pointer"
+                                                            : "opacity-40 cursor-not-allowed"
+                                                    }`}
                                                 >
                                                     <ChevronRight className="w-10 h-10 stroke-1" />
                                                 </button>
@@ -140,7 +145,11 @@ export default function ConcludedPage() {
                                             {Array.from({ length: totalItems }).map((_, index) => (
                                                 <span
                                                     key={index}
-                                                    className={`h-3 w-3 rounded-full transition-colors ${index === currentItem ? "bg-white" : "bg-tertiary-dark"}`}
+                                                    className={`h-3 w-3 rounded-full transition-colors ${
+                                                        index === currentItem
+                                                            ? "bg-white"
+                                                            : "bg-tertiary-dark"
+                                                    }`}
                                                 />
                                             ))}
 
