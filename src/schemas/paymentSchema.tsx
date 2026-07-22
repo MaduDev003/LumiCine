@@ -20,7 +20,14 @@ export const paymentSchema = z.object({
     .regex(
       /^(0[1-9]|1[0-2])\d{2}$/,
       "Informe uma data válida"
-    ),
+    ).refine((value) => {
+    const expiry = new Date(
+      Number(`20${value.slice(2)}`),
+      Number(value.slice(0, 2))
+    );
+
+    return expiry > new Date();
+  }, "Cartão expirado"),
 
   cvc: z
     .string()

@@ -1,21 +1,20 @@
-"use client"
+"use client";
 
 import { useState } from "react";
 import { useMovieContext } from "@/src/context/MovieContext";
+import { mountTickets } from "@/src/services/ticketsService";
+import { useCheckoutStore } from "@/src/store/checkoutStore";
 import { X } from "lucide-react";
 import CheckoutProgress from "./components/CheckoutProgress";
 import Header from "@/src/components/layout/Header";
 import Footer from "@/src/components/layout/Footer";
-
 import MenuListElements from "@/src/components/ui/MenuListElements";
 import TicketConcluded from "./components/TicketConcluded";
-import { mountTickets } from "@/src/services/ticketsService";
-import { useCheckoutStore } from "@/src/store/checkoutStore";
+
 
 export default function ConcludedPage() {
     const [menu, setMenu] = useState(false);
     const { nowPlayingMoviesData, comingSoonMoviesData } = useMovieContext();
-
     const movie = useCheckoutStore((state) => state.movie);
     const seats = useCheckoutStore((state) => state.seats);
     const tickets = useCheckoutStore((state) => state.tickets);
