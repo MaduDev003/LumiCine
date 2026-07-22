@@ -1,59 +1,71 @@
 import { SeatSelected } from "../types/checkout/seatType";
 import { Tickets } from "../types/checkout/ticketsType";
 import { Session } from "../types/checkout/sessionType";
+import { PurchasedTicket } from "../types/PurchasedTicket";
 
 type MovieInfo = {
-    title?: string;
-    poster?: string;
+    title: string;
+    poster: string;
 };
 
-type TicketSession = Omit<Session, "tickets">;
+type TicketSession = Omit<Session, "ticket">;
 
 type CommonInfo = {
     movie: MovieInfo;
     session: TicketSession;
 };
 
-export type CheckoutTicket = {
-    seat: string;
-    seatType: SeatSelected["type"];
-    ticketType: "half" | "full";
-    movie: MovieInfo;
-    session: TicketSession;
-};
 
 export function mountTickets(
     tickets: Tickets,
     seats: SeatSelected[],
     { movie, session }: CommonInfo
-): CheckoutTicket[] {
+): PurchasedTicket[] {
 
-    const mountedTickets: CheckoutTicket[] = [];
+    const purchasedTickets: PurchasedTicket[] = [];
 
     let halfAvailable = tickets.half.quantity;
     let fullAvailable = tickets.full.quantity;
 
+
     for (const seat of seats) {
+
         let ticketType: "half" | "full";
+
 
         if (halfAvailable > 0) {
             ticketType = "half";
             halfAvailable--;
+
         } else if (fullAvailable > 0) {
             ticketType = "full";
             fullAvailable--;
+
         } else {
             break;
         }
 
-        mountedTickets.push({
-            seat: seat.position,
-            seatType: seat.type,
-            ticketType,
+
+        purchasedTickets.push({
+            id: crypto.randomUUID(),
+
             movie,
+
             session,
+
+            seat: {
+                position: seat.position,
+                type: seat.type,
+            },
+
+            ticketType,
+
+            purchaseDate: new Date().toISOString(),
+
+            qrCode: crypto.randomUUID(),
         });
     }
 
-    return mountedTickets;
+
+    return purchasedTickets;
 }

@@ -2,33 +2,21 @@
 
 import { useState } from "react";
 import { useMovieContext } from "@/src/context/MovieContext";
-import { mountTickets } from "@/src/services/ticketsService";
-import { useCheckoutStore } from "@/src/store/checkoutStore";
 import { X } from "lucide-react";
 import CheckoutProgress from "./components/CheckoutProgress";
 import Header from "@/src/components/layout/Header";
 import Footer from "@/src/components/layout/Footer";
 import MenuListElements from "@/src/components/ui/MenuListElements";
 import TicketConcluded from "./components/TicketConcluded";
+import { usePurchasedTicketsStore } from "@/src/store/purchasedTicketsStore";
 
 
 export default function ConcludedPage() {
     const [menu, setMenu] = useState(false);
     const { nowPlayingMoviesData, comingSoonMoviesData } = useMovieContext();
-    const movie = useCheckoutStore((state) => state.movie);
-    const seats = useCheckoutStore((state) => state.seats);
-    const tickets = useCheckoutStore((state) => state.tickets);
-    const session = useCheckoutStore((state) => state.session);
-
-    const mountedTickets = mountTickets(tickets, seats, {
-        movie: {
-            title: movie?.title,
-            poster: movie?.backdrop_url
-        },
-        session
-    });
-
-    console.log(mountedTickets);
+    const tickets = usePurchasedTicketsStore(
+      state => state.tickets
+  );
 
     return (
         <>
@@ -61,14 +49,14 @@ export default function ConcludedPage() {
                                 <CheckoutProgress type="concluded" />
 
                                 <div className="flex flex-wrap gap-6 justify-center">
-                                    {mountedTickets.map((ticket) => (
+                                    {tickets.map((ticket) => (
                                         <TicketConcluded
-                                            key={ticket.seat}
+                                            key={ticket.id}
                                             posterUrl={ticket.movie.poster}
                                             movieTitle={ticket.movie.title}
                                             date={ticket.session.date}
                                             time={ticket.session.time}
-                                            seatPosition={ticket.seat}
+                                            seatPosition={ticket.seat.position}
                                             ticketType={ticket.ticketType}
                                         />
                                     ))}

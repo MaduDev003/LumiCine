@@ -8,6 +8,8 @@ import { ChevronDown, CreditCard, CircleX, CircleCheck } from "lucide-react";
 import { processPayment, calcItemsTotalPrice, canInstallment } from "@/src/services/paymentService";
 import { paymentSchema, PaymentFormData} from "@/src/schemas/paymentSchema";
 import { useCheckoutStore } from "@/src/store/checkoutStore";
+import { mountTickets } from "@/src/services/ticketsService";
+import { usePurchasedTicketsStore } from "@/src/store/purchasedTicketsStore";
 import PaymentCard from "./PaymentCard";
 import ButtonCine from "../../../components/ui/ButtonCine";
 
@@ -21,6 +23,19 @@ export default function PaymentPurchase() {
   const tickets = useCheckoutStore((state) => state.tickets);
   const lumibar = useCheckoutStore((state) => state.lumibar);
   const totalPrice = calcItemsTotalPrice(tickets, lumibar);
+  const movie = useCheckoutStore((state) => state.movie);
+  const seats = useCheckoutStore((state) => state.seats);
+  const session = useCheckoutStore((state) => state.session);
+
+  const setPurchasedTickets = usePurchasedTicketsStore(
+    (state) => state.setTickets
+);
+
+
+
+  const clearCheckout = useCheckoutStore(
+    (state) => state.clearCheckout
+  );
   const router = useRouter();
   const {
     register,
@@ -93,16 +108,42 @@ export default function PaymentPurchase() {
     }
 
     async function finishPayment(data: PaymentFormData) {
-      await processPayment(data);
+        const paymentResult = await processPayment(data);
 
-      reset({
-        number: "",
-        name: "",
-        expiry: "",
-        cvc: ""
-      });
+        if (!paymentResult) {
+            setModalType("error");
+            setModalMessage("Não foi possível processar o pagamento.");
+            setIsModalOpen(true);
+            return;
+        }
 
-      
+
+        const mountedTickets = mountTickets(
+            tickets,
+            seats,
+            {
+                movie: {
+                    title: movie?.title ?? "",
+                    poster: movie?.backdrop_url ?? "",
+                },
+                session,
+            }
+        );
+
+
+      setPurchasedTickets(mountedTickets);
+
+
+        clearCheckout();
+
+
+        reset({
+            number: "",
+            name: "",
+            expiry: "",
+            cvc: "",
+            installment: "1x sem juros",
+        });
     }
 
   return (
