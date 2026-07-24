@@ -1,13 +1,13 @@
-import popcorn from "../assets/images/popcorn.png";
-import hotDog from "../assets/images/hotDog.png";
-import nachos from "../assets/images/nachos.png";
-import strawberryMilk from "../assets/images/strawberryMilk.png";
-import frenchFries from "../assets/images/frenchFries.png";
-import water from "../assets/images/water.png";
-import softDrink from "../assets/images/softDrink.png";
-import juice from "../assets/images/juice.png";
-import chocoMilk from "../assets/images/chocoMilk.png";
-import vanillaMilk from "../assets/images/vanillaMilk.png";
+import popcorn from "@/src/assets/images/popcorn.png";
+import hotDog from "@/src/assets/images/hotDog.png";
+import nachos from "@/src/assets/images/nachos.png";
+import strawberryMilk from "@/src/assets/images/strawberryMilk.png";
+import frenchFries from "@/src/assets/images/frenchFries.png";
+import water from "@/src/assets/images/water.png";
+import softDrink from "@/src/assets/images/softDrink.png";
+import juice from "@/src/assets/images/juice.png";
+import chocoMilk from "@/src/assets/images/chocoMilk.png";
+import vanillaMilk from "@/src/assets/images/vanillaMilk.png";
 
 export const lumiBarProducts = {
   snacks: [

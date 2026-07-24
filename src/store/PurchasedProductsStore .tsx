@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { PurchasedOrder } from "../types/purchasedOrder";
+import { PurchasedOrder } from "@/src/types/purchasedOrder";
 
 
 interface PurchasedProductsStore {

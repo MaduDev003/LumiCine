@@ -1,6 +1,6 @@
 import { useRouter } from "next/navigation";
 import { Movie } from "@/src/types/movieType";
-import {renderAgeClassificationColor} from "../../../utils/renderAgeClassificationColor";
+import {renderAgeClassificationColor} from "@/src/utils/renderAgeClassificationColor";
 
 type Props = {
   movie: Movie;

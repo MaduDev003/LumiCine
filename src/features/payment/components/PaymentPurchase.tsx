@@ -18,7 +18,7 @@ import { usePurchasedProductsStore } from "@/src/store/PurchasedProductsStore ";
 import { mountTickets } from "@/src/services/ticketsService";
 
 import PaymentCard from "./PaymentCard";
-import ButtonCine from "../../../components/ui/ButtonCine";
+import ButtonCine from "@/src/components/ui/ButtonCine";
 
 
 type PaymentType = "credit" | "debit" | "pix" | null;

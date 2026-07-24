@@ -1,13 +1,13 @@
 "use client";
 
 import {useState, useEffect} from "react";
-import MenuListElements from "../../components/ui/MenuListElements";
-import Header from "../../components/layout/Header";
+import MenuListElements from "@/src/components/ui/MenuListElements";
+import Header from "@/src/components/layout/Header";
 import Footer from "@/src/components/layout/Footer";
 import DateMovieFilter from "./components/DateMovieFilter";
-import ButtonCine from "../../components/ui/ButtonCine";
-import AvatarMovie from "../../assets/images/avatar_h_.jpg";
-import {loadNowPlayingMovies, loadComingSoonMovies} from "../../services/movie/movieService";
+import ButtonCine from "@/src/components/ui/ButtonCine";
+import AvatarMovie from "@/src/assets/images/avatar_h_.jpg";
+import {loadNowPlayingMovies, loadComingSoonMovies} from "@/src/services/movie/movieService";
 import { ChevronRight, ChevronLeft, X, ChevronDown} from "lucide-react";
 import MovieGrid from "./components/MovieGrid";
 import { ErrorState } from "@/src/components/ui/ErrorState";

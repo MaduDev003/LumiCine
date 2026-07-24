@@ -7,7 +7,7 @@ import MenuListElements from "@/src/components/ui/MenuListElements";
 import Header from "@/src/components/layout/Header";
 import Footer from "@/src/components/layout/Footer";
 import CheckoutProgress from "./components/CheckoutProgress";
-import ResumePurchase from "../../components/ui/ResumePurchase";
+import ResumePurchase from "@/src/components/ui/ResumePurchase";
 import LumiBar from "@/src/components/layout/Lumibar";
 import ButtonCine from "@/src/components/ui/ButtonCine";
 

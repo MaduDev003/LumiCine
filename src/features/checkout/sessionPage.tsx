@@ -11,7 +11,7 @@ import MenuListElements from "@/src/components/ui/MenuListElements";
 import CheckoutProgress from "./components/CheckoutProgress";
 import Footer from "@/src/components/layout/Footer";
 import ButtonCine from "@/src/components/ui/ButtonCine";
-import ResumePurchase  from "../../components/ui/ResumePurchase";
+import ResumePurchase  from "@/src/components/ui/ResumePurchase";
 import Header from "@/src/components/layout/Header";
 import ValidatorModal from "./components/ValidatorModal";
 

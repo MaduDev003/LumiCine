@@ -3,8 +3,8 @@
 import { useState } from "react";
 import { useMovieContext } from "@/src/context/MovieContext";
 import { X } from "lucide-react";
-import CheckoutProgress from "../checkout/components/CheckoutProgress";
-import ResumePurchase from "../../components/ui/ResumePurchase";
+import CheckoutProgress from "@/src/features/checkout/components/CheckoutProgress";
+import ResumePurchase from "@/src/components/ui/ResumePurchase";
 import Header from "@/src/components/layout/Header";
 import Footer from "@/src/components/layout/Footer";
 import PaymentPurchase from "@/src/features/payment/components/PaymentPurchase";

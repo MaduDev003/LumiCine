@@ -7,7 +7,7 @@ import { useMovieContext } from "@/src/context/MovieContext";
 import { useCheckoutStore } from "@/src/store/checkoutStore";
 import { validateSeatSelection } from "@/src/services/checkout/checkoutValidationService";
 import { calcTicketsTotal } from "@/src/services/checkout/sessionService";
-import ResumePurchase from "../../components/ui/ResumePurchase";
+import ResumePurchase from "@/src/components/ui/ResumePurchase";
 import CheckoutProgress from "./components/CheckoutProgress";
 import Footer from "@/src/components/layout/Footer";
 import Header from "@/src/components/layout/Header";

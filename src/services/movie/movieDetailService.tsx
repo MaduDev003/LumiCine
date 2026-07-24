@@ -1,9 +1,9 @@
 import { getMovieDetails } from "@/src/api/movie/getMovieDetails";
-import { getMovieReleaseDates } from "../../api/movie/getMovieReleaseDates";
+import { getMovieReleaseDates } from "@/src/api/movie/getMovieReleaseDates";
 import { getMovieCast } from "@/src/api/movie/getMovieCast";
 import { MovieMapper } from "@/src/mappers/movieMapper";
 import { extractAgeRating } from "./movieService";
-import { generateMoviePeriod } from "../dateFiltersService";
+import { generateMoviePeriod } from "@/src/services/dateFiltersService";
 import { isPreSale } from "./movieService";
 
 export async function getMovieById(id: number, type: "comingSoon" | "nowPlaying") {

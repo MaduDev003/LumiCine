@@ -1,5 +1,5 @@
-import { httpClient } from "../config/httpClient";
-import { endpoints } from "../config/endpoints";
+import { httpClient } from "@/src/api/config/httpClient";
+import { endpoints } from "@/src/api/config/endpoints";
 
 export async function getMovies(page: number) {
     try{

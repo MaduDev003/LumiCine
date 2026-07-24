@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
-import { generateDatesForFilter } from "../services/dateFiltersService";
-import {renderItemsPerPage} from "../utils/renderItensPerPage";
+import { generateDatesForFilter } from "@/src/services/dateFiltersService";
+import {renderItemsPerPage} from "@/src/utils/renderItensPerPage";
 
 export function useDateFilter(days = 15, type: "home" | "session") {
   const [currentIndex, setCurrentIndex] = useState(0);

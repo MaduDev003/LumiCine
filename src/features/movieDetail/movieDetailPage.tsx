@@ -2,12 +2,12 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { X } from "lucide-react";
-import {renderAgeClassificationColor} from "../../utils/renderAgeClassificationColor";
+import {renderAgeClassificationColor} from "@/src/utils/renderAgeClassificationColor";
 import { Movie } from "@/src/types/movieType";
 import { useMovieContext } from "@/src/context/MovieContext";
 import { formatDateToBrazilianFormat } from "@/src/utils/formatDate";
 import { useCheckoutStore } from "@/src/store/checkoutStore";
-import MenuListElements from "../../components/ui/MenuListElements";
+import MenuListElements from "@/src/components/ui/MenuListElements";
 import ButtonCine from "@/src/components/ui/ButtonCine";
 import Header from "@/src/components/layout/Header";
 import Footer from "@/src/components/layout/Footer";

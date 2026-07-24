@@ -1,5 +1,5 @@
 import MovieDetailPage from "@/src/features/movieDetail/movieDetailPage";
-import {getMovieById} from "../../../services/movie/movieDetailService";
+import {getMovieById} from "@/src/services/movie/movieDetailService";
 
 type Props = {
   params: Promise<{ id: string }>;

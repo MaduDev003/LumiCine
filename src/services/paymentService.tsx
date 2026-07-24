@@ -1,7 +1,7 @@
 import QRCode from "qrcode";
 import { PaymentFormData } from "@/src/schemas/paymentSchema";
-import { Tickets } from "../types/checkout/ticketsType";
-import { Lumibar } from "../types/checkout/lumiBarType";
+import { Tickets } from "@/src/types/checkout/ticketsType";
+import { Lumibar } from "@/src/types/checkout/lumiBarType";
 import { sumLumibarProducts } from "./checkout/lumiBarService";
 import { calcTicketsTotal } from "./checkout/sessionService";
 

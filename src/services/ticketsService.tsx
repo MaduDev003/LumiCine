@@ -1,8 +1,8 @@
-import { SeatSelected } from "../types/checkout/seatType";
-import { Tickets } from "../types/checkout/ticketsType";
-import { Session } from "../types/checkout/sessionType";
-import { PurchasedTicket } from "../types/purchasedTicket";
-import { PurchasedOrder } from "../types/purchasedOrder";
+import { SeatSelected } from "@/src/types/checkout/seatType";
+import { Tickets } from "@/src/types/checkout/ticketsType";
+import { Session } from "@/src/types/checkout/sessionType";
+import { PurchasedTicket } from "@/src/types/purchasedTicket";
+import { PurchasedOrder } from "@/src/types/purchasedOrder";
 
 type MovieInfo = {
     title: string;

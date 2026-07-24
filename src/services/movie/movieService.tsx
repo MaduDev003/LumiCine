@@ -1,8 +1,8 @@
-import { getMovies } from "../../api/movie/getMovies";
-import { getMovieReleaseDates } from "../../api/movie/getMovieReleaseDates";
-import { MovieMapper } from "../../mappers/movieMapper";
-import { MovieResponse } from "../../types/movieResponseType";
-import { generateMoviePeriod } from "../dateFiltersService";
+import { getMovies } from "@/src/api/movie/getMovies";
+import { getMovieReleaseDates } from "@/src/api/movie/getMovieReleaseDates";
+import { MovieMapper } from "@/src/mappers/movieMapper";
+import { MovieResponse } from "@/src/types/movieResponseType";
+import { generateMoviePeriod } from "@/src/services/dateFiltersService";
 
 export async function getMoviesData(page: number) {
   const movies = await getMovies(page);
