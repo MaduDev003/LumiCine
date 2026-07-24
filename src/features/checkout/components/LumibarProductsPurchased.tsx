@@ -39,13 +39,17 @@ export default function LumibarProductsPurchased({ items }: Props) {
                                 items-center
                             "
                         >
-                            <div>
-                                <p className="text-font-dark font-semibold text-sm">
-                                    {item.quantity}x {item.name}
+                            <div className="flex gap-3 justify-center items-center">
+                                 <p className="text-font-secondary-dark font-semibold text-sm">
+                                    {item.quantity}x
                                 </p>
+                                <p className="text-font-dark font-semibold text-sm">
+                                     {item.name}
+                                </p>
+                               
                             </div>
 
-                            <p className="text-font-dark font-semibold text-sm">
+                            <p className="text-font-secondary-dark font-semibold text-sm">
                                 R$ {BRFormat(item.price * item.quantity)}
                             </p>
                         </div>

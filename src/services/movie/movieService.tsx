@@ -59,7 +59,7 @@ export function isPreSale(releaseDate: string): boolean {
 
     const lastMonthDay10 = new Date(
       today.getFullYear(),
-      today.getMonth() - 2,
+      today.getMonth() - 1,
       10
     );
 
