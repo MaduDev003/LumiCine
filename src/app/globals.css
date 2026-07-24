@@ -2,14 +2,15 @@
 
 :root {
   --accent-color: rgba(231, 87, 10, 0.973);
+
   --background-dark: #181717;
   --font-color-dark: #e6e3e3;
   --secondary-color-dark: #3a3a3a;
   --tertiary-color-dark: #797777;
-  --font-secondary-dark:#adadad;
+  --font-secondary-dark: #adadad;
 
   --background: #181717;
-  --foreground: #3a3a3a;
+  --foreground: #e6e3e3;
 }
 
 @theme inline {
@@ -24,13 +25,6 @@
   --color-font-secondary-dark: var(--font-secondary-dark);
 
   --font-sans: var(--font-sans);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: var(--background-dark);
-    --foreground: var(--font-color-dark);
-  }
 }
 
 body {
