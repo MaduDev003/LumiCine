@@ -34,7 +34,7 @@ export default function MyTicketsPage() {
                             {Object.entries(ordersByDate).map(([date, order]) => (
                                 <div key={date} className="mb-10 text-xl px-5">
                                     <h1>
-                                        Tickets comprados dia: {date}
+                                        Compra efetuada: {date}
                                     </h1>
                                     <div className="flex flex-wrap gap-5 mt-5 justify-center">
                                         {order.tickets.map((ticket) => (

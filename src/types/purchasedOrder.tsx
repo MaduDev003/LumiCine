@@ -1,4 +1,4 @@
-import { PurchasedTicket } from "./PurchasedTicket";
+import { PurchasedTicket } from "./purchasedTicket";
 import { Lumibar } from "./checkout/lumiBarType";
 
 export interface PurchasedOrder {

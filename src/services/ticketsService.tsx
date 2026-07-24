@@ -1,7 +1,7 @@
 import { SeatSelected } from "../types/checkout/seatType";
 import { Tickets } from "../types/checkout/ticketsType";
 import { Session } from "../types/checkout/sessionType";
-import { PurchasedTicket } from "../types/PurchasedTicket";
+import { PurchasedTicket } from "../types/purchasedTicket";
 import { PurchasedOrder } from "../types/purchasedOrder";
 
 type MovieInfo = {
