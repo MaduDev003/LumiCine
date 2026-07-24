@@ -1,0 +1,89 @@
+"use client"
+
+import { useState } from "react";
+import { useMovieContext } from "@/src/context/MovieContext";
+import { X } from "lucide-react";
+import Header from "@/src/components/layout/Header";
+import Footer from "@/src/components/layout/Footer";
+import MenuListElements from "@/src/components/ui/MenuListElements";
+import { usePurchasedProductsStore } from "@/src/store/PurchasedProductsStore ";
+import TicketConcluded from "../checkout/components/TicketConcluded";
+import LumibarProductsPurchased from "../checkout/components/LumibarProductsPurchased";
+
+
+export default function MyTicketsPage() {
+    const [menu, setMenu] = useState(false);
+
+    const { nowPlayingMoviesData, comingSoonMoviesData } = useMovieContext();
+
+    const { orders } = usePurchasedProductsStore();
+
+
+    return (
+        <div className="min-h-screen flex flex-col">
+            {!menu && (
+                <>
+                    <Header 
+                        setMenu={setMenu}
+                        allMoviesForSearch={[
+                            ...nowPlayingMoviesData,
+                            ...comingSoonMoviesData
+                        ]}
+                    />
+
+                    <main className="min-h-150 flex flex-col items-center pt-10 pb-5">
+                        <div className="w-full max-w-5xl min-h-150">
+
+                            {orders.length === 0 && (
+                                <h1>Sem ingressos</h1>
+                            )}
+
+                            {orders.map((order) => {
+                                const createdAtDate = new Date(order.createdAt);
+
+                                return (
+                                    <div 
+                                        key={order.id}
+                                        className="mb-10"
+                                    >
+                                        <h1>
+                                            Tickets comprados dia:{" "}
+                                            {createdAtDate.getDate()}/
+                                            {createdAtDate.getMonth() + 1}/
+                                            {createdAtDate.getFullYear()}
+                                        </h1>
+
+                                        <div className="flex flex-wrap gap-5 mt-5 justify-center">
+
+                                            {order.tickets.map((ticket) => (
+                                                <TicketConcluded
+                                                    key={ticket.id}
+                                                    posterUrl={ticket.movie.poster}
+                                                    movieTitle={ticket.movie.title}
+                                                    date={ticket.session.date}
+                                                    time={ticket.session.time}
+                                                    seatPosition={ticket.seat.position}
+                                                    ticketType={ticket.ticketType}
+                                                />
+                                            ))}
+
+                                            {order.lumibar.length > 0 && (
+                                                <LumibarProductsPurchased
+                                                    items={order.lumibar}
+                                                />
+                                            )}
+
+                                        </div>
+                                    </div>
+                                );
+                            })}
+
+                        </div>
+                    </main>
+
+                    <Footer />
+                </>
+            )}
+        </div>
+    );
+}

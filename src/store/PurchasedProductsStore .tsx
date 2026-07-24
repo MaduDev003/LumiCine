@@ -1,37 +1,42 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { PurchasedTicket } from "../types/PurchasedTicket";
-import { Lumibar } from "../types/checkout/lumiBarType";
+import { PurchasedOrder } from "../types/purchasedOrder";
+
 
 interface PurchasedProductsStore {
-    tickets: PurchasedTicket[];
-    lumibar: Lumibar[];
+    orders: PurchasedOrder[];
 
     setPurchasedProducts: (
-        tickets: PurchasedTicket[],
-        lumibar: Lumibar[]
+        tickets: PurchasedOrder["tickets"],
+        lumibar: PurchasedOrder["lumibar"]
     ) => void;
 
     clearPurchasedProducts: () => void;
 }
 
+
 export const usePurchasedProductsStore = create<PurchasedProductsStore>()(
     persist(
         (set) => ({
-            tickets: [],
-            lumibar: [],
+            orders: [],
 
             setPurchasedProducts: (tickets, lumibar) => {
-                set({
-                    tickets,
-                    lumibar,
-                });
+                set((state) => ({
+                    orders: [
+                        ...state.orders,
+                        {
+                            id: crypto.randomUUID(),
+                            createdAt: new Date().toISOString(),
+                            tickets,
+                            lumibar,
+                        }
+                    ],
+                }));
             },
 
             clearPurchasedProducts: () => {
                 set({
-                    tickets: [],
-                    lumibar: [],
+                    orders: [],
                 });
             },
         }),

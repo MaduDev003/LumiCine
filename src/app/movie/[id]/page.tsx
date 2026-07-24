@@ -1,4 +1,4 @@
-import MovieDetail from "@/src/features/movieDetail/movieDetail";
+import MovieDetailPage from "@/src/features/movieDetail/movieDetailPage";
 import {getMovieById} from "../../../services/movie/movieDetailService";
 
 type Props = {
@@ -6,7 +6,7 @@ type Props = {
   searchParams: Promise<{ type: "comingSoon" | "nowPlaying" }>;
 };
 
-export default async function MovieDetailPage({ params, searchParams}: Props) {
+export default async function MovieDetail({ params, searchParams}: Props) {
   const { id } = await params;
   const { type } = await searchParams;
 
@@ -15,5 +15,5 @@ export default async function MovieDetailPage({ params, searchParams}: Props) {
     type
   ); 
   
-    return (<MovieDetail  movie={movie}/>);
+    return (<MovieDetailPage  movie={movie}/>);
 }

@@ -27,49 +27,26 @@ type PaymentType = "credit" | "debit" | "pix" | null;
 export default function PaymentPurchase() {
     const [selectedPayment, setSelectedPayment] =
         useState<PaymentType>(null);
-
     const [isModalOpen, setIsModalOpen] =
         useState(false);
-
     const [modalType, setModalType] =
         useState<"success" | "error">("error");
-
     const [modalMessage, setModalMessage] =
         useState("");
-
-
     const router = useRouter();
-
-
-    const tickets = useCheckoutStore(
-        (state) => state.tickets
-    );
-
-    const lumibar = useCheckoutStore(
-        (state) => state.lumibar
-    );
-
-    const movie = useCheckoutStore(
-        (state) => state.movie
-    );
-
-    const seats = useCheckoutStore(
-        (state) => state.seats
-    );
-
-    const session = useCheckoutStore(
-        (state) => state.session
-    );
-
-
-    const clearCheckout = useCheckoutStore(
-        (state) => state.clearCheckout
-    );
+    const {
+        tickets,
+        lumibar,
+        movie,
+        seats,
+        session,
+        clearCheckout,
+    } = useCheckoutStore();
 
 
     const setPurchasedProducts = usePurchasedProductsStore(
-    (state) => state.setPurchasedProducts
-);
+        (state) => state.setPurchasedProducts
+    );
 
 
     const totalPrice = calcItemsTotalPrice(
@@ -146,19 +123,19 @@ export default function PaymentPurchase() {
             !canInstallment(totalPrice)
         ) {
             setModalType("error");
+
             setModalMessage(
                 "Compras parceladas apenas para valores a partir de R$ 40,00."
             );
 
             setIsModalOpen(true);
+
             return;
         }
 
 
         await finishPayment(data);
     }
-
-
 
 
     async function finishPayment(data: PaymentFormData) {
@@ -170,6 +147,7 @@ export default function PaymentPurchase() {
         if (!paymentResult) {
 
             setModalType("error");
+
             setModalMessage(
                 "Não foi possível processar o pagamento."
             );
@@ -193,20 +171,13 @@ export default function PaymentPurchase() {
                 session,
             }
         );
-
-
-
-        setPurchasedProducts(
-            mountedTickets,
-            lumibar
-        );
-
-
-
+        if (mountedTickets.length > 0 || lumibar.length > 0) {
+            setPurchasedProducts(
+                mountedTickets,
+                lumibar
+            );
+        }
         clearCheckout();
-
-
-
         reset({
             number: "",
             name: "",
@@ -214,9 +185,6 @@ export default function PaymentPurchase() {
             cvc: "",
             installment: "1x sem juros",
         });
-
-
-
         setModalType("success");
 
         setModalMessage(
@@ -285,7 +253,6 @@ export default function PaymentPurchase() {
                 </div>
 
 
-
                 {selectedPayment === "credit" && (
 
                     <div onClick={(e) => e.stopPropagation()}>
@@ -304,7 +271,6 @@ export default function PaymentPurchase() {
                 )}
 
             </div>
-
 
 
 
@@ -373,7 +339,6 @@ export default function PaymentPurchase() {
                 )}
 
             </div>
-
 
 
 

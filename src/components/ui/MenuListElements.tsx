@@ -56,10 +56,10 @@ export default function MenuListElements({
         href="/meus-ingressos"
         className={linkClasses("/meus-ingressos")}
       >
-        Meus Ingressos
         {isActive("/meus-ingressos") && (
           <span className="w-1.5 h-1.5 rounded-full bg-accent" />
         )}
+        Meus Ingressos
       </Link>
     </nav>
   );

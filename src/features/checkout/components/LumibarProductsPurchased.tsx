@@ -27,9 +27,9 @@ export default function LumibarProductsPurchased({ items }: Props) {
                 <div className="w-full border-t border-dashed border-white/20" />
 
                 <div className="flex flex-col gap-3">
-                    {items.map((item) => (
+                    {items.map((item, index) => (
                         <div
-                            key={item.name}
+                            key={index}
                             className="
                                 bg-background-dark/40
                                 rounded-xl
