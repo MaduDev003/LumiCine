@@ -9,12 +9,6 @@ type MovieInfo = {
     poster: string;
 };
 
-type OrderGrouped = {
-    tickets: PurchasedOrder["tickets"];
-    lumibar: PurchasedOrder["lumibar"];
-};
-
-
 type TicketSession = Omit<Session, "ticket">;
 
 type CommonInfo = {
@@ -22,6 +16,10 @@ type CommonInfo = {
     session: TicketSession;
 };
 
+type OrderGrouped = {
+    tickets: PurchasedOrder["tickets"];
+    lumibar: PurchasedOrder["lumibar"];
+};
 
 export function mountTickets(
     tickets: Tickets,
