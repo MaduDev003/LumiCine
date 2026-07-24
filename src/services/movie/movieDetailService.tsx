@@ -2,7 +2,7 @@ import { getMovieDetails } from "@/src/api/movie/getMovieDetails";
 import { getMovieReleaseDates } from "../../api/movie/getMovieReleaseDates";
 import { getMovieCast } from "@/src/api/movie/getMovieCast";
 import { MovieMapper } from "@/src/mappers/movieMapper";
-import { extractAgeRating } from "../../utils/extractAgeRating";
+import { extractAgeRating } from "./movieService";
 import { generateMoviePeriod } from "../dateFiltersService";
 import { isPreSale } from "./movieService";
 

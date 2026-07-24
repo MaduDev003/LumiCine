@@ -2,11 +2,18 @@ import { SeatSelected } from "../types/checkout/seatType";
 import { Tickets } from "../types/checkout/ticketsType";
 import { Session } from "../types/checkout/sessionType";
 import { PurchasedTicket } from "../types/PurchasedTicket";
+import { PurchasedOrder } from "../types/purchasedOrder";
 
 type MovieInfo = {
     title: string;
     poster: string;
 };
+
+type OrderGrouped = {
+    tickets: PurchasedOrder["tickets"];
+    lumibar: PurchasedOrder["lumibar"];
+};
+
 
 type TicketSession = Omit<Session, "ticket">;
 
@@ -48,24 +55,43 @@ export function mountTickets(
 
         purchasedTickets.push({
             id: crypto.randomUUID(),
-
             movie,
-
             session,
-
             seat: {
                 position: seat.position,
                 type: seat.type,
             },
-
             ticketType,
-
             purchaseDate: new Date().toISOString(),
-
             qrCode: crypto.randomUUID(),
         });
     }
 
 
     return purchasedTickets;
+}
+
+
+export function orderPurchasedTicketsByDate(orders: PurchasedOrder[]){
+    return orders.reduce<Record<string, OrderGrouped>>(
+            (acc, order) => {
+                const createdAtDate = new Date(order.createdAt);
+                const date = `${createdAtDate.getDate()}/${createdAtDate.getMonth() + 1}/${createdAtDate.getFullYear()}`;
+    
+                if (!acc[date]) {
+                    acc[date] = {
+                        tickets: [],
+                        lumibar: [],
+                    };
+                }
+    
+                acc[date].tickets.push(...order.tickets);
+                acc[date].lumibar.push(...order.lumibar);
+    
+                return acc;
+            },
+            {}
+        );
+        
+
 }

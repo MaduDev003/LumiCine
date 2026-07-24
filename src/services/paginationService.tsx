@@ -17,3 +17,4 @@ export function getPagination({
         hasNext: endIndex < totalItems,
     };
 }
+

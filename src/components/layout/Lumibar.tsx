@@ -3,7 +3,7 @@
 import {useState, useEffect} from "react";
 import { ChevronRight, ChevronLeft } from "lucide-react";
 import { renderItemsPerPage } from "@/src/utils/renderItensPerPage";
-import { getPagination } from "@/src/utils/pagination";
+import { getPagination } from "@/src/services/paginationService";
 import { lumiBarProducts } from "@/src/data/lumibarProducts";
 import SnackCard from "../ui/snackCard";
 
