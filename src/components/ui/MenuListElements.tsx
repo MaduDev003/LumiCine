@@ -47,7 +47,7 @@ export default function MenuListElements({
            {isActive("/lumibar") && (
             <span className="w-1.5 h-1.5 rounded-full bg-accent" />
           )}
-          LumiBar
+          Lumibar
          
       </Link>
 
