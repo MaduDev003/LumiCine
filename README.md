@@ -237,6 +237,8 @@ Durante o desenvolvimento, algumas decisões foram tomadas para tornar a navega�
 
 - **Validações visuais durante o checkout:** o usuário recebe feedback ao tentar prosseguir sem preencher informações obrigatórias ou realizar ações inválidas, contribuindo para uma experiência mais segura.
 
+- **Visualização do cartão no pagamento:** foi utilizada a biblioteca **react-19-credit-card** para representar visualmente o cartão durante o preenchimento dos dados de pagamento. Essa escolha teve como objetivo tornar a experiência mais intuitiva, permitindo que o usuário visualize as informações inseridas de forma semelhante a um cartão real.
+
 ### Acessibilidade
 
 Durante o desenvolvimento foram adotadas práticas para melhorar a acessibilidade da aplicação, incluindo:
