@@ -339,7 +339,7 @@ Algumas melhorias podem ser implementadas futuramente para evoluir a aplicação
 
 - [ ] **Duração dinâmica dos filmes:** utilizar a duração real dos filmes para calcular automaticamente os horários das sessões.
 
-- [ ] **Salas dinâmicas:** permitir diferentes configurações de salas e assentos conforme cada sessão, incluindo capacidade e disposição dos lugares.
+- [x] **Salas dinâmicas:** permitir diferentes configurações de salas e assentos conforme cada sessão, incluindo capacidade e disposição dos lugares.
 
 - [ ] **Máscara para campos de pagamento:** adicionar máscaras de entrada para campos como número do cartão, facilitando o preenchimento e melhorando a experiência do usuário.
 
