@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useMovieContext } from "@/src/context/MovieContext";
 import Header from "@/src/components/layout/Header";
 import Footer from "@/src/components/layout/Footer";
-import { usePurchasedProductsStore } from "@/src/store/PurchasedProductsStore ";
+import { usePurchasedProductsStore } from "@/src/store/PurchasedProductsStore";
 import TicketConcluded from "@/src/features/checkout/components/TicketConcluded";
 import LumibarProductsPurchased from "@/src/features/checkout/components/LumibarProductsPurchased";
 import { orderPurchasedTicketsByDate } from "@/src/services/ticketsService";

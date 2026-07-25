@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useMovieContext } from "@/src/context/MovieContext";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
-import { usePurchasedProductsStore } from "@/src/store/PurchasedProductsStore ";
+import { usePurchasedProductsStore } from "@/src/store/PurchasedProductsStore";
 import CheckoutProgress from "./components/CheckoutProgress";
 import Header from "@/src/components/layout/Header";
 import Footer from "@/src/components/layout/Footer";

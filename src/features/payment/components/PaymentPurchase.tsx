@@ -14,7 +14,7 @@ import {
 
 import { paymentSchema, PaymentFormData } from "@/src/schemas/paymentSchema";
 import { useCheckoutStore } from "@/src/store/checkoutStore";
-import { usePurchasedProductsStore } from "@/src/store/PurchasedProductsStore ";
+import { usePurchasedProductsStore } from "@/src/store/PurchasedProductsStore";
 import { mountTickets } from "@/src/services/ticketsService";
 
 import PaymentCard from "./PaymentCard";
