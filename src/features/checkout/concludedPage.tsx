@@ -18,7 +18,7 @@ export default function ConcludedPage() {
     const { nowPlayingMoviesData, comingSoonMoviesData } = useMovieContext();
     const seats = useCheckoutStore(state => state.seats)
     const orders = usePurchasedProductsStore((state) => state.orders);
-
+    console.log(orders, 'order')
     const currentOrder = orders[orders.length - 1];
 
     const tickets = currentOrder?.tickets ?? [];
@@ -98,6 +98,7 @@ export default function ConcludedPage() {
                                             {ticket && (
                                                 <TicketConcluded
                                                     key={ticket.id}
+                                                    room={ticket.movie.room}
                                                     posterUrl={ticket.movie.poster}
                                                     movieTitle={ticket.movie.title}
                                                     date={ticket.session.date}

@@ -14,5 +14,6 @@ export type Movie = {
   show_period: MoviePeriod;
   release_date: string;
   pre_sale: boolean | undefined;
+  room: number,
   cast: Array<CastMember>
 };

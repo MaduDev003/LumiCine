@@ -9,11 +9,13 @@ type Props = {
     date?: string;
     time: string;
     seatPosition: string;
+    room: number;
     ticketType: "full" | "half"
 };
 
 export default function TicketConcluded({
     posterUrl,
+    room,
     movieTitle,
     date,
     time,
@@ -87,7 +89,7 @@ export default function TicketConcluded({
                             Sala
                         </p>
                         <p className="text-font-dark font-semibold text-sm">
-                            5
+                            {room}
                         </p>
                     </div>
 

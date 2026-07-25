@@ -2,10 +2,14 @@ import { Lumibar } from "@/src/types/checkout/lumiBarType";
 import { BRFormat } from "@/src/utils/fixValueForBrazilianFormat";
 
 type Props = {
-    items: Lumibar[];
+    items: (Lumibar | null)[];
 };
 
 export default function LumibarProductsPurchased({ items }: Props) {
+    const validItems = items.filter(
+        (item): item is Lumibar => item !== null
+    );
+
     return (
         <div
             className="
@@ -27,7 +31,7 @@ export default function LumibarProductsPurchased({ items }: Props) {
                 <div className="w-full border-t border-dashed border-white/20" />
 
                 <div className="flex flex-col gap-3">
-                    {items.map((item, index) => (
+                    {validItems.map((item, index) => (
                         <div
                             key={index}
                             className="
@@ -40,13 +44,13 @@ export default function LumibarProductsPurchased({ items }: Props) {
                             "
                         >
                             <div className="flex gap-3 justify-center items-center">
-                                 <p className="text-font-secondary-dark font-semibold text-sm">
+                                <p className="text-font-secondary-dark font-semibold text-sm">
                                     {item.quantity}x
                                 </p>
+
                                 <p className="text-font-dark font-semibold text-sm">
-                                     {item.name}
+                                    {item.name}
                                 </p>
-                               
                             </div>
 
                             <p className="text-font-secondary-dark font-semibold text-sm">
@@ -56,9 +60,7 @@ export default function LumibarProductsPurchased({ items }: Props) {
                     ))}
                 </div>
 
-                <div className="mt-auto pt-5 border-t border-dashed border-white/20">
-                    
-                </div>
+                <div className="mt-auto pt-5 border-t border-dashed border-white/20" />
             </div>
         </div>
     );

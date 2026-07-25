@@ -21,6 +21,7 @@ export class MovieMapper {
       release_date: movie.release_date,
       backdrop_url: `https://image.tmdb.org/t/p/original${movie.backdrop_path}`,
       pre_sale: movie.pre_sale,
+      room: Math.floor(Math.random() * 10),
       cast: movie.cast,
     };
   }

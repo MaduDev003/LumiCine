@@ -42,7 +42,7 @@ export default function PaymentPurchase() {
         session,
         clearCheckout,
     } = useCheckoutStore();
-
+    console.log(movie, 'movie')
 
     const setPurchasedProducts = usePurchasedProductsStore(
         (state) => state.setPurchasedProducts
@@ -166,6 +166,7 @@ export default function PaymentPurchase() {
                 movie: {
                     title: movie?.title ?? "",
                     poster: movie?.backdrop_url ?? "",
+                    room: movie?.room ?? 1,
                 },
 
                 session,

@@ -6,12 +6,14 @@ export type PurchasedTicket = {
     movie: {
         title: string;
         poster: string;
+        room: number;
     };
     session: Omit<Session, "ticket">;
     seat: {
         position: string;
         type: SeatSelected["type"];
     };
+  
     ticketType: "half" | "full";
     purchaseDate: string;
     qrCode: string;

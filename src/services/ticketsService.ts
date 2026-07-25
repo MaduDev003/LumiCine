@@ -7,6 +7,7 @@ import { PurchasedOrder } from "@/src/types/purchasedOrder";
 type MovieInfo = {
     title: string;
     poster: string;
+    room: number;
 };
 
 type TicketSession = Omit<Session, "ticket">;

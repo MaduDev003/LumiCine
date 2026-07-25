@@ -14,7 +14,7 @@ export default function MyTicketsPage() {
     const { nowPlayingMoviesData, comingSoonMoviesData } = useMovieContext();
     const { orders } = usePurchasedProductsStore();
     const ordersByDate = orderPurchasedTicketsByDate(orders);
-
+    console.log(ordersByDate, "ordersByDate")
     return (
         <div className="min-h-screen flex flex-col">
             {!menu && (
@@ -40,6 +40,7 @@ export default function MyTicketsPage() {
                                         {order.tickets.map((ticket) => (
                                             <TicketConcluded
                                                 key={ticket.id}
+                                                room={ticket.movie.room}
                                                 posterUrl={ticket.movie.poster}
                                                 movieTitle={ticket.movie.title}
                                                 date={ticket.session.date}
