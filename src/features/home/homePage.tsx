@@ -94,7 +94,6 @@ export default function HomePage() {
           <main className="w-full py-8">
             <div className="px-6 flex justify-center pt-8 pb-20">
               <div className="w-full max-w-275 mx-auto px-6">
-                  {/* Banner */}
                 {isLoading || !currentMovie ? (
                     <div className="aspect-video md:aspect-21/9 rounded-xl bg-gray-300 animate-pulse" />
                   ) : (
@@ -104,10 +103,7 @@ export default function HomePage() {
                         backgroundImage: `url(${currentMovie.backdrop_url})`,
                       }}
                     >
-                      {/* OVERLAY */}
                       <div className="absolute inset-0 bg-black/83 z-0" />
-
-                      {/* CONTEÚDO */}
                       <div className="absolute inset-0 z-10">
                         <h1 className="absolute top-6 left-8 lg:top-7 lg:left-10 text-font-dark text-lg md:text-2xl lg:text-3xl font-medium drop-shadow-md">
                           {currentMovie.title}
@@ -170,8 +166,6 @@ export default function HomePage() {
                       </div>
                     </div>
                   )}
-
-                {/* INDICADORES */}
                 <div className="flex mt-3 justify-center h-12 gap-2">
                   {Array.from({ length: 4 }).map((_, i) => (
                     <span
@@ -232,8 +226,6 @@ export default function HomePage() {
                     </button>
                   </div>
                 </section>
-                
-                {/* EM BREVE */}
                <section className="mt-14">
                 <div className="mb-12 flex gap-3 items-center">
                   <h1 className="text-4xl text-font-light">
