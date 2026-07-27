@@ -25,6 +25,7 @@ type PaymentType = "credit" | "debit" | "pix" | null;
 
 
 export default function PaymentPurchase() {
+    const [isProcessing, setIsProcessing] = useState(false);
     const [selectedPayment, setSelectedPayment] =
         useState<PaymentType>(null);
     const [isModalOpen, setIsModalOpen] =
@@ -139,60 +140,51 @@ export default function PaymentPurchase() {
 
 
     async function finishPayment(data: PaymentFormData) {
+        setIsProcessing(true);
 
-        const paymentResult =
-            await processPayment(data);
+        try {
+            const paymentResult = await processPayment(data);
 
-
-        if (!paymentResult) {
-
+            if (!paymentResult) {
             setModalType("error");
-
-            setModalMessage(
-                "Não foi possível processar o pagamento."
-            );
-
+            setModalMessage("Não foi possível processar o pagamento.");
             setIsModalOpen(true);
-
             return;
-        }
+            }
 
-
-
-        const mountedTickets = mountTickets(
+            const mountedTickets = mountTickets(
             tickets,
             seats,
             {
                 movie: {
-                    title: movie?.title ?? "",
-                    poster: movie?.backdrop_url ?? "",
-                    room: movie?.room ?? 1,
+                title: movie?.title ?? "",
+                poster: movie?.backdrop_url ?? "",
+                room: movie?.room ?? 1,
                 },
-
                 session,
             }
-        );
-        if (mountedTickets.length > 0 || lumibar.length > 0) {
-            setPurchasedProducts(
-                mountedTickets,
-                lumibar
             );
-        }
-        clearCheckout();
-        reset({
+
+            if (mountedTickets.length > 0 || lumibar.length > 0) {
+            setPurchasedProducts(mountedTickets, lumibar);
+            }
+
+            clearCheckout();
+
+            reset({
             number: "",
             name: "",
             expiry: "",
             cvc: "",
             installment: "1x sem juros",
-        });
-        setModalType("success");
+            });
 
-        setModalMessage(
-            "Pagamento realizado com sucesso!"
-        );
-
-        setIsModalOpen(true);
+            setModalType("success");
+            setModalMessage("Pagamento realizado com sucesso!");
+            setIsModalOpen(true);
+        } finally {
+            setIsProcessing(false);
+        }
     }
 
 
@@ -344,27 +336,34 @@ export default function PaymentPurchase() {
 
 
 
-            <ButtonCine
-                onClick={handleSubmit(onSubmit)}
-                text="Pagar"
-                className="
-                    w-40
-                    h-10
-                    text-font-dark
-                    bg-accent
-                    transition-all
-                    duration-700
-                    hover:scale-105
-                    cursor-pointer
-                    hover:brightness-110
-                "
-            />
-
-
-
-
-
-
+        <ButtonCine
+            onClick={handleSubmit(onSubmit)}
+            text={
+                isProcessing ? (
+                <div className="flex items-center gap-1">
+                    <span className="flex gap-1">
+                    <span className="w-1.5 h-1.5 rounded-full bg-current animate-bounce [animation-delay:0ms]" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-current animate-bounce [animation-delay:150ms]" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-current animate-bounce [animation-delay:300ms]" />
+                    </span>
+                </div>
+                ) : (
+                "Pagar"
+                )
+            }
+            className="
+                w-40
+                h-10
+                text-font-dark
+                bg-accent
+                transition-all
+                duration-300
+                hover:scale-105
+                hover:brightness-110
+                disabled:opacity-70
+                disabled:cursor-not-allowed
+            "
+        />
             {isModalOpen && (
 
                 <div className="
