@@ -282,35 +282,8 @@ export default function HomePage() {
                 )}
               </section>
 
-                    {/* Banner LumiBar */}
-                <div
-                  className="aspect-21/9 mt-16 rounded-xl relative overflow-hidden shadow-sm bg-cover bg-center"
-                  style={{
-                    backgroundImage: `url(${AvatarMovie.src})`,
-                  }}
-                >
-                  <div className="absolute inset-0 bg-black/80 " />
 
-                  <div className="absolute bottom-4 right-4 md:bottom-4 md:right-6 lg:bottom-8 lg:right-4 flex gap-2 z-20">
-                    <button className="bg-white/10 hover:bg-white/20 transition-colors p-1.5 md:p-2 rounded-full backdrop-blur-xl border border-white/20">
-                      <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 lg:w-8 lg:h-8 text-font-dark/30 cursor-default" />
-                    </button>
-
-                    <button className="bg-white/10 hover:bg-white/20 transition-colors p-1.5 md:p-2 rounded-full backdrop-blur-xl border border-white/20">
-                      <ChevronRight className="w-5 h-5 md:w-6 md:h-6 lg:w-8 lg:h-8 text-white" />
-                    </button>
-                  </div>
-                </div>
-
-                {/* INDICADORES */}
-                <div className="flex mt-3 justify-center h-12 gap-2">
-                  <span className="bg-font-dark h-2 w-8 rounded-full" />
-                  <span className="bg-tertiary-dark h-2 w-8 rounded-full hover:bg-font-dark transition-colors duration-200" />
-                  <span className="bg-tertiary-dark h-2 w-8 rounded-full hover:bg-font-dark transition-colors duration-200" />
-                  <span className="bg-tertiary-dark h-2 w-8 rounded-full hover:bg-font-dark transition-colors duration-200" />
-                </div>
-
-                <section className="mt-6">
+                <section className="mt-25">
                   <h1 className="text-4xl text-font-light mb-12">
                     Em Exibição
                   </h1>
