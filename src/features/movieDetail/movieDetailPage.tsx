@@ -47,17 +47,17 @@ export default function MovieDetail({ movie }: { movie: Movie }) {
             <>
                 <Header setMenu={setMenu} allMoviesForSearch={[...nowPlayingMoviesData, ...comingSoonMoviesData]}/>
                 <main className="mt-8 mb-10">
-                    <div className="w-full max-w-7xl mx-auto px-4 md:px-6 lg:px-8 flex flex-col lg:flex-row gap-8 mb-10">
-                           <div className="w-105 flex flex-col rounded-2xl gap-6 p-5 mx-auto items-center">
-                                    <div
-                                        className="w-[90%] h-100 lg:h-[82%] rounded-xl  shadow-[0_25px_60px_rgba(0,0,0,0.45)]"
-                                        style={{
-                                        backgroundImage: `url(${movie.poster_url})`,
-                                        backgroundPosition: "center",
-                                        backgroundSize: "cover",
-                                        backgroundRepeat: "no-repeat",
-                                        }}
-                                    />
+                    <div className="w-full max-w-7xl mx-auto flex flex-col lg:flex-row gap-8 px-4 sm:px-6 lg:px-8 mb-10">
+                        <div className="w-full max-w-sm mx-auto lg:mx-0 flex flex-col rounded-2xl gap-6 p-5 items-center">
+                            <div
+                                className="w-full aspect-2/3 rounded-xl shadow-[0_25px_60px_rgba(0,0,0,0.45)]"
+                                style={{
+                                    backgroundImage: `url(${movie.poster_url})`,
+                                    backgroundPosition: "center",
+                                    backgroundSize: "cover",
+                                    backgroundRepeat: "no-repeat",
+                                }}
+                            />
                                     {((movie.type === "comingSoon" && movie.pre_sale) ||
                                         movie.type === "nowPlaying") && (
                                         <ButtonCine
