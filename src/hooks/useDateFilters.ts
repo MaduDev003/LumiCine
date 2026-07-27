@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { generateDatesForFilter } from "@/src/services/dateFiltersService";
-import {renderItemsPerPage} from "@/src/utils/renderItensPerPage";
+import { renderItemsPerPage } from "@/src/utils/renderItensPerPage";
 
 export function useDateFilter(days = 15, type: "home" | "session") {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -17,8 +17,8 @@ export function useDateFilter(days = 15, type: "home" | "session") {
   const nextIndex = currentIndex + dateFilterPerPage;
   const previousIndex = currentIndex - dateFilterPerPage;
 
-  const hasNext = !!dates[nextIndex];
-  const hasPrevious = previousIndex >= 0;
+  const hasNext = nextIndex < dates.length;
+  const hasPrevious = currentIndex > 0;
 
   function handleNextDateFilter() {
     if (hasNext) {
@@ -34,7 +34,9 @@ export function useDateFilter(days = 15, type: "home" | "session") {
 
   useEffect(() => {
     function updateItemsPerPage() {
-      setDateFilterPerPage(renderItemsPerPage(window.innerWidth, type));
+      setDateFilterPerPage(
+        renderItemsPerPage(window.innerWidth, type)
+      );
     }
 
     updateItemsPerPage();
@@ -44,7 +46,14 @@ export function useDateFilter(days = 15, type: "home" | "session") {
     return () => {
       window.removeEventListener("resize", updateItemsPerPage);
     };
-  }, []);
+  }, [type]);
+
+  useEffect(() => {
+    setCurrentIndex((prev) => {
+      const maxIndex = Math.max(0, dates.length - dateFilterPerPage);
+      return Math.min(prev, maxIndex);
+    });
+  }, [dateFilterPerPage, dates.length]);
 
   return {
     visibleDates,
