@@ -14,17 +14,22 @@ export default function DateMovieFilter({
 }: Props) {
 
   return (
-    <button
-      onClick={onClick}
-      className={`
-        w-24 h-20 rounded-xl relative cursor-pointer border-2
-        ${
-          selectedDate
-            ? "border-accent"
-            : "border-tertiary-dark hover:border-accent transition-colors duration-200"
-        }
-      `}
-    >
+      <button
+        onClick={onClick}
+        className={`
+          w-16 sm:w-20 md:w-24
+          h-20
+          rounded-xl
+          relative
+          cursor-pointer
+          border-2
+          ${
+            selectedDate
+              ? "border-accent"
+              : "border-tertiary-dark hover:border-accent transition-colors duration-200"
+          }
+        `}
+      >
       <span className="absolute text-sm top-1.5 left-1/2 -translate-x-1/2">
         {day}
       </span>

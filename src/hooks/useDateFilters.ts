@@ -17,8 +17,8 @@ export function useDateFilter(days = 15, type: "home" | "session") {
   const nextIndex = currentIndex + dateFilterPerPage;
   const previousIndex = currentIndex - dateFilterPerPage;
 
-  const hasNext = nextIndex < dates.length;
-  const hasPrevious = currentIndex > 0;
+  const hasNext = !!dates[nextIndex];
+  const hasPrevious = previousIndex >= 0;
 
   function handleNextDateFilter() {
     if (hasNext) {
@@ -46,14 +46,7 @@ export function useDateFilter(days = 15, type: "home" | "session") {
     return () => {
       window.removeEventListener("resize", updateItemsPerPage);
     };
-  }, [type]);
-
-  useEffect(() => {
-    setCurrentIndex((prev) => {
-      const maxIndex = Math.max(0, dates.length - dateFilterPerPage);
-      return Math.min(prev, maxIndex);
-    });
-  }, [dateFilterPerPage, dates.length]);
+  }, []);
 
   return {
     visibleDates,

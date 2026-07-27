@@ -195,22 +195,24 @@ export default function HomePage() {
                     </button>
 
                     <div className="overflow-x-clip scrollbar-hide">
-                      <div className="flex gap-6">
-                          {visibleDates.map((date) => (
-                            <DateMovieFilter
-                              key={`${date.day} - ${date.date}`}
-                              {...date}
-                              onClick={() =>
-                                setSelectedDate(prev =>
-                                  prev?.getTime() === date.fullDate.getTime()
-                                    ? null
-                                    : date.fullDate
-                                  )
-                              }
-                              selectedDate={selectedDate === date.fullDate}
-                            />
-                          ))}
-                        </div>
+                      <div className="flex justify-center gap-3 md:gap-6">
+                        {visibleDates.map((date) => (
+                          <DateMovieFilter
+                            key={`${date.day}-${date.date}`}
+                            {...date}
+                            onClick={() =>
+                              setSelectedDate((prev) =>
+                                prev?.getTime() === date.fullDate.getTime()
+                                  ? null
+                                  : date.fullDate
+                              )
+                            }
+                            selectedDate={
+                              selectedDate?.getTime() === date.fullDate.getTime()
+                            }
+                          />
+                        ))}
+                      </div>
                     </div>
 
                     <button
