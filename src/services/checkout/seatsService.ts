@@ -1,5 +1,5 @@
-import { Tickets } from "@/src/types/checkout/ticketsType";
-import { Seat } from "@/src/types/checkout/seatType";
+import { Tickets } from "@/src/types/checkout/TicketsType";
+import { Seat } from "@/src/types/checkout/SeatType";
 import { calcTicketsTotal } from "./sessionService";
 
 export function isSeatValidForPurchase(

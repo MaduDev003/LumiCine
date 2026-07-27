@@ -1,6 +1,6 @@
 import { Accessibility } from "lucide-react";
 import { useCheckoutStore } from "@/src/store/checkoutStore";
-import {Seat} from "@/src/types/checkout/seatType";
+import {Seat} from "@/src/types/checkout/SeatType";
 type Props = {
     type: Seat;
     position: {

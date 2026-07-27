@@ -1,5 +1,5 @@
 import { useRouter } from "next/navigation";
-import { Movie } from "@/src/types/movieType";
+import { Movie } from "@/src/types/MovieType";
 import {renderAgeClassificationColor} from "@/src/utils/renderAgeClassificationColor";
 
 type Props = {

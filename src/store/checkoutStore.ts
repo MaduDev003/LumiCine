@@ -1,10 +1,10 @@
 import { create } from "zustand";
-import { Movie } from "@/src/types/movieType";
+import { Movie } from "@/src/types/MovieType";
 import { persist } from "zustand/middleware";
-import { Tickets } from "@/src/types/checkout/ticketsType";
-import { Session } from "@/src/types/checkout/sessionType";
-import { Lumibar } from "@/src/types/checkout/lumiBarType";
-import { SeatSelected } from "@/src/types/checkout/seatType";
+import { Tickets } from "@/src/types/checkout/TicketsType";
+import { Session } from "@/src/types/checkout/SessionType";
+import { Lumibar } from "@/src/types/checkout/LumiBarType";
+import { SeatSelected } from "@/src/types/checkout/SeatType";
 
 interface CheckoutStore {
   movie: Movie | null;

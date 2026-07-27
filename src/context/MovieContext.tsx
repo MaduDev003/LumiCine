@@ -1,7 +1,7 @@
 "use client"
 
 import { createContext, useContext, useState } from "react";
-import type { Movie } from "@/src/types/movieType";
+import type { Movie } from "@/src/types/MovieType";
 
 type MovieContextType = {
   nowPlayingMoviesData: Movie[];

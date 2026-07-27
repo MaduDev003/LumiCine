@@ -1,4 +1,4 @@
-import { Lumibar } from "@/src/types/checkout/lumiBarType";
+import { Lumibar } from "@/src/types/checkout/LumiBarType";
 import { BRFormat } from "@/src/utils/fixValueForBrazilianFormat";
 
 type Props = {

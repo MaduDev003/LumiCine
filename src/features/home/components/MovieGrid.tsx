@@ -1,5 +1,5 @@
 import MovieCard from "./MovieCard";
-import { Movie } from "@/src/types/movieType";
+import { Movie } from "@/src/types/MovieType";
 
 type MovieGridProps = {
   isLoading: boolean;

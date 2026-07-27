@@ -1,4 +1,4 @@
-import { Tickets } from "@/src/types/checkout/ticketsType";
+import { Tickets } from "@/src/types/checkout/TicketsType";
 
 export function updateTicketQuantity(
     tickets: Tickets,

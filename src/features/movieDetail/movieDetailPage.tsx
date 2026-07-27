@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { X } from "lucide-react";
 import {renderAgeClassificationColor} from "@/src/utils/renderAgeClassificationColor";
-import { Movie } from "@/src/types/movieType";
+import { Movie } from "@/src/types/MovieType";
 import { useMovieContext } from "@/src/context/MovieContext";
 import { formatDateToBrazilianFormat } from "@/src/utils/formatDate";
 import { useCheckoutStore } from "@/src/store/checkoutStore";

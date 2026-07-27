@@ -1,5 +1,5 @@
-import { CastMember } from "./castMemberType";
-import { MoviePeriod } from "./moviePeriodType";
+import { CastMember } from "./CastMemberType";
+import { MoviePeriod } from "./MoviePeriodType";
 
 export type MovieResponse = {
   id: number;

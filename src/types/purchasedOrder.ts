@@ -1,5 +1,5 @@
-import { PurchasedTicket } from "./purchasedTicket";
-import { Lumibar } from "./checkout/lumiBarType";
+import { PurchasedTicket } from "./PurchasedTicket";
+import { Lumibar } from "./checkout/LumiBarType";
 
 export interface PurchasedOrder {
     id: string;

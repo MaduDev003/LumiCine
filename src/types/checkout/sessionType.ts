@@ -1,4 +1,4 @@
-import { Ticket } from "./ticketsType";
+import { Ticket } from "./TicketsType";
 
 export interface Session {
   date: string;

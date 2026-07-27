@@ -1,4 +1,4 @@
-import { Lumibar } from "@/src/types/checkout/lumiBarType";
+import { Lumibar } from "@/src/types/checkout/LumiBarType";
 
 export function handlePurchase(
     operation: "plus" | "minus", 

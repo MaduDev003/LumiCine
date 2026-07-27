@@ -1,6 +1,6 @@
-import { SeatSelected } from "@/src/types/checkout/seatType";
-import { Session } from "@/src/types/checkout/sessionType";
-import { Tickets } from "@/src/types/checkout/ticketsType";
+import { SeatSelected } from "@/src/types/checkout/SeatType";
+import { Session } from "@/src/types/checkout/SessionType";
+import { Tickets } from "@/src/types/checkout/TicketsType";
 
 export function validateSeatSelection(seats: SeatSelected[], totalSeatsPermitted: number) {
   const missingFields = []

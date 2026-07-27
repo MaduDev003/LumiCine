@@ -1,5 +1,5 @@
-import { SeatSelected } from "./checkout/seatType";
-import { Session } from "./checkout/sessionType";
+import { SeatSelected } from "./checkout/SeatType";
+import { Session } from "./checkout/SessionType";
 
 export type PurchasedTicket = {
     id: string;

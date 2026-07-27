@@ -1,7 +1,7 @@
 import { getMovies } from "@/src/api/movie/getMovies";
 import { getMovieReleaseDates } from "@/src/api/movie/getMovieReleaseDates";
 import { MovieMapper } from "@/src/mappers/movieMapper";
-import { MovieResponse } from "@/src/types/movieResponseType";
+import { MovieResponse } from "@/src/types/MovieResponseType";
 import { generateMoviePeriod } from "@/src/services/dateFiltersService";
 
 export async function getMoviesData(page: number) {

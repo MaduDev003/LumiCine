@@ -1,6 +1,6 @@
 import { movieGenres } from "@/src/lib/movieGenres";
-import { Movie } from "@/src/types/movieType";
-import { MovieResponse } from "@/src/types/movieResponseType";
+import { Movie } from "@/src/types/MovieType";
+import { MovieResponse } from "@/src/types/MovieResponseType";
 
 export class MovieMapper {
   public static toDomain(movie: MovieResponse): Movie {

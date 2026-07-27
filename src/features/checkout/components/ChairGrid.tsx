@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useCheckoutStore } from "@/src/store/checkoutStore";
 import ValidatorModal from "./ValidatorModal";
-import {Seat} from "@/src/types/checkout/seatType";
+import {Seat} from "@/src/types/checkout/SeatType";
 import Chair from "./Chair";
 import { isSeatValidForPurchase} from "@/src/services/checkout/seatsService";
 import { calcTicketsTotal } from "@/src/services/checkout/sessionService";

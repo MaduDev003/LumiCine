@@ -3,7 +3,7 @@
 import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Search, Send, TextAlignJustify } from "lucide-react";
-import { Movie } from "@/src/types/movieType";
+import { Movie } from "@/src/types/MovieType";
 import { useCheckoutStore } from "@/src/store/checkoutStore";
 import logo from "@/src/assets/images/logo.png";
 import MenuListElements from "@/src/components/ui/MenuListElements";
