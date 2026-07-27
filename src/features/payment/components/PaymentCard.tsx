@@ -67,7 +67,7 @@ export default function PaymentCard({
       />
 
       <div className="flex flex-col gap-3 mt-3 px-5">
-        <div className="flex justify-between">
+        <div className="flex flex-col justify-between md:flex-row">
           <InputForm
             label="Número do cartão"
             name="number"
@@ -89,7 +89,7 @@ export default function PaymentCard({
           />
         </div>
 
-        <div className="flex justify-between">
+        <div className="flex flex-col justify-between md:flex-row">
           <InputForm
             label="Data de Expiração"
             name="expiry"

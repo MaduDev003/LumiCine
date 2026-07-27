@@ -22,7 +22,7 @@ export default function InputForm({
 }: Props) {
   return (
     <div>
-      <h3 className="text-[13px] mb-1 text-font-dark">
+      <h3 className="text-[13px] mb-1 text-font-dark ">
         {label}
       </h3>
 
@@ -31,7 +31,7 @@ export default function InputForm({
           border
           rounded-xl
           h-10
-          w-60
+         w-full md:w-60
           border-tertiary-dark
           px-2
           placeholder:text-[14px]
