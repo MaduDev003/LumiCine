@@ -24,6 +24,8 @@ export default function MovieDetail({ movie }: { movie: Movie }) {
         router.push("/checkout/session");
       }
 
+      console.log(movie)
+
   return (
     <>
     {menu && (
