@@ -52,6 +52,24 @@ export default function CheckoutPaymentPage() {
                         {hasSessionInfo && <CheckoutProgress type="payment"/>}
                         <div className="flex flex-col-reverse lg:flex-row gap-8 items-stretch lg:h-220 sm:h-400 lg:mt-4 mt-10">
                             <div className="flex-2 gap-10 flex flex-col lg:mt-0 mt-10 items-center">
+                                <div className="
+                                        w-[85%] 
+                                        rounded-xl 
+                                        border 
+                                        border-tertiary-dark 
+
+                                        px-5 
+                                        py-4
+                                        ">
+                                        <h3 className="text-sm font-semibold text-font-secondary-dark">
+                                            Pagamento de demonstração
+                                        </h3>
+
+                                        <p className="mt-1 text-sm text-font-dark/50">
+                                            Este é um ambiente de teste. Você pode utilizar qualquer valor ou dado fictício,
+                                            desde que respeite o formato solicitado em cada campo.
+                                        </p>
+                                </div>
                                 <PaymentPurchase />
                             </div>
                             <ResumePurchase />
