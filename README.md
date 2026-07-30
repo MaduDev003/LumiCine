@@ -196,7 +196,7 @@ A pasta data armazena dados estáticos utilizados pela aplicação, como produto
 ## 🎨 Design System e UI/UX
 
 
-A interface do LumiCine foi desenvolvida com foco em consistência visual, experiência do usuário e reutilização de componentes. Para isso, foi criado um pequeno Design System utilizado como base para padronizar cores, tipografia, espaçamentos e componentes ao longo de toda a aplicação.
+A interface do LumiCine foi desenvolvida com foco em consistência visual, experiência do usuário e reutilização de componentes. Para isso, foi criado um Design System utilizado como base para padronizar cores, tipografia, espaçamentos e componentes ao longo de toda a aplicação.
 
 ### Identidade visual
 
@@ -392,7 +392,6 @@ As imagens utilizadas nos produtos do **LumiBar** foram obtidas gratuitamente at
 
 Créditos:
 - Fonte: Unsplash
-- Os fotógrafos responsáveis estão disponíveis nos links individuais das imagens utilizadas.
 
 ### Favicon e Logo do Readme
 Créditos:
