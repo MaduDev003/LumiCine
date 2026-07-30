@@ -354,6 +354,9 @@ Antes de iniciar, certifique-se de possuir instalado:
 
 - Node.js
 - npm ou outro gerenciador de pacotes
+- Token da API do TMDB configurado
+  
+  Para utilizar a aplicação, é necessário criar um token de acesso no TMDB e adicioná-lo à variável de ambiente NEXT_PUBLIC_TMDB_TOKEN em um arquivo .env: "NEXT_PUBLIC_TMDB_TOKEN=seu_token_aqui"
 
 ### Instalação
 
