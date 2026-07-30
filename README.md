@@ -392,8 +392,7 @@ As imagens utilizadas nos produtos do **LumiBar** foram obtidas gratuitamente at
 
 Créditos:
 - Fonte: Unsplash
-- Os fotógrafos responsáveis estão disponíveis nos links individuais das imagens utilizadas.
-
+- 
 ### Favicon e Logo do Readme
 Créditos:
   - Autor: Andrean Prabowo
